@@ -1,0 +1,2625 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.2 #14362 (MINGW64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module angry_bird
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _button_right_logo
+                                     12 	.globl _button_left_logo
+                                     13 	.globl _volume_logo
+                                     14 	.globl _music_logo
+                                     15 	.globl _button_down_logo
+                                     16 	.globl _button_up_logo
+                                     17 	.globl _angry_bird_logo
+                                     18 	.globl _I2C_Stop
+                                     19 	.globl _I2C_Start
+                                     20 	.globl _oledSendData
+                                     21 	.globl _OLED_SetCursor
+                                     22 	.globl _OLED_Clear
+                                     23 	.globl _OLED_DisplayString
+                                     24 	.globl _OLED_Init
+                                     25 	.globl _delay_ms
+                                     26 	.globl _CY
+                                     27 	.globl _AC
+                                     28 	.globl _F0
+                                     29 	.globl _RS1
+                                     30 	.globl _RS0
+                                     31 	.globl _OV
+                                     32 	.globl _F1
+                                     33 	.globl _P
+                                     34 	.globl _PS
+                                     35 	.globl _PT1
+                                     36 	.globl _PX1
+                                     37 	.globl _PT0
+                                     38 	.globl _PX0
+                                     39 	.globl _RD
+                                     40 	.globl _WR
+                                     41 	.globl _T1
+                                     42 	.globl _T0
+                                     43 	.globl _INT1
+                                     44 	.globl _INT0
+                                     45 	.globl _TXD
+                                     46 	.globl _RXD
+                                     47 	.globl _P3_7
+                                     48 	.globl _P3_6
+                                     49 	.globl _P3_5
+                                     50 	.globl _P3_4
+                                     51 	.globl _P3_3
+                                     52 	.globl _P3_2
+                                     53 	.globl _P3_1
+                                     54 	.globl _P3_0
+                                     55 	.globl _EA
+                                     56 	.globl _ES
+                                     57 	.globl _ET1
+                                     58 	.globl _EX1
+                                     59 	.globl _ET0
+                                     60 	.globl _EX0
+                                     61 	.globl _P2_7
+                                     62 	.globl _P2_6
+                                     63 	.globl _P2_5
+                                     64 	.globl _P2_4
+                                     65 	.globl _P2_3
+                                     66 	.globl _P2_2
+                                     67 	.globl _P2_1
+                                     68 	.globl _P2_0
+                                     69 	.globl _SM0
+                                     70 	.globl _SM1
+                                     71 	.globl _SM2
+                                     72 	.globl _REN
+                                     73 	.globl _TB8
+                                     74 	.globl _RB8
+                                     75 	.globl _TI
+                                     76 	.globl _RI
+                                     77 	.globl _P1_7
+                                     78 	.globl _P1_6
+                                     79 	.globl _P1_5
+                                     80 	.globl _P1_4
+                                     81 	.globl _P1_3
+                                     82 	.globl _P1_2
+                                     83 	.globl _P1_1
+                                     84 	.globl _P1_0
+                                     85 	.globl _TF1
+                                     86 	.globl _TR1
+                                     87 	.globl _TF0
+                                     88 	.globl _TR0
+                                     89 	.globl _IE1
+                                     90 	.globl _IT1
+                                     91 	.globl _IE0
+                                     92 	.globl _IT0
+                                     93 	.globl _P0_7
+                                     94 	.globl _P0_6
+                                     95 	.globl _P0_5
+                                     96 	.globl _P0_4
+                                     97 	.globl _P0_3
+                                     98 	.globl _P0_2
+                                     99 	.globl _P0_1
+                                    100 	.globl _P0_0
+                                    101 	.globl _B
+                                    102 	.globl _ACC
+                                    103 	.globl _PSW
+                                    104 	.globl _IP
+                                    105 	.globl _P3
+                                    106 	.globl _IE
+                                    107 	.globl _P2
+                                    108 	.globl _SBUF
+                                    109 	.globl _SCON
+                                    110 	.globl _P1
+                                    111 	.globl _TH1
+                                    112 	.globl _TH0
+                                    113 	.globl _TL1
+                                    114 	.globl _TL0
+                                    115 	.globl _TMOD
+                                    116 	.globl _TCON
+                                    117 	.globl _PCON
+                                    118 	.globl _DPH
+                                    119 	.globl _DPL
+                                    120 	.globl _SP
+                                    121 	.globl _P0
+                                    122 	.globl _prebut_enter
+                                    123 	.globl _prebut_right
+                                    124 	.globl _prebut_left
+                                    125 	.globl _prebut_down
+                                    126 	.globl _prebut_up
+                                    127 	.globl _pig_amt
+                                    128 	.globl _bird_amt
+                                    129 	.globl _cur_state
+                                    130 	.globl _volume_value
+                                    131 	.globl _music_value
+                                    132 	.globl _setting_state_past
+                                    133 	.globl _setting_state
+                                    134 	.globl _selection_list
+                                    135 	.globl _selection_list_past
+                                    136 	.globl _selection_list_cur
+                                    137 	.globl _col_offset
+                                    138 	.globl _row_offset
+                                    139 	.globl _received_flag
+                                    140 	.globl _received_data
+                                    141 	.globl _send_flag
+                                    142 	.globl _send_data
+                                    143 	.globl _angrybird_display_home
+                                    144 	.globl _angrybird_display_setting
+                                    145 	.globl _angrybird_state_machine
+                                    146 	.globl _angrybird_home_state
+                                    147 	.globl _angrybird_game_state
+                                    148 	.globl _angrybird_setting_state
+                                    149 ;--------------------------------------------------------
+                                    150 ; special function registers
+                                    151 ;--------------------------------------------------------
+                                    152 	.area RSEG    (ABS,DATA)
+      000000                        153 	.org 0x0000
+                           000080   154 _P0	=	0x0080
+                           000081   155 _SP	=	0x0081
+                           000082   156 _DPL	=	0x0082
+                           000083   157 _DPH	=	0x0083
+                           000087   158 _PCON	=	0x0087
+                           000088   159 _TCON	=	0x0088
+                           000089   160 _TMOD	=	0x0089
+                           00008A   161 _TL0	=	0x008a
+                           00008B   162 _TL1	=	0x008b
+                           00008C   163 _TH0	=	0x008c
+                           00008D   164 _TH1	=	0x008d
+                           000090   165 _P1	=	0x0090
+                           000098   166 _SCON	=	0x0098
+                           000099   167 _SBUF	=	0x0099
+                           0000A0   168 _P2	=	0x00a0
+                           0000A8   169 _IE	=	0x00a8
+                           0000B0   170 _P3	=	0x00b0
+                           0000B8   171 _IP	=	0x00b8
+                           0000D0   172 _PSW	=	0x00d0
+                           0000E0   173 _ACC	=	0x00e0
+                           0000F0   174 _B	=	0x00f0
+                                    175 ;--------------------------------------------------------
+                                    176 ; special function bits
+                                    177 ;--------------------------------------------------------
+                                    178 	.area RSEG    (ABS,DATA)
+      000000                        179 	.org 0x0000
+                           000080   180 _P0_0	=	0x0080
+                           000081   181 _P0_1	=	0x0081
+                           000082   182 _P0_2	=	0x0082
+                           000083   183 _P0_3	=	0x0083
+                           000084   184 _P0_4	=	0x0084
+                           000085   185 _P0_5	=	0x0085
+                           000086   186 _P0_6	=	0x0086
+                           000087   187 _P0_7	=	0x0087
+                           000088   188 _IT0	=	0x0088
+                           000089   189 _IE0	=	0x0089
+                           00008A   190 _IT1	=	0x008a
+                           00008B   191 _IE1	=	0x008b
+                           00008C   192 _TR0	=	0x008c
+                           00008D   193 _TF0	=	0x008d
+                           00008E   194 _TR1	=	0x008e
+                           00008F   195 _TF1	=	0x008f
+                           000090   196 _P1_0	=	0x0090
+                           000091   197 _P1_1	=	0x0091
+                           000092   198 _P1_2	=	0x0092
+                           000093   199 _P1_3	=	0x0093
+                           000094   200 _P1_4	=	0x0094
+                           000095   201 _P1_5	=	0x0095
+                           000096   202 _P1_6	=	0x0096
+                           000097   203 _P1_7	=	0x0097
+                           000098   204 _RI	=	0x0098
+                           000099   205 _TI	=	0x0099
+                           00009A   206 _RB8	=	0x009a
+                           00009B   207 _TB8	=	0x009b
+                           00009C   208 _REN	=	0x009c
+                           00009D   209 _SM2	=	0x009d
+                           00009E   210 _SM1	=	0x009e
+                           00009F   211 _SM0	=	0x009f
+                           0000A0   212 _P2_0	=	0x00a0
+                           0000A1   213 _P2_1	=	0x00a1
+                           0000A2   214 _P2_2	=	0x00a2
+                           0000A3   215 _P2_3	=	0x00a3
+                           0000A4   216 _P2_4	=	0x00a4
+                           0000A5   217 _P2_5	=	0x00a5
+                           0000A6   218 _P2_6	=	0x00a6
+                           0000A7   219 _P2_7	=	0x00a7
+                           0000A8   220 _EX0	=	0x00a8
+                           0000A9   221 _ET0	=	0x00a9
+                           0000AA   222 _EX1	=	0x00aa
+                           0000AB   223 _ET1	=	0x00ab
+                           0000AC   224 _ES	=	0x00ac
+                           0000AF   225 _EA	=	0x00af
+                           0000B0   226 _P3_0	=	0x00b0
+                           0000B1   227 _P3_1	=	0x00b1
+                           0000B2   228 _P3_2	=	0x00b2
+                           0000B3   229 _P3_3	=	0x00b3
+                           0000B4   230 _P3_4	=	0x00b4
+                           0000B5   231 _P3_5	=	0x00b5
+                           0000B6   232 _P3_6	=	0x00b6
+                           0000B7   233 _P3_7	=	0x00b7
+                           0000B0   234 _RXD	=	0x00b0
+                           0000B1   235 _TXD	=	0x00b1
+                           0000B2   236 _INT0	=	0x00b2
+                           0000B3   237 _INT1	=	0x00b3
+                           0000B4   238 _T0	=	0x00b4
+                           0000B5   239 _T1	=	0x00b5
+                           0000B6   240 _WR	=	0x00b6
+                           0000B7   241 _RD	=	0x00b7
+                           0000B8   242 _PX0	=	0x00b8
+                           0000B9   243 _PT0	=	0x00b9
+                           0000BA   244 _PX1	=	0x00ba
+                           0000BB   245 _PT1	=	0x00bb
+                           0000BC   246 _PS	=	0x00bc
+                           0000D0   247 _P	=	0x00d0
+                           0000D1   248 _F1	=	0x00d1
+                           0000D2   249 _OV	=	0x00d2
+                           0000D3   250 _RS0	=	0x00d3
+                           0000D4   251 _RS1	=	0x00d4
+                           0000D5   252 _F0	=	0x00d5
+                           0000D6   253 _AC	=	0x00d6
+                           0000D7   254 _CY	=	0x00d7
+                                    255 ;--------------------------------------------------------
+                                    256 ; overlayable register banks
+                                    257 ;--------------------------------------------------------
+                                    258 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        259 	.ds 8
+                                    260 ;--------------------------------------------------------
+                                    261 ; internal ram data
+                                    262 ;--------------------------------------------------------
+                                    263 	.area DSEG    (DATA)
+      000000                        264 _send_data::
+      000000                        265 	.ds 1
+      000001                        266 _send_flag::
+      000001                        267 	.ds 1
+      000002                        268 _received_data::
+      000002                        269 	.ds 1
+      000003                        270 _received_flag::
+      000003                        271 	.ds 1
+      000004                        272 _row_offset::
+      000004                        273 	.ds 2
+      000006                        274 _col_offset::
+      000006                        275 	.ds 2
+      000008                        276 _selection_list_cur::
+      000008                        277 	.ds 2
+      00000A                        278 _selection_list_past::
+      00000A                        279 	.ds 2
+      00000C                        280 _selection_list::
+      00000C                        281 	.ds 9
+      000015                        282 _setting_state::
+      000015                        283 	.ds 2
+      000017                        284 _setting_state_past::
+      000017                        285 	.ds 2
+      000019                        286 _music_value::
+      000019                        287 	.ds 2
+      00001B                        288 _volume_value::
+      00001B                        289 	.ds 2
+      00001D                        290 _angrybird_display_setting_volume_value__65537_73:
+      00001D                        291 	.ds 2
+      00001F                        292 _cur_state::
+      00001F                        293 	.ds 2
+      000021                        294 _bird_amt::
+      000021                        295 	.ds 2
+      000023                        296 _pig_amt::
+      000023                        297 	.ds 2
+      000025                        298 _prebut_up::
+      000025                        299 	.ds 2
+      000027                        300 _prebut_down::
+      000027                        301 	.ds 2
+      000029                        302 _prebut_left::
+      000029                        303 	.ds 2
+      00002B                        304 _prebut_right::
+      00002B                        305 	.ds 2
+      00002D                        306 _prebut_enter::
+      00002D                        307 	.ds 2
+      00002F                        308 _angrybird_setting_state_volume_value__262145_107:
+      00002F                        309 	.ds 10
+                                    310 ;--------------------------------------------------------
+                                    311 ; overlayable items in internal ram
+                                    312 ;--------------------------------------------------------
+                                    313 ;--------------------------------------------------------
+                                    314 ; indirectly addressable internal ram data
+                                    315 ;--------------------------------------------------------
+                                    316 	.area ISEG    (DATA)
+                                    317 ;--------------------------------------------------------
+                                    318 ; absolute internal ram data
+                                    319 ;--------------------------------------------------------
+                                    320 	.area IABS    (ABS,DATA)
+                                    321 	.area IABS    (ABS,DATA)
+                                    322 ;--------------------------------------------------------
+                                    323 ; bit data
+                                    324 ;--------------------------------------------------------
+                                    325 	.area BSEG    (BIT)
+                                    326 ;--------------------------------------------------------
+                                    327 ; paged external ram data
+                                    328 ;--------------------------------------------------------
+                                    329 	.area PSEG    (PAG,XDATA)
+                                    330 ;--------------------------------------------------------
+                                    331 ; uninitialized external ram data
+                                    332 ;--------------------------------------------------------
+                                    333 	.area XSEG    (XDATA)
+                                    334 ;--------------------------------------------------------
+                                    335 ; absolute external ram data
+                                    336 ;--------------------------------------------------------
+                                    337 	.area XABS    (ABS,XDATA)
+                                    338 ;--------------------------------------------------------
+                                    339 ; initialized external ram data
+                                    340 ;--------------------------------------------------------
+                                    341 	.area XISEG   (XDATA)
+                                    342 	.area HOME    (CODE)
+                                    343 	.area GSINIT0 (CODE)
+                                    344 	.area GSINIT1 (CODE)
+                                    345 	.area GSINIT2 (CODE)
+                                    346 	.area GSINIT3 (CODE)
+                                    347 	.area GSINIT4 (CODE)
+                                    348 	.area GSINIT5 (CODE)
+                                    349 	.area GSINIT  (CODE)
+                                    350 	.area GSFINAL (CODE)
+                                    351 	.area CSEG    (CODE)
+                                    352 ;--------------------------------------------------------
+                                    353 ; global & static initialisations
+                                    354 ;--------------------------------------------------------
+                                    355 	.area HOME    (CODE)
+                                    356 	.area GSINIT  (CODE)
+                                    357 	.area GSFINAL (CODE)
+                                    358 	.area GSINIT  (CODE)
+                                    359 ;	./src/angry_bird.c:62: int selection_list_cur = 1, selection_list_past = 1;
+      000000 75*08 01         [24]  360 	mov	_selection_list_cur,#0x01
+      000003 75*09 00         [24]  361 	mov	(_selection_list_cur + 1),#0x00
+                                    362 ;	./src/angry_bird.c:62: char **selection_list[] = {"Setting", "Easy", "Hard"};
+      000006 75*0A 01         [24]  363 	mov	_selection_list_past,#0x01
+      000009 75*0B 00         [24]  364 	mov	(_selection_list_past + 1),#0x00
+                                    365 ;	./src/angry_bird.c:63: 
+      00000C 75*0Cr74         [24]  366 	mov	(_selection_list + 0),#___str_1
+      00000F 75*0Ds02         [24]  367 	mov	(_selection_list + 1),#(___str_1 >> 8)
+      000012 75*0E 80         [24]  368 	mov	(_selection_list + 2),#0x80
+      000015 75*0Fr91         [24]  369 	mov	((_selection_list + 0x0003) + 0),#___str_7
+      000018 75*10s02         [24]  370 	mov	((_selection_list + 0x0003) + 1),#(___str_7 >> 8)
+      00001B 75*11 80         [24]  371 	mov	((_selection_list + 0x0003) + 2),#0x80
+      00001E 75*12r96         [24]  372 	mov	((_selection_list + 0x0006) + 0),#___str_8
+      000021 75*13s02         [24]  373 	mov	((_selection_list + 0x0006) + 1),#(___str_8 >> 8)
+      000024 75*14 80         [24]  374 	mov	((_selection_list + 0x0006) + 2),#0x80
+                                    375 ;	./src/angry_bird.c:111: int setting_state = 1, setting_state_past = 1;
+      000027 75*15 01         [24]  376 	mov	_setting_state,#0x01
+      00002A 75*16 00         [24]  377 	mov	(_setting_state + 1),#0x00
+                                    378 ;	./src/angry_bird.c:111: int music_value = 0, volume_value = 0;
+      00002D 75*17 01         [24]  379 	mov	_setting_state_past,#0x01
+      000030 75*18 00         [24]  380 	mov	(_setting_state_past + 1),#0x00
+                                    381 ;	./src/angry_bird.c:112: void angrybird_display_setting(void)
+      000033 E4               [12]  382 	clr	a
+      000034 F5*19            [12]  383 	mov	_music_value,a
+      000036 F5*1A            [12]  384 	mov	(_music_value + 1),a
+                                    385 ;	./src/angry_bird.c:112: int music_value = 0, volume_value = 0;
+      000038 F5*1B            [12]  386 	mov	_volume_value,a
+      00003A F5*1C            [12]  387 	mov	(_volume_value + 1),a
+                                    388 ;	./src/angry_bird.c:178: int cur_state = 1;
+      00003C 75*1F 01         [24]  389 	mov	_cur_state,#0x01
+      00003F F5*20            [12]  390 	mov	(_cur_state + 1),a
+                                    391 ;	./src/angry_bird.c:203: unsigned int prebut_up = 0;
+      000041 F5*25            [12]  392 	mov	_prebut_up,a
+      000043 F5*26            [12]  393 	mov	(_prebut_up + 1),a
+                                    394 ;	./src/angry_bird.c:204: unsigned int prebut_down = 0;
+      000045 F5*27            [12]  395 	mov	_prebut_down,a
+      000047 F5*28            [12]  396 	mov	(_prebut_down + 1),a
+                                    397 ;	./src/angry_bird.c:205: unsigned int prebut_left = 0;
+      000049 F5*29            [12]  398 	mov	_prebut_left,a
+      00004B F5*2A            [12]  399 	mov	(_prebut_left + 1),a
+                                    400 ;	./src/angry_bird.c:206: unsigned int prebut_right = 0;
+      00004D F5*2B            [12]  401 	mov	_prebut_right,a
+      00004F F5*2C            [12]  402 	mov	(_prebut_right + 1),a
+                                    403 ;	./src/angry_bird.c:207: unsigned int prebut_enter = 0;
+      000051 F5*2D            [12]  404 	mov	_prebut_enter,a
+      000053 F5*2E            [12]  405 	mov	(_prebut_enter + 1),a
+                                    406 ;--------------------------------------------------------
+                                    407 ; Home
+                                    408 ;--------------------------------------------------------
+                                    409 	.area HOME    (CODE)
+                                    410 	.area HOME    (CODE)
+                                    411 ;--------------------------------------------------------
+                                    412 ; code
+                                    413 ;--------------------------------------------------------
+                                    414 	.area CSEG    (CODE)
+                                    415 ;------------------------------------------------------------
+                                    416 ;Allocation info for local variables in function 'angrybird_display_home'
+                                    417 ;------------------------------------------------------------
+                                    418 ;j                         Allocated to registers r6 r7 
+                                    419 ;i                         Allocated to registers r4 r5 
+                                    420 ;j                         Allocated to registers r6 r7 
+                                    421 ;i                         Allocated to registers r5 
+                                    422 ;j                         Allocated to registers r6 r7 
+                                    423 ;i                         Allocated to registers r5 
+                                    424 ;------------------------------------------------------------
+                                    425 ;	./src/angry_bird.c:65: void angrybird_display_home(void)
+                                    426 ;	-----------------------------------------
+                                    427 ;	 function angrybird_display_home
+                                    428 ;	-----------------------------------------
+      000000                        429 _angrybird_display_home:
+                           000007   430 	ar7 = 0x07
+                           000006   431 	ar6 = 0x06
+                           000005   432 	ar5 = 0x05
+                           000004   433 	ar4 = 0x04
+                           000003   434 	ar3 = 0x03
+                           000002   435 	ar2 = 0x02
+                           000001   436 	ar1 = 0x01
+                           000000   437 	ar0 = 0x00
+                                    438 ;	./src/angry_bird.c:67: OLED_Clear();
+      000000 12r00r00         [24]  439 	lcall	_OLED_Clear
+                                    440 ;	./src/angry_bird.c:68: row_offset = image_row_cursor;
+      000003 E4               [12]  441 	clr	a
+      000004 F5*04            [12]  442 	mov	_row_offset,a
+      000006 F5*05            [12]  443 	mov	(_row_offset + 1),a
+                                    444 ;	./src/angry_bird.c:69: col_offset = image_col_cursor;
+      000008 F5*06            [12]  445 	mov	_col_offset,a
+      00000A F5*07            [12]  446 	mov	(_col_offset + 1),a
+                                    447 ;	./src/angry_bird.c:70: for (int j = 0; j < image_cul_size; j++)
+      00000C FE               [12]  448 	mov	r6,a
+      00000D FF               [12]  449 	mov	r7,a
+      00000E                        450 00114$:
+      00000E C3               [12]  451 	clr	c
+      00000F EE               [12]  452 	mov	a,r6
+      000010 94 40            [12]  453 	subb	a,#0x40
+      000012 EF               [12]  454 	mov	a,r7
+      000013 64 80            [12]  455 	xrl	a,#0x80
+      000015 94 80            [12]  456 	subb	a,#0x80
+      000017 50 7B            [24]  457 	jnc	00102$
+                                    458 ;	./src/angry_bird.c:72: for (int i = 0; i < image_row_size; i++)
+      000019 7C 00            [12]  459 	mov	r4,#0x00
+      00001B 7D 00            [12]  460 	mov	r5,#0x00
+      00001D                        461 00111$:
+      00001D C3               [12]  462 	clr	c
+      00001E EC               [12]  463 	mov	a,r4
+      00001F 94 08            [12]  464 	subb	a,#0x08
+      000021 ED               [12]  465 	mov	a,r5
+      000022 64 80            [12]  466 	xrl	a,#0x80
+      000024 94 80            [12]  467 	subb	a,#0x80
+      000026 50 64            [24]  468 	jnc	00115$
+                                    469 ;	./src/angry_bird.c:74: OLED_SetCursor(row_offset + i, col_offset + j);
+      000028 AB*04            [24]  470 	mov	r3,_row_offset
+      00002A 8C 02            [24]  471 	mov	ar2,r4
+      00002C EA               [12]  472 	mov	a,r2
+      00002D 2B               [12]  473 	add	a,r3
+      00002E F5 82            [12]  474 	mov	dpl,a
+      000030 AB*06            [24]  475 	mov	r3,_col_offset
+      000032 8E 02            [24]  476 	mov	ar2,r6
+      000034 EA               [12]  477 	mov	a,r2
+      000035 2B               [12]  478 	add	a,r3
+      000036 F5*00            [12]  479 	mov	_OLED_SetCursor_PARM_2,a
+      000038 C0 07            [24]  480 	push	ar7
+      00003A C0 06            [24]  481 	push	ar6
+      00003C C0 05            [24]  482 	push	ar5
+      00003E C0 04            [24]  483 	push	ar4
+      000040 12r00r00         [24]  484 	lcall	_OLED_SetCursor
+      000043 D0 04            [24]  485 	pop	ar4
+      000045 D0 05            [24]  486 	pop	ar5
+      000047 D0 06            [24]  487 	pop	ar6
+      000049 D0 07            [24]  488 	pop	ar7
+                                    489 ;	./src/angry_bird.c:75: oledSendData(angry_bird_logo[image_cul_size * i + j]);
+      00004B 8C 02            [24]  490 	mov	ar2,r4
+      00004D ED               [12]  491 	mov	a,r5
+      00004E 54 03            [12]  492 	anl	a,#0x03
+      000050 A2 E0            [12]  493 	mov	c,acc.0
+      000052 CA               [12]  494 	xch	a,r2
+      000053 13               [12]  495 	rrc	a
+      000054 CA               [12]  496 	xch	a,r2
+      000055 13               [12]  497 	rrc	a
+      000056 A2 E0            [12]  498 	mov	c,acc.0
+      000058 CA               [12]  499 	xch	a,r2
+      000059 13               [12]  500 	rrc	a
+      00005A CA               [12]  501 	xch	a,r2
+      00005B 13               [12]  502 	rrc	a
+      00005C CA               [12]  503 	xch	a,r2
+      00005D FB               [12]  504 	mov	r3,a
+      00005E EE               [12]  505 	mov	a,r6
+      00005F 2A               [12]  506 	add	a,r2
+      000060 FA               [12]  507 	mov	r2,a
+      000061 EF               [12]  508 	mov	a,r7
+      000062 3B               [12]  509 	addc	a,r3
+      000063 FB               [12]  510 	mov	r3,a
+      000064 EA               [12]  511 	mov	a,r2
+      000065 24r00            [12]  512 	add	a,#_angry_bird_logo
+      000067 F5 82            [12]  513 	mov	dpl,a
+      000069 EB               [12]  514 	mov	a,r3
+      00006A 34s00            [12]  515 	addc	a,#(_angry_bird_logo >> 8)
+      00006C F5 83            [12]  516 	mov	dph,a
+      00006E E4               [12]  517 	clr	a
+      00006F 93               [24]  518 	movc	a,@a+dptr
+      000070 F5 82            [12]  519 	mov	dpl,a
+      000072 C0 07            [24]  520 	push	ar7
+      000074 C0 06            [24]  521 	push	ar6
+      000076 C0 05            [24]  522 	push	ar5
+      000078 C0 04            [24]  523 	push	ar4
+      00007A 12r00r00         [24]  524 	lcall	_oledSendData
+      00007D D0 04            [24]  525 	pop	ar4
+      00007F D0 05            [24]  526 	pop	ar5
+      000081 D0 06            [24]  527 	pop	ar6
+      000083 D0 07            [24]  528 	pop	ar7
+                                    529 ;	./src/angry_bird.c:72: for (int i = 0; i < image_row_size; i++)
+      000085 0C               [12]  530 	inc	r4
+      000086 BC 00 94         [24]  531 	cjne	r4,#0x00,00111$
+      000089 0D               [12]  532 	inc	r5
+      00008A 80 91            [24]  533 	sjmp	00111$
+      00008C                        534 00115$:
+                                    535 ;	./src/angry_bird.c:70: for (int j = 0; j < image_cul_size; j++)
+      00008C 0E               [12]  536 	inc	r6
+      00008D BE 00 01         [24]  537 	cjne	r6,#0x00,00217$
+      000090 0F               [12]  538 	inc	r7
+      000091                        539 00217$:
+      000091 02r00r0E         [24]  540 	ljmp	00114$
+      000094                        541 00102$:
+                                    542 ;	./src/angry_bird.c:79: OLED_SetCursor(game_name_row_cursor, game_name_col_cursor);
+      000094 75*00 3C         [24]  543 	mov	_OLED_SetCursor_PARM_2,#0x3c
+      000097 75 82 01         [24]  544 	mov	dpl,#0x01
+      00009A 12r00r00         [24]  545 	lcall	_OLED_SetCursor
+                                    546 ;	./src/angry_bird.c:80: OLED_DisplayString("Angry Bird!");
+      00009D 90r02r68         [24]  547 	mov	dptr,#___str_0
+      0000A0 75 F0 80         [24]  548 	mov	b,#0x80
+      0000A3 12r00r00         [24]  549 	lcall	_OLED_DisplayString
+                                    550 ;	./src/angry_bird.c:82: row_offset = button_up_row_cursor;
+      0000A6 75*04 03         [24]  551 	mov	_row_offset,#0x03
+      0000A9 75*05 00         [24]  552 	mov	(_row_offset + 1),#0x00
+                                    553 ;	./src/angry_bird.c:83: col_offset = button_up_col_cursor;
+      0000AC 75*06 55         [24]  554 	mov	_col_offset,#0x55
+      0000AF 75*07 00         [24]  555 	mov	(_col_offset + 1),#0x00
+                                    556 ;	./src/angry_bird.c:84: for (int j = 0; j < button_cul_size; j++)
+      0000B2 7E 00            [12]  557 	mov	r6,#0x00
+      0000B4 7F 00            [12]  558 	mov	r7,#0x00
+      0000B6                        559 00120$:
+      0000B6 C3               [12]  560 	clr	c
+      0000B7 EE               [12]  561 	mov	a,r6
+      0000B8 94 10            [12]  562 	subb	a,#0x10
+      0000BA EF               [12]  563 	mov	a,r7
+      0000BB 64 80            [12]  564 	xrl	a,#0x80
+      0000BD 94 80            [12]  565 	subb	a,#0x80
+      0000BF 50 45            [24]  566 	jnc	00104$
+                                    567 ;	./src/angry_bird.c:86: for (int i = 0; i < button_row_size; i++)
+      0000C1 7D 00            [12]  568 	mov	r5,#0x00
+      0000C3                        569 00117$:
+      0000C3 BD 01 00         [24]  570 	cjne	r5,#0x01,00219$
+      0000C6                        571 00219$:
+      0000C6 50 37            [24]  572 	jnc	00121$
+                                    573 ;	./src/angry_bird.c:88: OLED_SetCursor(row_offset + i, col_offset + j);
+      0000C8 AC*04            [24]  574 	mov	r4,_row_offset
+      0000CA E4               [12]  575 	clr	a
+      0000CB 2C               [12]  576 	add	a,r4
+      0000CC F5 82            [12]  577 	mov	dpl,a
+      0000CE AC*06            [24]  578 	mov	r4,_col_offset
+      0000D0 8E 03            [24]  579 	mov	ar3,r6
+      0000D2 EB               [12]  580 	mov	a,r3
+      0000D3 2C               [12]  581 	add	a,r4
+      0000D4 F5*00            [12]  582 	mov	_OLED_SetCursor_PARM_2,a
+      0000D6 C0 07            [24]  583 	push	ar7
+      0000D8 C0 06            [24]  584 	push	ar6
+      0000DA C0 03            [24]  585 	push	ar3
+      0000DC 12r00r00         [24]  586 	lcall	_OLED_SetCursor
+      0000DF D0 03            [24]  587 	pop	ar3
+                                    588 ;	./src/angry_bird.c:89: oledSendData(button_up_logo[button_cul_size * i + j]);
+      0000E1 EB               [12]  589 	mov	a,r3
+      0000E2 33               [12]  590 	rlc	a
+      0000E3 95 E0            [12]  591 	subb	a,acc
+      0000E5 FC               [12]  592 	mov	r4,a
+      0000E6 EB               [12]  593 	mov	a,r3
+      0000E7 24r00            [12]  594 	add	a,#_button_up_logo
+      0000E9 F5 82            [12]  595 	mov	dpl,a
+      0000EB EC               [12]  596 	mov	a,r4
+      0000EC 34s02            [12]  597 	addc	a,#(_button_up_logo >> 8)
+      0000EE F5 83            [12]  598 	mov	dph,a
+      0000F0 E4               [12]  599 	clr	a
+      0000F1 93               [24]  600 	movc	a,@a+dptr
+      0000F2 F5 82            [12]  601 	mov	dpl,a
+      0000F4 12r00r00         [24]  602 	lcall	_oledSendData
+      0000F7 D0 06            [24]  603 	pop	ar6
+      0000F9 D0 07            [24]  604 	pop	ar7
+                                    605 ;	./src/angry_bird.c:86: for (int i = 0; i < button_row_size; i++)
+      0000FB 7D 01            [12]  606 	mov	r5,#0x01
+      0000FD 80 C4            [24]  607 	sjmp	00117$
+      0000FF                        608 00121$:
+                                    609 ;	./src/angry_bird.c:84: for (int j = 0; j < button_cul_size; j++)
+      0000FF 0E               [12]  610 	inc	r6
+      000100 BE 00 B3         [24]  611 	cjne	r6,#0x00,00120$
+      000103 0F               [12]  612 	inc	r7
+      000104 80 B0            [24]  613 	sjmp	00120$
+      000106                        614 00104$:
+                                    615 ;	./src/angry_bird.c:93: row_offset = button_down_row_cursor;
+      000106 75*04 07         [24]  616 	mov	_row_offset,#0x07
+      000109 75*05 00         [24]  617 	mov	(_row_offset + 1),#0x00
+                                    618 ;	./src/angry_bird.c:94: col_offset = button_down_col_cursor;
+      00010C 75*06 55         [24]  619 	mov	_col_offset,#0x55
+      00010F 75*07 00         [24]  620 	mov	(_col_offset + 1),#0x00
+                                    621 ;	./src/angry_bird.c:95: for (int j = 0; j < button_cul_size; j++)
+      000112 7E 00            [12]  622 	mov	r6,#0x00
+      000114 7F 00            [12]  623 	mov	r7,#0x00
+      000116                        624 00126$:
+      000116 C3               [12]  625 	clr	c
+      000117 EE               [12]  626 	mov	a,r6
+      000118 94 10            [12]  627 	subb	a,#0x10
+      00011A EF               [12]  628 	mov	a,r7
+      00011B 64 80            [12]  629 	xrl	a,#0x80
+      00011D 94 80            [12]  630 	subb	a,#0x80
+      00011F 50 45            [24]  631 	jnc	00106$
+                                    632 ;	./src/angry_bird.c:97: for (int i = 0; i < button_row_size; i++)
+      000121 7D 00            [12]  633 	mov	r5,#0x00
+      000123                        634 00123$:
+      000123 BD 01 00         [24]  635 	cjne	r5,#0x01,00223$
+      000126                        636 00223$:
+      000126 50 37            [24]  637 	jnc	00127$
+                                    638 ;	./src/angry_bird.c:99: OLED_SetCursor(row_offset + i, col_offset + j);
+      000128 AC*04            [24]  639 	mov	r4,_row_offset
+      00012A E4               [12]  640 	clr	a
+      00012B 2C               [12]  641 	add	a,r4
+      00012C F5 82            [12]  642 	mov	dpl,a
+      00012E AC*06            [24]  643 	mov	r4,_col_offset
+      000130 8E 03            [24]  644 	mov	ar3,r6
+      000132 EB               [12]  645 	mov	a,r3
+      000133 2C               [12]  646 	add	a,r4
+      000134 F5*00            [12]  647 	mov	_OLED_SetCursor_PARM_2,a
+      000136 C0 07            [24]  648 	push	ar7
+      000138 C0 06            [24]  649 	push	ar6
+      00013A C0 03            [24]  650 	push	ar3
+      00013C 12r00r00         [24]  651 	lcall	_OLED_SetCursor
+      00013F D0 03            [24]  652 	pop	ar3
+                                    653 ;	./src/angry_bird.c:100: oledSendData(button_down_logo[button_cul_size * i + j]);
+      000141 EB               [12]  654 	mov	a,r3
+      000142 33               [12]  655 	rlc	a
+      000143 95 E0            [12]  656 	subb	a,acc
+      000145 FC               [12]  657 	mov	r4,a
+      000146 EB               [12]  658 	mov	a,r3
+      000147 24r10            [12]  659 	add	a,#_button_down_logo
+      000149 F5 82            [12]  660 	mov	dpl,a
+      00014B EC               [12]  661 	mov	a,r4
+      00014C 34s02            [12]  662 	addc	a,#(_button_down_logo >> 8)
+      00014E F5 83            [12]  663 	mov	dph,a
+      000150 E4               [12]  664 	clr	a
+      000151 93               [24]  665 	movc	a,@a+dptr
+      000152 F5 82            [12]  666 	mov	dpl,a
+      000154 12r00r00         [24]  667 	lcall	_oledSendData
+      000157 D0 06            [24]  668 	pop	ar6
+      000159 D0 07            [24]  669 	pop	ar7
+                                    670 ;	./src/angry_bird.c:97: for (int i = 0; i < button_row_size; i++)
+      00015B 7D 01            [12]  671 	mov	r5,#0x01
+      00015D 80 C4            [24]  672 	sjmp	00123$
+      00015F                        673 00127$:
+                                    674 ;	./src/angry_bird.c:95: for (int j = 0; j < button_cul_size; j++)
+      00015F 0E               [12]  675 	inc	r6
+      000160 BE 00 B3         [24]  676 	cjne	r6,#0x00,00126$
+      000163 0F               [12]  677 	inc	r7
+      000164 80 B0            [24]  678 	sjmp	00126$
+      000166                        679 00106$:
+                                    680 ;	./src/angry_bird.c:104: if (selection_list_cur == 0)
+      000166 E5*08            [12]  681 	mov	a,_selection_list_cur
+      000168 45*09            [12]  682 	orl	a,(_selection_list_cur + 1)
+      00016A 70 0B            [24]  683 	jnz	00108$
+                                    684 ;	./src/angry_bird.c:105: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 7);
+      00016C 75*00 4D         [24]  685 	mov	_OLED_SetCursor_PARM_2,#0x4d
+      00016F 75 82 05         [24]  686 	mov	dpl,#0x05
+      000172 12r00r00         [24]  687 	lcall	_OLED_SetCursor
+      000175 80 09            [24]  688 	sjmp	00109$
+      000177                        689 00108$:
+                                    690 ;	./src/angry_bird.c:107: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 4);
+      000177 75*00 50         [24]  691 	mov	_OLED_SetCursor_PARM_2,#0x50
+      00017A 75 82 05         [24]  692 	mov	dpl,#0x05
+      00017D 12r00r00         [24]  693 	lcall	_OLED_SetCursor
+      000180                        694 00109$:
+                                    695 ;	./src/angry_bird.c:108: OLED_DisplayString(selection_list[selection_list_cur]);
+      000180 85*08*00         [24]  696 	mov	__mulint_PARM_2,_selection_list_cur
+      000183 85*09*01         [24]  697 	mov	(__mulint_PARM_2 + 1),(_selection_list_cur + 1)
+      000186 90 00 03         [24]  698 	mov	dptr,#0x0003
+      000189 12r00r00         [24]  699 	lcall	__mulint
+      00018C E5 82            [12]  700 	mov	a,dpl
+      00018E 24r0C            [12]  701 	add	a,#_selection_list
+      000190 F9               [12]  702 	mov	r1,a
+      000191 87 05            [24]  703 	mov	ar5,@r1
+      000193 09               [12]  704 	inc	r1
+      000194 87 06            [24]  705 	mov	ar6,@r1
+      000196 09               [12]  706 	inc	r1
+      000197 87 07            [24]  707 	mov	ar7,@r1
+      000199 8D 82            [24]  708 	mov	dpl,r5
+      00019B 8E 83            [24]  709 	mov	dph,r6
+      00019D 8F F0            [24]  710 	mov	b,r7
+                                    711 ;	./src/angry_bird.c:109: }
+      00019F 02r00r00         [24]  712 	ljmp	_OLED_DisplayString
+                                    713 ;------------------------------------------------------------
+                                    714 ;Allocation info for local variables in function 'angrybird_display_setting'
+                                    715 ;------------------------------------------------------------
+                                    716 ;j                         Allocated to registers r6 r7 
+                                    717 ;i                         Allocated to registers r5 
+                                    718 ;j                         Allocated to registers r7 
+                                    719 ;i                         Allocated to registers r6 
+                                    720 ;j                         Allocated to registers r7 
+                                    721 ;i                         Allocated to registers r6 
+                                    722 ;j                         Allocated to registers r6 r7 
+                                    723 ;i                         Allocated to registers r5 
+                                    724 ;volume_value_             Allocated with name '_angrybird_display_setting_volume_value__65537_73'
+                                    725 ;------------------------------------------------------------
+                                    726 ;	./src/angry_bird.c:113: void angrybird_display_setting(void)
+                                    727 ;	-----------------------------------------
+                                    728 ;	 function angrybird_display_setting
+                                    729 ;	-----------------------------------------
+      0001A2                        730 _angrybird_display_setting:
+                                    731 ;	./src/angry_bird.c:115: OLED_Clear();
+      0001A2 12r00r00         [24]  732 	lcall	_OLED_Clear
+                                    733 ;	./src/angry_bird.c:117: OLED_SetCursor(setting_text_row_cursor, setting_text_col_cursor);
+      0001A5 75*00 32         [24]  734 	mov	_OLED_SetCursor_PARM_2,#0x32
+      0001A8 75 82 01         [24]  735 	mov	dpl,#0x01
+      0001AB 12r00r00         [24]  736 	lcall	_OLED_SetCursor
+                                    737 ;	./src/angry_bird.c:118: OLED_DisplayString("Setting");
+      0001AE 90r02r74         [24]  738 	mov	dptr,#___str_1
+      0001B1 75 F0 80         [24]  739 	mov	b,#0x80
+      0001B4 12r00r00         [24]  740 	lcall	_OLED_DisplayString
+                                    741 ;	./src/angry_bird.c:120: row_offset = music_row_cursor;
+      0001B7 75*04 03         [24]  742 	mov	_row_offset,#0x03
+      0001BA 75*05 00         [24]  743 	mov	(_row_offset + 1),#0x00
+                                    744 ;	./src/angry_bird.c:121: col_offset = music_col_cursor;
+      0001BD 75*06 05         [24]  745 	mov	_col_offset,#0x05
+      0001C0 75*07 00         [24]  746 	mov	(_col_offset + 1),#0x00
+                                    747 ;	./src/angry_bird.c:122: for (int j = 0; j < music_cul_size; j++)
+      0001C3 7E 00            [12]  748 	mov	r6,#0x00
+      0001C5 7F 00            [12]  749 	mov	r7,#0x00
+      0001C7                        750 00113$:
+      0001C7 C3               [12]  751 	clr	c
+      0001C8 EE               [12]  752 	mov	a,r6
+      0001C9 94 10            [12]  753 	subb	a,#0x10
+      0001CB EF               [12]  754 	mov	a,r7
+      0001CC 64 80            [12]  755 	xrl	a,#0x80
+      0001CE 94 80            [12]  756 	subb	a,#0x80
+      0001D0 50 53            [24]  757 	jnc	00102$
+                                    758 ;	./src/angry_bird.c:124: for (int i = 0; i < music_row_size; i++)
+      0001D2 7D 00            [12]  759 	mov	r5,#0x00
+      0001D4                        760 00110$:
+      0001D4 BD 02 00         [24]  761 	cjne	r5,#0x02,00240$
+      0001D7                        762 00240$:
+      0001D7 50 45            [24]  763 	jnc	00114$
+                                    764 ;	./src/angry_bird.c:126: OLED_SetCursor(row_offset + i, col_offset + j);
+      0001D9 AC*04            [24]  765 	mov	r4,_row_offset
+      0001DB 8D 03            [24]  766 	mov	ar3,r5
+      0001DD EB               [12]  767 	mov	a,r3
+      0001DE 2C               [12]  768 	add	a,r4
+      0001DF F5 82            [12]  769 	mov	dpl,a
+      0001E1 AC*06            [24]  770 	mov	r4,_col_offset
+      0001E3 8E 02            [24]  771 	mov	ar2,r6
+      0001E5 EA               [12]  772 	mov	a,r2
+      0001E6 2C               [12]  773 	add	a,r4
+      0001E7 F5*00            [12]  774 	mov	_OLED_SetCursor_PARM_2,a
+      0001E9 C0 07            [24]  775 	push	ar7
+      0001EB C0 06            [24]  776 	push	ar6
+      0001ED C0 05            [24]  777 	push	ar5
+      0001EF C0 03            [24]  778 	push	ar3
+      0001F1 C0 02            [24]  779 	push	ar2
+      0001F3 12r00r00         [24]  780 	lcall	_OLED_SetCursor
+      0001F6 D0 02            [24]  781 	pop	ar2
+      0001F8 D0 03            [24]  782 	pop	ar3
+                                    783 ;	./src/angry_bird.c:127: oledSendData(music_logo[music_cul_size * i + j]);
+      0001FA EB               [12]  784 	mov	a,r3
+      0001FB C4               [12]  785 	swap	a
+      0001FC 54 F0            [12]  786 	anl	a,#0xf0
+      0001FE 2A               [12]  787 	add	a,r2
+      0001FF FA               [12]  788 	mov	r2,a
+      000200 33               [12]  789 	rlc	a
+      000201 95 E0            [12]  790 	subb	a,acc
+      000203 FC               [12]  791 	mov	r4,a
+      000204 EA               [12]  792 	mov	a,r2
+      000205 24r20            [12]  793 	add	a,#_music_logo
+      000207 F5 82            [12]  794 	mov	dpl,a
+      000209 EC               [12]  795 	mov	a,r4
+      00020A 34s02            [12]  796 	addc	a,#(_music_logo >> 8)
+      00020C F5 83            [12]  797 	mov	dph,a
+      00020E E4               [12]  798 	clr	a
+      00020F 93               [24]  799 	movc	a,@a+dptr
+      000210 F5 82            [12]  800 	mov	dpl,a
+      000212 12r00r00         [24]  801 	lcall	_oledSendData
+      000215 D0 05            [24]  802 	pop	ar5
+      000217 D0 06            [24]  803 	pop	ar6
+      000219 D0 07            [24]  804 	pop	ar7
+                                    805 ;	./src/angry_bird.c:124: for (int i = 0; i < music_row_size; i++)
+      00021B 0D               [12]  806 	inc	r5
+      00021C 80 B6            [24]  807 	sjmp	00110$
+      00021E                        808 00114$:
+                                    809 ;	./src/angry_bird.c:122: for (int j = 0; j < music_cul_size; j++)
+      00021E 0E               [12]  810 	inc	r6
+      00021F BE 00 A5         [24]  811 	cjne	r6,#0x00,00113$
+      000222 0F               [12]  812 	inc	r7
+      000223 80 A2            [24]  813 	sjmp	00113$
+      000225                        814 00102$:
+                                    815 ;	./src/angry_bird.c:131: row_offset = m_button_left_row_cursor;
+      000225 75*04 04         [24]  816 	mov	_row_offset,#0x04
+      000228 75*05 00         [24]  817 	mov	(_row_offset + 1),#0x00
+                                    818 ;	./src/angry_bird.c:132: col_offset = m_button_left_col_cursor;
+      00022B 75*06 2D         [24]  819 	mov	_col_offset,#0x2d
+      00022E 75*07 00         [24]  820 	mov	(_col_offset + 1),#0x00
+                                    821 ;	./src/angry_bird.c:133: for (int j = 0; j < setting_button_cul_size; j++)
+      000231 7F 00            [12]  822 	mov	r7,#0x00
+      000233                        823 00119$:
+      000233 BF 04 00         [24]  824 	cjne	r7,#0x04,00243$
+      000236                        825 00243$:
+      000236 50 3D            [24]  826 	jnc	00104$
+                                    827 ;	./src/angry_bird.c:135: for (int i = 0; i < setting_button_row_size; i++)
+      000238 7E 00            [12]  828 	mov	r6,#0x00
+      00023A                        829 00116$:
+      00023A BE 01 00         [24]  830 	cjne	r6,#0x01,00245$
+      00023D                        831 00245$:
+      00023D 50 33            [24]  832 	jnc	00120$
+                                    833 ;	./src/angry_bird.c:137: OLED_SetCursor(row_offset + i, col_offset + j);
+      00023F AD*04            [24]  834 	mov	r5,_row_offset
+      000241 E4               [12]  835 	clr	a
+      000242 2D               [12]  836 	add	a,r5
+      000243 F5 82            [12]  837 	mov	dpl,a
+      000245 AD*06            [24]  838 	mov	r5,_col_offset
+      000247 8F 04            [24]  839 	mov	ar4,r7
+      000249 EC               [12]  840 	mov	a,r4
+      00024A 2D               [12]  841 	add	a,r5
+      00024B F5*00            [12]  842 	mov	_OLED_SetCursor_PARM_2,a
+      00024D C0 07            [24]  843 	push	ar7
+      00024F C0 04            [24]  844 	push	ar4
+      000251 12r00r00         [24]  845 	lcall	_OLED_SetCursor
+      000254 D0 04            [24]  846 	pop	ar4
+                                    847 ;	./src/angry_bird.c:138: oledSendData(button_left_logo[setting_button_cul_size * i + j]);
+      000256 EC               [12]  848 	mov	a,r4
+      000257 33               [12]  849 	rlc	a
+      000258 95 E0            [12]  850 	subb	a,acc
+      00025A FD               [12]  851 	mov	r5,a
+      00025B EC               [12]  852 	mov	a,r4
+      00025C 24r60            [12]  853 	add	a,#_button_left_logo
+      00025E F5 82            [12]  854 	mov	dpl,a
+      000260 ED               [12]  855 	mov	a,r5
+      000261 34s02            [12]  856 	addc	a,#(_button_left_logo >> 8)
+      000263 F5 83            [12]  857 	mov	dph,a
+      000265 E4               [12]  858 	clr	a
+      000266 93               [24]  859 	movc	a,@a+dptr
+      000267 F5 82            [12]  860 	mov	dpl,a
+      000269 12r00r00         [24]  861 	lcall	_oledSendData
+      00026C D0 07            [24]  862 	pop	ar7
+                                    863 ;	./src/angry_bird.c:135: for (int i = 0; i < setting_button_row_size; i++)
+      00026E 7E 01            [12]  864 	mov	r6,#0x01
+      000270 80 C8            [24]  865 	sjmp	00116$
+      000272                        866 00120$:
+                                    867 ;	./src/angry_bird.c:133: for (int j = 0; j < setting_button_cul_size; j++)
+      000272 0F               [12]  868 	inc	r7
+      000273 80 BE            [24]  869 	sjmp	00119$
+      000275                        870 00104$:
+                                    871 ;	./src/angry_bird.c:142: OLED_SetCursor(music_value_row_cursor, music_value_col_cursor);
+      000275 75*00 40         [24]  872 	mov	_OLED_SetCursor_PARM_2,#0x40
+      000278 75 82 04         [24]  873 	mov	dpl,#0x04
+      00027B 12r00r00         [24]  874 	lcall	_OLED_SetCursor
+                                    875 ;	./src/angry_bird.c:143: OLED_DisplayString("OFF");
+      00027E 90r02r7C         [24]  876 	mov	dptr,#___str_2
+      000281 75 F0 80         [24]  877 	mov	b,#0x80
+      000284 12r00r00         [24]  878 	lcall	_OLED_DisplayString
+                                    879 ;	./src/angry_bird.c:145: row_offset = m_button_right_row_cursor;
+      000287 75*04 04         [24]  880 	mov	_row_offset,#0x04
+      00028A 75*05 00         [24]  881 	mov	(_row_offset + 1),#0x00
+                                    882 ;	./src/angry_bird.c:146: col_offset = m_button_right_col_cursor;
+      00028D 75*06 5D         [24]  883 	mov	_col_offset,#0x5d
+      000290 75*07 00         [24]  884 	mov	(_col_offset + 1),#0x00
+                                    885 ;	./src/angry_bird.c:147: for (int j = 0; j < setting_button_cul_size; j++)
+      000293 7F 00            [12]  886 	mov	r7,#0x00
+      000295                        887 00125$:
+      000295 BF 04 00         [24]  888 	cjne	r7,#0x04,00247$
+      000298                        889 00247$:
+      000298 50 3D            [24]  890 	jnc	00106$
+                                    891 ;	./src/angry_bird.c:149: for (int i = 0; i < setting_button_row_size; i++)
+      00029A 7E 00            [12]  892 	mov	r6,#0x00
+      00029C                        893 00122$:
+      00029C BE 01 00         [24]  894 	cjne	r6,#0x01,00249$
+      00029F                        895 00249$:
+      00029F 50 33            [24]  896 	jnc	00126$
+                                    897 ;	./src/angry_bird.c:151: OLED_SetCursor(row_offset + i, col_offset + j);
+      0002A1 AD*04            [24]  898 	mov	r5,_row_offset
+      0002A3 E4               [12]  899 	clr	a
+      0002A4 2D               [12]  900 	add	a,r5
+      0002A5 F5 82            [12]  901 	mov	dpl,a
+      0002A7 AD*06            [24]  902 	mov	r5,_col_offset
+      0002A9 8F 04            [24]  903 	mov	ar4,r7
+      0002AB EC               [12]  904 	mov	a,r4
+      0002AC 2D               [12]  905 	add	a,r5
+      0002AD F5*00            [12]  906 	mov	_OLED_SetCursor_PARM_2,a
+      0002AF C0 07            [24]  907 	push	ar7
+      0002B1 C0 04            [24]  908 	push	ar4
+      0002B3 12r00r00         [24]  909 	lcall	_OLED_SetCursor
+      0002B6 D0 04            [24]  910 	pop	ar4
+                                    911 ;	./src/angry_bird.c:152: oledSendData(button_right_logo[setting_button_cul_size * i + j]);
+      0002B8 EC               [12]  912 	mov	a,r4
+      0002B9 33               [12]  913 	rlc	a
+      0002BA 95 E0            [12]  914 	subb	a,acc
+      0002BC FD               [12]  915 	mov	r5,a
+      0002BD EC               [12]  916 	mov	a,r4
+      0002BE 24r64            [12]  917 	add	a,#_button_right_logo
+      0002C0 F5 82            [12]  918 	mov	dpl,a
+      0002C2 ED               [12]  919 	mov	a,r5
+      0002C3 34s02            [12]  920 	addc	a,#(_button_right_logo >> 8)
+      0002C5 F5 83            [12]  921 	mov	dph,a
+      0002C7 E4               [12]  922 	clr	a
+      0002C8 93               [24]  923 	movc	a,@a+dptr
+      0002C9 F5 82            [12]  924 	mov	dpl,a
+      0002CB 12r00r00         [24]  925 	lcall	_oledSendData
+      0002CE D0 07            [24]  926 	pop	ar7
+                                    927 ;	./src/angry_bird.c:149: for (int i = 0; i < setting_button_row_size; i++)
+      0002D0 7E 01            [12]  928 	mov	r6,#0x01
+      0002D2 80 C8            [24]  929 	sjmp	00122$
+      0002D4                        930 00126$:
+                                    931 ;	./src/angry_bird.c:147: for (int j = 0; j < setting_button_cul_size; j++)
+      0002D4 0F               [12]  932 	inc	r7
+      0002D5 80 BE            [24]  933 	sjmp	00125$
+      0002D7                        934 00106$:
+                                    935 ;	./src/angry_bird.c:156: row_offset = volume_row_cursor;
+      0002D7 75*04 06         [24]  936 	mov	_row_offset,#0x06
+      0002DA 75*05 00         [24]  937 	mov	(_row_offset + 1),#0x00
+                                    938 ;	./src/angry_bird.c:157: col_offset = volume_col_cursor;
+      0002DD 75*06 05         [24]  939 	mov	_col_offset,#0x05
+      0002E0 75*07 00         [24]  940 	mov	(_col_offset + 1),#0x00
+                                    941 ;	./src/angry_bird.c:158: for (int j = 0; j < volume_cul_size; j++)
+      0002E3 7E 00            [12]  942 	mov	r6,#0x00
+      0002E5 7F 00            [12]  943 	mov	r7,#0x00
+      0002E7                        944 00131$:
+      0002E7 C3               [12]  945 	clr	c
+      0002E8 EE               [12]  946 	mov	a,r6
+      0002E9 94 10            [12]  947 	subb	a,#0x10
+      0002EB EF               [12]  948 	mov	a,r7
+      0002EC 64 80            [12]  949 	xrl	a,#0x80
+      0002EE 94 80            [12]  950 	subb	a,#0x80
+      0002F0 50 53            [24]  951 	jnc	00108$
+                                    952 ;	./src/angry_bird.c:160: for (int i = 0; i < volume_row_size; i++)
+      0002F2 7D 00            [12]  953 	mov	r5,#0x00
+      0002F4                        954 00128$:
+      0002F4 BD 02 00         [24]  955 	cjne	r5,#0x02,00252$
+      0002F7                        956 00252$:
+      0002F7 50 45            [24]  957 	jnc	00132$
+                                    958 ;	./src/angry_bird.c:162: OLED_SetCursor(row_offset + i, col_offset + j);
+      0002F9 AC*04            [24]  959 	mov	r4,_row_offset
+      0002FB 8D 03            [24]  960 	mov	ar3,r5
+      0002FD EB               [12]  961 	mov	a,r3
+      0002FE 2C               [12]  962 	add	a,r4
+      0002FF F5 82            [12]  963 	mov	dpl,a
+      000301 AC*06            [24]  964 	mov	r4,_col_offset
+      000303 8E 02            [24]  965 	mov	ar2,r6
+      000305 EA               [12]  966 	mov	a,r2
+      000306 2C               [12]  967 	add	a,r4
+      000307 F5*00            [12]  968 	mov	_OLED_SetCursor_PARM_2,a
+      000309 C0 07            [24]  969 	push	ar7
+      00030B C0 06            [24]  970 	push	ar6
+      00030D C0 05            [24]  971 	push	ar5
+      00030F C0 03            [24]  972 	push	ar3
+      000311 C0 02            [24]  973 	push	ar2
+      000313 12r00r00         [24]  974 	lcall	_OLED_SetCursor
+      000316 D0 02            [24]  975 	pop	ar2
+      000318 D0 03            [24]  976 	pop	ar3
+                                    977 ;	./src/angry_bird.c:163: oledSendData(volume_logo[volume_cul_size * i + j]);
+      00031A EB               [12]  978 	mov	a,r3
+      00031B C4               [12]  979 	swap	a
+      00031C 54 F0            [12]  980 	anl	a,#0xf0
+      00031E 2A               [12]  981 	add	a,r2
+      00031F FA               [12]  982 	mov	r2,a
+      000320 33               [12]  983 	rlc	a
+      000321 95 E0            [12]  984 	subb	a,acc
+      000323 FC               [12]  985 	mov	r4,a
+      000324 EA               [12]  986 	mov	a,r2
+      000325 24r40            [12]  987 	add	a,#_volume_logo
+      000327 F5 82            [12]  988 	mov	dpl,a
+      000329 EC               [12]  989 	mov	a,r4
+      00032A 34s02            [12]  990 	addc	a,#(_volume_logo >> 8)
+      00032C F5 83            [12]  991 	mov	dph,a
+      00032E E4               [12]  992 	clr	a
+      00032F 93               [24]  993 	movc	a,@a+dptr
+      000330 F5 82            [12]  994 	mov	dpl,a
+      000332 12r00r00         [24]  995 	lcall	_oledSendData
+      000335 D0 05            [24]  996 	pop	ar5
+      000337 D0 06            [24]  997 	pop	ar6
+      000339 D0 07            [24]  998 	pop	ar7
+                                    999 ;	./src/angry_bird.c:160: for (int i = 0; i < volume_row_size; i++)
+      00033B 0D               [12] 1000 	inc	r5
+      00033C 80 B6            [24] 1001 	sjmp	00128$
+      00033E                       1002 00132$:
+                                   1003 ;	./src/angry_bird.c:158: for (int j = 0; j < volume_cul_size; j++)
+      00033E 0E               [12] 1004 	inc	r6
+      00033F BE 00 A5         [24] 1005 	cjne	r6,#0x00,00131$
+      000342 0F               [12] 1006 	inc	r7
+      000343 80 A2            [24] 1007 	sjmp	00131$
+      000345                       1008 00108$:
+                                   1009 ;	./src/angry_bird.c:167: OLED_SetCursor(volume_value_row_cursor, volume_value_col_cursor);
+      000345 75*00 44         [24] 1010 	mov	_OLED_SetCursor_PARM_2,#0x44
+      000348 75 82 07         [24] 1011 	mov	dpl,#0x07
+      00034B 12r00r00         [24] 1012 	lcall	_OLED_SetCursor
+                                   1013 ;	./src/angry_bird.c:169: volume_value_[0] = '0' + volume_value;
+      00034E AF*1B            [24] 1014 	mov	r7,_volume_value
+      000350 74 30            [12] 1015 	mov	a,#0x30
+      000352 2F               [12] 1016 	add	a,r7
+      000353 F5*1D            [12] 1017 	mov	_angrybird_display_setting_volume_value__65537_73,a
+                                   1018 ;	./src/angry_bird.c:170: volume_value_[1] = '\0';
+      000355 75*1E 00         [24] 1019 	mov	(_angrybird_display_setting_volume_value__65537_73 + 0x0001),#0x00
+                                   1020 ;	./src/angry_bird.c:171: OLED_DisplayString(volume_value_);
+      000358 90r00r1D         [24] 1021 	mov	dptr,#_angrybird_display_setting_volume_value__65537_73
+      00035B 75 F0 40         [24] 1022 	mov	b,#0x40
+                                   1023 ;	./src/angry_bird.c:172: }
+      00035E 02r00r00         [24] 1024 	ljmp	_OLED_DisplayString
+                                   1025 ;------------------------------------------------------------
+                                   1026 ;Allocation info for local variables in function 'angrybird_state_machine'
+                                   1027 ;------------------------------------------------------------
+                                   1028 ;	./src/angry_bird.c:180: void angrybird_state_machine(void)
+                                   1029 ;	-----------------------------------------
+                                   1030 ;	 function angrybird_state_machine
+                                   1031 ;	-----------------------------------------
+      000361                       1032 _angrybird_state_machine:
+                                   1033 ;	./src/angry_bird.c:182: switch (cur_state)
+      000361 74 01            [12] 1034 	mov	a,#0x01
+      000363 B5*1F 06         [24] 1035 	cjne	a,_cur_state,00132$
+      000366 14               [12] 1036 	dec	a
+      000367 B5*20 02         [24] 1037 	cjne	a,(_cur_state + 1),00132$
+      00036A 80 22            [24] 1038 	sjmp	00101$
+      00036C                       1039 00132$:
+      00036C 74 02            [12] 1040 	mov	a,#0x02
+      00036E B5*1F 06         [24] 1041 	cjne	a,_cur_state,00133$
+      000371 E4               [12] 1042 	clr	a
+      000372 B5*20 02         [24] 1043 	cjne	a,(_cur_state + 1),00133$
+      000375 80 1A            [24] 1044 	sjmp	00102$
+      000377                       1045 00133$:
+      000377 74 03            [12] 1046 	mov	a,#0x03
+      000379 B5*1F 06         [24] 1047 	cjne	a,_cur_state,00134$
+      00037C E4               [12] 1048 	clr	a
+      00037D B5*20 02         [24] 1049 	cjne	a,(_cur_state + 1),00134$
+      000380 80 12            [24] 1050 	sjmp	00104$
+      000382                       1051 00134$:
+      000382 74 04            [12] 1052 	mov	a,#0x04
+      000384 B5*1F 06         [24] 1053 	cjne	a,_cur_state,00135$
+      000387 E4               [12] 1054 	clr	a
+      000388 B5*20 02         [24] 1055 	cjne	a,(_cur_state + 1),00135$
+      00038B 80 07            [24] 1056 	sjmp	00104$
+      00038D                       1057 00135$:
+                                   1058 ;	./src/angry_bird.c:184: case STATE_HOME:
+      00038D 22               [24] 1059 	ret
+      00038E                       1060 00101$:
+                                   1061 ;	./src/angry_bird.c:185: angrybird_home_state();
+                                   1062 ;	./src/angry_bird.c:186: break;
+                                   1063 ;	./src/angry_bird.c:188: case STATE_SETTING:
+      00038E 02r03r97         [24] 1064 	ljmp	_angrybird_home_state
+      000391                       1065 00102$:
+                                   1066 ;	./src/angry_bird.c:189: angrybird_setting_state();
+                                   1067 ;	./src/angry_bird.c:190: break;
+                                   1068 ;	./src/angry_bird.c:193: case STATE_PLAY_HARD:
+      000391 02r05r39         [24] 1069 	ljmp	_angrybird_setting_state
+      000394                       1070 00104$:
+                                   1071 ;	./src/angry_bird.c:194: angrybird_game_state();
+                                   1072 ;	./src/angry_bird.c:196: }
+                                   1073 ;	./src/angry_bird.c:201: }
+      000394 02r05r0F         [24] 1074 	ljmp	_angrybird_game_state
+                                   1075 ;------------------------------------------------------------
+                                   1076 ;Allocation info for local variables in function 'angrybird_home_state'
+                                   1077 ;------------------------------------------------------------
+                                   1078 ;	./src/angry_bird.c:209: void angrybird_home_state(void)
+                                   1079 ;	-----------------------------------------
+                                   1080 ;	 function angrybird_home_state
+                                   1081 ;	-----------------------------------------
+      000397                       1082 _angrybird_home_state:
+                                   1083 ;	./src/angry_bird.c:211: if ((but_up == 0) && (prebut_up == 1))
+      000397 20 A0 2A         [24] 1084 	jb	_P2_0,00106$
+      00039A 74 01            [12] 1085 	mov	a,#0x01
+      00039C B5*25 06         [24] 1086 	cjne	a,_prebut_up,00254$
+      00039F 14               [12] 1087 	dec	a
+      0003A0 B5*26 02         [24] 1088 	cjne	a,(_prebut_up + 1),00254$
+      0003A3 80 02            [24] 1089 	sjmp	00255$
+      0003A5                       1090 00254$:
+      0003A5 80 1D            [24] 1091 	sjmp	00106$
+      0003A7                       1092 00255$:
+                                   1093 ;	./src/angry_bird.c:213: delay_ms(10);
+      0003A7 90 00 0A         [24] 1094 	mov	dptr,#0x000a
+      0003AA 12r00r00         [24] 1095 	lcall	_delay_ms
+                                   1096 ;	./src/angry_bird.c:214: if (but_up == 0)
+      0003AD 20 A0 14         [24] 1097 	jb	_P2_0,00106$
+                                   1098 ;	./src/angry_bird.c:216: selection_list_cur--;
+      0003B0 15*08            [12] 1099 	dec	_selection_list_cur
+      0003B2 74 FF            [12] 1100 	mov	a,#0xff
+      0003B4 B5*08 02         [24] 1101 	cjne	a,_selection_list_cur,00257$
+      0003B7 15*09            [12] 1102 	dec	(_selection_list_cur + 1)
+      0003B9                       1103 00257$:
+                                   1104 ;	./src/angry_bird.c:217: if (selection_list_cur < 0)
+      0003B9 E5*09            [12] 1105 	mov	a,(_selection_list_cur + 1)
+      0003BB 30 E7 06         [24] 1106 	jnb	acc.7,00106$
+                                   1107 ;	./src/angry_bird.c:218: selection_list_cur = 2;
+      0003BE 75*08 02         [24] 1108 	mov	_selection_list_cur,#0x02
+      0003C1 75*09 00         [24] 1109 	mov	(_selection_list_cur + 1),#0x00
+      0003C4                       1110 00106$:
+                                   1111 ;	./src/angry_bird.c:221: if ((but_down == 0) && (prebut_down == 1))
+      0003C4 20 A1 34         [24] 1112 	jb	_P2_1,00113$
+      0003C7 74 01            [12] 1113 	mov	a,#0x01
+      0003C9 B5*27 06         [24] 1114 	cjne	a,_prebut_down,00260$
+      0003CC 14               [12] 1115 	dec	a
+      0003CD B5*28 02         [24] 1116 	cjne	a,(_prebut_down + 1),00260$
+      0003D0 80 02            [24] 1117 	sjmp	00261$
+      0003D2                       1118 00260$:
+      0003D2 80 27            [24] 1119 	sjmp	00113$
+      0003D4                       1120 00261$:
+                                   1121 ;	./src/angry_bird.c:223: delay_ms(10);
+      0003D4 90 00 0A         [24] 1122 	mov	dptr,#0x000a
+      0003D7 12r00r00         [24] 1123 	lcall	_delay_ms
+                                   1124 ;	./src/angry_bird.c:224: if (but_down == 0)
+      0003DA 20 A1 1E         [24] 1125 	jb	_P2_1,00113$
+                                   1126 ;	./src/angry_bird.c:226: selection_list_cur++;
+      0003DD 05*08            [12] 1127 	inc	_selection_list_cur
+      0003DF E4               [12] 1128 	clr	a
+      0003E0 B5*08 02         [24] 1129 	cjne	a,_selection_list_cur,00263$
+      0003E3 05*09            [12] 1130 	inc	(_selection_list_cur + 1)
+      0003E5                       1131 00263$:
+                                   1132 ;	./src/angry_bird.c:227: if (selection_list_cur > 2)
+      0003E5 C3               [12] 1133 	clr	c
+      0003E6 74 02            [12] 1134 	mov	a,#0x02
+      0003E8 95*08            [12] 1135 	subb	a,_selection_list_cur
+      0003EA 74 80            [12] 1136 	mov	a,#(0x00 ^ 0x80)
+      0003EC 85*09 F0         [24] 1137 	mov	b,(_selection_list_cur + 1)
+      0003EF 63 F0 80         [24] 1138 	xrl	b,#0x80
+      0003F2 95 F0            [12] 1139 	subb	a,b
+      0003F4 50 05            [24] 1140 	jnc	00113$
+                                   1141 ;	./src/angry_bird.c:228: selection_list_cur = 0;
+      0003F6 E4               [12] 1142 	clr	a
+      0003F7 F5*08            [12] 1143 	mov	_selection_list_cur,a
+      0003F9 F5*09            [12] 1144 	mov	(_selection_list_cur + 1),a
+      0003FB                       1145 00113$:
+                                   1146 ;	./src/angry_bird.c:231: if ((but_enter == 0) && (prebut_enter == 1))
+      0003FB 30 A2 03         [24] 1147 	jnb	_P2_2,00265$
+      0003FE 02r04r7C         [24] 1148 	ljmp	00127$
+      000401                       1149 00265$:
+      000401 74 01            [12] 1150 	mov	a,#0x01
+      000403 B5*2D 06         [24] 1151 	cjne	a,_prebut_enter,00266$
+      000406 14               [12] 1152 	dec	a
+      000407 B5*2E 02         [24] 1153 	cjne	a,(_prebut_enter + 1),00266$
+      00040A 80 03            [24] 1154 	sjmp	00267$
+      00040C                       1155 00266$:
+      00040C 02r04r7C         [24] 1156 	ljmp	00127$
+      00040F                       1157 00267$:
+                                   1158 ;	./src/angry_bird.c:233: delay_ms(10);
+      00040F 90 00 0A         [24] 1159 	mov	dptr,#0x000a
+      000412 12r00r00         [24] 1160 	lcall	_delay_ms
+                                   1161 ;	./src/angry_bird.c:234: if (but_enter == 0)
+      000415 20 A2 64         [24] 1162 	jb	_P2_2,00127$
+                                   1163 ;	./src/angry_bird.c:237: switch (selection_list_cur + 2)
+      000418 74 02            [12] 1164 	mov	a,#0x02
+      00041A 25*08            [12] 1165 	add	a,_selection_list_cur
+      00041C FE               [12] 1166 	mov	r6,a
+      00041D E4               [12] 1167 	clr	a
+      00041E 35*09            [12] 1168 	addc	a,(_selection_list_cur + 1)
+      000420 FF               [12] 1169 	mov	r7,a
+      000421 BE 02 05         [24] 1170 	cjne	r6,#0x02,00269$
+      000424 BF 00 02         [24] 1171 	cjne	r7,#0x00,00269$
+      000427 80 10            [24] 1172 	sjmp	00115$
+      000429                       1173 00269$:
+      000429 BE 03 05         [24] 1174 	cjne	r6,#0x03,00270$
+      00042C BF 00 02         [24] 1175 	cjne	r7,#0x00,00270$
+      00042F 80 13            [24] 1176 	sjmp	00117$
+      000431                       1177 00270$:
+                                   1178 ;	./src/angry_bird.c:239: case STATE_SETTING:
+      000431 BE 04 1C         [24] 1179 	cjne	r6,#0x04,00118$
+      000434 BF 00 19         [24] 1180 	cjne	r7,#0x00,00118$
+      000437 80 0B            [24] 1181 	sjmp	00117$
+      000439                       1182 00115$:
+                                   1183 ;	./src/angry_bird.c:240: angrybird_display_setting();
+      000439 12r01rA2         [24] 1184 	lcall	_angrybird_display_setting
+                                   1185 ;	./src/angry_bird.c:241: cur_state = STATE_SETTING;
+      00043C 75*1F 02         [24] 1186 	mov	_cur_state,#0x02
+      00043F 75*20 00         [24] 1187 	mov	(_cur_state + 1),#0x00
+                                   1188 ;	./src/angry_bird.c:242: break;
+                                   1189 ;	./src/angry_bird.c:245: case STATE_PLAY_HARD:
+      000442 80 0C            [24] 1190 	sjmp	00118$
+      000444                       1191 00117$:
+                                   1192 ;	./src/angry_bird.c:247: send_data = selection_list_cur + 2;
+      000444 AF*08            [24] 1193 	mov	r7,_selection_list_cur
+      000446 74 02            [12] 1194 	mov	a,#0x02
+      000448 2F               [12] 1195 	add	a,r7
+      000449 F5*00            [12] 1196 	mov	_send_data,a
+                                   1197 ;	./src/angry_bird.c:248: send_flag = 1;
+      00044B 75*01 01         [24] 1198 	mov	_send_flag,#0x01
+                                   1199 ;	./src/angry_bird.c:249: P1_7 = 0;
+                                   1200 ;	assignBit
+      00044E C2 97            [12] 1201 	clr	_P1_7
+                                   1202 ;	./src/angry_bird.c:260: }
+      000450                       1203 00118$:
+                                   1204 ;	./src/angry_bird.c:262: if (selection_list_cur + 2 == STATE_PLAY_EASY)
+      000450 74 02            [12] 1205 	mov	a,#0x02
+      000452 25*08            [12] 1206 	add	a,_selection_list_cur
+      000454 FE               [12] 1207 	mov	r6,a
+      000455 E4               [12] 1208 	clr	a
+      000456 35*09            [12] 1209 	addc	a,(_selection_list_cur + 1)
+      000458 FF               [12] 1210 	mov	r7,a
+      000459 BE 03 0B         [24] 1211 	cjne	r6,#0x03,00122$
+      00045C BF 00 08         [24] 1212 	cjne	r7,#0x00,00122$
+                                   1213 ;	./src/angry_bird.c:263: cur_state = STATE_PLAY_EASY;
+      00045F 75*1F 03         [24] 1214 	mov	_cur_state,#0x03
+      000462 75*20 00         [24] 1215 	mov	(_cur_state + 1),#0x00
+      000465 80 15            [24] 1216 	sjmp	00127$
+      000467                       1217 00122$:
+                                   1218 ;	./src/angry_bird.c:264: else if (selection_list_cur + 2 == STATE_PLAY_HARD)
+      000467 74 02            [12] 1219 	mov	a,#0x02
+      000469 25*08            [12] 1220 	add	a,_selection_list_cur
+      00046B FE               [12] 1221 	mov	r6,a
+      00046C E4               [12] 1222 	clr	a
+      00046D 35*09            [12] 1223 	addc	a,(_selection_list_cur + 1)
+      00046F FF               [12] 1224 	mov	r7,a
+      000470 BE 04 09         [24] 1225 	cjne	r6,#0x04,00127$
+      000473 BF 00 06         [24] 1226 	cjne	r7,#0x00,00127$
+                                   1227 ;	./src/angry_bird.c:265: cur_state = STATE_PLAY_HARD;
+      000476 75*1F 04         [24] 1228 	mov	_cur_state,#0x04
+      000479 75*20 00         [24] 1229 	mov	(_cur_state + 1),#0x00
+      00047C                       1230 00127$:
+                                   1231 ;	./src/angry_bird.c:269: if (selection_list_past != selection_list_cur)
+      00047C E5*08            [12] 1232 	mov	a,_selection_list_cur
+      00047E B5*0A 07         [24] 1233 	cjne	a,_selection_list_past,00276$
+      000481 E5*09            [12] 1234 	mov	a,(_selection_list_cur + 1)
+      000483 B5*0B 02         [24] 1235 	cjne	a,(_selection_list_past + 1),00276$
+      000486 80 60            [24] 1236 	sjmp	00136$
+      000488                       1237 00276$:
+                                   1238 ;	./src/angry_bird.c:271: if (selection_list_cur == 0)
+      000488 E5*08            [12] 1239 	mov	a,_selection_list_cur
+      00048A 45*09            [12] 1240 	orl	a,(_selection_list_cur + 1)
+      00048C 70 0B            [24] 1241 	jnz	00130$
+                                   1242 ;	./src/angry_bird.c:272: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 4);
+      00048E 75*00 50         [24] 1243 	mov	_OLED_SetCursor_PARM_2,#0x50
+      000491 75 82 05         [24] 1244 	mov	dpl,#0x05
+      000494 12r00r00         [24] 1245 	lcall	_OLED_SetCursor
+      000497 80 09            [24] 1246 	sjmp	00131$
+      000499                       1247 00130$:
+                                   1248 ;	./src/angry_bird.c:274: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 7);
+      000499 75*00 4D         [24] 1249 	mov	_OLED_SetCursor_PARM_2,#0x4d
+      00049C 75 82 05         [24] 1250 	mov	dpl,#0x05
+      00049F 12r00r00         [24] 1251 	lcall	_OLED_SetCursor
+      0004A2                       1252 00131$:
+                                   1253 ;	./src/angry_bird.c:275: OLED_DisplayString("       ");
+      0004A2 90r02r80         [24] 1254 	mov	dptr,#___str_3
+      0004A5 75 F0 80         [24] 1255 	mov	b,#0x80
+      0004A8 12r00r00         [24] 1256 	lcall	_OLED_DisplayString
+                                   1257 ;	./src/angry_bird.c:277: if (selection_list_cur == 0)
+      0004AB E5*08            [12] 1258 	mov	a,_selection_list_cur
+      0004AD 45*09            [12] 1259 	orl	a,(_selection_list_cur + 1)
+      0004AF 70 0B            [24] 1260 	jnz	00133$
+                                   1261 ;	./src/angry_bird.c:278: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 7);
+      0004B1 75*00 4D         [24] 1262 	mov	_OLED_SetCursor_PARM_2,#0x4d
+      0004B4 75 82 05         [24] 1263 	mov	dpl,#0x05
+      0004B7 12r00r00         [24] 1264 	lcall	_OLED_SetCursor
+      0004BA 80 09            [24] 1265 	sjmp	00134$
+      0004BC                       1266 00133$:
+                                   1267 ;	./src/angry_bird.c:280: OLED_SetCursor(selection_row_cursor, selection_col_cursor - 4);
+      0004BC 75*00 50         [24] 1268 	mov	_OLED_SetCursor_PARM_2,#0x50
+      0004BF 75 82 05         [24] 1269 	mov	dpl,#0x05
+      0004C2 12r00r00         [24] 1270 	lcall	_OLED_SetCursor
+      0004C5                       1271 00134$:
+                                   1272 ;	./src/angry_bird.c:281: OLED_DisplayString(selection_list[selection_list_cur]);
+      0004C5 85*08*00         [24] 1273 	mov	__mulint_PARM_2,_selection_list_cur
+      0004C8 85*09*01         [24] 1274 	mov	(__mulint_PARM_2 + 1),(_selection_list_cur + 1)
+      0004CB 90 00 03         [24] 1275 	mov	dptr,#0x0003
+      0004CE 12r00r00         [24] 1276 	lcall	__mulint
+      0004D1 AE 82            [24] 1277 	mov	r6,dpl
+      0004D3 EE               [12] 1278 	mov	a,r6
+      0004D4 24r0C            [12] 1279 	add	a,#_selection_list
+      0004D6 F9               [12] 1280 	mov	r1,a
+      0004D7 87 05            [24] 1281 	mov	ar5,@r1
+      0004D9 09               [12] 1282 	inc	r1
+      0004DA 87 06            [24] 1283 	mov	ar6,@r1
+      0004DC 09               [12] 1284 	inc	r1
+      0004DD 87 07            [24] 1285 	mov	ar7,@r1
+      0004DF 8D 82            [24] 1286 	mov	dpl,r5
+      0004E1 8E 83            [24] 1287 	mov	dph,r6
+      0004E3 8F F0            [24] 1288 	mov	b,r7
+      0004E5 12r00r00         [24] 1289 	lcall	_OLED_DisplayString
+      0004E8                       1290 00136$:
+                                   1291 ;	./src/angry_bird.c:284: selection_list_past = selection_list_cur;
+      0004E8 85*08*0A         [24] 1292 	mov	_selection_list_past,_selection_list_cur
+      0004EB 85*09*0B         [24] 1293 	mov	(_selection_list_past + 1),(_selection_list_cur + 1)
+                                   1294 ;	./src/angry_bird.c:285: prebut_enter = but_enter;
+      0004EE A2 A2            [12] 1295 	mov	c,_P2_2
+      0004F0 E4               [12] 1296 	clr	a
+      0004F1 33               [12] 1297 	rlc	a
+      0004F2 F5*2D            [12] 1298 	mov	_prebut_enter,a
+      0004F4 75*2E 00         [24] 1299 	mov	(_prebut_enter + 1),#0x00
+                                   1300 ;	./src/angry_bird.c:286: prebut_up = but_up;
+      0004F7 A2 A0            [12] 1301 	mov	c,_P2_0
+      0004F9 E4               [12] 1302 	clr	a
+      0004FA 33               [12] 1303 	rlc	a
+      0004FB F5*25            [12] 1304 	mov	_prebut_up,a
+      0004FD 75*26 00         [24] 1305 	mov	(_prebut_up + 1),#0x00
+                                   1306 ;	./src/angry_bird.c:287: prebut_down = but_down;
+      000500 A2 A1            [12] 1307 	mov	c,_P2_1
+      000502 E4               [12] 1308 	clr	a
+      000503 33               [12] 1309 	rlc	a
+      000504 F5*27            [12] 1310 	mov	_prebut_down,a
+      000506 75*28 00         [24] 1311 	mov	(_prebut_down + 1),#0x00
+                                   1312 ;	./src/angry_bird.c:288: delay_ms(10);
+      000509 90 00 0A         [24] 1313 	mov	dptr,#0x000a
+                                   1314 ;	./src/angry_bird.c:289: }
+      00050C 02r00r00         [24] 1315 	ljmp	_delay_ms
+                                   1316 ;------------------------------------------------------------
+                                   1317 ;Allocation info for local variables in function 'angrybird_game_state'
+                                   1318 ;------------------------------------------------------------
+                                   1319 ;	./src/angry_bird.c:291: void angrybird_game_state(void)
+                                   1320 ;	-----------------------------------------
+                                   1321 ;	 function angrybird_game_state
+                                   1322 ;	-----------------------------------------
+      00050F                       1323 _angrybird_game_state:
+                                   1324 ;	./src/angry_bird.c:294: if (send_flag == 1)
+      00050F 74 01            [12] 1325 	mov	a,#0x01
+      000511 B5*01 0B         [24] 1326 	cjne	a,_send_flag,00102$
+                                   1327 ;	./src/angry_bird.c:296: I2C_Stop();
+      000514 12r00r00         [24] 1328 	lcall	_I2C_Stop
+                                   1329 ;	./src/angry_bird.c:297: SBUF = send_data; // send data to SBUF
+      000517 85*00 99         [24] 1330 	mov	_SBUF,_send_data
+                                   1331 ;	./src/angry_bird.c:298: send_flag = 0;
+      00051A 75*01 00         [24] 1332 	mov	_send_flag,#0x00
+                                   1333 ;	./src/angry_bird.c:299: P1_6 = 0;
+                                   1334 ;	assignBit
+      00051D C2 96            [12] 1335 	clr	_P1_6
+      00051F                       1336 00102$:
+                                   1337 ;	./src/angry_bird.c:302: if (received_flag == 1)
+      00051F 74 01            [12] 1338 	mov	a,#0x01
+      000521 B5*03 14         [24] 1339 	cjne	a,_received_flag,00105$
+                                   1340 ;	./src/angry_bird.c:304: cur_state = STATE_HOME;
+      000524 75*1F 01         [24] 1341 	mov	_cur_state,#0x01
+      000527 75*20 00         [24] 1342 	mov	(_cur_state + 1),#0x00
+                                   1343 ;	./src/angry_bird.c:305: received_flag = 0;
+      00052A 75*03 00         [24] 1344 	mov	_received_flag,#0x00
+                                   1345 ;	./src/angry_bird.c:306: P1_4 = 0;
+                                   1346 ;	assignBit
+      00052D C2 94            [12] 1347 	clr	_P1_4
+                                   1348 ;	./src/angry_bird.c:307: I2C_Start();
+      00052F 12r00r00         [24] 1349 	lcall	_I2C_Start
+                                   1350 ;	./src/angry_bird.c:308: OLED_Init();
+      000532 12r00r00         [24] 1351 	lcall	_OLED_Init
+                                   1352 ;	./src/angry_bird.c:310: angrybird_display_home();
+                                   1353 ;	./src/angry_bird.c:312: }
+      000535 02r00r00         [24] 1354 	ljmp	_angrybird_display_home
+      000538                       1355 00105$:
+      000538 22               [24] 1356 	ret
+                                   1357 ;------------------------------------------------------------
+                                   1358 ;Allocation info for local variables in function 'angrybird_setting_state'
+                                   1359 ;------------------------------------------------------------
+                                   1360 ;which                     Allocated to registers r7 
+                                   1361 ;which                     Allocated to registers r7 
+                                   1362 ;volume_value_             Allocated with name '_angrybird_setting_state_volume_value__262145_107'
+                                   1363 ;j                         Allocated to registers r7 
+                                   1364 ;i                         Allocated to registers r6 
+                                   1365 ;j                         Allocated to registers r7 
+                                   1366 ;i                         Allocated to registers r6 
+                                   1367 ;j                         Allocated to registers r7 
+                                   1368 ;i                         Allocated to registers r6 
+                                   1369 ;j                         Allocated to registers r7 
+                                   1370 ;i                         Allocated to registers r6 
+                                   1371 ;------------------------------------------------------------
+                                   1372 ;	./src/angry_bird.c:314: void angrybird_setting_state(void)
+                                   1373 ;	-----------------------------------------
+                                   1374 ;	 function angrybird_setting_state
+                                   1375 ;	-----------------------------------------
+      000539                       1376 _angrybird_setting_state:
+                                   1377 ;	./src/angry_bird.c:316: if ((but_up == 0) && (prebut_up == 1) || (but_down == 0) && (prebut_down == 1))
+      000539 20 A0 0B         [24] 1378 	jb	_P2_0,00115$
+      00053C 74 01            [12] 1379 	mov	a,#0x01
+      00053E B5*25 06         [24] 1380 	cjne	a,_prebut_up,00454$
+      000541 14               [12] 1381 	dec	a
+      000542 B5*26 02         [24] 1382 	cjne	a,(_prebut_up + 1),00454$
+      000545 80 10            [24] 1383 	sjmp	00111$
+      000547                       1384 00454$:
+      000547                       1385 00115$:
+      000547 20 A1 5C         [24] 1386 	jb	_P2_1,00112$
+      00054A 74 01            [12] 1387 	mov	a,#0x01
+      00054C B5*27 06         [24] 1388 	cjne	a,_prebut_down,00456$
+      00054F 14               [12] 1389 	dec	a
+      000550 B5*28 02         [24] 1390 	cjne	a,(_prebut_down + 1),00456$
+      000553 80 02            [24] 1391 	sjmp	00457$
+      000555                       1392 00456$:
+      000555 80 4F            [24] 1393 	sjmp	00112$
+      000557                       1394 00457$:
+      000557                       1395 00111$:
+                                   1396 ;	./src/angry_bird.c:319: int which = (but_up == 0) ? 1 : 0;
+      000557 20 A0 04         [24] 1397 	jb	_P2_0,00187$
+      00055A 7F 01            [12] 1398 	mov	r7,#0x01
+      00055C 80 02            [24] 1399 	sjmp	00188$
+      00055E                       1400 00187$:
+      00055E 7F 00            [12] 1401 	mov	r7,#0x00
+      000560                       1402 00188$:
+                                   1403 ;	./src/angry_bird.c:320: if (but_up == 0 || but_down == 0)
+      000560 30 A0 03         [24] 1404 	jnb	_P2_0,00108$
+      000563 20 A1 40         [24] 1405 	jb	_P2_1,00112$
+      000566                       1406 00108$:
+                                   1407 ;	./src/angry_bird.c:322: if (which == 1)
+      000566 BF 01 1E         [24] 1408 	cjne	r7,#0x01,00106$
+                                   1409 ;	./src/angry_bird.c:324: setting_state--;
+      000569 15*15            [12] 1410 	dec	_setting_state
+      00056B 74 FF            [12] 1411 	mov	a,#0xff
+      00056D B5*15 02         [24] 1412 	cjne	a,_setting_state,00463$
+      000570 15*16            [12] 1413 	dec	(_setting_state + 1)
+      000572                       1414 00463$:
+                                   1415 ;	./src/angry_bird.c:325: if (setting_state < 1)
+      000572 C3               [12] 1416 	clr	c
+      000573 E5*15            [12] 1417 	mov	a,_setting_state
+      000575 94 01            [12] 1418 	subb	a,#0x01
+      000577 E5*16            [12] 1419 	mov	a,(_setting_state + 1)
+      000579 64 80            [12] 1420 	xrl	a,#0x80
+      00057B 94 80            [12] 1421 	subb	a,#0x80
+      00057D 50 27            [24] 1422 	jnc	00112$
+                                   1423 ;	./src/angry_bird.c:326: setting_state = 2;
+      00057F 75*15 02         [24] 1424 	mov	_setting_state,#0x02
+      000582 75*16 00         [24] 1425 	mov	(_setting_state + 1),#0x00
+      000585 80 1F            [24] 1426 	sjmp	00112$
+      000587                       1427 00106$:
+                                   1428 ;	./src/angry_bird.c:330: setting_state++;
+      000587 05*15            [12] 1429 	inc	_setting_state
+      000589 E4               [12] 1430 	clr	a
+      00058A B5*15 02         [24] 1431 	cjne	a,_setting_state,00465$
+      00058D 05*16            [12] 1432 	inc	(_setting_state + 1)
+      00058F                       1433 00465$:
+                                   1434 ;	./src/angry_bird.c:331: if (setting_state > 2)
+      00058F C3               [12] 1435 	clr	c
+      000590 74 02            [12] 1436 	mov	a,#0x02
+      000592 95*15            [12] 1437 	subb	a,_setting_state
+      000594 74 80            [12] 1438 	mov	a,#(0x00 ^ 0x80)
+      000596 85*16 F0         [24] 1439 	mov	b,(_setting_state + 1)
+      000599 63 F0 80         [24] 1440 	xrl	b,#0x80
+      00059C 95 F0            [12] 1441 	subb	a,b
+      00059E 50 06            [24] 1442 	jnc	00112$
+                                   1443 ;	./src/angry_bird.c:332: setting_state = 1;
+      0005A0 75*15 01         [24] 1444 	mov	_setting_state,#0x01
+      0005A3 75*16 00         [24] 1445 	mov	(_setting_state + 1),#0x00
+      0005A6                       1446 00112$:
+                                   1447 ;	./src/angry_bird.c:336: if ((but_enter == 0) && (prebut_enter == 1))
+      0005A6 20 A2 1F         [24] 1448 	jb	_P2_2,00119$
+      0005A9 74 01            [12] 1449 	mov	a,#0x01
+      0005AB B5*2D 06         [24] 1450 	cjne	a,_prebut_enter,00468$
+      0005AE 14               [12] 1451 	dec	a
+      0005AF B5*2E 02         [24] 1452 	cjne	a,(_prebut_enter + 1),00468$
+      0005B2 80 02            [24] 1453 	sjmp	00469$
+      0005B4                       1454 00468$:
+      0005B4 80 12            [24] 1455 	sjmp	00119$
+      0005B6                       1456 00469$:
+                                   1457 ;	./src/angry_bird.c:338: delay_ms(10);
+      0005B6 90 00 0A         [24] 1458 	mov	dptr,#0x000a
+      0005B9 12r00r00         [24] 1459 	lcall	_delay_ms
+                                   1460 ;	./src/angry_bird.c:339: if (but_enter == 0)
+      0005BC 20 A2 09         [24] 1461 	jb	_P2_2,00119$
+                                   1462 ;	./src/angry_bird.c:341: angrybird_display_home();
+      0005BF 12r00r00         [24] 1463 	lcall	_angrybird_display_home
+                                   1464 ;	./src/angry_bird.c:342: cur_state = STATE_HOME;
+      0005C2 75*1F 01         [24] 1465 	mov	_cur_state,#0x01
+      0005C5 75*20 00         [24] 1466 	mov	(_cur_state + 1),#0x00
+      0005C8                       1467 00119$:
+                                   1468 ;	./src/angry_bird.c:345: if (((but_left == 0) && (prebut_left == 1)) || ((but_right == 0) && (prebut_right == 1)))
+      0005C8 20 B2 0B         [24] 1469 	jb	_INT0,00147$
+      0005CB 74 01            [12] 1470 	mov	a,#0x01
+      0005CD B5*29 06         [24] 1471 	cjne	a,_prebut_left,00472$
+      0005D0 14               [12] 1472 	dec	a
+      0005D1 B5*2A 02         [24] 1473 	cjne	a,(_prebut_left + 1),00472$
+      0005D4 80 14            [24] 1474 	sjmp	00143$
+      0005D6                       1475 00472$:
+      0005D6                       1476 00147$:
+      0005D6 30 B3 03         [24] 1477 	jnb	_INT1,00473$
+      0005D9 02r06rD2         [24] 1478 	ljmp	00144$
+      0005DC                       1479 00473$:
+      0005DC 74 01            [12] 1480 	mov	a,#0x01
+      0005DE B5*2B 06         [24] 1481 	cjne	a,_prebut_right,00474$
+      0005E1 14               [12] 1482 	dec	a
+      0005E2 B5*2C 02         [24] 1483 	cjne	a,(_prebut_right + 1),00474$
+      0005E5 80 03            [24] 1484 	sjmp	00475$
+      0005E7                       1485 00474$:
+      0005E7 02r06rD2         [24] 1486 	ljmp	00144$
+      0005EA                       1487 00475$:
+      0005EA                       1488 00143$:
+                                   1489 ;	./src/angry_bird.c:348: int which = (but_left == 0) ? 0 : 1;
+      0005EA 20 B2 04         [24] 1490 	jb	_INT0,00189$
+      0005ED 7F 00            [12] 1491 	mov	r7,#0x00
+      0005EF 80 02            [24] 1492 	sjmp	00190$
+      0005F1                       1493 00189$:
+      0005F1 7F 01            [12] 1494 	mov	r7,#0x01
+      0005F3                       1495 00190$:
+                                   1496 ;	./src/angry_bird.c:349: if (but_left == 0 || but_right == 0)
+      0005F3 30 B2 06         [24] 1497 	jnb	_INT0,00140$
+      0005F6 30 B3 03         [24] 1498 	jnb	_INT1,00478$
+      0005F9 02r06rD2         [24] 1499 	ljmp	00144$
+      0005FC                       1500 00478$:
+      0005FC                       1501 00140$:
+                                   1502 ;	./src/angry_bird.c:351: if (setting_state == 1)
+      0005FC 74 01            [12] 1503 	mov	a,#0x01
+      0005FE B5*15 06         [24] 1504 	cjne	a,_setting_state,00479$
+      000601 14               [12] 1505 	dec	a
+      000602 B5*16 02         [24] 1506 	cjne	a,(_setting_state + 1),00479$
+      000605 80 02            [24] 1507 	sjmp	00480$
+      000607                       1508 00479$:
+      000607 80 66            [24] 1509 	sjmp	00138$
+      000609                       1510 00480$:
+                                   1511 ;	./src/angry_bird.c:353: music_value = (music_value - 1 == 0) ? 0 : 1;
+      000609 E5*19            [12] 1512 	mov	a,_music_value
+      00060B 24 FF            [12] 1513 	add	a,#0xff
+      00060D FD               [12] 1514 	mov	r5,a
+      00060E E5*1A            [12] 1515 	mov	a,(_music_value + 1)
+      000610 34 FF            [12] 1516 	addc	a,#0xff
+      000612 4D               [12] 1517 	orl	a,r5
+      000613 70 04            [24] 1518 	jnz	00191$
+      000615 FD               [12] 1519 	mov	r5,a
+      000616 FE               [12] 1520 	mov	r6,a
+      000617 80 04            [24] 1521 	sjmp	00192$
+      000619                       1522 00191$:
+      000619 7D 01            [12] 1523 	mov	r5,#0x01
+      00061B 7E 00            [12] 1524 	mov	r6,#0x00
+      00061D                       1525 00192$:
+      00061D 8D*19            [24] 1526 	mov	_music_value,r5
+      00061F 8E*1A            [24] 1527 	mov	(_music_value + 1),r6
+                                   1528 ;	./src/angry_bird.c:354: OLED_SetCursor(music_value_row_cursor, music_value_col_cursor);
+      000621 75*00 40         [24] 1529 	mov	_OLED_SetCursor_PARM_2,#0x40
+      000624 75 82 04         [24] 1530 	mov	dpl,#0x04
+      000627 12r00r00         [24] 1531 	lcall	_OLED_SetCursor
+                                   1532 ;	./src/angry_bird.c:355: OLED_DisplayString("   ");
+      00062A 90r02r88         [24] 1533 	mov	dptr,#___str_4
+      00062D 75 F0 80         [24] 1534 	mov	b,#0x80
+      000630 12r00r00         [24] 1535 	lcall	_OLED_DisplayString
+                                   1536 ;	./src/angry_bird.c:356: if (music_value == 0)
+      000633 E5*19            [12] 1537 	mov	a,_music_value
+      000635 45*1A            [12] 1538 	orl	a,(_music_value + 1)
+      000637 70 15            [24] 1539 	jnz	00124$
+                                   1540 ;	./src/angry_bird.c:358: OLED_SetCursor(music_value_row_cursor, music_value_col_cursor);
+      000639 75*00 40         [24] 1541 	mov	_OLED_SetCursor_PARM_2,#0x40
+      00063C 75 82 04         [24] 1542 	mov	dpl,#0x04
+      00063F 12r00r00         [24] 1543 	lcall	_OLED_SetCursor
+                                   1544 ;	./src/angry_bird.c:359: OLED_DisplayString("OFF");
+      000642 90r02r7C         [24] 1545 	mov	dptr,#___str_2
+      000645 75 F0 80         [24] 1546 	mov	b,#0x80
+      000648 12r00r00         [24] 1547 	lcall	_OLED_DisplayString
+      00064B 02r06rD2         [24] 1548 	ljmp	00144$
+      00064E                       1549 00124$:
+                                   1550 ;	./src/angry_bird.c:361: else if (music_value == 1)
+      00064E 74 01            [12] 1551 	mov	a,#0x01
+      000650 B5*19 06         [24] 1552 	cjne	a,_music_value,00483$
+      000653 14               [12] 1553 	dec	a
+      000654 B5*1A 02         [24] 1554 	cjne	a,(_music_value + 1),00483$
+      000657 80 02            [24] 1555 	sjmp	00484$
+      000659                       1556 00483$:
+      000659 80 77            [24] 1557 	sjmp	00144$
+      00065B                       1558 00484$:
+                                   1559 ;	./src/angry_bird.c:363: OLED_SetCursor(music_value_row_cursor, music_value_col_cursor + 1);
+      00065B 75*00 41         [24] 1560 	mov	_OLED_SetCursor_PARM_2,#0x41
+      00065E 75 82 04         [24] 1561 	mov	dpl,#0x04
+      000661 12r00r00         [24] 1562 	lcall	_OLED_SetCursor
+                                   1563 ;	./src/angry_bird.c:364: OLED_DisplayString("ON");
+      000664 90r02r8C         [24] 1564 	mov	dptr,#___str_5
+      000667 75 F0 80         [24] 1565 	mov	b,#0x80
+      00066A 12r00r00         [24] 1566 	lcall	_OLED_DisplayString
+      00066D 80 63            [24] 1567 	sjmp	00144$
+      00066F                       1568 00138$:
+                                   1569 ;	./src/angry_bird.c:367: else if (setting_state == 2)
+      00066F 74 02            [12] 1570 	mov	a,#0x02
+      000671 B5*15 06         [24] 1571 	cjne	a,_setting_state,00485$
+      000674 E4               [12] 1572 	clr	a
+      000675 B5*16 02         [24] 1573 	cjne	a,(_setting_state + 1),00485$
+      000678 80 02            [24] 1574 	sjmp	00486$
+      00067A                       1575 00485$:
+      00067A 80 56            [24] 1576 	sjmp	00144$
+      00067C                       1577 00486$:
+                                   1578 ;	./src/angry_bird.c:369: if (which == 0)
+      00067C EF               [12] 1579 	mov	a,r7
+      00067D 70 15            [24] 1580 	jnz	00133$
+                                   1581 ;	./src/angry_bird.c:371: volume_value--;
+      00067F 15*1B            [12] 1582 	dec	_volume_value
+      000681 74 FF            [12] 1583 	mov	a,#0xff
+      000683 B5*1B 02         [24] 1584 	cjne	a,_volume_value,00488$
+      000686 15*1C            [12] 1585 	dec	(_volume_value + 1)
+      000688                       1586 00488$:
+                                   1587 ;	./src/angry_bird.c:372: if (volume_value < 0)
+      000688 E5*1C            [12] 1588 	mov	a,(_volume_value + 1)
+      00068A 30 E7 29         [24] 1589 	jnb	acc.7,00134$
+                                   1590 ;	./src/angry_bird.c:373: volume_value = 0;
+      00068D E4               [12] 1591 	clr	a
+      00068E F5*1B            [12] 1592 	mov	_volume_value,a
+      000690 F5*1C            [12] 1593 	mov	(_volume_value + 1),a
+      000692 80 22            [24] 1594 	sjmp	00134$
+      000694                       1595 00133$:
+                                   1596 ;	./src/angry_bird.c:375: else if (which == 1)
+      000694 BF 01 1F         [24] 1597 	cjne	r7,#0x01,00134$
+                                   1598 ;	./src/angry_bird.c:377: volume_value++;
+      000697 05*1B            [12] 1599 	inc	_volume_value
+      000699 E4               [12] 1600 	clr	a
+      00069A B5*1B 02         [24] 1601 	cjne	a,_volume_value,00492$
+      00069D 05*1C            [12] 1602 	inc	(_volume_value + 1)
+      00069F                       1603 00492$:
+                                   1604 ;	./src/angry_bird.c:378: if (volume_value > 3)
+      00069F C3               [12] 1605 	clr	c
+      0006A0 74 03            [12] 1606 	mov	a,#0x03
+      0006A2 95*1B            [12] 1607 	subb	a,_volume_value
+      0006A4 74 80            [12] 1608 	mov	a,#(0x00 ^ 0x80)
+      0006A6 85*1C F0         [24] 1609 	mov	b,(_volume_value + 1)
+      0006A9 63 F0 80         [24] 1610 	xrl	b,#0x80
+      0006AC 95 F0            [12] 1611 	subb	a,b
+      0006AE 50 06            [24] 1612 	jnc	00134$
+                                   1613 ;	./src/angry_bird.c:379: volume_value = 3;
+      0006B0 75*1B 03         [24] 1614 	mov	_volume_value,#0x03
+      0006B3 75*1C 00         [24] 1615 	mov	(_volume_value + 1),#0x00
+      0006B6                       1616 00134$:
+                                   1617 ;	./src/angry_bird.c:381: OLED_SetCursor(volume_value_row_cursor, volume_value_col_cursor);
+      0006B6 75*00 44         [24] 1618 	mov	_OLED_SetCursor_PARM_2,#0x44
+      0006B9 75 82 07         [24] 1619 	mov	dpl,#0x07
+      0006BC 12r00r00         [24] 1620 	lcall	_OLED_SetCursor
+                                   1621 ;	./src/angry_bird.c:383: volume_value_[0] = '0' + volume_value;
+      0006BF AF*1B            [24] 1622 	mov	r7,_volume_value
+      0006C1 74 30            [12] 1623 	mov	a,#0x30
+      0006C3 2F               [12] 1624 	add	a,r7
+      0006C4 F5*2F            [12] 1625 	mov	_angrybird_setting_state_volume_value__262145_107,a
+                                   1626 ;	./src/angry_bird.c:384: volume_value_[1] = '\0';
+      0006C6 75*30 00         [24] 1627 	mov	(_angrybird_setting_state_volume_value__262145_107 + 0x0001),#0x00
+                                   1628 ;	./src/angry_bird.c:385: OLED_DisplayString(volume_value_);
+      0006C9 90r00r2F         [24] 1629 	mov	dptr,#_angrybird_setting_state_volume_value__262145_107
+      0006CC 75 F0 40         [24] 1630 	mov	b,#0x40
+      0006CF 12r00r00         [24] 1631 	lcall	_OLED_DisplayString
+      0006D2                       1632 00144$:
+                                   1633 ;	./src/angry_bird.c:390: if (setting_state != setting_state_past)
+      0006D2 E5*17            [12] 1634 	mov	a,_setting_state_past
+      0006D4 B5*15 08         [24] 1635 	cjne	a,_setting_state,00494$
+      0006D7 E5*18            [12] 1636 	mov	a,(_setting_state_past + 1)
+      0006D9 B5*16 03         [24] 1637 	cjne	a,(_setting_state + 1),00494$
+      0006DC 02r08r84         [24] 1638 	ljmp	00160$
+      0006DF                       1639 00494$:
+                                   1640 ;	./src/angry_bird.c:393: switch (setting_state_past)
+      0006DF 74 01            [12] 1641 	mov	a,#0x01
+      0006E1 B5*17 06         [24] 1642 	cjne	a,_setting_state_past,00495$
+      0006E4 14               [12] 1643 	dec	a
+      0006E5 B5*18 02         [24] 1644 	cjne	a,(_setting_state_past + 1),00495$
+      0006E8 80 0F            [24] 1645 	sjmp	00148$
+      0006EA                       1646 00495$:
+      0006EA 74 02            [12] 1647 	mov	a,#0x02
+      0006EC B5*17 07         [24] 1648 	cjne	a,_setting_state_past,00496$
+      0006EF E4               [12] 1649 	clr	a
+      0006F0 B5*18 03         [24] 1650 	cjne	a,(_setting_state_past + 1),00496$
+      0006F3 02r07rC0         [24] 1651 	ljmp	00153$
+      0006F6                       1652 00496$:
+      0006F6 02r08r84         [24] 1653 	ljmp	00160$
+                                   1654 ;	./src/angry_bird.c:395: case 1:
+      0006F9                       1655 00148$:
+                                   1656 ;	./src/angry_bird.c:396: OLED_SetCursor(m_button_left_row_cursor, m_button_left_col_cursor);
+      0006F9 75*00 2D         [24] 1657 	mov	_OLED_SetCursor_PARM_2,#0x2d
+      0006FC 75 82 04         [24] 1658 	mov	dpl,#0x04
+      0006FF 12r00r00         [24] 1659 	lcall	_OLED_SetCursor
+                                   1660 ;	./src/angry_bird.c:397: OLED_DisplayString(" ");
+      000702 90r02r8F         [24] 1661 	mov	dptr,#___str_6
+      000705 75 F0 80         [24] 1662 	mov	b,#0x80
+      000708 12r00r00         [24] 1663 	lcall	_OLED_DisplayString
+                                   1664 ;	./src/angry_bird.c:398: OLED_SetCursor(m_button_right_row_cursor, m_button_right_col_cursor);
+      00070B 75*00 5D         [24] 1665 	mov	_OLED_SetCursor_PARM_2,#0x5d
+      00070E 75 82 04         [24] 1666 	mov	dpl,#0x04
+      000711 12r00r00         [24] 1667 	lcall	_OLED_SetCursor
+                                   1668 ;	./src/angry_bird.c:399: OLED_DisplayString(" ");
+      000714 90r02r8F         [24] 1669 	mov	dptr,#___str_6
+      000717 75 F0 80         [24] 1670 	mov	b,#0x80
+      00071A 12r00r00         [24] 1671 	lcall	_OLED_DisplayString
+                                   1672 ;	./src/angry_bird.c:401: row_offset = v_button_left_row_cursor;
+      00071D 75*04 07         [24] 1673 	mov	_row_offset,#0x07
+      000720 75*05 00         [24] 1674 	mov	(_row_offset + 1),#0x00
+                                   1675 ;	./src/angry_bird.c:402: col_offset = v_button_left_col_cursor;
+      000723 75*06 2D         [24] 1676 	mov	_col_offset,#0x2d
+      000726 75*07 00         [24] 1677 	mov	(_col_offset + 1),#0x00
+                                   1678 ;	./src/angry_bird.c:403: for (int j = 0; j < setting_button_cul_size; j++)
+      000729 7F 00            [12] 1679 	mov	r7,#0x00
+      00072B                       1680 00165$:
+      00072B BF 04 00         [24] 1681 	cjne	r7,#0x04,00497$
+      00072E                       1682 00497$:
+      00072E 50 3D            [24] 1683 	jnc	00150$
+                                   1684 ;	./src/angry_bird.c:405: for (int i = 0; i < setting_button_row_size; i++)
+      000730 7E 00            [12] 1685 	mov	r6,#0x00
+      000732                       1686 00162$:
+      000732 BE 01 00         [24] 1687 	cjne	r6,#0x01,00499$
+      000735                       1688 00499$:
+      000735 50 33            [24] 1689 	jnc	00166$
+                                   1690 ;	./src/angry_bird.c:407: OLED_SetCursor(row_offset + i, col_offset + j);
+      000737 AD*04            [24] 1691 	mov	r5,_row_offset
+      000739 E4               [12] 1692 	clr	a
+      00073A 2D               [12] 1693 	add	a,r5
+      00073B F5 82            [12] 1694 	mov	dpl,a
+      00073D AD*06            [24] 1695 	mov	r5,_col_offset
+      00073F 8F 04            [24] 1696 	mov	ar4,r7
+      000741 EC               [12] 1697 	mov	a,r4
+      000742 2D               [12] 1698 	add	a,r5
+      000743 F5*00            [12] 1699 	mov	_OLED_SetCursor_PARM_2,a
+      000745 C0 07            [24] 1700 	push	ar7
+      000747 C0 04            [24] 1701 	push	ar4
+      000749 12r00r00         [24] 1702 	lcall	_OLED_SetCursor
+      00074C D0 04            [24] 1703 	pop	ar4
+                                   1704 ;	./src/angry_bird.c:408: oledSendData(button_left_logo[setting_button_cul_size * i + j]);
+      00074E EC               [12] 1705 	mov	a,r4
+      00074F 33               [12] 1706 	rlc	a
+      000750 95 E0            [12] 1707 	subb	a,acc
+      000752 FD               [12] 1708 	mov	r5,a
+      000753 EC               [12] 1709 	mov	a,r4
+      000754 24r60            [12] 1710 	add	a,#_button_left_logo
+      000756 F5 82            [12] 1711 	mov	dpl,a
+      000758 ED               [12] 1712 	mov	a,r5
+      000759 34s02            [12] 1713 	addc	a,#(_button_left_logo >> 8)
+      00075B F5 83            [12] 1714 	mov	dph,a
+      00075D E4               [12] 1715 	clr	a
+      00075E 93               [24] 1716 	movc	a,@a+dptr
+      00075F F5 82            [12] 1717 	mov	dpl,a
+      000761 12r00r00         [24] 1718 	lcall	_oledSendData
+      000764 D0 07            [24] 1719 	pop	ar7
+                                   1720 ;	./src/angry_bird.c:405: for (int i = 0; i < setting_button_row_size; i++)
+      000766 7E 01            [12] 1721 	mov	r6,#0x01
+      000768 80 C8            [24] 1722 	sjmp	00162$
+      00076A                       1723 00166$:
+                                   1724 ;	./src/angry_bird.c:403: for (int j = 0; j < setting_button_cul_size; j++)
+      00076A 0F               [12] 1725 	inc	r7
+      00076B 80 BE            [24] 1726 	sjmp	00165$
+      00076D                       1727 00150$:
+                                   1728 ;	./src/angry_bird.c:411: row_offset = v_button_right_row_cursor;
+      00076D 75*04 07         [24] 1729 	mov	_row_offset,#0x07
+      000770 75*05 00         [24] 1730 	mov	(_row_offset + 1),#0x00
+                                   1731 ;	./src/angry_bird.c:412: col_offset = v_button_right_col_cursor;
+      000773 75*06 5D         [24] 1732 	mov	_col_offset,#0x5d
+      000776 75*07 00         [24] 1733 	mov	(_col_offset + 1),#0x00
+                                   1734 ;	./src/angry_bird.c:413: for (int j = 0; j < setting_button_cul_size; j++)
+      000779 7F 00            [12] 1735 	mov	r7,#0x00
+      00077B                       1736 00171$:
+      00077B BF 04 00         [24] 1737 	cjne	r7,#0x04,00501$
+      00077E                       1738 00501$:
+      00077E 40 03            [24] 1739 	jc	00502$
+      000780 02r08r84         [24] 1740 	ljmp	00160$
+      000783                       1741 00502$:
+                                   1742 ;	./src/angry_bird.c:415: for (int i = 0; i < setting_button_row_size; i++)
+      000783 7E 00            [12] 1743 	mov	r6,#0x00
+      000785                       1744 00168$:
+      000785 BE 01 00         [24] 1745 	cjne	r6,#0x01,00503$
+      000788                       1746 00503$:
+      000788 50 33            [24] 1747 	jnc	00172$
+                                   1748 ;	./src/angry_bird.c:417: OLED_SetCursor(row_offset + i, col_offset + j);
+      00078A AD*04            [24] 1749 	mov	r5,_row_offset
+      00078C E4               [12] 1750 	clr	a
+      00078D 2D               [12] 1751 	add	a,r5
+      00078E F5 82            [12] 1752 	mov	dpl,a
+      000790 AD*06            [24] 1753 	mov	r5,_col_offset
+      000792 8F 04            [24] 1754 	mov	ar4,r7
+      000794 EC               [12] 1755 	mov	a,r4
+      000795 2D               [12] 1756 	add	a,r5
+      000796 F5*00            [12] 1757 	mov	_OLED_SetCursor_PARM_2,a
+      000798 C0 07            [24] 1758 	push	ar7
+      00079A C0 04            [24] 1759 	push	ar4
+      00079C 12r00r00         [24] 1760 	lcall	_OLED_SetCursor
+      00079F D0 04            [24] 1761 	pop	ar4
+                                   1762 ;	./src/angry_bird.c:418: oledSendData(button_right_logo[setting_button_cul_size * i + j]);
+      0007A1 EC               [12] 1763 	mov	a,r4
+      0007A2 33               [12] 1764 	rlc	a
+      0007A3 95 E0            [12] 1765 	subb	a,acc
+      0007A5 FD               [12] 1766 	mov	r5,a
+      0007A6 EC               [12] 1767 	mov	a,r4
+      0007A7 24r64            [12] 1768 	add	a,#_button_right_logo
+      0007A9 F5 82            [12] 1769 	mov	dpl,a
+      0007AB ED               [12] 1770 	mov	a,r5
+      0007AC 34s02            [12] 1771 	addc	a,#(_button_right_logo >> 8)
+      0007AE F5 83            [12] 1772 	mov	dph,a
+      0007B0 E4               [12] 1773 	clr	a
+      0007B1 93               [24] 1774 	movc	a,@a+dptr
+      0007B2 F5 82            [12] 1775 	mov	dpl,a
+      0007B4 12r00r00         [24] 1776 	lcall	_oledSendData
+      0007B7 D0 07            [24] 1777 	pop	ar7
+                                   1778 ;	./src/angry_bird.c:415: for (int i = 0; i < setting_button_row_size; i++)
+      0007B9 7E 01            [12] 1779 	mov	r6,#0x01
+      0007BB 80 C8            [24] 1780 	sjmp	00168$
+      0007BD                       1781 00172$:
+                                   1782 ;	./src/angry_bird.c:413: for (int j = 0; j < setting_button_cul_size; j++)
+      0007BD 0F               [12] 1783 	inc	r7
+                                   1784 ;	./src/angry_bird.c:423: case 2:
+      0007BE 80 BB            [24] 1785 	sjmp	00171$
+      0007C0                       1786 00153$:
+                                   1787 ;	./src/angry_bird.c:424: OLED_SetCursor(v_button_left_row_cursor, v_button_left_col_cursor);
+      0007C0 75*00 2D         [24] 1788 	mov	_OLED_SetCursor_PARM_2,#0x2d
+      0007C3 75 82 07         [24] 1789 	mov	dpl,#0x07
+      0007C6 12r00r00         [24] 1790 	lcall	_OLED_SetCursor
+                                   1791 ;	./src/angry_bird.c:425: OLED_DisplayString(" ");
+      0007C9 90r02r8F         [24] 1792 	mov	dptr,#___str_6
+      0007CC 75 F0 80         [24] 1793 	mov	b,#0x80
+      0007CF 12r00r00         [24] 1794 	lcall	_OLED_DisplayString
+                                   1795 ;	./src/angry_bird.c:426: OLED_SetCursor(v_button_right_row_cursor, v_button_right_col_cursor);
+      0007D2 75*00 5D         [24] 1796 	mov	_OLED_SetCursor_PARM_2,#0x5d
+      0007D5 75 82 07         [24] 1797 	mov	dpl,#0x07
+      0007D8 12r00r00         [24] 1798 	lcall	_OLED_SetCursor
+                                   1799 ;	./src/angry_bird.c:427: OLED_DisplayString(" ");
+      0007DB 90r02r8F         [24] 1800 	mov	dptr,#___str_6
+      0007DE 75 F0 80         [24] 1801 	mov	b,#0x80
+      0007E1 12r00r00         [24] 1802 	lcall	_OLED_DisplayString
+                                   1803 ;	./src/angry_bird.c:428: row_offset = m_button_left_row_cursor;
+      0007E4 75*04 04         [24] 1804 	mov	_row_offset,#0x04
+      0007E7 75*05 00         [24] 1805 	mov	(_row_offset + 1),#0x00
+                                   1806 ;	./src/angry_bird.c:429: col_offset = m_button_left_col_cursor;
+      0007EA 75*06 2D         [24] 1807 	mov	_col_offset,#0x2d
+      0007ED 75*07 00         [24] 1808 	mov	(_col_offset + 1),#0x00
+                                   1809 ;	./src/angry_bird.c:430: for (int j = 0; j < setting_button_cul_size; j++)
+      0007F0 7F 00            [12] 1810 	mov	r7,#0x00
+      0007F2                       1811 00177$:
+      0007F2 BF 04 00         [24] 1812 	cjne	r7,#0x04,00505$
+      0007F5                       1813 00505$:
+      0007F5 50 3D            [24] 1814 	jnc	00155$
+                                   1815 ;	./src/angry_bird.c:432: for (int i = 0; i < setting_button_row_size; i++)
+      0007F7 7E 00            [12] 1816 	mov	r6,#0x00
+      0007F9                       1817 00174$:
+      0007F9 BE 01 00         [24] 1818 	cjne	r6,#0x01,00507$
+      0007FC                       1819 00507$:
+      0007FC 50 33            [24] 1820 	jnc	00178$
+                                   1821 ;	./src/angry_bird.c:434: OLED_SetCursor(row_offset + i, col_offset + j);
+      0007FE AD*04            [24] 1822 	mov	r5,_row_offset
+      000800 E4               [12] 1823 	clr	a
+      000801 2D               [12] 1824 	add	a,r5
+      000802 F5 82            [12] 1825 	mov	dpl,a
+      000804 AD*06            [24] 1826 	mov	r5,_col_offset
+      000806 8F 04            [24] 1827 	mov	ar4,r7
+      000808 EC               [12] 1828 	mov	a,r4
+      000809 2D               [12] 1829 	add	a,r5
+      00080A F5*00            [12] 1830 	mov	_OLED_SetCursor_PARM_2,a
+      00080C C0 07            [24] 1831 	push	ar7
+      00080E C0 04            [24] 1832 	push	ar4
+      000810 12r00r00         [24] 1833 	lcall	_OLED_SetCursor
+      000813 D0 04            [24] 1834 	pop	ar4
+                                   1835 ;	./src/angry_bird.c:435: oledSendData(button_left_logo[setting_button_cul_size * i + j]);
+      000815 EC               [12] 1836 	mov	a,r4
+      000816 33               [12] 1837 	rlc	a
+      000817 95 E0            [12] 1838 	subb	a,acc
+      000819 FD               [12] 1839 	mov	r5,a
+      00081A EC               [12] 1840 	mov	a,r4
+      00081B 24r60            [12] 1841 	add	a,#_button_left_logo
+      00081D F5 82            [12] 1842 	mov	dpl,a
+      00081F ED               [12] 1843 	mov	a,r5
+      000820 34s02            [12] 1844 	addc	a,#(_button_left_logo >> 8)
+      000822 F5 83            [12] 1845 	mov	dph,a
+      000824 E4               [12] 1846 	clr	a
+      000825 93               [24] 1847 	movc	a,@a+dptr
+      000826 F5 82            [12] 1848 	mov	dpl,a
+      000828 12r00r00         [24] 1849 	lcall	_oledSendData
+      00082B D0 07            [24] 1850 	pop	ar7
+                                   1851 ;	./src/angry_bird.c:432: for (int i = 0; i < setting_button_row_size; i++)
+      00082D 7E 01            [12] 1852 	mov	r6,#0x01
+      00082F 80 C8            [24] 1853 	sjmp	00174$
+      000831                       1854 00178$:
+                                   1855 ;	./src/angry_bird.c:430: for (int j = 0; j < setting_button_cul_size; j++)
+      000831 0F               [12] 1856 	inc	r7
+      000832 80 BE            [24] 1857 	sjmp	00177$
+      000834                       1858 00155$:
+                                   1859 ;	./src/angry_bird.c:438: row_offset = m_button_right_row_cursor;
+      000834 75*04 04         [24] 1860 	mov	_row_offset,#0x04
+      000837 75*05 00         [24] 1861 	mov	(_row_offset + 1),#0x00
+                                   1862 ;	./src/angry_bird.c:439: col_offset = m_button_right_col_cursor;
+      00083A 75*06 5D         [24] 1863 	mov	_col_offset,#0x5d
+      00083D 75*07 00         [24] 1864 	mov	(_col_offset + 1),#0x00
+                                   1865 ;	./src/angry_bird.c:440: for (int j = 0; j < setting_button_cul_size; j++)
+      000840 7F 00            [12] 1866 	mov	r7,#0x00
+      000842                       1867 00183$:
+      000842 BF 04 00         [24] 1868 	cjne	r7,#0x04,00509$
+      000845                       1869 00509$:
+      000845 50 3D            [24] 1870 	jnc	00160$
+                                   1871 ;	./src/angry_bird.c:442: for (int i = 0; i < setting_button_row_size; i++)
+      000847 7E 00            [12] 1872 	mov	r6,#0x00
+      000849                       1873 00180$:
+      000849 BE 01 00         [24] 1874 	cjne	r6,#0x01,00511$
+      00084C                       1875 00511$:
+      00084C 50 33            [24] 1876 	jnc	00184$
+                                   1877 ;	./src/angry_bird.c:444: OLED_SetCursor(row_offset + i, col_offset + j);
+      00084E AD*04            [24] 1878 	mov	r5,_row_offset
+      000850 E4               [12] 1879 	clr	a
+      000851 2D               [12] 1880 	add	a,r5
+      000852 F5 82            [12] 1881 	mov	dpl,a
+      000854 AD*06            [24] 1882 	mov	r5,_col_offset
+      000856 8F 04            [24] 1883 	mov	ar4,r7
+      000858 EC               [12] 1884 	mov	a,r4
+      000859 2D               [12] 1885 	add	a,r5
+      00085A F5*00            [12] 1886 	mov	_OLED_SetCursor_PARM_2,a
+      00085C C0 07            [24] 1887 	push	ar7
+      00085E C0 04            [24] 1888 	push	ar4
+      000860 12r00r00         [24] 1889 	lcall	_OLED_SetCursor
+      000863 D0 04            [24] 1890 	pop	ar4
+                                   1891 ;	./src/angry_bird.c:445: oledSendData(button_right_logo[setting_button_cul_size * i + j]);
+      000865 EC               [12] 1892 	mov	a,r4
+      000866 33               [12] 1893 	rlc	a
+      000867 95 E0            [12] 1894 	subb	a,acc
+      000869 FD               [12] 1895 	mov	r5,a
+      00086A EC               [12] 1896 	mov	a,r4
+      00086B 24r64            [12] 1897 	add	a,#_button_right_logo
+      00086D F5 82            [12] 1898 	mov	dpl,a
+      00086F ED               [12] 1899 	mov	a,r5
+      000870 34s02            [12] 1900 	addc	a,#(_button_right_logo >> 8)
+      000872 F5 83            [12] 1901 	mov	dph,a
+      000874 E4               [12] 1902 	clr	a
+      000875 93               [24] 1903 	movc	a,@a+dptr
+      000876 F5 82            [12] 1904 	mov	dpl,a
+      000878 12r00r00         [24] 1905 	lcall	_oledSendData
+      00087B D0 07            [24] 1906 	pop	ar7
+                                   1907 ;	./src/angry_bird.c:442: for (int i = 0; i < setting_button_row_size; i++)
+      00087D 7E 01            [12] 1908 	mov	r6,#0x01
+      00087F 80 C8            [24] 1909 	sjmp	00180$
+      000881                       1910 00184$:
+                                   1911 ;	./src/angry_bird.c:440: for (int j = 0; j < setting_button_cul_size; j++)
+      000881 0F               [12] 1912 	inc	r7
+                                   1913 ;	./src/angry_bird.c:449: }
+      000882 80 BE            [24] 1914 	sjmp	00183$
+      000884                       1915 00160$:
+                                   1916 ;	./src/angry_bird.c:452: setting_state_past = setting_state;
+      000884 85*15*17         [24] 1917 	mov	_setting_state_past,_setting_state
+      000887 85*16*18         [24] 1918 	mov	(_setting_state_past + 1),(_setting_state + 1)
+                                   1919 ;	./src/angry_bird.c:453: prebut_enter = but_enter;
+      00088A A2 A2            [12] 1920 	mov	c,_P2_2
+      00088C E4               [12] 1921 	clr	a
+      00088D 33               [12] 1922 	rlc	a
+      00088E F5*2D            [12] 1923 	mov	_prebut_enter,a
+      000890 75*2E 00         [24] 1924 	mov	(_prebut_enter + 1),#0x00
+                                   1925 ;	./src/angry_bird.c:454: prebut_up = but_up;
+      000893 A2 A0            [12] 1926 	mov	c,_P2_0
+      000895 E4               [12] 1927 	clr	a
+      000896 33               [12] 1928 	rlc	a
+      000897 F5*25            [12] 1929 	mov	_prebut_up,a
+      000899 75*26 00         [24] 1930 	mov	(_prebut_up + 1),#0x00
+                                   1931 ;	./src/angry_bird.c:455: prebut_down = but_down;
+      00089C A2 A1            [12] 1932 	mov	c,_P2_1
+      00089E E4               [12] 1933 	clr	a
+      00089F 33               [12] 1934 	rlc	a
+      0008A0 F5*27            [12] 1935 	mov	_prebut_down,a
+      0008A2 75*28 00         [24] 1936 	mov	(_prebut_down + 1),#0x00
+                                   1937 ;	./src/angry_bird.c:456: prebut_left = but_left;
+      0008A5 A2 B2            [12] 1938 	mov	c,_INT0
+      0008A7 E4               [12] 1939 	clr	a
+      0008A8 33               [12] 1940 	rlc	a
+      0008A9 F5*29            [12] 1941 	mov	_prebut_left,a
+      0008AB 75*2A 00         [24] 1942 	mov	(_prebut_left + 1),#0x00
+                                   1943 ;	./src/angry_bird.c:457: prebut_right = but_right;
+      0008AE A2 B3            [12] 1944 	mov	c,_INT1
+      0008B0 E4               [12] 1945 	clr	a
+      0008B1 33               [12] 1946 	rlc	a
+      0008B2 F5*2B            [12] 1947 	mov	_prebut_right,a
+      0008B4 75*2C 00         [24] 1948 	mov	(_prebut_right + 1),#0x00
+                                   1949 ;	./src/angry_bird.c:458: delay_ms(10);
+      0008B7 90 00 0A         [24] 1950 	mov	dptr,#0x000a
+                                   1951 ;	./src/angry_bird.c:459: }
+      0008BA 02r00r00         [24] 1952 	ljmp	_delay_ms
+                                   1953 	.area CSEG    (CODE)
+                                   1954 	.area CONST   (CODE)
+      000000                       1955 _angry_bird_logo:
+      000000 00                    1956 	.db #0x00	; 0
+      000001 00                    1957 	.db #0x00	; 0
+      000002 00                    1958 	.db #0x00	; 0
+      000003 00                    1959 	.db #0x00	; 0
+      000004 00                    1960 	.db #0x00	; 0
+      000005 00                    1961 	.db #0x00	; 0
+      000006 00                    1962 	.db #0x00	; 0
+      000007 00                    1963 	.db #0x00	; 0
+      000008 00                    1964 	.db #0x00	; 0
+      000009 00                    1965 	.db #0x00	; 0
+      00000A 00                    1966 	.db #0x00	; 0
+      00000B 00                    1967 	.db #0x00	; 0
+      00000C 00                    1968 	.db #0x00	; 0
+      00000D 00                    1969 	.db #0x00	; 0
+      00000E 00                    1970 	.db #0x00	; 0
+      00000F 00                    1971 	.db #0x00	; 0
+      000010 00                    1972 	.db #0x00	; 0
+      000011 00                    1973 	.db #0x00	; 0
+      000012 00                    1974 	.db #0x00	; 0
+      000013 00                    1975 	.db #0x00	; 0
+      000014 00                    1976 	.db #0x00	; 0
+      000015 00                    1977 	.db #0x00	; 0
+      000016 00                    1978 	.db #0x00	; 0
+      000017 00                    1979 	.db #0x00	; 0
+      000018 00                    1980 	.db #0x00	; 0
+      000019 00                    1981 	.db #0x00	; 0
+      00001A 00                    1982 	.db #0x00	; 0
+      00001B 00                    1983 	.db #0x00	; 0
+      00001C 00                    1984 	.db #0x00	; 0
+      00001D 80                    1985 	.db #0x80	; 128
+      00001E E0                    1986 	.db #0xe0	; 224
+      00001F 20                    1987 	.db #0x20	; 32
+      000020 20                    1988 	.db #0x20	; 32
+      000021 60                    1989 	.db #0x60	; 96
+      000022 40                    1990 	.db #0x40	; 64
+      000023 40                    1991 	.db #0x40	; 64
+      000024 80                    1992 	.db #0x80	; 128
+      000025 80                    1993 	.db #0x80	; 128
+      000026 00                    1994 	.db #0x00	; 0
+      000027 00                    1995 	.db #0x00	; 0
+      000028 00                    1996 	.db #0x00	; 0
+      000029 00                    1997 	.db #0x00	; 0
+      00002A 00                    1998 	.db #0x00	; 0
+      00002B 00                    1999 	.db #0x00	; 0
+      00002C 00                    2000 	.db #0x00	; 0
+      00002D 00                    2001 	.db #0x00	; 0
+      00002E 00                    2002 	.db #0x00	; 0
+      00002F 00                    2003 	.db #0x00	; 0
+      000030 00                    2004 	.db #0x00	; 0
+      000031 00                    2005 	.db #0x00	; 0
+      000032 00                    2006 	.db #0x00	; 0
+      000033 00                    2007 	.db #0x00	; 0
+      000034 00                    2008 	.db #0x00	; 0
+      000035 00                    2009 	.db #0x00	; 0
+      000036 00                    2010 	.db #0x00	; 0
+      000037 00                    2011 	.db #0x00	; 0
+      000038 00                    2012 	.db #0x00	; 0
+      000039 00                    2013 	.db #0x00	; 0
+      00003A 00                    2014 	.db #0x00	; 0
+      00003B 00                    2015 	.db #0x00	; 0
+      00003C 00                    2016 	.db #0x00	; 0
+      00003D 00                    2017 	.db #0x00	; 0
+      00003E 00                    2018 	.db #0x00	; 0
+      00003F 00                    2019 	.db #0x00	; 0
+      000040 00                    2020 	.db #0x00	; 0
+      000041 00                    2021 	.db #0x00	; 0
+      000042 00                    2022 	.db #0x00	; 0
+      000043 00                    2023 	.db #0x00	; 0
+      000044 00                    2024 	.db #0x00	; 0
+      000045 00                    2025 	.db #0x00	; 0
+      000046 00                    2026 	.db #0x00	; 0
+      000047 00                    2027 	.db #0x00	; 0
+      000048 00                    2028 	.db #0x00	; 0
+      000049 00                    2029 	.db #0x00	; 0
+      00004A 00                    2030 	.db #0x00	; 0
+      00004B 00                    2031 	.db #0x00	; 0
+      00004C 00                    2032 	.db #0x00	; 0
+      00004D 00                    2033 	.db #0x00	; 0
+      00004E 00                    2034 	.db #0x00	; 0
+      00004F 00                    2035 	.db #0x00	; 0
+      000050 00                    2036 	.db #0x00	; 0
+      000051 00                    2037 	.db #0x00	; 0
+      000052 00                    2038 	.db #0x00	; 0
+      000053 00                    2039 	.db #0x00	; 0
+      000054 00                    2040 	.db #0x00	; 0
+      000055 30                    2041 	.db #0x30	; 48	'0'
+      000056 78                    2042 	.db #0x78	; 120	'x'
+      000057 48                    2043 	.db #0x48	; 72	'H'
+      000058 CC                    2044 	.db #0xcc	; 204
+      000059 84                    2045 	.db #0x84	; 132
+      00005A 84                    2046 	.db #0x84	; 132
+      00005B 84                    2047 	.db #0x84	; 132
+      00005C 84                    2048 	.db #0x84	; 132
+      00005D 84                    2049 	.db #0x84	; 132
+      00005E 87                    2050 	.db #0x87	; 135
+      00005F CE                    2051 	.db #0xce	; 206
+      000060 CC                    2052 	.db #0xcc	; 204
+      000061 D8                    2053 	.db #0xd8	; 216
+      000062 F0                    2054 	.db #0xf0	; 240
+      000063 60                    2055 	.db #0x60	; 96
+      000064 40                    2056 	.db #0x40	; 64
+      000065 41                    2057 	.db #0x41	; 65	'A'
+      000066 43                    2058 	.db #0x43	; 67	'C'
+      000067 46                    2059 	.db #0x46	; 70	'F'
+      000068 CC                    2060 	.db #0xcc	; 204
+      000069 D8                    2061 	.db #0xd8	; 216
+      00006A F0                    2062 	.db #0xf0	; 240
+      00006B E0                    2063 	.db #0xe0	; 224
+      00006C 80                    2064 	.db #0x80	; 128
+      00006D 80                    2065 	.db #0x80	; 128
+      00006E 00                    2066 	.db #0x00	; 0
+      00006F 00                    2067 	.db #0x00	; 0
+      000070 00                    2068 	.db #0x00	; 0
+      000071 00                    2069 	.db #0x00	; 0
+      000072 00                    2070 	.db #0x00	; 0
+      000073 00                    2071 	.db #0x00	; 0
+      000074 00                    2072 	.db #0x00	; 0
+      000075 00                    2073 	.db #0x00	; 0
+      000076 00                    2074 	.db #0x00	; 0
+      000077 00                    2075 	.db #0x00	; 0
+      000078 00                    2076 	.db #0x00	; 0
+      000079 00                    2077 	.db #0x00	; 0
+      00007A 00                    2078 	.db #0x00	; 0
+      00007B 00                    2079 	.db #0x00	; 0
+      00007C 00                    2080 	.db #0x00	; 0
+      00007D 00                    2081 	.db #0x00	; 0
+      00007E 00                    2082 	.db #0x00	; 0
+      00007F 00                    2083 	.db #0x00	; 0
+      000080 00                    2084 	.db #0x00	; 0
+      000081 00                    2085 	.db #0x00	; 0
+      000082 00                    2086 	.db #0x00	; 0
+      000083 00                    2087 	.db #0x00	; 0
+      000084 00                    2088 	.db #0x00	; 0
+      000085 00                    2089 	.db #0x00	; 0
+      000086 00                    2090 	.db #0x00	; 0
+      000087 00                    2091 	.db #0x00	; 0
+      000088 00                    2092 	.db #0x00	; 0
+      000089 00                    2093 	.db #0x00	; 0
+      00008A 00                    2094 	.db #0x00	; 0
+      00008B 00                    2095 	.db #0x00	; 0
+      00008C 00                    2096 	.db #0x00	; 0
+      00008D 00                    2097 	.db #0x00	; 0
+      00008E 00                    2098 	.db #0x00	; 0
+      00008F 00                    2099 	.db #0x00	; 0
+      000090 00                    2100 	.db #0x00	; 0
+      000091 00                    2101 	.db #0x00	; 0
+      000092 80                    2102 	.db #0x80	; 128
+      000093 E0                    2103 	.db #0xe0	; 224
+      000094 60                    2104 	.db #0x60	; 96
+      000095 30                    2105 	.db #0x30	; 48	'0'
+      000096 18                    2106 	.db #0x18	; 24
+      000097 0C                    2107 	.db #0x0c	; 12
+      000098 06                    2108 	.db #0x06	; 6
+      000099 06                    2109 	.db #0x06	; 6
+      00009A 03                    2110 	.db #0x03	; 3
+      00009B 03                    2111 	.db #0x03	; 3
+      00009C 01                    2112 	.db #0x01	; 1
+      00009D 01                    2113 	.db #0x01	; 1
+      00009E 01                    2114 	.db #0x01	; 1
+      00009F 00                    2115 	.db #0x00	; 0
+      0000A0 00                    2116 	.db #0x00	; 0
+      0000A1 00                    2117 	.db #0x00	; 0
+      0000A2 00                    2118 	.db #0x00	; 0
+      0000A3 00                    2119 	.db #0x00	; 0
+      0000A4 00                    2120 	.db #0x00	; 0
+      0000A5 00                    2121 	.db #0x00	; 0
+      0000A6 00                    2122 	.db #0x00	; 0
+      0000A7 00                    2123 	.db #0x00	; 0
+      0000A8 00                    2124 	.db #0x00	; 0
+      0000A9 00                    2125 	.db #0x00	; 0
+      0000AA 00                    2126 	.db #0x00	; 0
+      0000AB 00                    2127 	.db #0x00	; 0
+      0000AC 01                    2128 	.db #0x01	; 1
+      0000AD 01                    2129 	.db #0x01	; 1
+      0000AE 03                    2130 	.db #0x03	; 3
+      0000AF 03                    2131 	.db #0x03	; 3
+      0000B0 06                    2132 	.db #0x06	; 6
+      0000B1 06                    2133 	.db #0x06	; 6
+      0000B2 0C                    2134 	.db #0x0c	; 12
+      0000B3 18                    2135 	.db #0x18	; 24
+      0000B4 30                    2136 	.db #0x30	; 48	'0'
+      0000B5 E0                    2137 	.db #0xe0	; 224
+      0000B6 C0                    2138 	.db #0xc0	; 192
+      0000B7 00                    2139 	.db #0x00	; 0
+      0000B8 00                    2140 	.db #0x00	; 0
+      0000B9 00                    2141 	.db #0x00	; 0
+      0000BA 00                    2142 	.db #0x00	; 0
+      0000BB 00                    2143 	.db #0x00	; 0
+      0000BC 00                    2144 	.db #0x00	; 0
+      0000BD 00                    2145 	.db #0x00	; 0
+      0000BE 00                    2146 	.db #0x00	; 0
+      0000BF 00                    2147 	.db #0x00	; 0
+      0000C0 00                    2148 	.db #0x00	; 0
+      0000C1 00                    2149 	.db #0x00	; 0
+      0000C2 00                    2150 	.db #0x00	; 0
+      0000C3 00                    2151 	.db #0x00	; 0
+      0000C4 00                    2152 	.db #0x00	; 0
+      0000C5 00                    2153 	.db #0x00	; 0
+      0000C6 C0                    2154 	.db #0xc0	; 192
+      0000C7 E0                    2155 	.db #0xe0	; 224
+      0000C8 E0                    2156 	.db #0xe0	; 224
+      0000C9 C0                    2157 	.db #0xc0	; 192
+      0000CA F0                    2158 	.db #0xf0	; 240
+      0000CB F8                    2159 	.db #0xf8	; 248
+      0000CC F8                    2160 	.db #0xf8	; 248
+      0000CD F0                    2161 	.db #0xf0	; 240
+      0000CE E0                    2162 	.db #0xe0	; 224
+      0000CF 78                    2163 	.db #0x78	; 120	'x'
+      0000D0 1E                    2164 	.db #0x1e	; 30
+      0000D1 07                    2165 	.db #0x07	; 7
+      0000D2 03                    2166 	.db #0x03	; 3
+      0000D3 00                    2167 	.db #0x00	; 0
+      0000D4 00                    2168 	.db #0x00	; 0
+      0000D5 00                    2169 	.db #0x00	; 0
+      0000D6 00                    2170 	.db #0x00	; 0
+      0000D7 00                    2171 	.db #0x00	; 0
+      0000D8 00                    2172 	.db #0x00	; 0
+      0000D9 00                    2173 	.db #0x00	; 0
+      0000DA 00                    2174 	.db #0x00	; 0
+      0000DB 00                    2175 	.db #0x00	; 0
+      0000DC 00                    2176 	.db #0x00	; 0
+      0000DD 00                    2177 	.db #0x00	; 0
+      0000DE 00                    2178 	.db #0x00	; 0
+      0000DF 00                    2179 	.db #0x00	; 0
+      0000E0 80                    2180 	.db #0x80	; 128
+      0000E1 F0                    2181 	.db #0xf0	; 240
+      0000E2 F8                    2182 	.db #0xf8	; 248
+      0000E3 F0                    2183 	.db #0xf0	; 240
+      0000E4 F0                    2184 	.db #0xf0	; 240
+      0000E5 F0                    2185 	.db #0xf0	; 240
+      0000E6 E0                    2186 	.db #0xe0	; 224
+      0000E7 E0                    2187 	.db #0xe0	; 224
+      0000E8 E0                    2188 	.db #0xe0	; 224
+      0000E9 C0                    2189 	.db #0xc0	; 192
+      0000EA C0                    2190 	.db #0xc0	; 192
+      0000EB 80                    2191 	.db #0x80	; 128
+      0000EC 80                    2192 	.db #0x80	; 128
+      0000ED 80                    2193 	.db #0x80	; 128
+      0000EE 80                    2194 	.db #0x80	; 128
+      0000EF 80                    2195 	.db #0x80	; 128
+      0000F0 C0                    2196 	.db #0xc0	; 192
+      0000F1 C0                    2197 	.db #0xc0	; 192
+      0000F2 C0                    2198 	.db #0xc0	; 192
+      0000F3 E0                    2199 	.db #0xe0	; 224
+      0000F4 E0                    2200 	.db #0xe0	; 224
+      0000F5 E0                    2201 	.db #0xe0	; 224
+      0000F6 F1                    2202 	.db #0xf1	; 241
+      0000F7 F7                    2203 	.db #0xf7	; 247
+      0000F8 FE                    2204 	.db #0xfe	; 254
+      0000F9 F8                    2205 	.db #0xf8	; 248
+      0000FA C0                    2206 	.db #0xc0	; 192
+      0000FB 00                    2207 	.db #0x00	; 0
+      0000FC 00                    2208 	.db #0x00	; 0
+      0000FD 00                    2209 	.db #0x00	; 0
+      0000FE 00                    2210 	.db #0x00	; 0
+      0000FF 00                    2211 	.db #0x00	; 0
+      000100 00                    2212 	.db #0x00	; 0
+      000101 00                    2213 	.db #0x00	; 0
+      000102 00                    2214 	.db #0x00	; 0
+      000103 00                    2215 	.db #0x00	; 0
+      000104 00                    2216 	.db #0x00	; 0
+      000105 00                    2217 	.db #0x00	; 0
+      000106 03                    2218 	.db #0x03	; 3
+      000107 03                    2219 	.db #0x03	; 3
+      000108 03                    2220 	.db #0x03	; 3
+      000109 3B                    2221 	.db #0x3b	; 59
+      00010A 3F                    2222 	.db #0x3f	; 63
+      00010B 1F                    2223 	.db #0x1f	; 31
+      00010C 1F                    2224 	.db #0x1f	; 31
+      00010D FF                    2225 	.db #0xff	; 255
+      00010E FF                    2226 	.db #0xff	; 255
+      00010F 00                    2227 	.db #0x00	; 0
+      000110 00                    2228 	.db #0x00	; 0
+      000111 00                    2229 	.db #0x00	; 0
+      000112 00                    2230 	.db #0x00	; 0
+      000113 00                    2231 	.db #0x00	; 0
+      000114 00                    2232 	.db #0x00	; 0
+      000115 00                    2233 	.db #0x00	; 0
+      000116 00                    2234 	.db #0x00	; 0
+      000117 00                    2235 	.db #0x00	; 0
+      000118 00                    2236 	.db #0x00	; 0
+      000119 00                    2237 	.db #0x00	; 0
+      00011A 00                    2238 	.db #0x00	; 0
+      00011B 00                    2239 	.db #0x00	; 0
+      00011C 00                    2240 	.db #0x00	; 0
+      00011D 00                    2241 	.db #0x00	; 0
+      00011E 00                    2242 	.db #0x00	; 0
+      00011F 00                    2243 	.db #0x00	; 0
+      000120 00                    2244 	.db #0x00	; 0
+      000121 00                    2245 	.db #0x00	; 0
+      000122 00                    2246 	.db #0x00	; 0
+      000123 3D                    2247 	.db #0x3d	; 61
+      000124 67                    2248 	.db #0x67	; 103	'g'
+      000125 81                    2249 	.db #0x81	; 129
+      000126 81                    2250 	.db #0x81	; 129
+      000127 03                    2251 	.db #0x03	; 3
+      000128 03                    2252 	.db #0x03	; 3
+      000129 9F                    2253 	.db #0x9f	; 159
+      00012A FF                    2254 	.db #0xff	; 255
+      00012B 5F                    2255 	.db #0x5f	; 95
+      00012C 23                    2256 	.db #0x23	; 35
+      00012D 3F                    2257 	.db #0x3f	; 63
+      00012E 3F                    2258 	.db #0x3f	; 63
+      00012F 7F                    2259 	.db #0x7f	; 127
+      000130 7F                    2260 	.db #0x7f	; 127
+      000131 9B                    2261 	.db #0x9b	; 155
+      000132 83                    2262 	.db #0x83	; 131
+      000133 83                    2263 	.db #0x83	; 131
+      000134 83                    2264 	.db #0x83	; 131
+      000135 63                    2265 	.db #0x63	; 99	'c'
+      000136 3F                    2266 	.db #0x3f	; 63
+      000137 01                    2267 	.db #0x01	; 1
+      000138 01                    2268 	.db #0x01	; 1
+      000139 C7                    2269 	.db #0xc7	; 199
+      00013A FF                    2270 	.db #0xff	; 255
+      00013B 00                    2271 	.db #0x00	; 0
+      00013C 00                    2272 	.db #0x00	; 0
+      00013D 00                    2273 	.db #0x00	; 0
+      00013E 00                    2274 	.db #0x00	; 0
+      00013F 00                    2275 	.db #0x00	; 0
+      000140 00                    2276 	.db #0x00	; 0
+      000141 00                    2277 	.db #0x00	; 0
+      000142 00                    2278 	.db #0x00	; 0
+      000143 00                    2279 	.db #0x00	; 0
+      000144 00                    2280 	.db #0x00	; 0
+      000145 00                    2281 	.db #0x00	; 0
+      000146 00                    2282 	.db #0x00	; 0
+      000147 00                    2283 	.db #0x00	; 0
+      000148 00                    2284 	.db #0x00	; 0
+      000149 00                    2285 	.db #0x00	; 0
+      00014A 00                    2286 	.db #0x00	; 0
+      00014B 00                    2287 	.db #0x00	; 0
+      00014C 00                    2288 	.db #0x00	; 0
+      00014D 03                    2289 	.db #0x03	; 3
+      00014E 1F                    2290 	.db #0x1f	; 31
+      00014F 3C                    2291 	.db #0x3c	; 60
+      000150 E0                    2292 	.db #0xe0	; 224
+      000151 C0                    2293 	.db #0xc0	; 192
+      000152 80                    2294 	.db #0x80	; 128
+      000153 00                    2295 	.db #0x00	; 0
+      000154 00                    2296 	.db #0x00	; 0
+      000155 00                    2297 	.db #0x00	; 0
+      000156 00                    2298 	.db #0x00	; 0
+      000157 00                    2299 	.db #0x00	; 0
+      000158 00                    2300 	.db #0x00	; 0
+      000159 00                    2301 	.db #0x00	; 0
+      00015A 00                    2302 	.db #0x00	; 0
+      00015B 00                    2303 	.db #0x00	; 0
+      00015C 00                    2304 	.db #0x00	; 0
+      00015D 00                    2305 	.db #0x00	; 0
+      00015E 00                    2306 	.db #0x00	; 0
+      00015F 00                    2307 	.db #0x00	; 0
+      000160 00                    2308 	.db #0x00	; 0
+      000161 00                    2309 	.db #0x00	; 0
+      000162 00                    2310 	.db #0x00	; 0
+      000163 00                    2311 	.db #0x00	; 0
+      000164 00                    2312 	.db #0x00	; 0
+      000165 08                    2313 	.db #0x08	; 8
+      000166 1D                    2314 	.db #0x1d	; 29
+      000167 37                    2315 	.db #0x37	; 55	'7'
+      000168 73                    2316 	.db #0x73	; 115	's'
+      000169 91                    2317 	.db #0x91	; 145
+      00016A 30                    2318 	.db #0x30	; 48	'0'
+      00016B 30                    2319 	.db #0x30	; 48	'0'
+      00016C 30                    2320 	.db #0x30	; 48	'0'
+      00016D 20                    2321 	.db #0x20	; 32
+      00016E 20                    2322 	.db #0x20	; 32
+      00016F 20                    2323 	.db #0x20	; 32
+      000170 20                    2324 	.db #0x20	; 32
+      000171 A0                    2325 	.db #0xa0	; 160
+      000172 A1                    2326 	.db #0xa1	; 161
+      000173 63                    2327 	.db #0x63	; 99	'c'
+      000174 26                    2328 	.db #0x26	; 38
+      000175 3C                    2329 	.db #0x3c	; 60
+      000176 B0                    2330 	.db #0xb0	; 176
+      000177 E0                    2331 	.db #0xe0	; 224
+      000178 78                    2332 	.db #0x78	; 120	'x'
+      000179 1F                    2333 	.db #0x1f	; 31
+      00017A 07                    2334 	.db #0x07	; 7
+      00017B 00                    2335 	.db #0x00	; 0
+      00017C 00                    2336 	.db #0x00	; 0
+      00017D 00                    2337 	.db #0x00	; 0
+      00017E 00                    2338 	.db #0x00	; 0
+      00017F 00                    2339 	.db #0x00	; 0
+      000180 00                    2340 	.db #0x00	; 0
+      000181 00                    2341 	.db #0x00	; 0
+      000182 00                    2342 	.db #0x00	; 0
+      000183 00                    2343 	.db #0x00	; 0
+      000184 00                    2344 	.db #0x00	; 0
+      000185 00                    2345 	.db #0x00	; 0
+      000186 00                    2346 	.db #0x00	; 0
+      000187 00                    2347 	.db #0x00	; 0
+      000188 00                    2348 	.db #0x00	; 0
+      000189 00                    2349 	.db #0x00	; 0
+      00018A 00                    2350 	.db #0x00	; 0
+      00018B 00                    2351 	.db #0x00	; 0
+      00018C 00                    2352 	.db #0x00	; 0
+      00018D 00                    2353 	.db #0x00	; 0
+      00018E 00                    2354 	.db #0x00	; 0
+      00018F 00                    2355 	.db #0x00	; 0
+      000190 00                    2356 	.db #0x00	; 0
+      000191 01                    2357 	.db #0x01	; 1
+      000192 03                    2358 	.db #0x03	; 3
+      000193 06                    2359 	.db #0x06	; 6
+      000194 0C                    2360 	.db #0x0c	; 12
+      000195 1C                    2361 	.db #0x1c	; 28
+      000196 18                    2362 	.db #0x18	; 24
+      000197 30                    2363 	.db #0x30	; 48	'0'
+      000198 30                    2364 	.db #0x30	; 48	'0'
+      000199 60                    2365 	.db #0x60	; 96
+      00019A 60                    2366 	.db #0x60	; 96
+      00019B C0                    2367 	.db #0xc0	; 192
+      00019C C0                    2368 	.db #0xc0	; 192
+      00019D 80                    2369 	.db #0x80	; 128
+      00019E 80                    2370 	.db #0x80	; 128
+      00019F 80                    2371 	.db #0x80	; 128
+      0001A0 80                    2372 	.db #0x80	; 128
+      0001A1 80                    2373 	.db #0x80	; 128
+      0001A2 80                    2374 	.db #0x80	; 128
+      0001A3 80                    2375 	.db #0x80	; 128
+      0001A4 80                    2376 	.db #0x80	; 128
+      0001A5 80                    2377 	.db #0x80	; 128
+      0001A6 80                    2378 	.db #0x80	; 128
+      0001A7 80                    2379 	.db #0x80	; 128
+      0001A8 80                    2380 	.db #0x80	; 128
+      0001A9 80                    2381 	.db #0x80	; 128
+      0001AA 83                    2382 	.db #0x83	; 131
+      0001AB 86                    2383 	.db #0x86	; 134
+      0001AC CC                    2384 	.db #0xcc	; 204
+      0001AD CC                    2385 	.db #0xcc	; 204
+      0001AE 66                    2386 	.db #0x66	; 102	'f'
+      0001AF 62                    2387 	.db #0x62	; 98	'b'
+      0001B0 33                    2388 	.db #0x33	; 51	'3'
+      0001B1 31                    2389 	.db #0x31	; 49	'1'
+      0001B2 18                    2390 	.db #0x18	; 24
+      0001B3 1C                    2391 	.db #0x1c	; 28
+      0001B4 0E                    2392 	.db #0x0e	; 14
+      0001B5 07                    2393 	.db #0x07	; 7
+      0001B6 03                    2394 	.db #0x03	; 3
+      0001B7 00                    2395 	.db #0x00	; 0
+      0001B8 00                    2396 	.db #0x00	; 0
+      0001B9 00                    2397 	.db #0x00	; 0
+      0001BA 00                    2398 	.db #0x00	; 0
+      0001BB 00                    2399 	.db #0x00	; 0
+      0001BC 00                    2400 	.db #0x00	; 0
+      0001BD 00                    2401 	.db #0x00	; 0
+      0001BE 00                    2402 	.db #0x00	; 0
+      0001BF 00                    2403 	.db #0x00	; 0
+      0001C0 00                    2404 	.db #0x00	; 0
+      0001C1 00                    2405 	.db #0x00	; 0
+      0001C2 00                    2406 	.db #0x00	; 0
+      0001C3 00                    2407 	.db #0x00	; 0
+      0001C4 00                    2408 	.db #0x00	; 0
+      0001C5 00                    2409 	.db #0x00	; 0
+      0001C6 00                    2410 	.db #0x00	; 0
+      0001C7 00                    2411 	.db #0x00	; 0
+      0001C8 00                    2412 	.db #0x00	; 0
+      0001C9 00                    2413 	.db #0x00	; 0
+      0001CA 00                    2414 	.db #0x00	; 0
+      0001CB 00                    2415 	.db #0x00	; 0
+      0001CC 00                    2416 	.db #0x00	; 0
+      0001CD 00                    2417 	.db #0x00	; 0
+      0001CE 00                    2418 	.db #0x00	; 0
+      0001CF 00                    2419 	.db #0x00	; 0
+      0001D0 00                    2420 	.db #0x00	; 0
+      0001D1 00                    2421 	.db #0x00	; 0
+      0001D2 00                    2422 	.db #0x00	; 0
+      0001D3 00                    2423 	.db #0x00	; 0
+      0001D4 00                    2424 	.db #0x00	; 0
+      0001D5 00                    2425 	.db #0x00	; 0
+      0001D6 00                    2426 	.db #0x00	; 0
+      0001D7 00                    2427 	.db #0x00	; 0
+      0001D8 00                    2428 	.db #0x00	; 0
+      0001D9 00                    2429 	.db #0x00	; 0
+      0001DA 00                    2430 	.db #0x00	; 0
+      0001DB 00                    2431 	.db #0x00	; 0
+      0001DC 00                    2432 	.db #0x00	; 0
+      0001DD 00                    2433 	.db #0x00	; 0
+      0001DE 01                    2434 	.db #0x01	; 1
+      0001DF 01                    2435 	.db #0x01	; 1
+      0001E0 01                    2436 	.db #0x01	; 1
+      0001E1 01                    2437 	.db #0x01	; 1
+      0001E2 01                    2438 	.db #0x01	; 1
+      0001E3 01                    2439 	.db #0x01	; 1
+      0001E4 01                    2440 	.db #0x01	; 1
+      0001E5 01                    2441 	.db #0x01	; 1
+      0001E6 01                    2442 	.db #0x01	; 1
+      0001E7 01                    2443 	.db #0x01	; 1
+      0001E8 01                    2444 	.db #0x01	; 1
+      0001E9 01                    2445 	.db #0x01	; 1
+      0001EA 01                    2446 	.db #0x01	; 1
+      0001EB 00                    2447 	.db #0x00	; 0
+      0001EC 00                    2448 	.db #0x00	; 0
+      0001ED 00                    2449 	.db #0x00	; 0
+      0001EE 00                    2450 	.db #0x00	; 0
+      0001EF 00                    2451 	.db #0x00	; 0
+      0001F0 00                    2452 	.db #0x00	; 0
+      0001F1 00                    2453 	.db #0x00	; 0
+      0001F2 00                    2454 	.db #0x00	; 0
+      0001F3 00                    2455 	.db #0x00	; 0
+      0001F4 00                    2456 	.db #0x00	; 0
+      0001F5 00                    2457 	.db #0x00	; 0
+      0001F6 00                    2458 	.db #0x00	; 0
+      0001F7 00                    2459 	.db #0x00	; 0
+      0001F8 00                    2460 	.db #0x00	; 0
+      0001F9 00                    2461 	.db #0x00	; 0
+      0001FA 00                    2462 	.db #0x00	; 0
+      0001FB 00                    2463 	.db #0x00	; 0
+      0001FC 00                    2464 	.db #0x00	; 0
+      0001FD 00                    2465 	.db #0x00	; 0
+      0001FE 00                    2466 	.db #0x00	; 0
+      0001FF 00                    2467 	.db #0x00	; 0
+      000200                       2468 _button_up_logo:
+      000200 00                    2469 	.db #0x00	; 0
+      000201 00                    2470 	.db #0x00	; 0
+      000202 00                    2471 	.db #0x00	; 0
+      000203 00                    2472 	.db #0x00	; 0
+      000204 08                    2473 	.db #0x08	; 8
+      000205 0C                    2474 	.db #0x0c	; 12
+      000206 0E                    2475 	.db #0x0e	; 14
+      000207 0F                    2476 	.db #0x0f	; 15
+      000208 0F                    2477 	.db #0x0f	; 15
+      000209 0E                    2478 	.db #0x0e	; 14
+      00020A 0C                    2479 	.db #0x0c	; 12
+      00020B 08                    2480 	.db #0x08	; 8
+      00020C 00                    2481 	.db #0x00	; 0
+      00020D 00                    2482 	.db #0x00	; 0
+      00020E 00                    2483 	.db #0x00	; 0
+      00020F 00                    2484 	.db #0x00	; 0
+      000210                       2485 _button_down_logo:
+      000210 00                    2486 	.db #0x00	; 0
+      000211 00                    2487 	.db #0x00	; 0
+      000212 00                    2488 	.db #0x00	; 0
+      000213 00                    2489 	.db #0x00	; 0
+      000214 10                    2490 	.db #0x10	; 16
+      000215 30                    2491 	.db #0x30	; 48	'0'
+      000216 70                    2492 	.db #0x70	; 112	'p'
+      000217 F0                    2493 	.db #0xf0	; 240
+      000218 F0                    2494 	.db #0xf0	; 240
+      000219 70                    2495 	.db #0x70	; 112	'p'
+      00021A 30                    2496 	.db #0x30	; 48	'0'
+      00021B 10                    2497 	.db #0x10	; 16
+      00021C 00                    2498 	.db #0x00	; 0
+      00021D 00                    2499 	.db #0x00	; 0
+      00021E 00                    2500 	.db #0x00	; 0
+      00021F 00                    2501 	.db #0x00	; 0
+      000220                       2502 _music_logo:
+      000220 00                    2503 	.db #0x00	; 0
+      000221 00                    2504 	.db #0x00	; 0
+      000222 00                    2505 	.db #0x00	; 0
+      000223 00                    2506 	.db #0x00	; 0
+      000224 00                    2507 	.db #0x00	; 0
+      000225 FC                    2508 	.db #0xfc	; 252
+      000226 1C                    2509 	.db #0x1c	; 28
+      000227 1C                    2510 	.db #0x1c	; 28
+      000228 1E                    2511 	.db #0x1e	; 30
+      000229 0E                    2512 	.db #0x0e	; 14
+      00022A 0E                    2513 	.db #0x0e	; 14
+      00022B 0E                    2514 	.db #0x0e	; 14
+      00022C 0F                    2515 	.db #0x0f	; 15
+      00022D FE                    2516 	.db #0xfe	; 254
+      00022E 00                    2517 	.db #0x00	; 0
+      00022F 00                    2518 	.db #0x00	; 0
+      000230 00                    2519 	.db #0x00	; 0
+      000231 60                    2520 	.db #0x60	; 96
+      000232 F0                    2521 	.db #0xf0	; 240
+      000233 F0                    2522 	.db #0xf0	; 240
+      000234 70                    2523 	.db #0x70	; 112	'p'
+      000235 7F                    2524 	.db #0x7f	; 127
+      000236 00                    2525 	.db #0x00	; 0
+      000237 00                    2526 	.db #0x00	; 0
+      000238 00                    2527 	.db #0x00	; 0
+      000239 18                    2528 	.db #0x18	; 24
+      00023A 38                    2529 	.db #0x38	; 56	'8'
+      00023B 38                    2530 	.db #0x38	; 56	'8'
+      00023C 3C                    2531 	.db #0x3c	; 60
+      00023D 1F                    2532 	.db #0x1f	; 31
+      00023E 00                    2533 	.db #0x00	; 0
+      00023F 00                    2534 	.db #0x00	; 0
+      000240                       2535 _volume_logo:
+      000240 C0                    2536 	.db #0xc0	; 192
+      000241 C0                    2537 	.db #0xc0	; 192
+      000242 E0                    2538 	.db #0xe0	; 224
+      000243 E0                    2539 	.db #0xe0	; 224
+      000244 F0                    2540 	.db #0xf0	; 240
+      000245 F8                    2541 	.db #0xf8	; 248
+      000246 FC                    2542 	.db #0xfc	; 252
+      000247 00                    2543 	.db #0x00	; 0
+      000248 00                    2544 	.db #0x00	; 0
+      000249 20                    2545 	.db #0x20	; 32
+      00024A C8                    2546 	.db #0xc8	; 200
+      00024B 18                    2547 	.db #0x18	; 24
+      00024C E2                    2548 	.db #0xe2	; 226
+      00024D 06                    2549 	.db #0x06	; 6
+      00024E 18                    2550 	.db #0x18	; 24
+      00024F E0                    2551 	.db #0xe0	; 224
+      000250 03                    2552 	.db #0x03	; 3
+      000251 03                    2553 	.db #0x03	; 3
+      000252 07                    2554 	.db #0x07	; 7
+      000253 07                    2555 	.db #0x07	; 7
+      000254 0F                    2556 	.db #0x0f	; 15
+      000255 1F                    2557 	.db #0x1f	; 31
+      000256 3F                    2558 	.db #0x3f	; 63
+      000257 00                    2559 	.db #0x00	; 0
+      000258 00                    2560 	.db #0x00	; 0
+      000259 04                    2561 	.db #0x04	; 4
+      00025A 13                    2562 	.db #0x13	; 19
+      00025B 18                    2563 	.db #0x18	; 24
+      00025C 47                    2564 	.db #0x47	; 71	'G'
+      00025D 60                    2565 	.db #0x60	; 96
+      00025E 18                    2566 	.db #0x18	; 24
+      00025F 07                    2567 	.db #0x07	; 7
+      000260                       2568 _button_left_logo:
+      000260 18                    2569 	.db #0x18	; 24
+      000261 3C                    2570 	.db #0x3c	; 60
+      000262 7E                    2571 	.db #0x7e	; 126
+      000263 FF                    2572 	.db #0xff	; 255
+      000264                       2573 _button_right_logo:
+      000264 FF                    2574 	.db #0xff	; 255
+      000265 7E                    2575 	.db #0x7e	; 126
+      000266 3C                    2576 	.db #0x3c	; 60
+      000267 18                    2577 	.db #0x18	; 24
+                                   2578 	.area CONST   (CODE)
+      000268                       2579 ___str_0:
+      000268 41 6E 67 72 79 20 42  2580 	.ascii "Angry Bird!"
+             69 72 64 21
+      000273 00                    2581 	.db 0x00
+                                   2582 	.area CSEG    (CODE)
+                                   2583 	.area CONST   (CODE)
+      000274                       2584 ___str_1:
+      000274 53 65 74 74 69 6E 67  2585 	.ascii "Setting"
+      00027B 00                    2586 	.db 0x00
+                                   2587 	.area CSEG    (CODE)
+                                   2588 	.area CONST   (CODE)
+      00027C                       2589 ___str_2:
+      00027C 4F 46 46              2590 	.ascii "OFF"
+      00027F 00                    2591 	.db 0x00
+                                   2592 	.area CSEG    (CODE)
+                                   2593 	.area CONST   (CODE)
+      000280                       2594 ___str_3:
+      000280 20 20 20 20 20 20 20  2595 	.ascii "       "
+      000287 00                    2596 	.db 0x00
+                                   2597 	.area CSEG    (CODE)
+                                   2598 	.area CONST   (CODE)
+      000288                       2599 ___str_4:
+      000288 20 20 20              2600 	.ascii "   "
+      00028B 00                    2601 	.db 0x00
+                                   2602 	.area CSEG    (CODE)
+                                   2603 	.area CONST   (CODE)
+      00028C                       2604 ___str_5:
+      00028C 4F 4E                 2605 	.ascii "ON"
+      00028E 00                    2606 	.db 0x00
+                                   2607 	.area CSEG    (CODE)
+                                   2608 	.area CONST   (CODE)
+      00028F                       2609 ___str_6:
+      00028F 20                    2610 	.ascii " "
+      000290 00                    2611 	.db 0x00
+                                   2612 	.area CSEG    (CODE)
+                                   2613 	.area CONST   (CODE)
+      000291                       2614 ___str_7:
+      000291 45 61 73 79           2615 	.ascii "Easy"
+      000295 00                    2616 	.db 0x00
+                                   2617 	.area CSEG    (CODE)
+                                   2618 	.area CONST   (CODE)
+      000296                       2619 ___str_8:
+      000296 48 61 72 64           2620 	.ascii "Hard"
+      00029A 00                    2621 	.db 0x00
+                                   2622 	.area CSEG    (CODE)
+                                   2623 	.area XINIT   (CODE)
+                                   2624 	.area CABS    (ABS,CODE)
