@@ -343,7 +343,7 @@
                                     343 ;	./src/main.c:23: while (1)
       0000B2                        344 00102$:
                                     345 ;	./src/main.c:25: angrybird_state_machine();
-      0000B2 12 04 D7         [24]  346 	lcall	_angrybird_state_machine
+      0000B2 12 04 AD         [24]  346 	lcall	_angrybird_state_machine
                                     347 ;	./src/main.c:27: }
       0000B5 80 FB            [24]  348 	sjmp	00102$
                                     349 ;------------------------------------------------------------

@@ -317,12 +317,10 @@ Symbol Table
     ___fsmul                                                       ****** GX
     ___fssub                                                       ****** GX
     ___sint2fs                                                     ****** GX
- 17 ___str_0                                                       000030 R
- 17 ___str_1                                                       000033 R
- 17 ___str_2                                                       000036 R
- 17 ___str_3                                                       000044 R
- 17 ___str_4                                                       000052 R
- 17 ___str_5                                                       000056 R
+ 17 ___str_0                                                       000130 R
+ 17 ___str_1                                                       000133 R
+ 17 ___str_2                                                       000136 R
+ 17 ___str_3                                                       00013A R
     __divsint                                                      ****** GX
     __divsint_PARM_2                                               ****** GX
     __modsint                                                      ****** GX
@@ -335,20 +333,20 @@ Symbol Table
   5 _angrybird_display_game_control_strength__65537_30             000010 R
   5 _angrybird_display_game_k_131075_33                            000019 R
   8 _angrybird_display_game_sloc0_1_0                              000000 R
- 16 _angrybird_game_state                                          00038E GR
-  5 _angrybird_game_state_a_196609_78                              000042 R
-  5 _angrybird_game_state_angle__196610_66                         00002E R
-  5 _angrybird_game_state_control_angle__196609_65                 000029 R
-  5 _angrybird_game_state_control_strength__196609_71              000030 R
-  5 _angrybird_game_state_delta_x_196609_78                        000036 R
-  5 _angrybird_game_state_delta_y_196609_78                        000032 R
-  5 _angrybird_game_state_i_262145_83                              000046 R
-  5 _angrybird_game_state_output_row_327681_84                     000048 R
-  5 _angrybird_game_state_peak_x_196609_78                         00003A R
-  5 _angrybird_game_state_peak_y_196609_78                         00003E R
+ 16 _angrybird_game_state                                          000364 GR
+  5 _angrybird_game_state_a_196609_75                              000042 R
+  5 _angrybird_game_state_angle__196610_63                         00002E R
+  5 _angrybird_game_state_control_angle__196609_62                 000029 R
+  5 _angrybird_game_state_control_strength__196609_68              000030 R
+  5 _angrybird_game_state_delta_x_196609_75                        000036 R
+  5 _angrybird_game_state_delta_y_196609_75                        000032 R
+  5 _angrybird_game_state_i_262145_80                              000046 R
+  5 _angrybird_game_state_output_row_327681_81                     000048 R
+  5 _angrybird_game_state_peak_x_196609_75                         00003A R
+  5 _angrybird_game_state_peak_y_196609_75                         00003E R
   8 _angrybird_game_state_sloc0_1_0                                000001 R
   5 _angrybird_game_state_sloc1_1_0                                00004A R
- 16 _angrybird_state_machine                                       000302 GR
+ 16 _angrybird_state_machine                                       0002D8 GR
   5 _bird_amt                                                      000008 GR
  17 _bird_logo                                                     000028 GR
   5 _col_offset                                                    000006 GR
@@ -356,19 +354,19 @@ Symbol Table
   5 _control_strength                                              00000E GR
   5 _cur_state                                                     00001D GR
     _delay_ms                                                      ****** GX
- 16 _display_for_OLED_debug                                        0002D8 GR
- 16 _getcosine                                                     000AF1 GR
+ 16 _getcosine                                                     000C04 GR
+ 16 _getsine                                                       000B59 GR
+  5 _led_cur_state                                                 00001B GR
+    _oledSendData                                                  ****** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 7
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 _getsine                                                       000A46 GR
-  5 _led_cur_state                                                 00001B GR
-    _oledSendData                                                  ****** GX
+ 17 _over_page                                                     0000B0 GR
   5 _pig_amt                                                       00000A GR
  17 _pig_logo                                                      000010 GR
- 16 _pow_2                                                         000B21 GR
+ 16 _pow_2                                                         000C34 GR
   5 _prebut_down                                                   000021 GR
   5 _prebut_enter                                                  000027 GR
   5 _prebut_left                                                   000023 GR
@@ -380,7 +378,8 @@ Symbol Table
   5 _send_data                                                     000000 GR
   5 _send_flag                                                     000001 GR
  17 _shooter_logo                                                  000000 GR
- 16 _sine_table                                                    000B4F GR
+ 16 _sine_table                                                    000C62 GR
+ 17 _win_page                                                      000030 GR
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
     a.1                                                         =  0000E1 L
@@ -418,12 +417,12 @@ Symbol Table
     b.6                                                         =  0000F6 L
     b.7                                                         =  0000F7 L
     cprl2                                                       =  0000C8 L
+    ct2                                                         =  0000C9 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 8
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    ct2                                                         =  0000C9 L
     cy                                                          =  0000D7 L
     dph                                                         =  000083 L
     dpl                                                         =  000082 L
@@ -478,12 +477,12 @@ Symbol Table
     p1.5                                                        =  000095 L
     p1.6                                                        =  000096 L
     p1.7                                                        =  000097 L
+    p2                                                          =  0000A0 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    p2                                                          =  0000A0 L
     p2.0                                                        =  0000A0 L
     p2.1                                                        =  0000A1 L
     p2.2                                                        =  0000A2 L
@@ -538,12 +537,12 @@ Symbol Table
     scon.7                                                      =  00009F L
     sm0                                                         =  00009F L
     sm1                                                         =  00009E L
+    sm2                                                         =  00009D L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    sm2                                                         =  00009D L
     sp                                                          =  000081 L
     t2con                                                       =  0000C8 L
     t2con.0                                                     =  0000C8 L
@@ -581,7 +580,6 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
-
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
 Hexadecimal [24-Bits]
 
@@ -609,8 +607,8 @@ Area Table
   13 GSINIT5                                    size      0   flags   20
   14 GSINIT                                     size     1F   flags   20
   15 GSFINAL                                    size      0   flags   20
-  16 CSEG                                       size    B77   flags   20
-  17 CONST                                      size     58   flags   20
+  16 CSEG                                       size    C8A   flags   20
+  17 CONST                                      size    13C   flags   20
   18 XINIT                                      size      0   flags   20
   19 CABS                                       size      0   flags   28
 

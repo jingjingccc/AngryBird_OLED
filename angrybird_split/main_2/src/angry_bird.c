@@ -8,6 +8,24 @@ __code unsigned char const pig_logo[] = {0xc0, 0x30, 0x38, 0xfc, 0xff, 0xff, 0xf
 
 __code unsigned char const bird_logo[] = {0x7e, 0xc3, 0x81, 0x81, 0x81, 0x81, 0xc3, 0x7e};
 
+__code unsigned char const win_page[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x1f, 0xff, 0xff, 0xf0, 0xe0,
+                                         0xfc, 0xff, 0x1f, 0x3f, 0xff, 0xf8, 0xe0, 0xfc, 0xff, 0x7f, 0x07, 0x00, 0x00, 0xff, 0xff, 0xff,
+                                         0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0x3e, 0x7c, 0xf0, 0xe0, 0xff, 0xff, 0xff, 0xff, 0x00,
+                                         0x00, 0x0f, 0x7f, 0x7f, 0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 0x07, 0x07,
+                                         0x07, 0x00, 0x00, 0x00, 0x03, 0x07, 0x07, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x07, 0x07, 0x07,
+                                         0x00, 0x00, 0x00, 0x07, 0x07, 0x07, 0x07, 0x00, 0x00, 0x00, 0x03, 0x07, 0x07, 0x07, 0x07, 0x00,
+                                         0x00, 0x07, 0x07, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+__code unsigned char const over_page[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfc, 0xfe, 0xff, 0x07, 0x03, 0x03,
+                                          0x07, 0xdf, 0xfe, 0xfe, 0xf8, 0x03, 0x0f, 0x7f, 0xfe, 0xf0, 0x80, 0xe0, 0xfc, 0xff, 0x1f, 0x07,
+                                          0x00, 0x00, 0xff, 0xff, 0xff, 0x33, 0x33, 0x33, 0x33, 0x33, 0x03, 0x00, 0xfe, 0xff, 0xff, 0xff,
+                                          0x73, 0xf3, 0xf7, 0xff, 0xbf, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x07, 0x07, 0x07, 0x07,
+                                          0x07, 0x07, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x03, 0x07, 0x07, 0x07, 0x07, 0x00, 0x00, 0x00,
+                                          0x00, 0x00, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x00, 0x03, 0x07, 0x07, 0x07,
+                                          0x00, 0x00, 0x01, 0x07, 0x07, 0x07, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
 /******************************************** UART ************************************************/
 
 unsigned char send_data;
@@ -96,49 +114,49 @@ void angrybird_display_game(void)
     }
 
     // display three pigs
-    int pig_row[3] = {pig1_row_cursor, pig2_row_cursor, pig3_row_cursor};
-    int pig_col[3] = {pig1_col_cursor, pig2_col_cursor, pig3_col_cursor};
-    for (int k = 0; k < pig_total_amount; k++)
-    {
-        row_offset = pig_row[k];
-        col_offset = pig_col[k];
-        for (int j = 0; j < pig_cul_size; j++)
-        {
-            for (int i = 0; i < pig_row_size; i++)
-            {
-                OLED_SetCursor(row_offset + i, col_offset + j);
-                oledSendData(pig_logo[pig_cul_size * i + j]);
-            }
-        }
-    }
-
-    // test for one pig
-    // row_offset = pig1_row_cursor;
-    // col_offset = pig1_col_cursor;
-    // for (int j = 0; j < pig_cul_size; j++)
+    // int pig_row[3] = {pig1_row_cursor, pig2_row_cursor, pig3_row_cursor};
+    // int pig_col[3] = {pig1_col_cursor, pig2_col_cursor, pig3_col_cursor};
+    // for (int k = 0; k < pig_total_amount; k++)
     // {
-    //     for (int i = 0; i < pig_row_size; i++)
+    //     row_offset = pig_row[k];
+    //     col_offset = pig_col[k];
+    //     for (int j = 0; j < pig_cul_size; j++)
     //     {
-    //         OLED_SetCursor(row_offset + i, col_offset + j);
-    //         oledSendData(pig_logo[pig_cul_size * i + j]);
+    //         for (int i = 0; i < pig_row_size; i++)
+    //         {
+    //             OLED_SetCursor(row_offset + i, col_offset + j);
+    //             oledSendData(pig_logo[pig_cul_size * i + j]);
+    //         }
     //     }
     // }
+
+    // test for one pig
+    row_offset = pig1_row_cursor;
+    col_offset = pig1_col_cursor;
+    for (int j = 0; j < pig_cul_size; j++)
+    {
+        for (int i = 0; i < pig_row_size; i++)
+        {
+            OLED_SetCursor(row_offset + i, col_offset + j);
+            oledSendData(pig_logo[pig_cul_size * i + j]);
+        }
+    }
 }
 
 int led_cur_state = 1;
-void display_for_OLED_debug()
-{
-    if (led_cur_state)
-    {
-        OLED_SetCursor(3, 40);
-        OLED_DisplayString("             ");
-    }
-    else
-    {
-        OLED_SetCursor(3, 40);
-        OLED_DisplayString("Waiting .... ");
-    }
-}
+// void display_for_OLED_debug()
+// {
+//     if (led_cur_state)
+//     {
+//         OLED_SetCursor(3, 40);
+//         OLED_DisplayString("             ");
+//     }
+//     else
+//     {
+//         OLED_SetCursor(3, 40);
+//         OLED_DisplayString("Waiting .... ");
+//     }
+// }
 /***************************************************************************************************
                                   State Control Function & Local Functions
  ***************************************************************************************************/
@@ -256,7 +274,7 @@ void angrybird_game_state(void)
             }
             else
             {
-                control_strength--;
+                control_strength++;
                 if (control_strength > 3)
                     control_strength = 3;
             }
@@ -332,41 +350,41 @@ void angrybird_game_state(void)
                     delay_ms(400);
 
                     // make sure at this position pig is hit or not
-                    int pig_row[3] = {pig1_row_cursor, pig2_row_cursor, pig3_row_cursor};
-                    int pig_col[3] = {pig1_col_cursor, pig2_col_cursor, pig3_col_cursor};
-                    for (int k = 0; k < pig_total_amount; k++)
-                    {
-                        if (pig_row[k] <= row_offset && row_offset <= pig_row[k] + 1 && pig_col[k] - 8 < col_offset && col_offset < pig_col[k] + 12)
-                        {
-                            pig_amt--;
-                            row_offset = pig_row[k];
-                            col_offset = pig_col[k];
-                            for (int j = 0; j < pig_cul_size; j++)
-                            {
-                                for (int i = 0; i < pig_row_size; i++)
-                                {
-                                    OLED_SetCursor(row_offset + i, col_offset + j);
-                                    oledSendData(pig_logo[pig_cul_size * i + j]);
-                                }
-                            }
-                        }
-                    }
-
-                    // test
-                    // if (pig1_row_cursor <= row_offset && row_offset <= pig1_row_cursor + 1 && pig1_col_cursor - 8 < col_offset && col_offset < pig1_col_cursor + 12)
+                    // int pig_row[3] = {pig1_row_cursor, pig2_row_cursor, pig3_row_cursor};
+                    // int pig_col[3] = {pig1_col_cursor, pig2_col_cursor, pig3_col_cursor};
+                    // for (int k = 0; k < pig_total_amount; k++)
                     // {
-                    //     pig_amt--;
-                    //     row_offset = pig1_row_cursor;
-                    //     col_offset = pig1_col_cursor;
-                    //     for (int j = 0; j < pig_cul_size; j++)
+                    //     if (pig_row[k] <= row_offset && row_offset <= pig_row[k] + 1 && pig_col[k] - 8 < col_offset && col_offset < pig_col[k] + 12)
                     //     {
-                    //         for (int i = 0; i < pig_row_size; i++)
+                    //         pig_amt--;
+                    //         row_offset = pig_row[k];
+                    //         col_offset = pig_col[k];
+                    //         for (int j = 0; j < pig_cul_size; j++)
                     //         {
-                    //             OLED_SetCursor(row_offset + i, col_offset + j);
-                    //             oledSendData(0x00);
+                    //             for (int i = 0; i < pig_row_size; i++)
+                    //             {
+                    //                 OLED_SetCursor(row_offset + i, col_offset + j);
+                    //                 oledSendData(pig_logo[pig_cul_size * i + j]);
+                    //             }
                     //         }
                     //     }
                     // }
+
+                    // test
+                    if (pig1_row_cursor <= row_offset && row_offset <= pig1_row_cursor + 1 && pig1_col_cursor - 8 < col_offset && col_offset < pig1_col_cursor + 12)
+                    {
+                        pig_amt--;
+                        row_offset = pig1_row_cursor;
+                        col_offset = pig1_col_cursor;
+                        for (int j = 0; j < pig_cul_size; j++)
+                        {
+                            for (int i = 0; i < pig_row_size; i++)
+                            {
+                                OLED_SetCursor(row_offset + i, col_offset + j);
+                                oledSendData(0x00);
+                            }
+                        }
+                    }
 
                     row_offset = output_row;
                     col_offset = bird_init_col_cursor + i;
@@ -392,18 +410,11 @@ void angrybird_game_state(void)
                     oledSendData(bird_logo[bird_cul_size * i + j]);
                 }
             }
-
-            // if (cur_state == STATE_PLAY_EASY)
-            // {
-            // }
-            // else if (cur_state == STATE_PLAY_HARD) // with wind
-            // {
-            // }
         }
     }
-    // else
+    // else if (cur_state == STATE_PLAY_EASY)
     // {
-    //     // draw predict line 4*4
+    //      with predict line: write the function draw line
     // }
 
     //  determine bird and pigs reamining for game state
@@ -411,13 +422,29 @@ void angrybird_game_state(void)
     {
         if (pig_amt == 0)
         {
-            // win
+            OLED_SetCursor(win_row_cursor, win_col_cursor);
+            for (int j = 0; j < win_cul_size; j++)
+            {
+                for (int i = 0; i < win_row_size; i++)
+                {
+                    OLED_SetCursor(row_offset + i, col_offset + j);
+                    oledSendData(win_page[win_cul_size * i + j]);
+                }
+            }
         }
         else if (bird_amt == 0)
         {
-            // game over
+            OLED_SetCursor(over_row_cursor, over_col_cursor);
+            for (int j = 0; j < over_cul_size; j++)
+            {
+                for (int i = 0; i < over_row_size; i++)
+                {
+                    OLED_SetCursor(row_offset + i, col_offset + j);
+                    oledSendData(over_page[over_cul_size * i + j]);
+                }
+            }
         }
-        delay_ms(3000);
+        delay_ms(1000);
         cur_state = STATE_HOME;
         // send uart to another page
         send_data = cur_state;

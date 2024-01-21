@@ -54,7 +54,7 @@ extern unsigned char received_flag;
 #define shoot_col_cursor 0
 
 // extern int bird_amt;
-#define bird_total_amount 9
+#define bird_total_amount 5
 // bird logo definitions
 #define bird_row_size 1
 #define bird_cul_size 8
@@ -65,7 +65,7 @@ extern unsigned char received_flag;
 #define bird_remain_col_cursor 50
 
 // extern int pig_amt;
-#define pig_total_amount 3
+#define pig_total_amount 1
 // pig logo definitions
 #define pig_row_size 2
 #define pig_cul_size 12
@@ -88,6 +88,20 @@ extern unsigned char received_flag;
 
 #define control_strength_value 25
 #define control_angle_value bird_init_row_cursor - 1
+
+//*************** END PAGE ***************//
+// win logo definitions
+#define win_row_size 2
+#define win_cul_size 64
+
+#define win_row_cursor 2
+#define win_col_cursor 50
+
+#define over_row_size 2
+#define over_cul_size 64
+
+#define over_row_cursor 2
+#define over_col_cursor 50
 
 /***************************************************************************************************
                                   Functino Prototype

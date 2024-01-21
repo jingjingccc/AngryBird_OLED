@@ -79,10 +79,10 @@ C:   00000091  l_SSEG
 C:   000000A1  s_GSFINAL                       
 C:   000000A4  s_CSEG                          
 C:   00000100  l_IRAM                          
-C:   00000233  l_CONST                         
-C:   000012D9  l_CSEG                          
-C:   0000137D  s_CONST                         
-C:   000015B0  s_XINIT                         
+C:   00000317  l_CONST                         
+C:   000013EC  l_CSEG                          
+C:   00001490  s_CONST                         
+C:   000017A7  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -355,7 +355,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000000A4    000012D9 =        4825. bytes (REL,CON,CODE)
+CSEG                                000000A4    000013EC =        5100. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -372,73 +372,73 @@ C:   00000183  _Single_ReadI2C                    i2c
 C:   000001BE  _delay_ms                          delay
 C:   000001D0  _delay_5                           delay
 C:   000001D5  _angrybird_display_game            angry_bird
-C:   000004AD  _display_for_OLED_debug            angry_bird
-C:   000004D7  _angrybird_state_machine           angry_bird
-C:   00000563  _angrybird_game_state              angry_bird
-C:   00000C1B  _getsine                           angry_bird
-C:   00000CC6  _getcosine                         angry_bird
-C:   00000CF6  _pow_2                             angry_bird
-C:   00000D24  _sine_table                        angry_bird
-C:   00000D4C  _OLED_Init                         oled_i2c
-C:   00000DBB  _OLED_DisplayChar                  oled_i2c
-C:   00000E0C  _OLED_DisplayString                oled_i2c
-C:   00000E37  _OLED_Clear                        oled_i2c
-C:   00000E62  _OLED_SetCursor                    oled_i2c
-C:   00000E92  _oledSendCommand                   oled_i2c
-C:   00000E9E  _oledSendData                      oled_i2c
-C:   00000EAA  ___fssub                           _fssub
-C:   00000EB5  ___fsmul                           _fsmul
-C:   00000F58  fsgetargs                          _fsget2args
-C:   00000F86  fs_normalize_a                     _fsnormalize
-C:   00000FB9  __mulint                           _mulint
-C:   00000FB9  __mulint_dummy                     _mulint
-C:   00000FD6  __moduint                          _moduint
-C:   00001023  __divuint                          _divuint
-C:   0000104C  ___fsadd                           _fsadd
-C:   0000104F  fsadd_direct_entry                 _fsadd
-C:   000010A5  ___sint2fs                         _sint2fs
-C:   000010B2  ___fs2sint                         _fs2sint
-C:   000010E6  fs_round_and_return                _fsreturnval
-C:   000010FE  fs_zerocheck_return                _fsreturnval
-C:   00001107  fs_return_zero                     _fsreturnval
-C:   0000110F  fs_direct_return                   _fsreturnval
-C:   0000111D  fs_return_inf                      _fsreturnval
-C:   0000112A  fs_return_nan                      _fsreturnval
-C:   00001135  fs_swap_a_b                        _fsswapargs
-C:   0000114F  ___fsdiv                           _fsdiv
-C:   00001212  __gptrget                          _gptrget
-C:   0000122E  __modsint                          _modsint
-C:   00001264  ___slong2fs                        _slong2fs
+C:   000004AD  _angrybird_state_machine           angry_bird
+C:   00000539  _angrybird_game_state              angry_bird
+C:   00000D2E  _getsine                           angry_bird
+C:   00000DD9  _getcosine                         angry_bird
+C:   00000E09  _pow_2                             angry_bird
+C:   00000E37  _sine_table                        angry_bird
+C:   00000E5F  _OLED_Init                         oled_i2c
+C:   00000ECE  _OLED_DisplayChar                  oled_i2c
+C:   00000F1F  _OLED_DisplayString                oled_i2c
+C:   00000F4A  _OLED_Clear                        oled_i2c
+C:   00000F75  _OLED_SetCursor                    oled_i2c
+C:   00000FA5  _oledSendCommand                   oled_i2c
+C:   00000FB1  _oledSendData                      oled_i2c
+C:   00000FBD  ___fssub                           _fssub
+C:   00000FC8  ___fsmul                           _fsmul
+C:   0000106B  fsgetargs                          _fsget2args
+C:   00001099  fs_normalize_a                     _fsnormalize
+C:   000010CC  __mulint                           _mulint
+C:   000010CC  __mulint_dummy                     _mulint
+C:   000010E9  __moduint                          _moduint
+C:   00001136  __divuint                          _divuint
+C:   0000115F  ___fsadd                           _fsadd
+C:   00001162  fsadd_direct_entry                 _fsadd
+C:   000011B8  ___sint2fs                         _sint2fs
+C:   000011C5  ___fs2sint                         _fs2sint
+C:   000011F9  fs_round_and_return                _fsreturnval
+C:   00001211  fs_zerocheck_return                _fsreturnval
+C:   0000121A  fs_return_zero                     _fsreturnval
+C:   00001222  fs_direct_return                   _fsreturnval
+C:   00001230  fs_return_inf                      _fsreturnval
+C:   0000123D  fs_return_nan                      _fsreturnval
+C:   00001248  fs_swap_a_b                        _fsswapargs
+C:   00001262  ___fsdiv                           _fsdiv
+C:   00001325  __gptrget                          _gptrget
+C:   00001341  __modsint                          _modsint
+C:   00001377  ___slong2fs                        _slong2fs
+C:   00001380  slong2fs_doit                      _slong2fs
 ASxxxx Linker V03.00/V05.40 + sdld,  page 18.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000000A4    000012D9 =        4825. bytes (REL,CON,CODE)
+CSEG                                000000A4    000013EC =        5100. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000126D  slong2fs_doit                      _slong2fs
-C:   00001291  __divsint                          _divsint
-C:   000012C9  fs_rshift_a                        _fsrshift
-C:   0000130C  ___fs2slong                        _fs2slong
-C:   00001367  fsgetarg                           _fsget1arg
-C:   00001379  ___sdcc_external_startup           _startup
+C:   000013A4  __divsint                          _divsint
+C:   000013DC  fs_rshift_a                        _fsrshift
+C:   0000141F  ___fs2slong                        _fs2slong
+C:   0000147A  fsgetarg                           _fsget1arg
+C:   0000148C  ___sdcc_external_startup           _startup
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 19.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               0000137D    00000233 =         563. bytes (REL,CON,CODE)
+CONST                               00001490    00000317 =         791. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000137D  _shooter_logo                      angry_bird
-C:   0000138D  _pig_logo                          angry_bird
-C:   000013A5  _bird_logo                         angry_bird
-C:   000013D5  _OledFontTable                     oled_i2c
-
+C:   00001490  _shooter_logo                      angry_bird
+C:   000014A0  _pig_logo                          angry_bird
+C:   000014B8  _bird_logo                         angry_bird
+C:   000014C0  _win_page                          angry_bird
+C:   00001540  _over_page                         angry_bird
+C:   000015CC  _OledFontTable                     oled_i2c
 ASxxxx Linker V03.00/V05.40 + sdld,  page 20.
 
 Files Linked                              [ module(s) ]

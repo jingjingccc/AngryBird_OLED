@@ -294,7 +294,7 @@ void angrybird_game_state(void)
     if (send_flag == 1)
     {
         I2C_Stop();
-        SBUF = send_data; // send data to SBUF
+        SBUF = send_data; // send data is cur_state
         send_flag = 0;
         P1_6 = 0;
     }
@@ -306,7 +306,6 @@ void angrybird_game_state(void)
         P1_4 = 0;
         I2C_Start();
         OLED_Init();
-        // if (cur_state == STATE_HOME)
         angrybird_display_home();
     }
 }

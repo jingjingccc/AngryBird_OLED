@@ -9,10 +9,11 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _sine_table
+	.globl _over_page
+	.globl _win_page
 	.globl _bird_logo
 	.globl _pig_logo
 	.globl _shooter_logo
-	.globl _display_for_OLED_debug
 	.globl _I2C_Stop
 	.globl _I2C_Start
 	.globl _oledSendData
@@ -297,25 +298,25 @@ _prebut_right::
 	.ds 2
 _prebut_enter::
 	.ds 2
-_angrybird_game_state_control_angle__196609_65:
+_angrybird_game_state_control_angle__196609_62:
 	.ds 5
-_angrybird_game_state_angle__196610_66:
+_angrybird_game_state_angle__196610_63:
 	.ds 2
-_angrybird_game_state_control_strength__196609_71:
+_angrybird_game_state_control_strength__196609_68:
 	.ds 2
-_angrybird_game_state_delta_y_196609_78:
+_angrybird_game_state_delta_y_196609_75:
 	.ds 4
-_angrybird_game_state_delta_x_196609_78:
+_angrybird_game_state_delta_x_196609_75:
 	.ds 4
-_angrybird_game_state_peak_x_196609_78:
+_angrybird_game_state_peak_x_196609_75:
 	.ds 4
-_angrybird_game_state_peak_y_196609_78:
+_angrybird_game_state_peak_y_196609_75:
 	.ds 4
-_angrybird_game_state_a_196609_78:
+_angrybird_game_state_a_196609_75:
 	.ds 4
-_angrybird_game_state_i_262145_83:
+_angrybird_game_state_i_262145_80:
 	.ds 2
-_angrybird_game_state_output_row_327681_84:
+_angrybird_game_state_output_row_327681_81:
 	.ds 2
 _angrybird_game_state_sloc1_1_0:
 	.ds 4
@@ -372,26 +373,26 @@ _angrybird_game_state_sloc0_1_0:
 	.area GSINIT  (CODE)
 	.area GSFINAL (CODE)
 	.area GSINIT  (CODE)
-;	./src/angry_bird.c:128: int led_cur_state = 1;
+;	./src/angry_bird.c:146: int led_cur_state = 1;
 	mov	_led_cur_state,#0x01
 	mov	(_led_cur_state + 1),#0x00
-;	./src/angry_bird.c:146: int cur_state = 0;
+;	./src/angry_bird.c:164: int cur_state = 0;
 	clr	a
 	mov	_cur_state,a
 	mov	(_cur_state + 1),a
-;	./src/angry_bird.c:196: unsigned int prebut_up = 0;
+;	./src/angry_bird.c:214: unsigned int prebut_up = 0;
 	mov	_prebut_up,a
 	mov	(_prebut_up + 1),a
-;	./src/angry_bird.c:197: unsigned int prebut_down = 0;
+;	./src/angry_bird.c:215: unsigned int prebut_down = 0;
 	mov	_prebut_down,a
 	mov	(_prebut_down + 1),a
-;	./src/angry_bird.c:198: unsigned int prebut_left = 0;
+;	./src/angry_bird.c:216: unsigned int prebut_left = 0;
 	mov	_prebut_left,a
 	mov	(_prebut_left + 1),a
-;	./src/angry_bird.c:199: unsigned int prebut_right = 0;
+;	./src/angry_bird.c:217: unsigned int prebut_right = 0;
 	mov	_prebut_right,a
 	mov	(_prebut_right + 1),a
-;	./src/angry_bird.c:200: unsigned int prebut_enter = 0;
+;	./src/angry_bird.c:218: unsigned int prebut_enter = 0;
 	mov	_prebut_enter,a
 	mov	(_prebut_enter + 1),a
 ;--------------------------------------------------------
@@ -420,7 +421,7 @@ _angrybird_game_state_sloc0_1_0:
 ;j                         Allocated to registers r6 r7 
 ;i                         Allocated to registers r5 
 ;------------------------------------------------------------
-;	./src/angry_bird.c:26: void angrybird_display_game(void)
+;	./src/angry_bird.c:44: void angrybird_display_game(void)
 ;	-----------------------------------------
 ;	 function angrybird_display_game
 ;	-----------------------------------------
@@ -433,40 +434,40 @@ _angrybird_display_game:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	./src/angry_bird.c:28: bird_amt = bird_total_amount;
+;	./src/angry_bird.c:46: bird_amt = bird_total_amount;
 	mov	_bird_amt,#0x09
 	mov	(_bird_amt + 1),#0x00
-;	./src/angry_bird.c:29: pig_amt = pig_total_amount;
+;	./src/angry_bird.c:47: pig_amt = pig_total_amount;
 	mov	_pig_amt,#0x03
 	mov	(_pig_amt + 1),#0x00
-;	./src/angry_bird.c:30: control_angle = 60;
+;	./src/angry_bird.c:48: control_angle = 60;
 	mov	_control_angle,#0x3c
 	mov	(_control_angle + 1),#0x00
-;	./src/angry_bird.c:31: control_strength = 3;
+;	./src/angry_bird.c:49: control_strength = 3;
 	mov	_control_strength,#0x03
 	mov	(_control_strength + 1),#0x00
-;	./src/angry_bird.c:33: OLED_Clear();
+;	./src/angry_bird.c:51: OLED_Clear();
 	lcall	_OLED_Clear
-;	./src/angry_bird.c:37: control_strength_[0] = '0' + control_strength;
+;	./src/angry_bird.c:55: control_strength_[0] = '0' + control_strength;
 	mov	r7,_control_strength
 	mov	a,#0x30
 	add	a,r7
 	mov	_angrybird_display_game_control_strength__65537_30,a
-;	./src/angry_bird.c:38: control_strength_[1] = '\0';
-;	./src/angry_bird.c:40: int i = 0;
-;	./src/angry_bird.c:41: if (control_angle < 0)
+;	./src/angry_bird.c:56: control_strength_[1] = '\0';
+;	./src/angry_bird.c:58: int i = 0;
+;	./src/angry_bird.c:59: if (control_angle < 0)
 	clr	a
 	mov	(_angrybird_display_game_control_strength__65537_30 + 0x0001),a
 	mov	r6,a
 	mov	r7,a
 	mov	a,(_control_angle + 1)
 	jnb	acc.7,00102$
-;	./src/angry_bird.c:42: control_angle_[i++] = '-';
+;	./src/angry_bird.c:60: control_angle_[i++] = '-';
 	mov	r6,#0x01
 	mov	r7,#0x00
 	mov	_angrybird_display_game_control_angle__65537_30,#0x2d
 00102$:
-;	./src/angry_bird.c:43: int angle_ = (control_angle >= 0) ? control_angle : -1 * control_angle;
+;	./src/angry_bird.c:61: int angle_ = (control_angle >= 0) ? control_angle : -1 * control_angle;
 	mov	a,(_control_angle + 1)
 	rlc	a
 	mov	_angrybird_display_game_sloc0_1_0,c
@@ -485,7 +486,7 @@ _angrybird_display_game:
 00144$:
 	mov	_angrybird_display_game_angle__65539_32,r4
 	mov	(_angrybird_display_game_angle__65539_32 + 1),r5
-;	./src/angry_bird.c:44: if (angle_ % 100 / 10 != 0)
+;	./src/angry_bird.c:62: if (angle_ % 100 / 10 != 0)
 	mov	__modsint_PARM_2,#0x64
 	mov	(__modsint_PARM_2 + 1),#0x00
 	mov	dpl,_angrybird_display_game_angle__65539_32
@@ -503,7 +504,7 @@ _angrybird_display_game:
 	mov	a,r2
 	orl	a,r3
 	jz	00104$
-;	./src/angry_bird.c:45: control_angle_[i++] = '0' + angle_ % 100 / 10;
+;	./src/angry_bird.c:63: control_angle_[i++] = '0' + angle_ % 100 / 10;
 	mov	ar4,r6
 	mov	ar5,r7
 	inc	r6
@@ -517,7 +518,7 @@ _angrybird_display_game:
 	add	a,r2
 	mov	@r1,a
 00104$:
-;	./src/angry_bird.c:46: control_angle_[i++] = '0' + angle_ % 10;
+;	./src/angry_bird.c:64: control_angle_[i++] = '0' + angle_ % 10;
 	mov	a,#0x01
 	add	a,r6
 	mov	r4,a
@@ -542,44 +543,44 @@ _angrybird_display_game:
 	mov	a,#0x30
 	add	a,r6
 	mov	@r1,a
-;	./src/angry_bird.c:47: control_angle_[i++] = '\0';
+;	./src/angry_bird.c:65: control_angle_[i++] = '\0';
 	mov	a,r4
 	add	a,#_angrybird_display_game_control_angle__65537_30
 	mov	r0,a
 	mov	@r0,#0x00
-;	./src/angry_bird.c:49: OLED_SetCursor(strength_text_row_cursor, 0);
+;	./src/angry_bird.c:67: OLED_SetCursor(strength_text_row_cursor, 0);
 	mov	_OLED_SetCursor_PARM_2,#0x00
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:50: OLED_DisplayString("S ");
+;	./src/angry_bird.c:68: OLED_DisplayString("S ");
 	mov	dptr,#___str_0
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:51: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
+;	./src/angry_bird.c:69: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x0a
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:52: OLED_DisplayString(control_strength_);
+;	./src/angry_bird.c:70: OLED_DisplayString(control_strength_);
 	mov	dptr,#_angrybird_display_game_control_strength__65537_30
 	mov	b,#0x40
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:54: OLED_SetCursor(strength_text_row_cursor, 20);
+;	./src/angry_bird.c:72: OLED_SetCursor(strength_text_row_cursor, 20);
 	mov	_OLED_SetCursor_PARM_2,#0x14
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:55: OLED_DisplayString("A ");
+;	./src/angry_bird.c:73: OLED_DisplayString("A ");
 	mov	dptr,#___str_1
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:56: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
+;	./src/angry_bird.c:74: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x1e
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:57: OLED_DisplayString(control_angle_);
+;	./src/angry_bird.c:75: OLED_DisplayString(control_angle_);
 	mov	dptr,#_angrybird_display_game_control_angle__65537_30
 	mov	b,#0x40
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:60: for (int k = 0; k < bird_total_amount; k++)
+;	./src/angry_bird.c:78: for (int k = 0; k < bird_total_amount; k++)
 	clr	a
 	mov	_angrybird_display_game_k_131075_33,a
 	mov	(_angrybird_display_game_k_131075_33 + 1),a
@@ -593,11 +594,11 @@ _angrybird_display_game:
 	jc	00305$
 	ljmp	00107$
 00305$:
-;	./src/angry_bird.c:62: row_offset = 0;
+;	./src/angry_bird.c:80: row_offset = 0;
 	clr	a
 	mov	_row_offset,a
 	mov	(_row_offset + 1),a
-;	./src/angry_bird.c:63: col_offset = bird_remain_col_cursor + k * 8;
+;	./src/angry_bird.c:81: col_offset = bird_remain_col_cursor + k * 8;
 	mov	r4,_angrybird_display_game_k_131075_33
 	mov	a,(_angrybird_display_game_k_131075_33 + 1)
 	swap	a
@@ -619,7 +620,7 @@ _angrybird_display_game:
 	clr	a
 	addc	a,r5
 	mov	(_col_offset + 1),a
-;	./src/angry_bird.c:64: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:82: for (int j = 0; j < bird_cul_size; j++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 00118$:
@@ -630,13 +631,13 @@ _angrybird_display_game:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00122$
-;	./src/angry_bird.c:66: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:84: for (int i = 0; i < bird_row_size; i++)
 	mov	r3,#0x00
 00115$:
 	cjne	r3,#0x01,00307$
 00307$:
 	jnc	00119$
-;	./src/angry_bird.c:68: OLED_SetCursor(row_offset + i, col_offset + j);
+;	./src/angry_bird.c:86: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r2,_row_offset
 	clr	a
 	add	a,r2
@@ -653,7 +654,7 @@ _angrybird_display_game:
 	pop	ar4
 	pop	ar5
 	pop	ar7
-;	./src/angry_bird.c:69: oledSendData(bird_logo[bird_cul_size * i + j]);
+;	./src/angry_bird.c:87: oledSendData(bird_logo[bird_cul_size * i + j]);
 	mov	a,r7
 	rlc	a
 	subb	a,acc
@@ -672,17 +673,17 @@ _angrybird_display_game:
 	lcall	_oledSendData
 	pop	ar4
 	pop	ar5
-;	./src/angry_bird.c:66: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:84: for (int i = 0; i < bird_row_size; i++)
 	mov	r3,#0x01
 	sjmp	00115$
 00119$:
-;	./src/angry_bird.c:64: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:82: for (int j = 0; j < bird_cul_size; j++)
 	inc	r4
 	cjne	r4,#0x00,00118$
 	inc	r5
 	sjmp	00118$
 00122$:
-;	./src/angry_bird.c:60: for (int k = 0; k < bird_total_amount; k++)
+;	./src/angry_bird.c:78: for (int k = 0; k < bird_total_amount; k++)
 	inc	_angrybird_display_game_k_131075_33
 	clr	a
 	cjne	a,_angrybird_display_game_k_131075_33,00310$
@@ -690,14 +691,14 @@ _angrybird_display_game:
 00310$:
 	ljmp	00121$
 00107$:
-;	./src/angry_bird.c:75: row_offset = shoot_row_cursor;
+;	./src/angry_bird.c:93: row_offset = shoot_row_cursor;
 	mov	_row_offset,#0x06
-;	./src/angry_bird.c:76: col_offset = shoot_col_cursor;
+;	./src/angry_bird.c:94: col_offset = shoot_col_cursor;
 	clr	a
 	mov	(_row_offset + 1),a
 	mov	_col_offset,a
 	mov	(_col_offset + 1),a
-;	./src/angry_bird.c:77: for (int j = 0; j < shoot_cul_size; j++)
+;	./src/angry_bird.c:95: for (int j = 0; j < shoot_cul_size; j++)
 	mov	r6,a
 	mov	r7,a
 00127$:
@@ -708,13 +709,13 @@ _angrybird_display_game:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00109$
-;	./src/angry_bird.c:79: for (int i = 0; i < shoot_row_size; i++)
+;	./src/angry_bird.c:97: for (int i = 0; i < shoot_row_size; i++)
 	mov	r5,#0x00
 00124$:
 	cjne	r5,#0x02,00312$
 00312$:
 	jnc	00128$
-;	./src/angry_bird.c:81: OLED_SetCursor(row_offset + i, col_offset + j);
+;	./src/angry_bird.c:99: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	mov	ar3,r5
 	mov	a,r3
@@ -733,7 +734,7 @@ _angrybird_display_game:
 	lcall	_OLED_SetCursor
 	pop	ar2
 	pop	ar3
-;	./src/angry_bird.c:82: oledSendData(shooter_logo[shoot_cul_size * i + j]);
+;	./src/angry_bird.c:100: oledSendData(shooter_logo[shoot_cul_size * i + j]);
 	mov	a,r3
 	swap	a
 	rr	a
@@ -756,23 +757,23 @@ _angrybird_display_game:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:79: for (int i = 0; i < shoot_row_size; i++)
+;	./src/angry_bird.c:97: for (int i = 0; i < shoot_row_size; i++)
 	inc	r5
 	sjmp	00124$
 00128$:
-;	./src/angry_bird.c:77: for (int j = 0; j < shoot_cul_size; j++)
+;	./src/angry_bird.c:95: for (int j = 0; j < shoot_cul_size; j++)
 	inc	r6
 	cjne	r6,#0x00,00127$
 	inc	r7
 	sjmp	00127$
 00109$:
-;	./src/angry_bird.c:87: row_offset = bird_init_row_cursor;
+;	./src/angry_bird.c:105: row_offset = bird_init_row_cursor;
 	mov	_row_offset,#0x07
 	mov	(_row_offset + 1),#0x00
-;	./src/angry_bird.c:88: col_offset = bird_init_col_cursor;
+;	./src/angry_bird.c:106: col_offset = bird_init_col_cursor;
 	mov	_col_offset,#0x08
 	mov	(_col_offset + 1),#0x00
-;	./src/angry_bird.c:89: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:107: for (int j = 0; j < bird_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
 00133$:
@@ -783,13 +784,13 @@ _angrybird_display_game:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00111$
-;	./src/angry_bird.c:91: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:109: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x00
 00130$:
 	cjne	r5,#0x01,00316$
 00316$:
 	jnc	00134$
-;	./src/angry_bird.c:93: OLED_SetCursor(row_offset + i, col_offset + j);
+;	./src/angry_bird.c:111: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	clr	a
 	add	a,r4
@@ -804,7 +805,7 @@ _angrybird_display_game:
 	push	ar3
 	lcall	_OLED_SetCursor
 	pop	ar3
-;	./src/angry_bird.c:94: oledSendData(bird_logo[bird_cul_size * i + j]);
+;	./src/angry_bird.c:112: oledSendData(bird_logo[bird_cul_size * i + j]);
 	mov	a,r3
 	rlc	a
 	subb	a,acc
@@ -821,23 +822,23 @@ _angrybird_display_game:
 	lcall	_oledSendData
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:91: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:109: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x01
 	sjmp	00130$
 00134$:
-;	./src/angry_bird.c:89: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:107: for (int j = 0; j < bird_cul_size; j++)
 	inc	r6
 	cjne	r6,#0x00,00133$
 	inc	r7
 	sjmp	00133$
 00111$:
-;	./src/angry_bird.c:116: row_offset = pig1_row_cursor;
+;	./src/angry_bird.c:134: row_offset = pig1_row_cursor;
 	mov	_row_offset,#0x03
 	mov	(_row_offset + 1),#0x00
-;	./src/angry_bird.c:117: col_offset = pig1_col_cursor;
+;	./src/angry_bird.c:135: col_offset = pig1_col_cursor;
 	mov	_col_offset,#0x50
 	mov	(_col_offset + 1),#0x00
-;	./src/angry_bird.c:118: for (int j = 0; j < pig_cul_size; j++)
+;	./src/angry_bird.c:136: for (int j = 0; j < pig_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
 00139$:
@@ -848,13 +849,13 @@ _angrybird_display_game:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00141$
-;	./src/angry_bird.c:120: for (int i = 0; i < pig_row_size; i++)
+;	./src/angry_bird.c:138: for (int i = 0; i < pig_row_size; i++)
 	mov	r5,#0x00
 00136$:
 	cjne	r5,#0x02,00320$
 00320$:
 	jnc	00140$
-;	./src/angry_bird.c:122: OLED_SetCursor(row_offset + i, col_offset + j);
+;	./src/angry_bird.c:140: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	mov	ar3,r5
 	mov	a,r3
@@ -873,7 +874,7 @@ _angrybird_display_game:
 	lcall	_OLED_SetCursor
 	pop	ar2
 	pop	ar3
-;	./src/angry_bird.c:123: oledSendData(pig_logo[pig_cul_size * i + j]);
+;	./src/angry_bird.c:141: oledSendData(pig_logo[pig_cul_size * i + j]);
 	mov	a,r3
 	mov	b,#0x0c
 	mul	ab
@@ -895,57 +896,27 @@ _angrybird_display_game:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:120: for (int i = 0; i < pig_row_size; i++)
+;	./src/angry_bird.c:138: for (int i = 0; i < pig_row_size; i++)
 	inc	r5
 	sjmp	00136$
 00140$:
-;	./src/angry_bird.c:118: for (int j = 0; j < pig_cul_size; j++)
+;	./src/angry_bird.c:136: for (int j = 0; j < pig_cul_size; j++)
 	inc	r6
 	cjne	r6,#0x00,00139$
 	inc	r7
 	sjmp	00139$
 00141$:
-;	./src/angry_bird.c:126: }
+;	./src/angry_bird.c:144: }
 	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'display_for_OLED_debug'
-;------------------------------------------------------------
-;	./src/angry_bird.c:129: void display_for_OLED_debug()
-;	-----------------------------------------
-;	 function display_for_OLED_debug
-;	-----------------------------------------
-_display_for_OLED_debug:
-;	./src/angry_bird.c:131: if (led_cur_state)
-	mov	a,_led_cur_state
-	orl	a,(_led_cur_state + 1)
-	jz	00102$
-;	./src/angry_bird.c:133: OLED_SetCursor(3, 40);
-	mov	_OLED_SetCursor_PARM_2,#0x28
-	mov	dpl,#0x03
-	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:134: OLED_DisplayString("             ");
-	mov	dptr,#___str_2
-	mov	b,#0x80
-	ljmp	_OLED_DisplayString
-00102$:
-;	./src/angry_bird.c:138: OLED_SetCursor(3, 40);
-	mov	_OLED_SetCursor_PARM_2,#0x28
-	mov	dpl,#0x03
-	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:139: OLED_DisplayString("Waiting .... ");
-	mov	dptr,#___str_3
-	mov	b,#0x80
-;	./src/angry_bird.c:141: }
-	ljmp	_OLED_DisplayString
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'angrybird_state_machine'
 ;------------------------------------------------------------
-;	./src/angry_bird.c:147: void angrybird_state_machine(void)
+;	./src/angry_bird.c:165: void angrybird_state_machine(void)
 ;	-----------------------------------------
 ;	 function angrybird_state_machine
 ;	-----------------------------------------
 _angrybird_state_machine:
-;	./src/angry_bird.c:149: switch (cur_state)
+;	./src/angry_bird.c:167: switch (cur_state)
 	mov	a,#0x03
 	cjne	a,_cur_state,00155$
 	clr	a
@@ -960,27 +931,27 @@ _angrybird_state_machine:
 00156$:
 	sjmp	00103$
 00157$:
-;	./src/angry_bird.c:152: case STATE_PLAY_HARD:
+;	./src/angry_bird.c:170: case STATE_PLAY_HARD:
 00102$:
-;	./src/angry_bird.c:153: P1_0 = 0;
+;	./src/angry_bird.c:171: P1_0 = 0;
 ;	assignBit
 	clr	_P1_0
-;	./src/angry_bird.c:154: angrybird_game_state();
+;	./src/angry_bird.c:172: angrybird_game_state();
 	lcall	_angrybird_game_state
-;	./src/angry_bird.c:155: break;
-;	./src/angry_bird.c:157: default:
+;	./src/angry_bird.c:173: break;
+;	./src/angry_bird.c:175: default:
 	sjmp	00109$
 00103$:
-;	./src/angry_bird.c:158: if (led_cur_state == 0)
+;	./src/angry_bird.c:176: if (led_cur_state == 0)
 	mov	a,_led_cur_state
 	orl	a,(_led_cur_state + 1)
-;	./src/angry_bird.c:159: led_cur_state = 1;
+;	./src/angry_bird.c:177: led_cur_state = 1;
 	jnz	00107$
 	mov	_led_cur_state,#0x01
 	mov	(_led_cur_state + 1),a
 	sjmp	00108$
 00107$:
-;	./src/angry_bird.c:160: else if (led_cur_state == 1)
+;	./src/angry_bird.c:178: else if (led_cur_state == 1)
 	mov	a,#0x01
 	cjne	a,_led_cur_state,00159$
 	dec	a
@@ -989,38 +960,38 @@ _angrybird_state_machine:
 00159$:
 	sjmp	00108$
 00160$:
-;	./src/angry_bird.c:161: led_cur_state = 0;
+;	./src/angry_bird.c:179: led_cur_state = 0;
 	clr	a
 	mov	_led_cur_state,a
 	mov	(_led_cur_state + 1),a
 00108$:
-;	./src/angry_bird.c:162: P1_0 = led_cur_state;
+;	./src/angry_bird.c:180: P1_0 = led_cur_state;
 ;	assignBit
 	mov	a,_led_cur_state
 	orl	a,(_led_cur_state + 1)
 	add	a,#0xff
 	mov	_P1_0,c
-;	./src/angry_bird.c:164: delay_ms(500);
+;	./src/angry_bird.c:182: delay_ms(500);
 	mov	dptr,#0x01f4
 	lcall	_delay_ms
-;	./src/angry_bird.c:166: }
+;	./src/angry_bird.c:184: }
 00109$:
-;	./src/angry_bird.c:169: if (received_flag == 1)
+;	./src/angry_bird.c:187: if (received_flag == 1)
 	mov	a,#0x01
 	cjne	a,_received_flag,00114$
-;	./src/angry_bird.c:171: cur_state = received_data;
+;	./src/angry_bird.c:189: cur_state = received_data;
 	mov	_cur_state,_received_data
 	mov	(_cur_state + 1),#0x00
-;	./src/angry_bird.c:172: received_flag = 0;
+;	./src/angry_bird.c:190: received_flag = 0;
 	mov	_received_flag,#0x00
-;	./src/angry_bird.c:173: P1_0 = 0;
+;	./src/angry_bird.c:191: P1_0 = 0;
 ;	assignBit
 	clr	_P1_0
-;	./src/angry_bird.c:175: I2C_Start();
+;	./src/angry_bird.c:193: I2C_Start();
 	lcall	_I2C_Start
-;	./src/angry_bird.c:176: OLED_Init();
+;	./src/angry_bird.c:194: OLED_Init();
 	lcall	_OLED_Init
-;	./src/angry_bird.c:179: if (cur_state == STATE_PLAY_EASY || cur_state == STATE_PLAY_HARD)
+;	./src/angry_bird.c:197: if (cur_state == STATE_PLAY_EASY || cur_state == STATE_PLAY_HARD)
 	mov	a,#0x03
 	cjne	a,_cur_state,00163$
 	clr	a
@@ -1036,41 +1007,41 @@ _angrybird_state_machine:
 	sjmp	00114$
 00165$:
 00110$:
-;	./src/angry_bird.c:180: angrybird_display_game();
+;	./src/angry_bird.c:198: angrybird_display_game();
 	lcall	_angrybird_display_game
 00114$:
-;	./src/angry_bird.c:184: if (send_flag == 1)
+;	./src/angry_bird.c:202: if (send_flag == 1)
 	mov	a,#0x01
 	cjne	a,_send_flag,00117$
-;	./src/angry_bird.c:186: I2C_Stop();
+;	./src/angry_bird.c:204: I2C_Stop();
 	lcall	_I2C_Stop
-;	./src/angry_bird.c:187: SBUF = send_data; // send data to SBUF
+;	./src/angry_bird.c:205: SBUF = send_data; // send data to SBUF
 	mov	_SBUF,_send_data
-;	./src/angry_bird.c:188: send_flag = 0;
+;	./src/angry_bird.c:206: send_flag = 0;
 	mov	_send_flag,#0x00
 00117$:
-;	./src/angry_bird.c:194: }
+;	./src/angry_bird.c:212: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'angrybird_game_state'
 ;------------------------------------------------------------
 ;which                     Allocated to registers r7 
-;control_angle_            Allocated with name '_angrybird_game_state_control_angle__196609_65'
+;control_angle_            Allocated with name '_angrybird_game_state_control_angle__196609_62'
 ;i                         Allocated to registers r4 r5 
-;angle_                    Allocated with name '_angrybird_game_state_angle__196610_66'
+;angle_                    Allocated with name '_angrybird_game_state_angle__196610_63'
 ;which                     Allocated to registers r7 
-;control_strength_         Allocated with name '_angrybird_game_state_control_strength__196609_71'
+;control_strength_         Allocated with name '_angrybird_game_state_control_strength__196609_68'
 ;j                         Allocated to registers r6 r7 
 ;i                         Allocated to registers r5 
-;delta_y                   Allocated with name '_angrybird_game_state_delta_y_196609_78'
-;delta_x                   Allocated with name '_angrybird_game_state_delta_x_196609_78'
-;peak_x                    Allocated with name '_angrybird_game_state_peak_x_196609_78'
-;peak_y                    Allocated with name '_angrybird_game_state_peak_y_196609_78'
-;a                         Allocated with name '_angrybird_game_state_a_196609_78'
+;delta_y                   Allocated with name '_angrybird_game_state_delta_y_196609_75'
+;delta_x                   Allocated with name '_angrybird_game_state_delta_x_196609_75'
+;peak_x                    Allocated with name '_angrybird_game_state_peak_x_196609_75'
+;peak_y                    Allocated with name '_angrybird_game_state_peak_y_196609_75'
+;a                         Allocated with name '_angrybird_game_state_a_196609_75'
 ;j                         Allocated to registers r2 r3 
 ;i                         Allocated to registers r7 
-;i                         Allocated with name '_angrybird_game_state_i_262145_83'
-;output_row                Allocated with name '_angrybird_game_state_output_row_327681_84'
+;i                         Allocated with name '_angrybird_game_state_i_262145_80'
+;output_row                Allocated with name '_angrybird_game_state_output_row_327681_81'
 ;j                         Allocated to registers r2 r3 
 ;i                         Allocated to registers r5 
 ;j                         Allocated to registers r6 r7 
@@ -1079,57 +1050,61 @@ _angrybird_state_machine:
 ;i                         Allocated to registers r5 
 ;j                         Allocated to registers r6 r7 
 ;i                         Allocated to registers r5 
+;j                         Allocated to registers r6 r7 
+;i                         Allocated to registers r4 r5 
+;j                         Allocated to registers r6 r7 
+;i                         Allocated to registers r4 r5 
 ;sloc1                     Allocated with name '_angrybird_game_state_sloc1_1_0'
 ;------------------------------------------------------------
-;	./src/angry_bird.c:204: void angrybird_game_state(void)
+;	./src/angry_bird.c:222: void angrybird_game_state(void)
 ;	-----------------------------------------
 ;	 function angrybird_game_state
 ;	-----------------------------------------
 _angrybird_game_state:
-;	./src/angry_bird.c:207: if (((but_up == 0) && (prebut_up == 1)) || ((but_down == 0) && (prebut_down == 1)))
+;	./src/angry_bird.c:225: if (((but_up == 0) && (prebut_up == 1)) || ((but_down == 0) && (prebut_down == 1)))
 	jb	_P2_0,00119$
 	mov	a,#0x01
-	cjne	a,_prebut_up,00600$
+	cjne	a,_prebut_up,00691$
 	dec	a
-	cjne	a,(_prebut_up + 1),00600$
+	cjne	a,(_prebut_up + 1),00691$
 	sjmp	00115$
-00600$:
+00691$:
 00119$:
-	jnb	_P2_1,00601$
+	jnb	_P2_1,00692$
 	ljmp	00116$
-00601$:
+00692$:
 	mov	a,#0x01
-	cjne	a,_prebut_down,00602$
+	cjne	a,_prebut_down,00693$
 	dec	a
-	cjne	a,(_prebut_down + 1),00602$
-	sjmp	00603$
-00602$:
+	cjne	a,(_prebut_down + 1),00693$
+	sjmp	00694$
+00693$:
 	ljmp	00116$
-00603$:
+00694$:
 00115$:
-;	./src/angry_bird.c:210: int which = (but_up == 0) ? 1 : 0;
-	jb	_P2_0,00208$
+;	./src/angry_bird.c:228: int which = (but_up == 0) ? 1 : 0;
+	jb	_P2_0,00226$
 	mov	r7,#0x01
-	sjmp	00209$
-00208$:
+	sjmp	00227$
+00226$:
 	mov	r7,#0x00
-00209$:
-;	./src/angry_bird.c:211: if (but_up == 0 || but_down == 0)
+00227$:
+;	./src/angry_bird.c:229: if (but_up == 0 || but_down == 0)
 	jnb	_P2_0,00112$
-	jnb	_P2_1,00606$
+	jnb	_P2_1,00697$
 	ljmp	00116$
-00606$:
+00697$:
 00112$:
-;	./src/angry_bird.c:213: if (which == 1)
+;	./src/angry_bird.c:231: if (which == 1)
 	cjne	r7,#0x01,00106$
-;	./src/angry_bird.c:215: control_angle += 10;
+;	./src/angry_bird.c:233: control_angle += 10;
 	mov	a,#0x0a
 	add	a,_control_angle
 	mov	_control_angle,a
 	clr	a
 	addc	a,(_control_angle + 1)
 	mov	(_control_angle + 1),a
-;	./src/angry_bird.c:216: if (control_angle > 90)
+;	./src/angry_bird.c:234: if (control_angle > 90)
 	clr	c
 	mov	a,#0x5a
 	subb	a,_control_angle
@@ -1138,46 +1113,46 @@ _angrybird_game_state:
 	xrl	b,#0x80
 	subb	a,b
 	jnc	00107$
-;	./src/angry_bird.c:217: control_angle = 90;
+;	./src/angry_bird.c:235: control_angle = 90;
 	mov	_control_angle,#0x5a
 	mov	(_control_angle + 1),#0x00
 	sjmp	00107$
 00106$:
-;	./src/angry_bird.c:221: control_angle -= 10;
+;	./src/angry_bird.c:239: control_angle -= 10;
 	mov	a,_control_angle
 	add	a,#0xf6
 	mov	_control_angle,a
 	mov	a,(_control_angle + 1)
 	addc	a,#0xff
-;	./src/angry_bird.c:222: if (control_angle < 0)
+;	./src/angry_bird.c:240: if (control_angle < 0)
 	mov	(_control_angle + 1),a
 	jnb	acc.7,00107$
-;	./src/angry_bird.c:223: control_angle = 0;
+;	./src/angry_bird.c:241: control_angle = 0;
 	clr	a
 	mov	_control_angle,a
 	mov	(_control_angle + 1),a
 00107$:
-;	./src/angry_bird.c:228: int i = 0;
-;	./src/angry_bird.c:229: if (control_angle < 0)
+;	./src/angry_bird.c:246: int i = 0;
+;	./src/angry_bird.c:247: if (control_angle < 0)
 	clr	a
 	mov	r6,a
 	mov	r7,a
 	mov	a,(_control_angle + 1)
 	jnb	acc.7,00109$
-;	./src/angry_bird.c:230: control_angle_[i++] = '-';
+;	./src/angry_bird.c:248: control_angle_[i++] = '-';
 	mov	r6,#0x01
 	mov	r7,#0x00
-	mov	_angrybird_game_state_control_angle__196609_65,#0x2d
+	mov	_angrybird_game_state_control_angle__196609_62,#0x2d
 00109$:
-;	./src/angry_bird.c:231: int angle_ = (control_angle >= 0) ? control_angle : -1 * control_angle;
+;	./src/angry_bird.c:249: int angle_ = (control_angle >= 0) ? control_angle : -1 * control_angle;
 	mov	a,(_control_angle + 1)
 	rlc	a
 	mov	_angrybird_game_state_sloc0_1_0,c
-	jc	00210$
+	jc	00228$
 	mov	r4,_control_angle
 	mov	r5,(_control_angle + 1)
-	sjmp	00211$
-00210$:
+	sjmp	00229$
+00228$:
 	clr	c
 	clr	a
 	subb	a,_control_angle
@@ -1185,14 +1160,14 @@ _angrybird_game_state:
 	clr	a
 	subb	a,(_control_angle + 1)
 	mov	r5,a
-00211$:
-	mov	_angrybird_game_state_angle__196610_66,r4
-	mov	(_angrybird_game_state_angle__196610_66 + 1),r5
-;	./src/angry_bird.c:232: if (angle_ % 100 / 10 != 0)
+00229$:
+	mov	_angrybird_game_state_angle__196610_63,r4
+	mov	(_angrybird_game_state_angle__196610_63 + 1),r5
+;	./src/angry_bird.c:250: if (angle_ % 100 / 10 != 0)
 	mov	__modsint_PARM_2,#0x64
 	mov	(__modsint_PARM_2 + 1),#0x00
-	mov	dpl,_angrybird_game_state_angle__196610_66
-	mov	dph,(_angrybird_game_state_angle__196610_66 + 1)
+	mov	dpl,_angrybird_game_state_angle__196610_63
+	mov	dph,(_angrybird_game_state_angle__196610_63 + 1)
 	push	ar7
 	push	ar6
 	lcall	__modsint
@@ -1206,21 +1181,21 @@ _angrybird_game_state:
 	mov	a,r2
 	orl	a,r3
 	jz	00111$
-;	./src/angry_bird.c:233: control_angle_[i++] = '0' + angle_ % 100 / 10;
+;	./src/angry_bird.c:251: control_angle_[i++] = '0' + angle_ % 100 / 10;
 	mov	ar4,r6
 	mov	ar5,r7
 	inc	r6
-	cjne	r6,#0x00,00614$
+	cjne	r6,#0x00,00705$
 	inc	r7
-00614$:
+00705$:
 	mov	a,r4
-	add	a,#_angrybird_game_state_control_angle__196609_65
+	add	a,#_angrybird_game_state_control_angle__196609_62
 	mov	r1,a
 	mov	a,#0x30
 	add	a,r2
 	mov	@r1,a
 00111$:
-;	./src/angry_bird.c:234: control_angle_[i++] = '0' + angle_ % 10;
+;	./src/angry_bird.c:252: control_angle_[i++] = '0' + angle_ % 10;
 	mov	a,#0x01
 	add	a,r6
 	mov	r4,a
@@ -1228,12 +1203,12 @@ _angrybird_game_state:
 	addc	a,r7
 	mov	r5,a
 	mov	a,r6
-	add	a,#_angrybird_game_state_control_angle__196609_65
+	add	a,#_angrybird_game_state_control_angle__196609_62
 	mov	r1,a
 	mov	__modsint_PARM_2,#0x0a
 	mov	(__modsint_PARM_2 + 1),#0x00
-	mov	dpl,_angrybird_game_state_angle__196610_66
-	mov	dph,(_angrybird_game_state_angle__196610_66 + 1)
+	mov	dpl,_angrybird_game_state_angle__196610_63
+	mov	dph,(_angrybird_game_state_angle__196610_63 + 1)
 	push	ar5
 	push	ar4
 	push	ar1
@@ -1245,69 +1220,69 @@ _angrybird_game_state:
 	mov	a,#0x30
 	add	a,r6
 	mov	@r1,a
-;	./src/angry_bird.c:235: control_angle_[i++] = '\0';
+;	./src/angry_bird.c:253: control_angle_[i++] = '\0';
 	mov	a,r4
-	add	a,#_angrybird_game_state_control_angle__196609_65
+	add	a,#_angrybird_game_state_control_angle__196609_62
 	mov	r0,a
 	mov	@r0,#0x00
-;	./src/angry_bird.c:237: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
+;	./src/angry_bird.c:255: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x1e
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:238: OLED_DisplayString("   ");
-	mov	dptr,#___str_4
+;	./src/angry_bird.c:256: OLED_DisplayString("   ");
+	mov	dptr,#___str_2
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:239: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
+;	./src/angry_bird.c:257: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x1e
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:240: OLED_DisplayString(control_angle_);
-	mov	dptr,#_angrybird_game_state_control_angle__196609_65
+;	./src/angry_bird.c:258: OLED_DisplayString(control_angle_);
+	mov	dptr,#_angrybird_game_state_control_angle__196609_62
 	mov	b,#0x40
 	lcall	_OLED_DisplayString
 00116$:
-;	./src/angry_bird.c:245: if (((but_left == 0) && (prebut_left == 1)) || ((but_right == 0) && (prebut_right == 1)))
+;	./src/angry_bird.c:263: if (((but_left == 0) && (prebut_left == 1)) || ((but_right == 0) && (prebut_right == 1)))
 	jb	_INT0,00134$
 	mov	a,#0x01
-	cjne	a,_prebut_left,00616$
+	cjne	a,_prebut_left,00707$
 	dec	a
-	cjne	a,(_prebut_left + 1),00616$
+	cjne	a,(_prebut_left + 1),00707$
 	sjmp	00130$
-00616$:
+00707$:
 00134$:
-	jnb	_INT1,00617$
+	jnb	_INT1,00708$
 	ljmp	00131$
-00617$:
+00708$:
 	mov	a,#0x01
-	cjne	a,_prebut_right,00618$
+	cjne	a,_prebut_right,00709$
 	dec	a
-	cjne	a,(_prebut_right + 1),00618$
-	sjmp	00619$
-00618$:
+	cjne	a,(_prebut_right + 1),00709$
+	sjmp	00710$
+00709$:
 	ljmp	00131$
-00619$:
+00710$:
 00130$:
-;	./src/angry_bird.c:248: int which = (but_left == 0) ? 1 : 0;
-	jb	_INT0,00212$
+;	./src/angry_bird.c:266: int which = (but_left == 0) ? 1 : 0;
+	jb	_INT0,00230$
 	mov	r7,#0x01
-	sjmp	00213$
-00212$:
+	sjmp	00231$
+00230$:
 	mov	r7,#0x00
-00213$:
-;	./src/angry_bird.c:249: if (but_left == 0 || but_right == 0)
+00231$:
+;	./src/angry_bird.c:267: if (but_left == 0 || but_right == 0)
 	jnb	_INT0,00127$
 	jb	_INT1,00131$
 00127$:
-;	./src/angry_bird.c:251: if (which == 1)
+;	./src/angry_bird.c:269: if (which == 1)
 	cjne	r7,#0x01,00125$
-;	./src/angry_bird.c:253: control_strength--;
+;	./src/angry_bird.c:271: control_strength--;
 	dec	_control_strength
 	mov	a,#0xff
-	cjne	a,_control_strength,00625$
+	cjne	a,_control_strength,00716$
 	dec	(_control_strength + 1)
-00625$:
-;	./src/angry_bird.c:254: if (control_strength < 1)
+00716$:
+;	./src/angry_bird.c:272: if (control_strength < 1)
 	clr	c
 	mov	a,_control_strength
 	subb	a,#0x01
@@ -1315,18 +1290,18 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00126$
-;	./src/angry_bird.c:255: control_strength = 1;
+;	./src/angry_bird.c:273: control_strength = 1;
 	mov	_control_strength,#0x01
 	mov	(_control_strength + 1),#0x00
 	sjmp	00126$
 00125$:
-;	./src/angry_bird.c:259: control_strength--;
-	dec	_control_strength
-	mov	a,#0xff
-	cjne	a,_control_strength,00627$
-	dec	(_control_strength + 1)
-00627$:
-;	./src/angry_bird.c:260: if (control_strength > 3)
+;	./src/angry_bird.c:277: control_strength++;
+	inc	_control_strength
+	clr	a
+	cjne	a,_control_strength,00718$
+	inc	(_control_strength + 1)
+00718$:
+;	./src/angry_bird.c:278: if (control_strength > 3)
 	clr	c
 	mov	a,#0x03
 	subb	a,_control_strength
@@ -1335,64 +1310,64 @@ _angrybird_game_state:
 	xrl	b,#0x80
 	subb	a,b
 	jnc	00126$
-;	./src/angry_bird.c:261: control_strength = 3;
+;	./src/angry_bird.c:279: control_strength = 3;
 	mov	_control_strength,#0x03
 	mov	(_control_strength + 1),#0x00
 00126$:
-;	./src/angry_bird.c:266: control_strength_[0] = '0' + control_strength;
+;	./src/angry_bird.c:284: control_strength_[0] = '0' + control_strength;
 	mov	r7,_control_strength
 	mov	a,#0x30
 	add	a,r7
-	mov	_angrybird_game_state_control_strength__196609_71,a
-;	./src/angry_bird.c:267: control_strength_[1] = '\0';
-	mov	(_angrybird_game_state_control_strength__196609_71 + 0x0001),#0x00
-;	./src/angry_bird.c:269: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
+	mov	_angrybird_game_state_control_strength__196609_68,a
+;	./src/angry_bird.c:285: control_strength_[1] = '\0';
+	mov	(_angrybird_game_state_control_strength__196609_68 + 0x0001),#0x00
+;	./src/angry_bird.c:287: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x0a
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:270: OLED_DisplayString(" ");
-	mov	dptr,#___str_5
+;	./src/angry_bird.c:288: OLED_DisplayString(" ");
+	mov	dptr,#___str_3
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/angry_bird.c:271: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
+;	./src/angry_bird.c:289: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
 	mov	_OLED_SetCursor_PARM_2,#0x0a
 	mov	dpl,#0x00
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:272: OLED_DisplayString(control_strength_);
-	mov	dptr,#_angrybird_game_state_control_strength__196609_71
+;	./src/angry_bird.c:290: OLED_DisplayString(control_strength_);
+	mov	dptr,#_angrybird_game_state_control_strength__196609_68
 	mov	b,#0x40
 	lcall	_OLED_DisplayString
 00131$:
-;	./src/angry_bird.c:277: if ((but_enter == 0) && (prebut_enter == 1))
-	jnb	_P2_2,00629$
+;	./src/angry_bird.c:295: if ((but_enter == 0) && (prebut_enter == 1))
+	jnb	_P2_2,00720$
 	ljmp	00159$
-00629$:
+00720$:
 	mov	a,#0x01
-	cjne	a,_prebut_enter,00630$
+	cjne	a,_prebut_enter,00721$
 	dec	a
-	cjne	a,(_prebut_enter + 1),00630$
-	sjmp	00631$
-00630$:
+	cjne	a,(_prebut_enter + 1),00721$
+	sjmp	00722$
+00721$:
 	ljmp	00159$
-00631$:
-;	./src/angry_bird.c:279: delay_ms(10);
+00722$:
+;	./src/angry_bird.c:297: delay_ms(10);
 	mov	dptr,#0x000a
 	lcall	_delay_ms
-;	./src/angry_bird.c:280: if (but_enter == 0)
-	jnb	_P2_2,00632$
+;	./src/angry_bird.c:298: if (but_enter == 0)
+	jnb	_P2_2,00723$
 	ljmp	00159$
-00632$:
-;	./src/angry_bird.c:282: bird_amt--;
+00723$:
+;	./src/angry_bird.c:300: bird_amt--;
 	dec	_bird_amt
 	mov	a,#0xff
-	cjne	a,_bird_amt,00633$
+	cjne	a,_bird_amt,00724$
 	dec	(_bird_amt + 1)
-00633$:
-;	./src/angry_bird.c:284: row_offset = 0;
+00724$:
+;	./src/angry_bird.c:302: row_offset = 0;
 	clr	a
 	mov	_row_offset,a
 	mov	(_row_offset + 1),a
-;	./src/angry_bird.c:285: col_offset = bird_remain_col_cursor + (bird_total_amount - bird_amt - 1) * 8;
+;	./src/angry_bird.c:303: col_offset = bird_remain_col_cursor + (bird_total_amount - bird_amt - 1) * 8;
 	mov	a,#0x08
 	clr	c
 	subb	a,_bird_amt
@@ -1418,10 +1393,10 @@ _angrybird_game_state:
 	clr	a
 	addc	a,r7
 	mov	(_col_offset + 1),a
-;	./src/angry_bird.c:286: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:304: for (int j = 0; j < bird_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
-00171$:
+00177$:
 	clr	c
 	mov	a,r6
 	subb	a,#0x08
@@ -1429,13 +1404,13 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00136$
-;	./src/angry_bird.c:288: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:306: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x00
-00168$:
-	cjne	r5,#0x01,00635$
-00635$:
-	jnc	00172$
-;	./src/angry_bird.c:290: OLED_SetCursor(row_offset + i, col_offset + j);
+00174$:
+	cjne	r5,#0x01,00726$
+00726$:
+	jnc	00178$
+;	./src/angry_bird.c:308: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	clr	a
 	add	a,r4
@@ -1448,22 +1423,22 @@ _angrybird_game_state:
 	push	ar7
 	push	ar6
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:291: oledSendData(0x00);
+;	./src/angry_bird.c:309: oledSendData(0x00);
 	mov	dpl,#0x00
 	lcall	_oledSendData
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:288: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:306: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x01
-	sjmp	00168$
-00172$:
-;	./src/angry_bird.c:286: for (int j = 0; j < bird_cul_size; j++)
+	sjmp	00174$
+00178$:
+;	./src/angry_bird.c:304: for (int j = 0; j < bird_cul_size; j++)
 	inc	r6
-	cjne	r6,#0x00,00171$
+	cjne	r6,#0x00,00177$
 	inc	r7
-	sjmp	00171$
+	sjmp	00177$
 00136$:
-;	./src/angry_bird.c:298: float delta_y = (control_angle_value) / (SQRT_2 / 2) * getsine(control_angle);
+;	./src/angry_bird.c:316: float delta_y = (control_angle_value) / (SQRT_2 / 2) * getsine(control_angle);
 	mov	dpl,_control_angle
 	mov	dph,(_control_angle + 1)
 	lcall	_getsine
@@ -1475,15 +1450,15 @@ _angrybird_game_state:
 	push	ar5
 	push	ar6
 	push	ar7
-;	./src/angry_bird.c:299: float delta_x = control_strength_value * control_strength - delta_y * 4;
+;	./src/angry_bird.c:317: float delta_x = control_strength_value * control_strength - delta_y * 4;
 	mov	dptr,#0xc3b7
 	mov	b,#0x07
 	mov	a,#0x41
 	lcall	___fsmul
-	mov	_angrybird_game_state_delta_y_196609_78,dpl
-	mov	(_angrybird_game_state_delta_y_196609_78 + 1),dph
-	mov	(_angrybird_game_state_delta_y_196609_78 + 2),b
-	mov	(_angrybird_game_state_delta_y_196609_78 + 3),a
+	mov	_angrybird_game_state_delta_y_196609_75,dpl
+	mov	(_angrybird_game_state_delta_y_196609_75 + 1),dph
+	mov	(_angrybird_game_state_delta_y_196609_75 + 2),b
+	mov	(_angrybird_game_state_delta_y_196609_75 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
@@ -1495,10 +1470,10 @@ _angrybird_game_state:
 	mov	r3,dph
 	push	ar3
 	push	ar2
-	push	_angrybird_game_state_delta_y_196609_78
-	push	(_angrybird_game_state_delta_y_196609_78 + 1)
-	push	(_angrybird_game_state_delta_y_196609_78 + 2)
-	push	(_angrybird_game_state_delta_y_196609_78 + 3)
+	push	_angrybird_game_state_delta_y_196609_75
+	push	(_angrybird_game_state_delta_y_196609_75 + 1)
+	push	(_angrybird_game_state_delta_y_196609_75 + 2)
+	push	(_angrybird_game_state_delta_y_196609_75 + 3)
 	mov	dptr,#0x0000
 	mov	b,#0x80
 	mov	a,#0x40
@@ -1523,16 +1498,16 @@ _angrybird_game_state:
 	push	(_angrybird_game_state_sloc1_1_0 + 1)
 	push	(_angrybird_game_state_sloc1_1_0 + 2)
 	push	(_angrybird_game_state_sloc1_1_0 + 3)
-;	./src/angry_bird.c:300: float peak_x = bird_init_col_cursor + delta_x;
+;	./src/angry_bird.c:318: float peak_x = bird_init_col_cursor + delta_x;
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r6
 	mov	a,r7
 	lcall	___fssub
-	mov	_angrybird_game_state_delta_x_196609_78,dpl
-	mov	(_angrybird_game_state_delta_x_196609_78 + 1),dph
-	mov	(_angrybird_game_state_delta_x_196609_78 + 2),b
-	mov	(_angrybird_game_state_delta_x_196609_78 + 3),a
+	mov	_angrybird_game_state_delta_x_196609_75,dpl
+	mov	(_angrybird_game_state_delta_x_196609_75 + 1),dph
+	mov	(_angrybird_game_state_delta_x_196609_75 + 2),b
+	mov	(_angrybird_game_state_delta_x_196609_75 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
@@ -1542,39 +1517,39 @@ _angrybird_game_state:
 	push	acc
 	mov	a,#0x41
 	push	acc
-;	./src/angry_bird.c:301: float peak_y = bird_init_row_cursor - delta_y;
-	mov	dpl,_angrybird_game_state_delta_x_196609_78
-	mov	dph,(_angrybird_game_state_delta_x_196609_78 + 1)
-	mov	b,(_angrybird_game_state_delta_x_196609_78 + 2)
-	mov	a,(_angrybird_game_state_delta_x_196609_78 + 3)
+;	./src/angry_bird.c:319: float peak_y = bird_init_row_cursor - delta_y;
+	mov	dpl,_angrybird_game_state_delta_x_196609_75
+	mov	dph,(_angrybird_game_state_delta_x_196609_75 + 1)
+	mov	b,(_angrybird_game_state_delta_x_196609_75 + 2)
+	mov	a,(_angrybird_game_state_delta_x_196609_75 + 3)
 	lcall	___fsadd
-	mov	_angrybird_game_state_peak_x_196609_78,dpl
-	mov	(_angrybird_game_state_peak_x_196609_78 + 1),dph
-	mov	(_angrybird_game_state_peak_x_196609_78 + 2),b
-	mov	(_angrybird_game_state_peak_x_196609_78 + 3),a
+	mov	_angrybird_game_state_peak_x_196609_75,dpl
+	mov	(_angrybird_game_state_peak_x_196609_75 + 1),dph
+	mov	(_angrybird_game_state_peak_x_196609_75 + 2),b
+	mov	(_angrybird_game_state_peak_x_196609_75 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	push	_angrybird_game_state_delta_y_196609_78
-	push	(_angrybird_game_state_delta_y_196609_78 + 1)
-	push	(_angrybird_game_state_delta_y_196609_78 + 2)
-	push	(_angrybird_game_state_delta_y_196609_78 + 3)
-;	./src/angry_bird.c:302: float a = delta_y / pow_2(delta_x);
+	push	_angrybird_game_state_delta_y_196609_75
+	push	(_angrybird_game_state_delta_y_196609_75 + 1)
+	push	(_angrybird_game_state_delta_y_196609_75 + 2)
+	push	(_angrybird_game_state_delta_y_196609_75 + 3)
+;	./src/angry_bird.c:320: float a = delta_y / pow_2(delta_x);
 	mov	dptr,#0x0000
 	mov	b,#0xe0
 	mov	a,#0x40
 	lcall	___fssub
-	mov	_angrybird_game_state_peak_y_196609_78,dpl
-	mov	(_angrybird_game_state_peak_y_196609_78 + 1),dph
-	mov	(_angrybird_game_state_peak_y_196609_78 + 2),b
-	mov	(_angrybird_game_state_peak_y_196609_78 + 3),a
+	mov	_angrybird_game_state_peak_y_196609_75,dpl
+	mov	(_angrybird_game_state_peak_y_196609_75 + 1),dph
+	mov	(_angrybird_game_state_peak_y_196609_75 + 2),b
+	mov	(_angrybird_game_state_peak_y_196609_75 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	mov	dpl,_angrybird_game_state_delta_x_196609_78
-	mov	dph,(_angrybird_game_state_delta_x_196609_78 + 1)
-	mov	b,(_angrybird_game_state_delta_x_196609_78 + 2)
-	mov	a,(_angrybird_game_state_delta_x_196609_78 + 3)
+	mov	dpl,_angrybird_game_state_delta_x_196609_75
+	mov	dph,(_angrybird_game_state_delta_x_196609_75 + 1)
+	mov	b,(_angrybird_game_state_delta_x_196609_75 + 2)
+	mov	a,(_angrybird_game_state_delta_x_196609_75 + 3)
 	lcall	_pow_2
 	mov	r2,dpl
 	mov	r3,dph
@@ -1584,28 +1559,28 @@ _angrybird_game_state:
 	push	ar3
 	push	ar6
 	push	ar7
-;	./src/angry_bird.c:304: row_offset = bird_init_row_cursor;
-	mov	dpl,_angrybird_game_state_delta_y_196609_78
-	mov	dph,(_angrybird_game_state_delta_y_196609_78 + 1)
-	mov	b,(_angrybird_game_state_delta_y_196609_78 + 2)
-	mov	a,(_angrybird_game_state_delta_y_196609_78 + 3)
+;	./src/angry_bird.c:322: row_offset = bird_init_row_cursor;
+	mov	dpl,_angrybird_game_state_delta_y_196609_75
+	mov	dph,(_angrybird_game_state_delta_y_196609_75 + 1)
+	mov	b,(_angrybird_game_state_delta_y_196609_75 + 2)
+	mov	a,(_angrybird_game_state_delta_y_196609_75 + 3)
 	lcall	___fsdiv
-	mov	_angrybird_game_state_a_196609_78,dpl
-	mov	(_angrybird_game_state_a_196609_78 + 1),dph
-	mov	(_angrybird_game_state_a_196609_78 + 2),b
-	mov	(_angrybird_game_state_a_196609_78 + 3),a
+	mov	_angrybird_game_state_a_196609_75,dpl
+	mov	(_angrybird_game_state_a_196609_75 + 1),dph
+	mov	(_angrybird_game_state_a_196609_75 + 2),b
+	mov	(_angrybird_game_state_a_196609_75 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
 	mov	_row_offset,#0x07
 	mov	(_row_offset + 1),#0x00
-;	./src/angry_bird.c:305: col_offset = bird_init_col_cursor;
+;	./src/angry_bird.c:323: col_offset = bird_init_col_cursor;
 	mov	_col_offset,#0x08
 	mov	(_col_offset + 1),#0x00
-;	./src/angry_bird.c:306: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:324: for (int j = 0; j < bird_cul_size; j++)
 	mov	r2,#0x00
 	mov	r3,#0x00
-00177$:
+00183$:
 	clr	c
 	mov	a,r2
 	subb	a,#0x08
@@ -1613,13 +1588,13 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00138$
-;	./src/angry_bird.c:308: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:326: for (int i = 0; i < bird_row_size; i++)
 	mov	r7,#0x00
-00174$:
-	cjne	r7,#0x01,00639$
-00639$:
-	jnc	00178$
-;	./src/angry_bird.c:310: OLED_SetCursor(row_offset + i, col_offset + j);
+00180$:
+	cjne	r7,#0x01,00730$
+00730$:
+	jnc	00184$
+;	./src/angry_bird.c:328: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r6,_row_offset
 	clr	a
 	add	a,r6
@@ -1632,47 +1607,47 @@ _angrybird_game_state:
 	push	ar3
 	push	ar2
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:311: oledSendData(0x00);
+;	./src/angry_bird.c:329: oledSendData(0x00);
 	mov	dpl,#0x00
 	lcall	_oledSendData
 	pop	ar2
 	pop	ar3
-;	./src/angry_bird.c:308: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:326: for (int i = 0; i < bird_row_size; i++)
 	mov	r7,#0x01
-	sjmp	00174$
-00178$:
-;	./src/angry_bird.c:306: for (int j = 0; j < bird_cul_size; j++)
+	sjmp	00180$
+00184$:
+;	./src/angry_bird.c:324: for (int j = 0; j < bird_cul_size; j++)
 	inc	r2
-	cjne	r2,#0x00,00177$
+	cjne	r2,#0x00,00183$
 	inc	r3
-	sjmp	00177$
+	sjmp	00183$
 00138$:
-;	./src/angry_bird.c:315: for (int i = 16; i <= 119; i += 8)
-	mov	_angrybird_game_state_i_262145_83,#0x10
-	mov	(_angrybird_game_state_i_262145_83 + 1),#0x00
-00198$:
+;	./src/angry_bird.c:333: for (int i = 16; i <= 119; i += 8)
+	mov	_angrybird_game_state_i_262145_80,#0x10
+	mov	(_angrybird_game_state_i_262145_80 + 1),#0x00
+00204$:
 	clr	c
 	mov	a,#0x77
-	subb	a,_angrybird_game_state_i_262145_83
+	subb	a,_angrybird_game_state_i_262145_80
 	mov	a,#(0x00 ^ 0x80)
-	mov	b,(_angrybird_game_state_i_262145_83 + 1)
+	mov	b,(_angrybird_game_state_i_262145_80 + 1)
 	xrl	b,#0x80
 	subb	a,b
-	jnc	00642$
+	jnc	00733$
 	ljmp	00153$
-00642$:
-;	./src/angry_bird.c:317: int output_row = a * pow_2(i - peak_x) + peak_y;
-	mov	dpl,_angrybird_game_state_i_262145_83
-	mov	dph,(_angrybird_game_state_i_262145_83 + 1)
+00733$:
+;	./src/angry_bird.c:335: int output_row = a * pow_2(i - peak_x) + peak_y;
+	mov	dpl,_angrybird_game_state_i_262145_80
+	mov	dph,(_angrybird_game_state_i_262145_80 + 1)
 	lcall	___sint2fs
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	push	_angrybird_game_state_peak_x_196609_78
-	push	(_angrybird_game_state_peak_x_196609_78 + 1)
-	push	(_angrybird_game_state_peak_x_196609_78 + 2)
-	push	(_angrybird_game_state_peak_x_196609_78 + 3)
+	push	_angrybird_game_state_peak_x_196609_75
+	push	(_angrybird_game_state_peak_x_196609_75 + 1)
+	push	(_angrybird_game_state_peak_x_196609_75 + 2)
+	push	(_angrybird_game_state_peak_x_196609_75 + 3)
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1698,10 +1673,10 @@ _angrybird_game_state:
 	push	ar3
 	push	ar4
 	push	ar5
-	mov	dpl,_angrybird_game_state_a_196609_78
-	mov	dph,(_angrybird_game_state_a_196609_78 + 1)
-	mov	b,(_angrybird_game_state_a_196609_78 + 2)
-	mov	a,(_angrybird_game_state_a_196609_78 + 3)
+	mov	dpl,_angrybird_game_state_a_196609_75
+	mov	dph,(_angrybird_game_state_a_196609_75 + 1)
+	mov	b,(_angrybird_game_state_a_196609_75 + 2)
+	mov	a,(_angrybird_game_state_a_196609_75 + 3)
 	lcall	___fsmul
 	mov	r2,dpl
 	mov	r3,dph
@@ -1710,10 +1685,10 @@ _angrybird_game_state:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	push	_angrybird_game_state_peak_y_196609_78
-	push	(_angrybird_game_state_peak_y_196609_78 + 1)
-	push	(_angrybird_game_state_peak_y_196609_78 + 2)
-	push	(_angrybird_game_state_peak_y_196609_78 + 3)
+	push	_angrybird_game_state_peak_y_196609_75
+	push	(_angrybird_game_state_peak_y_196609_75 + 1)
+	push	(_angrybird_game_state_peak_y_196609_75 + 2)
+	push	(_angrybird_game_state_peak_y_196609_75 + 3)
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1731,42 +1706,42 @@ _angrybird_game_state:
 	mov	b,r4
 	mov	a,r5
 	lcall	___fs2sint
-	mov	_angrybird_game_state_output_row_327681_84,dpl
-	mov	(_angrybird_game_state_output_row_327681_84 + 1),dph
-;	./src/angry_bird.c:319: if (1 <= output_row && output_row <= 7)
+	mov	_angrybird_game_state_output_row_327681_81,dpl
+	mov	(_angrybird_game_state_output_row_327681_81 + 1),dph
+;	./src/angry_bird.c:337: if (1 <= output_row && output_row <= 7)
 	clr	c
-	mov	a,_angrybird_game_state_output_row_327681_84
+	mov	a,_angrybird_game_state_output_row_327681_81
 	subb	a,#0x01
-	mov	a,(_angrybird_game_state_output_row_327681_84 + 1)
+	mov	a,(_angrybird_game_state_output_row_327681_81 + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
-	jnc	00643$
-	ljmp	00199$
-00643$:
+	jnc	00734$
+	ljmp	00205$
+00734$:
 	clr	c
 	mov	a,#0x07
-	subb	a,_angrybird_game_state_output_row_327681_84
+	subb	a,_angrybird_game_state_output_row_327681_81
 	mov	a,#(0x00 ^ 0x80)
-	mov	b,(_angrybird_game_state_output_row_327681_84 + 1)
+	mov	b,(_angrybird_game_state_output_row_327681_81 + 1)
 	xrl	b,#0x80
 	subb	a,b
-	jnc	00644$
-	ljmp	00199$
-00644$:
-;	./src/angry_bird.c:322: row_offset = output_row;
-	mov	_row_offset,_angrybird_game_state_output_row_327681_84
-	mov	(_row_offset + 1),(_angrybird_game_state_output_row_327681_84 + 1)
-;	./src/angry_bird.c:323: col_offset = bird_init_col_cursor + i;
+	jnc	00735$
+	ljmp	00205$
+00735$:
+;	./src/angry_bird.c:340: row_offset = output_row;
+	mov	_row_offset,_angrybird_game_state_output_row_327681_81
+	mov	(_row_offset + 1),(_angrybird_game_state_output_row_327681_81 + 1)
+;	./src/angry_bird.c:341: col_offset = bird_init_col_cursor + i;
 	mov	a,#0x08
-	add	a,_angrybird_game_state_i_262145_83
+	add	a,_angrybird_game_state_i_262145_80
 	mov	_col_offset,a
 	clr	a
-	addc	a,(_angrybird_game_state_i_262145_83 + 1)
+	addc	a,(_angrybird_game_state_i_262145_80 + 1)
 	mov	(_col_offset + 1),a
-;	./src/angry_bird.c:324: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:342: for (int j = 0; j < bird_cul_size; j++)
 	mov	r2,#0x00
 	mov	r3,#0x00
-00183$:
+00189$:
 	clr	c
 	mov	a,r2
 	subb	a,#0x08
@@ -1774,13 +1749,13 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00140$
-;	./src/angry_bird.c:326: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:344: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x00
-00180$:
-	cjne	r5,#0x01,00646$
-00646$:
-	jnc	00184$
-;	./src/angry_bird.c:328: OLED_SetCursor(row_offset + i, col_offset + j);
+00186$:
+	cjne	r5,#0x01,00737$
+00737$:
+	jnc	00190$
+;	./src/angry_bird.c:346: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	clr	a
 	add	a,r4
@@ -1797,7 +1772,7 @@ _angrybird_game_state:
 	pop	ar2
 	pop	ar3
 	pop	ar7
-;	./src/angry_bird.c:329: oledSendData(bird_logo[bird_cul_size * i + j]);
+;	./src/angry_bird.c:347: oledSendData(bird_logo[bird_cul_size * i + j]);
 	mov	a,r7
 	rlc	a
 	subb	a,acc
@@ -1816,29 +1791,29 @@ _angrybird_game_state:
 	lcall	_oledSendData
 	pop	ar2
 	pop	ar3
-;	./src/angry_bird.c:326: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:344: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x01
-	sjmp	00180$
-00184$:
-;	./src/angry_bird.c:324: for (int j = 0; j < bird_cul_size; j++)
+	sjmp	00186$
+00190$:
+;	./src/angry_bird.c:342: for (int j = 0; j < bird_cul_size; j++)
 	inc	r2
-	cjne	r2,#0x00,00183$
+	cjne	r2,#0x00,00189$
 	inc	r3
-	sjmp	00183$
+	sjmp	00189$
 00140$:
-;	./src/angry_bird.c:332: delay_ms(400);
+;	./src/angry_bird.c:350: delay_ms(400);
 	mov	dptr,#0x0190
 	lcall	_delay_ms
-;	./src/angry_bird.c:356: if (pig1_row_cursor <= row_offset && row_offset <= pig1_row_cursor + 1 && pig1_col_cursor - 8 < col_offset && col_offset < pig1_col_cursor + 12)
+;	./src/angry_bird.c:374: if (pig1_row_cursor <= row_offset && row_offset <= pig1_row_cursor + 1 && pig1_col_cursor - 8 < col_offset && col_offset < pig1_col_cursor + 12)
 	clr	c
 	mov	a,_row_offset
 	subb	a,#0x03
 	mov	a,(_row_offset + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
-	jnc	00649$
+	jnc	00740$
 	ljmp	00144$
-00649$:
+00740$:
 	clr	c
 	mov	a,#0x04
 	subb	a,_row_offset
@@ -1861,22 +1836,22 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00144$
-;	./src/angry_bird.c:358: pig_amt--;
+;	./src/angry_bird.c:376: pig_amt--;
 	dec	_pig_amt
 	mov	a,#0xff
-	cjne	a,_pig_amt,00653$
+	cjne	a,_pig_amt,00744$
 	dec	(_pig_amt + 1)
-00653$:
-;	./src/angry_bird.c:359: row_offset = pig1_row_cursor;
+00744$:
+;	./src/angry_bird.c:377: row_offset = pig1_row_cursor;
 	mov	_row_offset,#0x03
 	mov	(_row_offset + 1),#0x00
-;	./src/angry_bird.c:360: col_offset = pig1_col_cursor;
+;	./src/angry_bird.c:378: col_offset = pig1_col_cursor;
 	mov	_col_offset,#0x50
 	mov	(_col_offset + 1),#0x00
-;	./src/angry_bird.c:361: for (int j = 0; j < pig_cul_size; j++)
+;	./src/angry_bird.c:379: for (int j = 0; j < pig_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
-00189$:
+00195$:
 	clr	c
 	mov	a,r6
 	subb	a,#0x0c
@@ -1884,13 +1859,13 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00144$
-;	./src/angry_bird.c:363: for (int i = 0; i < pig_row_size; i++)
+;	./src/angry_bird.c:381: for (int i = 0; i < pig_row_size; i++)
 	mov	r5,#0x00
-00186$:
-	cjne	r5,#0x02,00655$
-00655$:
-	jnc	00190$
-;	./src/angry_bird.c:365: OLED_SetCursor(row_offset + i, col_offset + j);
+00192$:
+	cjne	r5,#0x02,00746$
+00746$:
+	jnc	00196$
+;	./src/angry_bird.c:383: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	mov	ar3,r5
 	mov	a,r3
@@ -1905,50 +1880,50 @@ _angrybird_game_state:
 	push	ar6
 	push	ar5
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:366: oledSendData(0x00);
+;	./src/angry_bird.c:384: oledSendData(0x00);
 	mov	dpl,#0x00
 	lcall	_oledSendData
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:363: for (int i = 0; i < pig_row_size; i++)
+;	./src/angry_bird.c:381: for (int i = 0; i < pig_row_size; i++)
 	inc	r5
-	sjmp	00186$
-00190$:
-;	./src/angry_bird.c:361: for (int j = 0; j < pig_cul_size; j++)
+	sjmp	00192$
+00196$:
+;	./src/angry_bird.c:379: for (int j = 0; j < pig_cul_size; j++)
 	inc	r6
-	cjne	r6,#0x00,00189$
+	cjne	r6,#0x00,00195$
 	inc	r7
-	sjmp	00189$
+	sjmp	00195$
 00144$:
-;	./src/angry_bird.c:371: row_offset = output_row;
-	mov	_row_offset,_angrybird_game_state_output_row_327681_84
-	mov	(_row_offset + 1),(_angrybird_game_state_output_row_327681_84 + 1)
-;	./src/angry_bird.c:372: col_offset = bird_init_col_cursor + i;
+;	./src/angry_bird.c:389: row_offset = output_row;
+	mov	_row_offset,_angrybird_game_state_output_row_327681_81
+	mov	(_row_offset + 1),(_angrybird_game_state_output_row_327681_81 + 1)
+;	./src/angry_bird.c:390: col_offset = bird_init_col_cursor + i;
 	mov	a,#0x08
-	add	a,_angrybird_game_state_i_262145_83
+	add	a,_angrybird_game_state_i_262145_80
 	mov	_col_offset,a
 	clr	a
-	addc	a,(_angrybird_game_state_i_262145_83 + 1)
+	addc	a,(_angrybird_game_state_i_262145_80 + 1)
 	mov	(_col_offset + 1),a
-;	./src/angry_bird.c:373: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:391: for (int j = 0; j < bird_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
-00195$:
+00201$:
 	clr	c
 	mov	a,r6
 	subb	a,#0x08
 	mov	a,r7
 	xrl	a,#0x80
 	subb	a,#0x80
-	jnc	00199$
-;	./src/angry_bird.c:375: for (int i = 0; i < bird_row_size; i++)
+	jnc	00205$
+;	./src/angry_bird.c:393: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x00
-00192$:
-	cjne	r5,#0x01,00659$
-00659$:
-	jnc	00196$
-;	./src/angry_bird.c:377: OLED_SetCursor(row_offset + i, col_offset + j);
+00198$:
+	cjne	r5,#0x01,00750$
+00750$:
+	jnc	00202$
+;	./src/angry_bird.c:395: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	clr	a
 	add	a,r4
@@ -1961,40 +1936,40 @@ _angrybird_game_state:
 	push	ar7
 	push	ar6
 	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:378: oledSendData(0x00);
+;	./src/angry_bird.c:396: oledSendData(0x00);
 	mov	dpl,#0x00
 	lcall	_oledSendData
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:375: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:393: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x01
-	sjmp	00192$
-00196$:
-;	./src/angry_bird.c:373: for (int j = 0; j < bird_cul_size; j++)
+	sjmp	00198$
+00202$:
+;	./src/angry_bird.c:391: for (int j = 0; j < bird_cul_size; j++)
 	inc	r6
-	cjne	r6,#0x00,00195$
+	cjne	r6,#0x00,00201$
 	inc	r7
-	sjmp	00195$
-00199$:
-;	./src/angry_bird.c:315: for (int i = 16; i <= 119; i += 8)
+	sjmp	00201$
+00205$:
+;	./src/angry_bird.c:333: for (int i = 16; i <= 119; i += 8)
 	mov	a,#0x08
-	add	a,_angrybird_game_state_i_262145_83
-	mov	_angrybird_game_state_i_262145_83,a
+	add	a,_angrybird_game_state_i_262145_80
+	mov	_angrybird_game_state_i_262145_80,a
 	clr	a
-	addc	a,(_angrybird_game_state_i_262145_83 + 1)
-	mov	(_angrybird_game_state_i_262145_83 + 1),a
-	ljmp	00198$
+	addc	a,(_angrybird_game_state_i_262145_80 + 1)
+	mov	(_angrybird_game_state_i_262145_80 + 1),a
+	ljmp	00204$
 00153$:
-;	./src/angry_bird.c:385: row_offset = bird_init_row_cursor;
+;	./src/angry_bird.c:403: row_offset = bird_init_row_cursor;
 	mov	_row_offset,#0x07
 	mov	(_row_offset + 1),#0x00
-;	./src/angry_bird.c:386: col_offset = bird_init_col_cursor;
+;	./src/angry_bird.c:404: col_offset = bird_init_col_cursor;
 	mov	_col_offset,#0x08
 	mov	(_col_offset + 1),#0x00
-;	./src/angry_bird.c:387: for (int j = 0; j < bird_cul_size; j++)
+;	./src/angry_bird.c:405: for (int j = 0; j < bird_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
-00204$:
+00210$:
 	clr	c
 	mov	a,r6
 	subb	a,#0x08
@@ -2002,13 +1977,13 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00159$
-;	./src/angry_bird.c:389: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:407: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x00
-00201$:
-	cjne	r5,#0x01,00663$
-00663$:
-	jnc	00205$
-;	./src/angry_bird.c:391: OLED_SetCursor(row_offset + i, col_offset + j);
+00207$:
+	cjne	r5,#0x01,00754$
+00754$:
+	jnc	00211$
+;	./src/angry_bird.c:409: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r4,_row_offset
 	clr	a
 	add	a,r4
@@ -2023,7 +1998,7 @@ _angrybird_game_state:
 	push	ar3
 	lcall	_OLED_SetCursor
 	pop	ar3
-;	./src/angry_bird.c:392: oledSendData(bird_logo[bird_cul_size * i + j]);
+;	./src/angry_bird.c:410: oledSendData(bird_logo[bird_cul_size * i + j]);
 	mov	a,r3
 	rlc	a
 	subb	a,acc
@@ -2040,69 +2015,282 @@ _angrybird_game_state:
 	lcall	_oledSendData
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:389: for (int i = 0; i < bird_row_size; i++)
+;	./src/angry_bird.c:407: for (int i = 0; i < bird_row_size; i++)
 	mov	r5,#0x01
-	sjmp	00201$
-00205$:
-;	./src/angry_bird.c:387: for (int j = 0; j < bird_cul_size; j++)
+	sjmp	00207$
+00211$:
+;	./src/angry_bird.c:405: for (int j = 0; j < bird_cul_size; j++)
 	inc	r6
-	cjne	r6,#0x00,00204$
+	cjne	r6,#0x00,00210$
 	inc	r7
-	sjmp	00204$
+	sjmp	00210$
 00159$:
-;	./src/angry_bird.c:410: if (pig_amt == 0 || bird_amt == 0)
+;	./src/angry_bird.c:421: if (pig_amt == 0 || bird_amt == 0)
 	mov	a,_pig_amt
 	orl	a,(_pig_amt + 1)
-	jz	00163$
+	jz	00170$
 	mov	a,_bird_amt
 	orl	a,(_bird_amt + 1)
-	jnz	00165$
-;	./src/angry_bird.c:416: else if (bird_amt == 0)
-00163$:
-;	./src/angry_bird.c:420: delay_ms(3000);
-	mov	dptr,#0x0bb8
+	jz	00758$
+	ljmp	00171$
+00758$:
+00170$:
+;	./src/angry_bird.c:423: if (pig_amt == 0)
+	mov	a,_pig_amt
+	orl	a,(_pig_amt + 1)
+	jz	00759$
+	ljmp	00168$
+00759$:
+;	./src/angry_bird.c:425: OLED_SetCursor(win_row_cursor, win_col_cursor);
+	mov	_OLED_SetCursor_PARM_2,#0x1f
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
+	mov	r6,#0x00
+	mov	r7,#0x00
+00216$:
+	clr	c
+	mov	a,r6
+	subb	a,#0x40
+	mov	a,r7
+	xrl	a,#0x80
+	subb	a,#0x80
+	jc	00760$
+	ljmp	00169$
+00760$:
+;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
+	mov	r4,#0x00
+	mov	r5,#0x00
+00213$:
+	clr	c
+	mov	a,r4
+	subb	a,#0x02
+	mov	a,r5
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00217$
+;	./src/angry_bird.c:430: OLED_SetCursor(row_offset + i, col_offset + j);
+	mov	r3,_row_offset
+	mov	ar2,r4
+	mov	a,r2
+	add	a,r3
+	mov	dpl,a
+	mov	r3,_col_offset
+	mov	ar2,r6
+	mov	a,r2
+	add	a,r3
+	mov	_OLED_SetCursor_PARM_2,a
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_OLED_SetCursor
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	./src/angry_bird.c:431: oledSendData(win_page[win_cul_size * i + j]);
+	mov	ar2,r4
+	mov	a,r5
+	anl	a,#0x03
+	mov	c,acc.0
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	rrc	a
+	mov	c,acc.0
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	mov	r3,a
+	mov	a,r6
+	add	a,r2
+	mov	r2,a
+	mov	a,r7
+	addc	a,r3
+	mov	r3,a
+	mov	a,r2
+	add	a,#_win_page
+	mov	dpl,a
+	mov	a,r3
+	addc	a,#(_win_page >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	dpl,a
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_oledSendData
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
+	inc	r4
+	cjne	r4,#0x00,00213$
+	inc	r5
+	sjmp	00213$
+00217$:
+;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
+	inc	r6
+	cjne	r6,#0x00,00763$
+	inc	r7
+00763$:
+	ljmp	00216$
+00168$:
+;	./src/angry_bird.c:435: else if (bird_amt == 0)
+	mov	a,_bird_amt
+	orl	a,(_bird_amt + 1)
+	jz	00764$
+	ljmp	00169$
+00764$:
+;	./src/angry_bird.c:437: OLED_SetCursor(over_row_cursor, over_col_cursor);
+	mov	_OLED_SetCursor_PARM_2,#0x1f
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
+	mov	r6,#0x00
+	mov	r7,#0x00
+00222$:
+	clr	c
+	mov	a,r6
+	subb	a,#0x40
+	mov	a,r7
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00169$
+;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
+	mov	r4,#0x00
+	mov	r5,#0x00
+00219$:
+	clr	c
+	mov	a,r4
+	subb	a,#0x02
+	mov	a,r5
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00223$
+;	./src/angry_bird.c:442: OLED_SetCursor(row_offset + i, col_offset + j);
+	mov	r3,_row_offset
+	mov	ar2,r4
+	mov	a,r2
+	add	a,r3
+	mov	dpl,a
+	mov	r3,_col_offset
+	mov	ar2,r6
+	mov	a,r2
+	add	a,r3
+	mov	_OLED_SetCursor_PARM_2,a
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_OLED_SetCursor
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	./src/angry_bird.c:443: oledSendData(over_page[over_cul_size * i + j]);
+	mov	ar2,r4
+	mov	a,r5
+	anl	a,#0x03
+	mov	c,acc.0
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	rrc	a
+	mov	c,acc.0
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	rrc	a
+	xch	a,r2
+	mov	r3,a
+	mov	a,r6
+	add	a,r2
+	mov	r2,a
+	mov	a,r7
+	addc	a,r3
+	mov	r3,a
+	mov	a,r2
+	add	a,#_over_page
+	mov	dpl,a
+	mov	a,r3
+	addc	a,#(_over_page >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	dpl,a
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_oledSendData
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
+	inc	r4
+	cjne	r4,#0x00,00219$
+	inc	r5
+	sjmp	00219$
+00223$:
+;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
+	inc	r6
+	cjne	r6,#0x00,00768$
+	inc	r7
+00768$:
+	ljmp	00222$
+00169$:
+;	./src/angry_bird.c:447: delay_ms(1000);
+	mov	dptr,#0x03e8
 	lcall	_delay_ms
-;	./src/angry_bird.c:421: cur_state = STATE_HOME;
+;	./src/angry_bird.c:448: cur_state = STATE_HOME;
 	mov	_cur_state,#0x01
 	mov	(_cur_state + 1),#0x00
-;	./src/angry_bird.c:423: send_data = cur_state;
+;	./src/angry_bird.c:450: send_data = cur_state;
 	mov	_send_data,#0x01
-;	./src/angry_bird.c:424: send_flag = 1;
+;	./src/angry_bird.c:451: send_flag = 1;
 	mov	_send_flag,#0x01
-00165$:
-;	./src/angry_bird.c:428: prebut_enter = but_enter;
+00171$:
+;	./src/angry_bird.c:455: prebut_enter = but_enter;
 	mov	c,_P2_2
 	clr	a
 	rlc	a
 	mov	_prebut_enter,a
 	mov	(_prebut_enter + 1),#0x00
-;	./src/angry_bird.c:429: prebut_up = but_up;
+;	./src/angry_bird.c:456: prebut_up = but_up;
 	mov	c,_P2_0
 	clr	a
 	rlc	a
 	mov	_prebut_up,a
 	mov	(_prebut_up + 1),#0x00
-;	./src/angry_bird.c:430: prebut_down = but_down;
+;	./src/angry_bird.c:457: prebut_down = but_down;
 	mov	c,_P2_1
 	clr	a
 	rlc	a
 	mov	_prebut_down,a
 	mov	(_prebut_down + 1),#0x00
-;	./src/angry_bird.c:431: prebut_left = but_left;
+;	./src/angry_bird.c:458: prebut_left = but_left;
 	mov	c,_INT0
 	clr	a
 	rlc	a
 	mov	_prebut_left,a
 	mov	(_prebut_left + 1),#0x00
-;	./src/angry_bird.c:432: prebut_right = but_right;
+;	./src/angry_bird.c:459: prebut_right = but_right;
 	mov	c,_INT1
 	clr	a
 	rlc	a
 	mov	_prebut_right,a
 	mov	(_prebut_right + 1),#0x00
-;	./src/angry_bird.c:433: delay_ms(10);
+;	./src/angry_bird.c:460: delay_ms(10);
 	mov	dptr,#0x000a
-;	./src/angry_bird.c:434: }
+;	./src/angry_bird.c:461: }
 	ljmp	_delay_ms
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'getsine'
@@ -2110,14 +2298,14 @@ _angrybird_game_state:
 ;angle                     Allocated to registers r6 r7 
 ;index                     Allocated to registers r6 r7 
 ;------------------------------------------------------------
-;	./src/angry_bird.c:440: float getsine(int angle)
+;	./src/angry_bird.c:467: float getsine(int angle)
 ;	-----------------------------------------
 ;	 function getsine
 ;	-----------------------------------------
 _getsine:
 	mov	r6,dpl
 	mov	r7,dph
-;	./src/angry_bird.c:442: int index = (angle > 0) ? (angle / 10) : (-angle / 10);
+;	./src/angry_bird.c:469: int index = (angle > 0) ? (angle / 10) : (-angle / 10);
 	clr	c
 	clr	a
 	subb	a,r6
@@ -2157,7 +2345,7 @@ _getsine:
 00104$:
 	mov	ar6,r3
 	mov	ar7,r4
-;	./src/angry_bird.c:443: return (angle > 0) ? sine_table[index] : -sine_table[index];
+;	./src/angry_bird.c:470: return (angle > 0) ? sine_table[index] : -sine_table[index];
 	mov	a,r5
 	jz	00105$
 	mov	a,r6
@@ -2239,21 +2427,21 @@ _getsine:
 	mov	dph,r3
 	mov	b,r4
 	mov	a,r5
-;	./src/angry_bird.c:444: }
+;	./src/angry_bird.c:471: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'getcosine'
 ;------------------------------------------------------------
 ;angle                     Allocated to registers r6 r7 
 ;------------------------------------------------------------
-;	./src/angry_bird.c:445: float getcosine(int angle)
+;	./src/angry_bird.c:472: float getcosine(int angle)
 ;	-----------------------------------------
 ;	 function getcosine
 ;	-----------------------------------------
 _getcosine:
 	mov	r6,dpl
 	mov	r7,dph
-;	./src/angry_bird.c:447: return getsine((angle > 0) ? -angle + 90 : angle + 90);
+;	./src/angry_bird.c:474: return getsine((angle > 0) ? -angle + 90 : angle + 90);
 	clr	c
 	clr	a
 	subb	a,r6
@@ -2286,14 +2474,14 @@ _getcosine:
 00104$:
 	mov	dpl,r4
 	mov	dph,r5
-;	./src/angry_bird.c:448: }
+;	./src/angry_bird.c:475: }
 	ljmp	_getsine
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'pow_2'
 ;------------------------------------------------------------
 ;n                         Allocated to registers r4 r5 r6 r7 
 ;------------------------------------------------------------
-;	./src/angry_bird.c:449: float pow_2(float n)
+;	./src/angry_bird.c:476: float pow_2(float n)
 ;	-----------------------------------------
 ;	 function pow_2
 ;	-----------------------------------------
@@ -2302,7 +2490,7 @@ _pow_2:
 	mov	r5,dph
 	mov	r6,b
 	mov	r7,a
-;	./src/angry_bird.c:451: return n * n;
+;	./src/angry_bird.c:478: return n * n;
 	push	ar4
 	push	ar5
 	push	ar6
@@ -2323,7 +2511,7 @@ _pow_2:
 	mov	dph,r5
 	mov	b,r6
 	mov	a,r7
-;	./src/angry_bird.c:452: }
+;	./src/angry_bird.c:479: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -2378,6 +2566,264 @@ _bird_logo:
 	.db #0x81	; 129
 	.db #0xc3	; 195
 	.db #0x7e	; 126
+_win_page:
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x1f	; 31
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xf0	; 240
+	.db #0xe0	; 224
+	.db #0xfc	; 252
+	.db #0xff	; 255
+	.db #0x1f	; 31
+	.db #0x3f	; 63
+	.db #0xff	; 255
+	.db #0xf8	; 248
+	.db #0xe0	; 224
+	.db #0xfc	; 252
+	.db #0xff	; 255
+	.db #0x7f	; 127
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0x3e	; 62
+	.db #0x7c	; 124
+	.db #0xf0	; 240
+	.db #0xe0	; 224
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x0f	; 15
+	.db #0x7f	; 127
+	.db #0x7f	; 127
+	.db #0x1f	; 31
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+_over_page:
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0xfc	; 252
+	.db #0xfe	; 254
+	.db #0xff	; 255
+	.db #0x07	; 7
+	.db #0x03	; 3
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0xdf	; 223
+	.db #0xfe	; 254
+	.db #0xfe	; 254
+	.db #0xf8	; 248
+	.db #0x03	; 3
+	.db #0x0f	; 15
+	.db #0x7f	; 127
+	.db #0xfe	; 254
+	.db #0xf0	; 240
+	.db #0x80	; 128
+	.db #0xe0	; 224
+	.db #0xfc	; 252
+	.db #0xff	; 255
+	.db #0x1f	; 31
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0x33	; 51	'3'
+	.db #0x33	; 51	'3'
+	.db #0x33	; 51	'3'
+	.db #0x33	; 51	'3'
+	.db #0x33	; 51	'3'
+	.db #0x03	; 3
+	.db #0x00	; 0
+	.db #0xfe	; 254
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0xff	; 255
+	.db #0x73	; 115	's'
+	.db #0xf3	; 243
+	.db #0xf7	; 247
+	.db #0xff	; 255
+	.db #0xbf	; 191
+	.db #0x1e	; 30
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x03	; 3
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x04	; 4
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.area CONST   (CODE)
 ___str_0:
 	.ascii "S "
@@ -2386,16 +2832,6 @@ ___str_0:
 	.area CONST   (CODE)
 ___str_1:
 	.ascii "A "
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_2:
-	.ascii "             "
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_3:
-	.ascii "Waiting .... "
 	.db 0x00
 	.area CSEG    (CODE)
 _sine_table:
@@ -2410,12 +2846,12 @@ _sine_table:
 	.byte #0xda, #0x1b, #0x7c, #0x3f	;  9.848000e-01
 	.byte #0x00, #0x00, #0x80, #0x3f	;  1.000000e+00
 	.area CONST   (CODE)
-___str_4:
+___str_2:
 	.ascii "   "
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_5:
+___str_3:
 	.ascii " "
 	.db 0x00
 	.area CSEG    (CODE)
