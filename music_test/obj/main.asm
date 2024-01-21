@@ -13,6 +13,9 @@
 	.globl _music_table
 	.globl _main
 	.globl _T0_isr
+	.globl _OLED_SetCursor
+	.globl _OLED_DisplayString
+	.globl _OLED_Init
 	.globl _Delay_La
 	.globl _Delay_So
 	.globl _Delay_Fa
@@ -115,9 +118,11 @@
 	.globl _DPL
 	.globl _SP
 	.globl _P0
-	.globl _black_space
 	.globl _duration_time
-	.globl _music_plat_note
+	.globl _music_play_note
+	.globl _stable_scan
+	.globl _scan_cnting
+	.globl _music_on
 	.globl _LookForSound
 ;--------------------------------------------------------
 ; special function registers
@@ -248,11 +253,15 @@ bits:
 ; internal ram data
 ;--------------------------------------------------------
 	.area DSEG    (DATA)
-_music_plat_note::
+_music_on::
+	.ds 2
+_scan_cnting::
+	.ds 2
+_stable_scan::
+	.ds 2
+_music_play_note::
 	.ds 2
 _duration_time::
-	.ds 2
-_black_space::
 	.ds 2
 ;--------------------------------------------------------
 ; overlayable items in internal ram
@@ -325,16 +334,22 @@ __interrupt_vect:
 	.globl __mcs51_genXINIT
 	.globl __mcs51_genXRAMCLEAR
 	.globl __mcs51_genRAMCLEAR
-;	./src/main.c:5: int music_plat_note = 0, duration_time = 0, black_space = 50; // Adjust blank_space as needed
+;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
 	clr	a
-	mov	_music_plat_note,a
-	mov	(_music_plat_note + 1),a
-;	./src/main.c:5: 
+	mov	_music_on,a
+	mov	(_music_on + 1),a
+;	./src/main.c:8: int music_play_note = 0, duration_time = 0;
+	mov	_scan_cnting,a
+	mov	(_scan_cnting + 1),a
+;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
+	mov	_stable_scan,a
+	mov	(_stable_scan + 1),a
+;	./src/main.c:9: int music_play_note = 0, duration_time = 0;
+	mov	_music_play_note,a
+	mov	(_music_play_note + 1),a
+;	./src/main.c:9: 
 	mov	_duration_time,a
 	mov	(_duration_time + 1),a
-;	./src/main.c:5: int music_plat_note = 0, duration_time = 0, black_space = 50; // Adjust blank_space as needed
-	mov	_black_space,#0x32
-	mov	(_black_space + 1),a
 	.area GSFINAL (CODE)
 	ljmp	__sdcc_program_startup
 ;--------------------------------------------------------
@@ -352,7 +367,7 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'T0_isr'
 ;------------------------------------------------------------
-;	./src/main.c:18: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
+;	./src/main.c:26: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
 ;	-----------------------------------------
 ;	 function T0_isr
 ;	-----------------------------------------
@@ -380,22 +395,22 @@ _T0_isr:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-;	./src/main.c:21: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
+;	./src/main.c:29: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
 	mov	_TH0,#0xfc
-;	./src/main.c:22: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
+;	./src/main.c:30: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
 	mov	_TL0,#0x18
-;	./src/main.c:24: duration_time++;
+;	./src/main.c:32: duration_time++;
 	inc	_duration_time
 	clr	a
-	cjne	a,_duration_time,00159$
+	cjne	a,_duration_time,00134$
 	inc	(_duration_time + 1)
-00159$:
-;	./src/main.c:26: while (duration_time < duration_table[music_plat_note])
+00134$:
+;	./src/main.c:34: while (duration_time < duration_table[music_play_note])
 00101$:
-	mov	a,_music_plat_note
+	mov	a,_music_play_note
 	add	a,#_duration_table
 	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
+	mov	a,(_music_play_note + 1)
 	addc	a,#(_duration_table >> 8)
 	mov	dph,a
 	clr	a
@@ -411,20 +426,20 @@ _T0_isr:
 	xrl	b,#0x80
 	subb	a,b
 	jnc	00103$
-;	./src/main.c:28: duration_time++;
+;	./src/main.c:36: duration_time++;
 	inc	_duration_time
 	clr	a
-	cjne	a,_duration_time,00161$
+	cjne	a,_duration_time,00136$
 	inc	(_duration_time + 1)
-00161$:
-;	./src/main.c:29: P3_7 = 1;
+00136$:
+;	./src/main.c:37: P3_7 = 1;
 ;	assignBit
 	setb	_P3_7
-;	./src/main.c:30: LookForSound(music_table[music_plat_note]);
-	mov	a,_music_plat_note
+;	./src/main.c:38: LookForSound(music_table[music_play_note]);
+	mov	a,_music_play_note
 	add	a,#_music_table
 	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
+	mov	a,(_music_play_note + 1)
 	addc	a,#(_music_table >> 8)
 	mov	dph,a
 	clr	a
@@ -434,14 +449,14 @@ _T0_isr:
 	mov	dpl,r5
 	mov	dph,r4
 	lcall	_LookForSound
-;	./src/main.c:31: P3_7 = 0;
+;	./src/main.c:39: P3_7 = 0;
 ;	assignBit
 	clr	_P3_7
-;	./src/main.c:32: LookForSound(music_table[music_plat_note]);
-	mov	a,_music_plat_note
+;	./src/main.c:40: LookForSound(music_table[music_play_note]);
+	mov	a,_music_play_note
 	add	a,#_music_table
 	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
+	mov	a,(_music_play_note + 1)
 	addc	a,#(_music_table >> 8)
 	mov	dph,a
 	clr	a
@@ -453,7 +468,21 @@ _T0_isr:
 	lcall	_LookForSound
 	sjmp	00101$
 00103$:
-;	./src/main.c:34: if (duration_time >= duration_table[music_plat_note] && duration_time < (100 + blanck_table[music_plat_note]))
+;	./src/main.c:42: if (duration_time >= (duration_table[music_play_note] + blanck_table[music_play_note]))
+	mov	a,_music_play_note
+	add	a,#_blanck_table
+	mov	dpl,a
+	mov	a,(_music_play_note + 1)
+	addc	a,#(_blanck_table >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r4,#0x00
+	add	a,r6
+	mov	r6,a
+	mov	a,r4
+	addc	a,r7
+	mov	r7,a
 	clr	c
 	mov	a,_duration_time
 	subb	a,r6
@@ -462,112 +491,36 @@ _T0_isr:
 	mov	b,r7
 	xrl	b,#0x80
 	subb	a,b
-	jc	00112$
-	mov	a,_music_plat_note
-	add	a,#_blanck_table
-	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
-	addc	a,#(_blanck_table >> 8)
-	mov	dph,a
-	clr	a
-	movc	a,@a+dptr
-	mov	r7,a
-	mov	r6,#0x00
-	mov	a,#0x64
-	add	a,r7
-	mov	r7,a
-	clr	a
-	addc	a,r6
-	mov	r6,a
-	clr	c
-	mov	a,_duration_time
-	subb	a,r7
-	mov	a,(_duration_time + 1)
-	xrl	a,#0x80
-	mov	b,r6
-	xrl	b,#0x80
-	subb	a,b
-	jnc	00112$
-;	./src/main.c:36: P3_7 = 0; // Buzzer OFF or set to desired state
-;	assignBit
-	clr	_P3_7
-	sjmp	00115$
-00112$:
-;	./src/main.c:38: else if (duration_time >= (duration_table[music_plat_note] + blanck_table[music_plat_note]))
-	mov	a,_music_plat_note
-	add	a,#_duration_table
-	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
-	addc	a,#(_duration_table >> 8)
-	mov	dph,a
-	clr	a
-	movc	a,@a+dptr
-	mov	r7,a
-	mov	r6,#0x00
-	mov	a,_music_plat_note
-	add	a,#_blanck_table
-	mov	dpl,a
-	mov	a,(_music_plat_note + 1)
-	addc	a,#(_blanck_table >> 8)
-	mov	dph,a
-	clr	a
-	movc	a,@a+dptr
-	mov	r5,a
-	mov	r4,#0x00
-	add	a,r7
-	mov	r7,a
-	mov	a,r4
-	addc	a,r6
-	mov	r6,a
-	clr	c
-	mov	a,_duration_time
-	subb	a,r7
-	mov	a,(_duration_time + 1)
-	xrl	a,#0x80
-	mov	b,r6
-	xrl	b,#0x80
-	subb	a,b
-	jc	00115$
-;	./src/main.c:40: duration_time = 0;
+	jc	00108$
+;	./src/main.c:44: duration_time = 0;
 	clr	a
 	mov	_duration_time,a
 	mov	(_duration_time + 1),a
-;	./src/main.c:41: music_plat_note++;
-	inc	_music_plat_note
-	cjne	a,_music_plat_note,00165$
-	inc	(_music_plat_note + 1)
-00165$:
-;	./src/main.c:43: if (music_plat_note == 9)
-	mov	a,#0x09
-	cjne	a,_music_plat_note,00166$
-	clr	a
-	cjne	a,(_music_plat_note + 1),00166$
-	sjmp	00167$
-00166$:
-	sjmp	00105$
-00167$:
-;	./src/main.c:44: black_space = 200;
-	mov	_black_space,#0xc8
-	mov	(_black_space + 1),#0x00
-	sjmp	00106$
-00105$:
-;	./src/main.c:46: black_space = 50;
-	mov	_black_space,#0x32
-	mov	(_black_space + 1),#0x00
-00106$:
-;	./src/main.c:48: if (music_plat_note >= NOTE_NUM)
+;	./src/main.c:45: music_play_note++;
+	inc	_music_play_note
+	cjne	a,_music_play_note,00138$
+	inc	(_music_play_note + 1)
+00138$:
+;	./src/main.c:47: if (music_play_note >= NOTE_NUM)
 	clr	c
-	mov	a,_music_plat_note
-	subb	a,#0x11
-	mov	a,(_music_plat_note + 1)
+	mov	a,_music_play_note
+	subb	a,#0x19
+	mov	a,(_music_play_note + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
-	jc	00115$
+	jc	00108$
 ;	./src/main.c:49: TR0 = 0;
 ;	assignBit
 	clr	_TR0
-00115$:
-;	./src/main.c:51: }
+;	./src/main.c:50: music_on = 0;
+	clr	a
+	mov	_music_on,a
+	mov	(_music_on + 1),a
+;	./src/main.c:51: music_play_note = 0;
+	mov	_music_play_note,a
+	mov	(_music_play_note + 1),a
+00108$:
+;	./src/main.c:54: }
 	pop	psw
 	pop	(0+0)
 	pop	(0+1)
@@ -586,45 +539,191 @@ _T0_isr:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;	./src/main.c:53: int main()
+;	./src/main.c:59: int main()
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	./src/main.c:56: TMOD = 0x01;                // Set Timer 1 to mode 0 & Timer 0 mode 1. (16-bit timer)
+;	./src/main.c:62: TMOD = 0x01;                // Set Timer 1 to mode 0 & Timer 0 mode 1. (16-bit timer)
 	mov	_TMOD,#0x01
-;	./src/main.c:57: TH0 = (65536 - 1000) / 256; // Load initial higher 8 bits into Timer 0
+;	./src/main.c:63: TH0 = (65536 - 1000) / 256; // Load initial higher 8 bits into Timer 0
 	mov	_TH0,#0xfc
-;	./src/main.c:58: TL0 = (65536 - 1000) % 256; // Load initial lower 8 bits into Timer 0
+;	./src/main.c:64: TL0 = (65536 - 1000) % 256; // Load initial lower 8 bits into Timer 0
 	mov	_TL0,#0x18
-;	./src/main.c:59: ET0 = 1;                    // Enable Timer 0 interrupt
+;	./src/main.c:65: ET0 = 1;                    // Enable Timer 0 interrupt
 ;	assignBit
 	setb	_ET0
-;	./src/main.c:60: EA = 1;                     // Enable all interrupt
+;	./src/main.c:66: EA = 1;                     // Enable all interrupt
 ;	assignBit
 	setb	_EA
-;	./src/main.c:61: TR0 = 1;                    // Start Timer 0
+;	./src/main.c:67: TR0 = 0;                    // Start Timer 0
+;	assignBit
+	clr	_TR0
+;	./src/main.c:70: SDA = 1;
+;	assignBit
+	setb	_P0_1
+;	./src/main.c:71: SCL = 1;
+;	assignBit
+	setb	_P0_0
+;	./src/main.c:73: OLED_Init();
+	lcall	_OLED_Init
+;	./src/main.c:74: OLED_SetCursor(text_row, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/main.c:75: OLED_DisplayString("music off!");
+	mov	dptr,#___str_0
+	mov	b,#0x80
+	lcall	_OLED_DisplayString
+;	./src/main.c:77: while (1)
+00125$:
+;	./src/main.c:80: if (P2_0 == 0 && stable_scan == 1)
+	jb	_P2_0,00114$
+	mov	a,#0x01
+	cjne	a,_stable_scan,00208$
+	dec	a
+	cjne	a,(_stable_scan + 1),00208$
+	sjmp	00209$
+00208$:
+	sjmp	00114$
+00209$:
+;	./src/main.c:82: if (scan_cnting < scan_cnt)
+	clr	c
+	mov	a,_scan_cnting
+	subb	a,#0x0a
+	mov	a,(_scan_cnting + 1)
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00115$
+;	./src/main.c:84: scan_cnting++;
+	inc	_scan_cnting
+	clr	a
+	cjne	a,_scan_cnting,00211$
+	inc	(_scan_cnting + 1)
+00211$:
+;	./src/main.c:85: if (scan_cnting == scan_cnt)
+	mov	a,#0x0a
+	cjne	a,_scan_cnting,00212$
+	clr	a
+	cjne	a,(_scan_cnting + 1),00212$
+	sjmp	00213$
+00212$:
+	sjmp	00115$
+00213$:
+;	./src/main.c:87: music_on ^= 1;
+	xrl	_music_on,#0x01
+;	./src/main.c:88: stable_scan = 0;
+	clr	a
+	mov	_stable_scan,a
+	mov	(_stable_scan + 1),a
+	sjmp	00115$
+00114$:
+;	./src/main.c:92: else if (P2_0 == 1 && stable_scan == 0)
+	jnb	_P2_0,00110$
+	mov	a,_stable_scan
+	orl	a,(_stable_scan + 1)
+	jnz	00110$
+;	./src/main.c:94: if (scan_cnting < scan_cnt)
+	clr	c
+	mov	a,_scan_cnting
+	subb	a,#0x0a
+	mov	a,(_scan_cnting + 1)
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00115$
+;	./src/main.c:96: scan_cnting++;
+	inc	_scan_cnting
+	clr	a
+	cjne	a,_scan_cnting,00217$
+	inc	(_scan_cnting + 1)
+00217$:
+;	./src/main.c:97: if (scan_cnting == scan_cnt)
+	mov	a,#0x0a
+	cjne	a,_scan_cnting,00218$
+	clr	a
+	cjne	a,(_scan_cnting + 1),00218$
+	sjmp	00219$
+00218$:
+	sjmp	00115$
+00219$:
+;	./src/main.c:98: stable_scan = 1;
+	mov	_stable_scan,#0x01
+	mov	(_stable_scan + 1),#0x00
+	sjmp	00115$
+00110$:
+;	./src/main.c:102: scan_cnting = 0;
+	clr	a
+	mov	_scan_cnting,a
+	mov	(_scan_cnting + 1),a
+00115$:
+;	./src/main.c:105: if (music_on && TR0 == 0)
+	mov	a,_music_on
+	orl	a,(_music_on + 1)
+	jz	00121$
+	jb	_TR0,00121$
+;	./src/main.c:107: TR0 = 1;
 ;	assignBit
 	setb	_TR0
-;	./src/main.c:63: while (1)
-00102$:
-;	./src/main.c:67: }
-	sjmp	00102$
+;	./src/main.c:108: OLED_SetCursor(text_row, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/main.c:109: OLED_DisplayString("           ");
+	mov	dptr,#___str_1
+	mov	b,#0x80
+	lcall	_OLED_DisplayString
+;	./src/main.c:110: OLED_SetCursor(text_row, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/main.c:111: OLED_DisplayString("music on!");
+	mov	dptr,#___str_2
+	mov	b,#0x80
+	lcall	_OLED_DisplayString
+	ljmp	00125$
+00121$:
+;	./src/main.c:113: else if (!music_on && TR0 == 1)
+	mov	a,_music_on
+	orl	a,(_music_on + 1)
+	jz	00222$
+	ljmp	00125$
+00222$:
+;	./src/main.c:115: TR0 = 0;
+;	assignBit
+	jbc	_TR0,00223$
+	ljmp	00125$
+00223$:
+;	./src/main.c:116: OLED_SetCursor(text_row, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/main.c:117: OLED_DisplayString("           ");
+	mov	dptr,#___str_1
+	mov	b,#0x80
+	lcall	_OLED_DisplayString
+;	./src/main.c:118: OLED_SetCursor(text_row, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x03
+	lcall	_OLED_SetCursor
+;	./src/main.c:119: OLED_DisplayString("music off!");
+	mov	dptr,#___str_0
+	mov	b,#0x80
+	lcall	_OLED_DisplayString
+;	./src/main.c:122: }
+	ljmp	00125$
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LookForSound'
 ;------------------------------------------------------------
 ;now                       Allocated to registers r6 r7 
 ;------------------------------------------------------------
-;	./src/main.c:69: void LookForSound(int now)
+;	./src/main.c:124: void LookForSound(int now)
 ;	-----------------------------------------
 ;	 function LookForSound
 ;	-----------------------------------------
 _LookForSound:
 	mov	r6,dpl
 	mov	r7,dph
-;	./src/main.c:71: P1 = 0xff;
-	mov	_P1,#0xff
-;	./src/main.c:72: switch (now)
+;	./src/main.c:126: switch (now)
 	cjne	r6,#0x01,00147$
 	cjne	r7,#0x00,00147$
 	sjmp	00101$
@@ -645,64 +744,41 @@ _LookForSound:
 	cjne	r7,#0x00,00151$
 	sjmp	00105$
 00151$:
-;	./src/main.c:74: case 1:
+;	./src/main.c:128: case 1:
 	cjne	r6,#0x06,00109$
 	cjne	r7,#0x00,00109$
 	sjmp	00106$
 00101$:
-;	./src/main.c:75: Delay_Do();
-	lcall	_Delay_Do
-;	./src/main.c:76: P1_7 = 0;
-;	assignBit
-	clr	_P1_7
-;	./src/main.c:77: break;
-;	./src/main.c:79: case 2:
-	ret
+;	./src/main.c:129: Delay_Do();
+;	./src/main.c:130: break;
+;	./src/main.c:132: case 2:
+	ljmp	_Delay_Do
 00102$:
-;	./src/main.c:80: Delay_Re();
-	lcall	_Delay_Re
-;	./src/main.c:81: P1_6 = 0;
-;	assignBit
-	clr	_P1_6
-;	./src/main.c:82: break;
-;	./src/main.c:84: case 3:
-	ret
+;	./src/main.c:133: Delay_Re();
+;	./src/main.c:134: break;
+;	./src/main.c:136: case 3:
+	ljmp	_Delay_Re
 00103$:
-;	./src/main.c:85: Delay_Mi();
-	lcall	_Delay_Mi
-;	./src/main.c:86: P1_5 = 0;
-;	assignBit
-	clr	_P1_5
-;	./src/main.c:87: break;
-;	./src/main.c:89: case 4:
-	ret
+;	./src/main.c:137: Delay_Mi();
+;	./src/main.c:138: break;
+;	./src/main.c:140: case 4:
+	ljmp	_Delay_Mi
 00104$:
-;	./src/main.c:90: Delay_Fa();
-	lcall	_Delay_Fa
-;	./src/main.c:91: P1_4 = 0;
-;	assignBit
-	clr	_P1_4
-;	./src/main.c:92: break;
-;	./src/main.c:94: case 5:
-	ret
+;	./src/main.c:141: Delay_Fa();
+;	./src/main.c:142: break;
+;	./src/main.c:144: case 5:
+	ljmp	_Delay_Fa
 00105$:
-;	./src/main.c:95: Delay_So();
-	lcall	_Delay_So
-;	./src/main.c:96: P1_3 = 0;
-;	assignBit
-	clr	_P1_3
-;	./src/main.c:97: break;
-;	./src/main.c:99: case 6:
-	ret
+;	./src/main.c:145: Delay_So();
+;	./src/main.c:146: break;
+;	./src/main.c:148: case 6:
+	ljmp	_Delay_So
 00106$:
-;	./src/main.c:100: Delay_La();
-	lcall	_Delay_La
-;	./src/main.c:101: P1_2 = 0;
-;	assignBit
-	clr	_P1_2
-;	./src/main.c:106: }
+;	./src/main.c:149: Delay_La();
+;	./src/main.c:154: }
+;	./src/main.c:155: }
+	ljmp	_Delay_La
 00109$:
-;	./src/main.c:107: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -724,6 +800,14 @@ _music_table:
 	.db #0x02	; 2
 	.db #0x03	; 3
 	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x03	; 3
+	.db #0x01	; 1
 _duration_table:
 	.db #0xf4	; 244
 	.db #0x32	; 50	'2'
@@ -735,30 +819,61 @@ _duration_table:
 	.db #0xf4	; 244
 	.db #0x32	; 50	'2'
 	.db #0xf4	; 244
-	.db #0x32	; 50	'2'
-	.db #0x96	; 150
-	.db #0x32	; 50	'2'
 	.db #0x64	; 100	'd'
+	.db #0xf4	; 244
+	.db #0xf4	; 244
+	.db #0xc8	; 200
+	.db #0xc8	; 200
+	.db #0xc8	; 200
 	.db #0x64	; 100	'd'
-	.db #0x32	; 50	'2'
+	.db #0xf4	; 244
+	.db #0x64	; 100	'd'
+	.db #0xf4	; 244
+	.db #0xf4	; 244
+	.db #0xc8	; 200
+	.db #0xc8	; 200
+	.db #0xc8	; 200
 	.db #0x64	; 100	'd'
 _blanck_table:
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
+	.db #0xf4	; 244
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
+	.db #0x32	; 50	'2'
+	.db #0xf4	; 244
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
 	.db #0x32	; 50	'2'
 	.db #0xc8	; 200
-	.db #0x32	; 50	'2'
-	.db #0x32	; 50	'2'
-	.db #0x32	; 50	'2'
-	.db #0x32	; 50	'2'
 	.db #0x1e	; 30
 	.db #0x1e	; 30
 	.db #0x1e	; 30
+	.db #0xf4	; 244
+	.db #0x32	; 50	'2'
+	.db #0x32	; 50	'2'
+	.db #0x32	; 50	'2'
+	.db #0xc8	; 200
+	.db #0x1e	; 30
+	.db #0x1e	; 30
+	.db #0x1e	; 30
+	.db #0xf4	; 244
+	.area CONST   (CODE)
+___str_0:
+	.ascii "music off!"
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_1:
+	.ascii "           "
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_2:
+	.ascii "music on!"
+	.db 0x00
+	.area CSEG    (CODE)
 	.area XINIT   (CODE)
 	.area CABS    (ABS,CODE)

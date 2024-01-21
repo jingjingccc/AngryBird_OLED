@@ -13,7 +13,9 @@
 -l liblong
 -l libfloat
 main.rel
+i2c.rel
 delay_func.rel
 delay.rel
+oled_i2c.rel
 
 -e

@@ -13,752 +13,870 @@
                                      13 	.globl _music_table
                                      14 	.globl _main
                                      15 	.globl _T0_isr
-                                     16 	.globl _Delay_La
-                                     17 	.globl _Delay_So
-                                     18 	.globl _Delay_Fa
-                                     19 	.globl _Delay_Mi
-                                     20 	.globl _Delay_Re
-                                     21 	.globl _Delay_Do
-                                     22 	.globl _CY
-                                     23 	.globl _AC
-                                     24 	.globl _F0
-                                     25 	.globl _RS1
-                                     26 	.globl _RS0
-                                     27 	.globl _OV
-                                     28 	.globl _F1
-                                     29 	.globl _P
-                                     30 	.globl _PS
-                                     31 	.globl _PT1
-                                     32 	.globl _PX1
-                                     33 	.globl _PT0
-                                     34 	.globl _PX0
-                                     35 	.globl _RD
-                                     36 	.globl _WR
-                                     37 	.globl _T1
-                                     38 	.globl _T0
-                                     39 	.globl _INT1
-                                     40 	.globl _INT0
-                                     41 	.globl _TXD
-                                     42 	.globl _RXD
-                                     43 	.globl _P3_7
-                                     44 	.globl _P3_6
-                                     45 	.globl _P3_5
-                                     46 	.globl _P3_4
-                                     47 	.globl _P3_3
-                                     48 	.globl _P3_2
-                                     49 	.globl _P3_1
-                                     50 	.globl _P3_0
-                                     51 	.globl _EA
-                                     52 	.globl _ES
-                                     53 	.globl _ET1
-                                     54 	.globl _EX1
-                                     55 	.globl _ET0
-                                     56 	.globl _EX0
-                                     57 	.globl _P2_7
-                                     58 	.globl _P2_6
-                                     59 	.globl _P2_5
-                                     60 	.globl _P2_4
-                                     61 	.globl _P2_3
-                                     62 	.globl _P2_2
-                                     63 	.globl _P2_1
-                                     64 	.globl _P2_0
-                                     65 	.globl _SM0
-                                     66 	.globl _SM1
-                                     67 	.globl _SM2
-                                     68 	.globl _REN
-                                     69 	.globl _TB8
-                                     70 	.globl _RB8
-                                     71 	.globl _TI
-                                     72 	.globl _RI
-                                     73 	.globl _P1_7
-                                     74 	.globl _P1_6
-                                     75 	.globl _P1_5
-                                     76 	.globl _P1_4
-                                     77 	.globl _P1_3
-                                     78 	.globl _P1_2
-                                     79 	.globl _P1_1
-                                     80 	.globl _P1_0
-                                     81 	.globl _TF1
-                                     82 	.globl _TR1
-                                     83 	.globl _TF0
-                                     84 	.globl _TR0
-                                     85 	.globl _IE1
-                                     86 	.globl _IT1
-                                     87 	.globl _IE0
-                                     88 	.globl _IT0
-                                     89 	.globl _P0_7
-                                     90 	.globl _P0_6
-                                     91 	.globl _P0_5
-                                     92 	.globl _P0_4
-                                     93 	.globl _P0_3
-                                     94 	.globl _P0_2
-                                     95 	.globl _P0_1
-                                     96 	.globl _P0_0
-                                     97 	.globl _B
-                                     98 	.globl _ACC
-                                     99 	.globl _PSW
-                                    100 	.globl _IP
-                                    101 	.globl _P3
-                                    102 	.globl _IE
-                                    103 	.globl _P2
-                                    104 	.globl _SBUF
-                                    105 	.globl _SCON
-                                    106 	.globl _P1
-                                    107 	.globl _TH1
-                                    108 	.globl _TH0
-                                    109 	.globl _TL1
-                                    110 	.globl _TL0
-                                    111 	.globl _TMOD
-                                    112 	.globl _TCON
-                                    113 	.globl _PCON
-                                    114 	.globl _DPH
-                                    115 	.globl _DPL
-                                    116 	.globl _SP
-                                    117 	.globl _P0
-                                    118 	.globl _black_space
-                                    119 	.globl _duration_time
-                                    120 	.globl _music_plat_note
-                                    121 	.globl _LookForSound
-                                    122 ;--------------------------------------------------------
-                                    123 ; special function registers
-                                    124 ;--------------------------------------------------------
-                                    125 	.area RSEG    (ABS,DATA)
-      000000                        126 	.org 0x0000
-                           000080   127 _P0	=	0x0080
-                           000081   128 _SP	=	0x0081
-                           000082   129 _DPL	=	0x0082
-                           000083   130 _DPH	=	0x0083
-                           000087   131 _PCON	=	0x0087
-                           000088   132 _TCON	=	0x0088
-                           000089   133 _TMOD	=	0x0089
-                           00008A   134 _TL0	=	0x008a
-                           00008B   135 _TL1	=	0x008b
-                           00008C   136 _TH0	=	0x008c
-                           00008D   137 _TH1	=	0x008d
-                           000090   138 _P1	=	0x0090
-                           000098   139 _SCON	=	0x0098
-                           000099   140 _SBUF	=	0x0099
-                           0000A0   141 _P2	=	0x00a0
-                           0000A8   142 _IE	=	0x00a8
-                           0000B0   143 _P3	=	0x00b0
-                           0000B8   144 _IP	=	0x00b8
-                           0000D0   145 _PSW	=	0x00d0
-                           0000E0   146 _ACC	=	0x00e0
-                           0000F0   147 _B	=	0x00f0
-                                    148 ;--------------------------------------------------------
-                                    149 ; special function bits
-                                    150 ;--------------------------------------------------------
-                                    151 	.area RSEG    (ABS,DATA)
-      000000                        152 	.org 0x0000
-                           000080   153 _P0_0	=	0x0080
-                           000081   154 _P0_1	=	0x0081
-                           000082   155 _P0_2	=	0x0082
-                           000083   156 _P0_3	=	0x0083
-                           000084   157 _P0_4	=	0x0084
-                           000085   158 _P0_5	=	0x0085
-                           000086   159 _P0_6	=	0x0086
-                           000087   160 _P0_7	=	0x0087
-                           000088   161 _IT0	=	0x0088
-                           000089   162 _IE0	=	0x0089
-                           00008A   163 _IT1	=	0x008a
-                           00008B   164 _IE1	=	0x008b
-                           00008C   165 _TR0	=	0x008c
-                           00008D   166 _TF0	=	0x008d
-                           00008E   167 _TR1	=	0x008e
-                           00008F   168 _TF1	=	0x008f
-                           000090   169 _P1_0	=	0x0090
-                           000091   170 _P1_1	=	0x0091
-                           000092   171 _P1_2	=	0x0092
-                           000093   172 _P1_3	=	0x0093
-                           000094   173 _P1_4	=	0x0094
-                           000095   174 _P1_5	=	0x0095
-                           000096   175 _P1_6	=	0x0096
-                           000097   176 _P1_7	=	0x0097
-                           000098   177 _RI	=	0x0098
-                           000099   178 _TI	=	0x0099
-                           00009A   179 _RB8	=	0x009a
-                           00009B   180 _TB8	=	0x009b
-                           00009C   181 _REN	=	0x009c
-                           00009D   182 _SM2	=	0x009d
-                           00009E   183 _SM1	=	0x009e
-                           00009F   184 _SM0	=	0x009f
-                           0000A0   185 _P2_0	=	0x00a0
-                           0000A1   186 _P2_1	=	0x00a1
-                           0000A2   187 _P2_2	=	0x00a2
-                           0000A3   188 _P2_3	=	0x00a3
-                           0000A4   189 _P2_4	=	0x00a4
-                           0000A5   190 _P2_5	=	0x00a5
-                           0000A6   191 _P2_6	=	0x00a6
-                           0000A7   192 _P2_7	=	0x00a7
-                           0000A8   193 _EX0	=	0x00a8
-                           0000A9   194 _ET0	=	0x00a9
-                           0000AA   195 _EX1	=	0x00aa
-                           0000AB   196 _ET1	=	0x00ab
-                           0000AC   197 _ES	=	0x00ac
-                           0000AF   198 _EA	=	0x00af
-                           0000B0   199 _P3_0	=	0x00b0
-                           0000B1   200 _P3_1	=	0x00b1
-                           0000B2   201 _P3_2	=	0x00b2
-                           0000B3   202 _P3_3	=	0x00b3
-                           0000B4   203 _P3_4	=	0x00b4
-                           0000B5   204 _P3_5	=	0x00b5
-                           0000B6   205 _P3_6	=	0x00b6
-                           0000B7   206 _P3_7	=	0x00b7
-                           0000B0   207 _RXD	=	0x00b0
-                           0000B1   208 _TXD	=	0x00b1
-                           0000B2   209 _INT0	=	0x00b2
-                           0000B3   210 _INT1	=	0x00b3
-                           0000B4   211 _T0	=	0x00b4
-                           0000B5   212 _T1	=	0x00b5
-                           0000B6   213 _WR	=	0x00b6
-                           0000B7   214 _RD	=	0x00b7
-                           0000B8   215 _PX0	=	0x00b8
-                           0000B9   216 _PT0	=	0x00b9
-                           0000BA   217 _PX1	=	0x00ba
-                           0000BB   218 _PT1	=	0x00bb
-                           0000BC   219 _PS	=	0x00bc
-                           0000D0   220 _P	=	0x00d0
-                           0000D1   221 _F1	=	0x00d1
-                           0000D2   222 _OV	=	0x00d2
-                           0000D3   223 _RS0	=	0x00d3
-                           0000D4   224 _RS1	=	0x00d4
-                           0000D5   225 _F0	=	0x00d5
-                           0000D6   226 _AC	=	0x00d6
-                           0000D7   227 _CY	=	0x00d7
-                                    228 ;--------------------------------------------------------
-                                    229 ; overlayable register banks
-                                    230 ;--------------------------------------------------------
-                                    231 	.area REG_BANK_0	(REL,OVR,DATA)
-      000000                        232 	.ds 8
+                                     16 	.globl _OLED_SetCursor
+                                     17 	.globl _OLED_DisplayString
+                                     18 	.globl _OLED_Init
+                                     19 	.globl _Delay_La
+                                     20 	.globl _Delay_So
+                                     21 	.globl _Delay_Fa
+                                     22 	.globl _Delay_Mi
+                                     23 	.globl _Delay_Re
+                                     24 	.globl _Delay_Do
+                                     25 	.globl _CY
+                                     26 	.globl _AC
+                                     27 	.globl _F0
+                                     28 	.globl _RS1
+                                     29 	.globl _RS0
+                                     30 	.globl _OV
+                                     31 	.globl _F1
+                                     32 	.globl _P
+                                     33 	.globl _PS
+                                     34 	.globl _PT1
+                                     35 	.globl _PX1
+                                     36 	.globl _PT0
+                                     37 	.globl _PX0
+                                     38 	.globl _RD
+                                     39 	.globl _WR
+                                     40 	.globl _T1
+                                     41 	.globl _T0
+                                     42 	.globl _INT1
+                                     43 	.globl _INT0
+                                     44 	.globl _TXD
+                                     45 	.globl _RXD
+                                     46 	.globl _P3_7
+                                     47 	.globl _P3_6
+                                     48 	.globl _P3_5
+                                     49 	.globl _P3_4
+                                     50 	.globl _P3_3
+                                     51 	.globl _P3_2
+                                     52 	.globl _P3_1
+                                     53 	.globl _P3_0
+                                     54 	.globl _EA
+                                     55 	.globl _ES
+                                     56 	.globl _ET1
+                                     57 	.globl _EX1
+                                     58 	.globl _ET0
+                                     59 	.globl _EX0
+                                     60 	.globl _P2_7
+                                     61 	.globl _P2_6
+                                     62 	.globl _P2_5
+                                     63 	.globl _P2_4
+                                     64 	.globl _P2_3
+                                     65 	.globl _P2_2
+                                     66 	.globl _P2_1
+                                     67 	.globl _P2_0
+                                     68 	.globl _SM0
+                                     69 	.globl _SM1
+                                     70 	.globl _SM2
+                                     71 	.globl _REN
+                                     72 	.globl _TB8
+                                     73 	.globl _RB8
+                                     74 	.globl _TI
+                                     75 	.globl _RI
+                                     76 	.globl _P1_7
+                                     77 	.globl _P1_6
+                                     78 	.globl _P1_5
+                                     79 	.globl _P1_4
+                                     80 	.globl _P1_3
+                                     81 	.globl _P1_2
+                                     82 	.globl _P1_1
+                                     83 	.globl _P1_0
+                                     84 	.globl _TF1
+                                     85 	.globl _TR1
+                                     86 	.globl _TF0
+                                     87 	.globl _TR0
+                                     88 	.globl _IE1
+                                     89 	.globl _IT1
+                                     90 	.globl _IE0
+                                     91 	.globl _IT0
+                                     92 	.globl _P0_7
+                                     93 	.globl _P0_6
+                                     94 	.globl _P0_5
+                                     95 	.globl _P0_4
+                                     96 	.globl _P0_3
+                                     97 	.globl _P0_2
+                                     98 	.globl _P0_1
+                                     99 	.globl _P0_0
+                                    100 	.globl _B
+                                    101 	.globl _ACC
+                                    102 	.globl _PSW
+                                    103 	.globl _IP
+                                    104 	.globl _P3
+                                    105 	.globl _IE
+                                    106 	.globl _P2
+                                    107 	.globl _SBUF
+                                    108 	.globl _SCON
+                                    109 	.globl _P1
+                                    110 	.globl _TH1
+                                    111 	.globl _TH0
+                                    112 	.globl _TL1
+                                    113 	.globl _TL0
+                                    114 	.globl _TMOD
+                                    115 	.globl _TCON
+                                    116 	.globl _PCON
+                                    117 	.globl _DPH
+                                    118 	.globl _DPL
+                                    119 	.globl _SP
+                                    120 	.globl _P0
+                                    121 	.globl _duration_time
+                                    122 	.globl _music_play_note
+                                    123 	.globl _stable_scan
+                                    124 	.globl _scan_cnting
+                                    125 	.globl _music_on
+                                    126 	.globl _LookForSound
+                                    127 ;--------------------------------------------------------
+                                    128 ; special function registers
+                                    129 ;--------------------------------------------------------
+                                    130 	.area RSEG    (ABS,DATA)
+      000000                        131 	.org 0x0000
+                           000080   132 _P0	=	0x0080
+                           000081   133 _SP	=	0x0081
+                           000082   134 _DPL	=	0x0082
+                           000083   135 _DPH	=	0x0083
+                           000087   136 _PCON	=	0x0087
+                           000088   137 _TCON	=	0x0088
+                           000089   138 _TMOD	=	0x0089
+                           00008A   139 _TL0	=	0x008a
+                           00008B   140 _TL1	=	0x008b
+                           00008C   141 _TH0	=	0x008c
+                           00008D   142 _TH1	=	0x008d
+                           000090   143 _P1	=	0x0090
+                           000098   144 _SCON	=	0x0098
+                           000099   145 _SBUF	=	0x0099
+                           0000A0   146 _P2	=	0x00a0
+                           0000A8   147 _IE	=	0x00a8
+                           0000B0   148 _P3	=	0x00b0
+                           0000B8   149 _IP	=	0x00b8
+                           0000D0   150 _PSW	=	0x00d0
+                           0000E0   151 _ACC	=	0x00e0
+                           0000F0   152 _B	=	0x00f0
+                                    153 ;--------------------------------------------------------
+                                    154 ; special function bits
+                                    155 ;--------------------------------------------------------
+                                    156 	.area RSEG    (ABS,DATA)
+      000000                        157 	.org 0x0000
+                           000080   158 _P0_0	=	0x0080
+                           000081   159 _P0_1	=	0x0081
+                           000082   160 _P0_2	=	0x0082
+                           000083   161 _P0_3	=	0x0083
+                           000084   162 _P0_4	=	0x0084
+                           000085   163 _P0_5	=	0x0085
+                           000086   164 _P0_6	=	0x0086
+                           000087   165 _P0_7	=	0x0087
+                           000088   166 _IT0	=	0x0088
+                           000089   167 _IE0	=	0x0089
+                           00008A   168 _IT1	=	0x008a
+                           00008B   169 _IE1	=	0x008b
+                           00008C   170 _TR0	=	0x008c
+                           00008D   171 _TF0	=	0x008d
+                           00008E   172 _TR1	=	0x008e
+                           00008F   173 _TF1	=	0x008f
+                           000090   174 _P1_0	=	0x0090
+                           000091   175 _P1_1	=	0x0091
+                           000092   176 _P1_2	=	0x0092
+                           000093   177 _P1_3	=	0x0093
+                           000094   178 _P1_4	=	0x0094
+                           000095   179 _P1_5	=	0x0095
+                           000096   180 _P1_6	=	0x0096
+                           000097   181 _P1_7	=	0x0097
+                           000098   182 _RI	=	0x0098
+                           000099   183 _TI	=	0x0099
+                           00009A   184 _RB8	=	0x009a
+                           00009B   185 _TB8	=	0x009b
+                           00009C   186 _REN	=	0x009c
+                           00009D   187 _SM2	=	0x009d
+                           00009E   188 _SM1	=	0x009e
+                           00009F   189 _SM0	=	0x009f
+                           0000A0   190 _P2_0	=	0x00a0
+                           0000A1   191 _P2_1	=	0x00a1
+                           0000A2   192 _P2_2	=	0x00a2
+                           0000A3   193 _P2_3	=	0x00a3
+                           0000A4   194 _P2_4	=	0x00a4
+                           0000A5   195 _P2_5	=	0x00a5
+                           0000A6   196 _P2_6	=	0x00a6
+                           0000A7   197 _P2_7	=	0x00a7
+                           0000A8   198 _EX0	=	0x00a8
+                           0000A9   199 _ET0	=	0x00a9
+                           0000AA   200 _EX1	=	0x00aa
+                           0000AB   201 _ET1	=	0x00ab
+                           0000AC   202 _ES	=	0x00ac
+                           0000AF   203 _EA	=	0x00af
+                           0000B0   204 _P3_0	=	0x00b0
+                           0000B1   205 _P3_1	=	0x00b1
+                           0000B2   206 _P3_2	=	0x00b2
+                           0000B3   207 _P3_3	=	0x00b3
+                           0000B4   208 _P3_4	=	0x00b4
+                           0000B5   209 _P3_5	=	0x00b5
+                           0000B6   210 _P3_6	=	0x00b6
+                           0000B7   211 _P3_7	=	0x00b7
+                           0000B0   212 _RXD	=	0x00b0
+                           0000B1   213 _TXD	=	0x00b1
+                           0000B2   214 _INT0	=	0x00b2
+                           0000B3   215 _INT1	=	0x00b3
+                           0000B4   216 _T0	=	0x00b4
+                           0000B5   217 _T1	=	0x00b5
+                           0000B6   218 _WR	=	0x00b6
+                           0000B7   219 _RD	=	0x00b7
+                           0000B8   220 _PX0	=	0x00b8
+                           0000B9   221 _PT0	=	0x00b9
+                           0000BA   222 _PX1	=	0x00ba
+                           0000BB   223 _PT1	=	0x00bb
+                           0000BC   224 _PS	=	0x00bc
+                           0000D0   225 _P	=	0x00d0
+                           0000D1   226 _F1	=	0x00d1
+                           0000D2   227 _OV	=	0x00d2
+                           0000D3   228 _RS0	=	0x00d3
+                           0000D4   229 _RS1	=	0x00d4
+                           0000D5   230 _F0	=	0x00d5
+                           0000D6   231 _AC	=	0x00d6
+                           0000D7   232 _CY	=	0x00d7
                                     233 ;--------------------------------------------------------
-                                    234 ; overlayable bit register bank
+                                    234 ; overlayable register banks
                                     235 ;--------------------------------------------------------
-                                    236 	.area BIT_BANK	(REL,OVR,DATA)
-      000000                        237 bits:
-      000000                        238 	.ds 1
-                           008000   239 	b0 = bits[0]
-                           008100   240 	b1 = bits[1]
-                           008200   241 	b2 = bits[2]
-                           008300   242 	b3 = bits[3]
-                           008400   243 	b4 = bits[4]
-                           008500   244 	b5 = bits[5]
-                           008600   245 	b6 = bits[6]
-                           008700   246 	b7 = bits[7]
-                                    247 ;--------------------------------------------------------
-                                    248 ; internal ram data
-                                    249 ;--------------------------------------------------------
-                                    250 	.area DSEG    (DATA)
-      000000                        251 _music_plat_note::
-      000000                        252 	.ds 2
-      000002                        253 _duration_time::
-      000002                        254 	.ds 2
-      000004                        255 _black_space::
-      000004                        256 	.ds 2
-                                    257 ;--------------------------------------------------------
-                                    258 ; overlayable items in internal ram
-                                    259 ;--------------------------------------------------------
-                                    260 ;--------------------------------------------------------
-                                    261 ; Stack segment in internal ram
-                                    262 ;--------------------------------------------------------
-                                    263 	.area SSEG
-      000000                        264 __start__stack:
-      000000                        265 	.ds	1
-                                    266 
-                                    267 ;--------------------------------------------------------
-                                    268 ; indirectly addressable internal ram data
+                                    236 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        237 	.ds 8
+                                    238 ;--------------------------------------------------------
+                                    239 ; overlayable bit register bank
+                                    240 ;--------------------------------------------------------
+                                    241 	.area BIT_BANK	(REL,OVR,DATA)
+      000000                        242 bits:
+      000000                        243 	.ds 1
+                           008000   244 	b0 = bits[0]
+                           008100   245 	b1 = bits[1]
+                           008200   246 	b2 = bits[2]
+                           008300   247 	b3 = bits[3]
+                           008400   248 	b4 = bits[4]
+                           008500   249 	b5 = bits[5]
+                           008600   250 	b6 = bits[6]
+                           008700   251 	b7 = bits[7]
+                                    252 ;--------------------------------------------------------
+                                    253 ; internal ram data
+                                    254 ;--------------------------------------------------------
+                                    255 	.area DSEG    (DATA)
+      000000                        256 _music_on::
+      000000                        257 	.ds 2
+      000002                        258 _scan_cnting::
+      000002                        259 	.ds 2
+      000004                        260 _stable_scan::
+      000004                        261 	.ds 2
+      000006                        262 _music_play_note::
+      000006                        263 	.ds 2
+      000008                        264 _duration_time::
+      000008                        265 	.ds 2
+                                    266 ;--------------------------------------------------------
+                                    267 ; overlayable items in internal ram
+                                    268 ;--------------------------------------------------------
                                     269 ;--------------------------------------------------------
-                                    270 	.area ISEG    (DATA)
+                                    270 ; Stack segment in internal ram
                                     271 ;--------------------------------------------------------
-                                    272 ; absolute internal ram data
-                                    273 ;--------------------------------------------------------
-                                    274 	.area IABS    (ABS,DATA)
-                                    275 	.area IABS    (ABS,DATA)
+                                    272 	.area SSEG
+      000000                        273 __start__stack:
+      000000                        274 	.ds	1
+                                    275 
                                     276 ;--------------------------------------------------------
-                                    277 ; bit data
+                                    277 ; indirectly addressable internal ram data
                                     278 ;--------------------------------------------------------
-                                    279 	.area BSEG    (BIT)
+                                    279 	.area ISEG    (DATA)
                                     280 ;--------------------------------------------------------
-                                    281 ; paged external ram data
+                                    281 ; absolute internal ram data
                                     282 ;--------------------------------------------------------
-                                    283 	.area PSEG    (PAG,XDATA)
-                                    284 ;--------------------------------------------------------
-                                    285 ; uninitialized external ram data
-                                    286 ;--------------------------------------------------------
-                                    287 	.area XSEG    (XDATA)
-                                    288 ;--------------------------------------------------------
-                                    289 ; absolute external ram data
-                                    290 ;--------------------------------------------------------
-                                    291 	.area XABS    (ABS,XDATA)
-                                    292 ;--------------------------------------------------------
-                                    293 ; initialized external ram data
-                                    294 ;--------------------------------------------------------
-                                    295 	.area XISEG   (XDATA)
-                                    296 	.area HOME    (CODE)
-                                    297 	.area GSINIT0 (CODE)
-                                    298 	.area GSINIT1 (CODE)
-                                    299 	.area GSINIT2 (CODE)
-                                    300 	.area GSINIT3 (CODE)
-                                    301 	.area GSINIT4 (CODE)
-                                    302 	.area GSINIT5 (CODE)
-                                    303 	.area GSINIT  (CODE)
-                                    304 	.area GSFINAL (CODE)
-                                    305 	.area CSEG    (CODE)
-                                    306 ;--------------------------------------------------------
-                                    307 ; interrupt vector
-                                    308 ;--------------------------------------------------------
-                                    309 	.area HOME    (CODE)
-      000000                        310 __interrupt_vect:
-      000000 02r00r00         [24]  311 	ljmp	__sdcc_gsinit_startup
-      000003 32               [24]  312 	reti
-      000004                        313 	.ds	7
-      00000B 02r00r00         [24]  314 	ljmp	_T0_isr
+                                    283 	.area IABS    (ABS,DATA)
+                                    284 	.area IABS    (ABS,DATA)
+                                    285 ;--------------------------------------------------------
+                                    286 ; bit data
+                                    287 ;--------------------------------------------------------
+                                    288 	.area BSEG    (BIT)
+                                    289 ;--------------------------------------------------------
+                                    290 ; paged external ram data
+                                    291 ;--------------------------------------------------------
+                                    292 	.area PSEG    (PAG,XDATA)
+                                    293 ;--------------------------------------------------------
+                                    294 ; uninitialized external ram data
+                                    295 ;--------------------------------------------------------
+                                    296 	.area XSEG    (XDATA)
+                                    297 ;--------------------------------------------------------
+                                    298 ; absolute external ram data
+                                    299 ;--------------------------------------------------------
+                                    300 	.area XABS    (ABS,XDATA)
+                                    301 ;--------------------------------------------------------
+                                    302 ; initialized external ram data
+                                    303 ;--------------------------------------------------------
+                                    304 	.area XISEG   (XDATA)
+                                    305 	.area HOME    (CODE)
+                                    306 	.area GSINIT0 (CODE)
+                                    307 	.area GSINIT1 (CODE)
+                                    308 	.area GSINIT2 (CODE)
+                                    309 	.area GSINIT3 (CODE)
+                                    310 	.area GSINIT4 (CODE)
+                                    311 	.area GSINIT5 (CODE)
+                                    312 	.area GSINIT  (CODE)
+                                    313 	.area GSFINAL (CODE)
+                                    314 	.area CSEG    (CODE)
                                     315 ;--------------------------------------------------------
-                                    316 ; global & static initialisations
+                                    316 ; interrupt vector
                                     317 ;--------------------------------------------------------
                                     318 	.area HOME    (CODE)
-                                    319 	.area GSINIT  (CODE)
-                                    320 	.area GSFINAL (CODE)
-                                    321 	.area GSINIT  (CODE)
-                                    322 	.globl __sdcc_gsinit_startup
-                                    323 	.globl __sdcc_program_startup
-                                    324 	.globl __start__stack
-                                    325 	.globl __mcs51_genXINIT
-                                    326 	.globl __mcs51_genXRAMCLEAR
-                                    327 	.globl __mcs51_genRAMCLEAR
-                                    328 ;	./src/main.c:5: int music_plat_note = 0, duration_time = 0, black_space = 50; // Adjust blank_space as needed
-      000000 E4               [12]  329 	clr	a
-      000001 F5*00            [12]  330 	mov	_music_plat_note,a
-      000003 F5*01            [12]  331 	mov	(_music_plat_note + 1),a
-                                    332 ;	./src/main.c:5: 
-      000005 F5*02            [12]  333 	mov	_duration_time,a
-      000007 F5*03            [12]  334 	mov	(_duration_time + 1),a
-                                    335 ;	./src/main.c:5: int music_plat_note = 0, duration_time = 0, black_space = 50; // Adjust blank_space as needed
-      000009 75*04 32         [24]  336 	mov	_black_space,#0x32
-      00000C F5*05            [12]  337 	mov	(_black_space + 1),a
-                                    338 	.area GSFINAL (CODE)
-      000000 02r00r0E         [24]  339 	ljmp	__sdcc_program_startup
-                                    340 ;--------------------------------------------------------
-                                    341 ; Home
-                                    342 ;--------------------------------------------------------
-                                    343 	.area HOME    (CODE)
-                                    344 	.area HOME    (CODE)
-      00000E                        345 __sdcc_program_startup:
-      00000E 02r01r56         [24]  346 	ljmp	_main
-                                    347 ;	return from main will return to caller
-                                    348 ;--------------------------------------------------------
-                                    349 ; code
-                                    350 ;--------------------------------------------------------
-                                    351 	.area CSEG    (CODE)
-                                    352 ;------------------------------------------------------------
-                                    353 ;Allocation info for local variables in function 'T0_isr'
-                                    354 ;------------------------------------------------------------
-                                    355 ;	./src/main.c:18: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
-                                    356 ;	-----------------------------------------
-                                    357 ;	 function T0_isr
-                                    358 ;	-----------------------------------------
-      000000                        359 _T0_isr:
-                           000007   360 	ar7 = 0x07
-                           000006   361 	ar6 = 0x06
-                           000005   362 	ar5 = 0x05
-                           000004   363 	ar4 = 0x04
-                           000003   364 	ar3 = 0x03
-                           000002   365 	ar2 = 0x02
-                           000001   366 	ar1 = 0x01
-                           000000   367 	ar0 = 0x00
-      000000 C0*00            [24]  368 	push	bits
-      000002 C0 E0            [24]  369 	push	acc
-      000004 C0 F0            [24]  370 	push	b
-      000006 C0 82            [24]  371 	push	dpl
-      000008 C0 83            [24]  372 	push	dph
-      00000A C0 07            [24]  373 	push	(0+7)
-      00000C C0 06            [24]  374 	push	(0+6)
-      00000E C0 05            [24]  375 	push	(0+5)
-      000010 C0 04            [24]  376 	push	(0+4)
-      000012 C0 03            [24]  377 	push	(0+3)
-      000014 C0 02            [24]  378 	push	(0+2)
-      000016 C0 01            [24]  379 	push	(0+1)
-      000018 C0 00            [24]  380 	push	(0+0)
-      00001A C0 D0            [24]  381 	push	psw
-      00001C 75 D0 00         [24]  382 	mov	psw,#0x00
-                                    383 ;	./src/main.c:21: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
-      00001F 75 8C FC         [24]  384 	mov	_TH0,#0xfc
-                                    385 ;	./src/main.c:22: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
-      000022 75 8A 18         [24]  386 	mov	_TL0,#0x18
-                                    387 ;	./src/main.c:24: duration_time++;
-      000025 05*02            [12]  388 	inc	_duration_time
-      000027 E4               [12]  389 	clr	a
-      000028 B5*02 02         [24]  390 	cjne	a,_duration_time,00159$
-      00002B 05*03            [12]  391 	inc	(_duration_time + 1)
-      00002D                        392 00159$:
-                                    393 ;	./src/main.c:26: while (duration_time < duration_table[music_plat_note])
-      00002D                        394 00101$:
-      00002D E5*00            [12]  395 	mov	a,_music_plat_note
-      00002F 24r11            [12]  396 	add	a,#_duration_table
-      000031 F5 82            [12]  397 	mov	dpl,a
-      000033 E5*01            [12]  398 	mov	a,(_music_plat_note + 1)
-      000035 34s00            [12]  399 	addc	a,#(_duration_table >> 8)
-      000037 F5 83            [12]  400 	mov	dph,a
-      000039 E4               [12]  401 	clr	a
-      00003A 93               [24]  402 	movc	a,@a+dptr
-      00003B FE               [12]  403 	mov	r6,a
-      00003C 7F 00            [12]  404 	mov	r7,#0x00
-      00003E C3               [12]  405 	clr	c
-      00003F E5*02            [12]  406 	mov	a,_duration_time
-      000041 9E               [12]  407 	subb	a,r6
-      000042 E5*03            [12]  408 	mov	a,(_duration_time + 1)
-      000044 64 80            [12]  409 	xrl	a,#0x80
-      000046 8F F0            [24]  410 	mov	b,r7
-      000048 63 F0 80         [24]  411 	xrl	b,#0x80
-      00004B 95 F0            [12]  412 	subb	a,b
-      00004D 50 3E            [24]  413 	jnc	00103$
-                                    414 ;	./src/main.c:28: duration_time++;
-      00004F 05*02            [12]  415 	inc	_duration_time
-      000051 E4               [12]  416 	clr	a
-      000052 B5*02 02         [24]  417 	cjne	a,_duration_time,00161$
-      000055 05*03            [12]  418 	inc	(_duration_time + 1)
-      000057                        419 00161$:
-                                    420 ;	./src/main.c:29: P3_7 = 1;
-                                    421 ;	assignBit
-      000057 D2 B7            [12]  422 	setb	_P3_7
-                                    423 ;	./src/main.c:30: LookForSound(music_table[music_plat_note]);
-      000059 E5*00            [12]  424 	mov	a,_music_plat_note
-      00005B 24r00            [12]  425 	add	a,#_music_table
-      00005D F5 82            [12]  426 	mov	dpl,a
-      00005F E5*01            [12]  427 	mov	a,(_music_plat_note + 1)
-      000061 34s00            [12]  428 	addc	a,#(_music_table >> 8)
-      000063 F5 83            [12]  429 	mov	dph,a
-      000065 E4               [12]  430 	clr	a
-      000066 93               [24]  431 	movc	a,@a+dptr
-      000067 FD               [12]  432 	mov	r5,a
-      000068 7C 00            [12]  433 	mov	r4,#0x00
-      00006A 8D 82            [24]  434 	mov	dpl,r5
-      00006C 8C 83            [24]  435 	mov	dph,r4
-      00006E 12r01r67         [24]  436 	lcall	_LookForSound
-                                    437 ;	./src/main.c:31: P3_7 = 0;
-                                    438 ;	assignBit
-      000071 C2 B7            [12]  439 	clr	_P3_7
-                                    440 ;	./src/main.c:32: LookForSound(music_table[music_plat_note]);
-      000073 E5*00            [12]  441 	mov	a,_music_plat_note
-      000075 24r00            [12]  442 	add	a,#_music_table
-      000077 F5 82            [12]  443 	mov	dpl,a
-      000079 E5*01            [12]  444 	mov	a,(_music_plat_note + 1)
-      00007B 34s00            [12]  445 	addc	a,#(_music_table >> 8)
-      00007D F5 83            [12]  446 	mov	dph,a
-      00007F E4               [12]  447 	clr	a
-      000080 93               [24]  448 	movc	a,@a+dptr
-      000081 FD               [12]  449 	mov	r5,a
-      000082 7C 00            [12]  450 	mov	r4,#0x00
-      000084 8D 82            [24]  451 	mov	dpl,r5
-      000086 8C 83            [24]  452 	mov	dph,r4
-      000088 12r01r67         [24]  453 	lcall	_LookForSound
-      00008B 80 A0            [24]  454 	sjmp	00101$
-      00008D                        455 00103$:
-                                    456 ;	./src/main.c:34: if (duration_time >= duration_table[music_plat_note] && duration_time < (100 + blanck_table[music_plat_note]))
-      00008D C3               [12]  457 	clr	c
-      00008E E5*02            [12]  458 	mov	a,_duration_time
-      000090 9E               [12]  459 	subb	a,r6
-      000091 E5*03            [12]  460 	mov	a,(_duration_time + 1)
-      000093 64 80            [12]  461 	xrl	a,#0x80
-      000095 8F F0            [24]  462 	mov	b,r7
-      000097 63 F0 80         [24]  463 	xrl	b,#0x80
-      00009A 95 F0            [12]  464 	subb	a,b
-      00009C 40 2D            [24]  465 	jc	00112$
-      00009E E5*00            [12]  466 	mov	a,_music_plat_note
-      0000A0 24r22            [12]  467 	add	a,#_blanck_table
-      0000A2 F5 82            [12]  468 	mov	dpl,a
-      0000A4 E5*01            [12]  469 	mov	a,(_music_plat_note + 1)
-      0000A6 34s00            [12]  470 	addc	a,#(_blanck_table >> 8)
-      0000A8 F5 83            [12]  471 	mov	dph,a
-      0000AA E4               [12]  472 	clr	a
-      0000AB 93               [24]  473 	movc	a,@a+dptr
-      0000AC FF               [12]  474 	mov	r7,a
-      0000AD 7E 00            [12]  475 	mov	r6,#0x00
-      0000AF 74 64            [12]  476 	mov	a,#0x64
-      0000B1 2F               [12]  477 	add	a,r7
-      0000B2 FF               [12]  478 	mov	r7,a
-      0000B3 E4               [12]  479 	clr	a
-      0000B4 3E               [12]  480 	addc	a,r6
-      0000B5 FE               [12]  481 	mov	r6,a
-      0000B6 C3               [12]  482 	clr	c
-      0000B7 E5*02            [12]  483 	mov	a,_duration_time
-      0000B9 9F               [12]  484 	subb	a,r7
-      0000BA E5*03            [12]  485 	mov	a,(_duration_time + 1)
-      0000BC 64 80            [12]  486 	xrl	a,#0x80
-      0000BE 8E F0            [24]  487 	mov	b,r6
-      0000C0 63 F0 80         [24]  488 	xrl	b,#0x80
-      0000C3 95 F0            [12]  489 	subb	a,b
-      0000C5 50 04            [24]  490 	jnc	00112$
-                                    491 ;	./src/main.c:36: P3_7 = 0; // Buzzer OFF or set to desired state
-                                    492 ;	assignBit
-      0000C7 C2 B7            [12]  493 	clr	_P3_7
-      0000C9 80 6E            [24]  494 	sjmp	00115$
-      0000CB                        495 00112$:
-                                    496 ;	./src/main.c:38: else if (duration_time >= (duration_table[music_plat_note] + blanck_table[music_plat_note]))
-      0000CB E5*00            [12]  497 	mov	a,_music_plat_note
-      0000CD 24r11            [12]  498 	add	a,#_duration_table
-      0000CF F5 82            [12]  499 	mov	dpl,a
-      0000D1 E5*01            [12]  500 	mov	a,(_music_plat_note + 1)
-      0000D3 34s00            [12]  501 	addc	a,#(_duration_table >> 8)
-      0000D5 F5 83            [12]  502 	mov	dph,a
-      0000D7 E4               [12]  503 	clr	a
-      0000D8 93               [24]  504 	movc	a,@a+dptr
-      0000D9 FF               [12]  505 	mov	r7,a
-      0000DA 7E 00            [12]  506 	mov	r6,#0x00
-      0000DC E5*00            [12]  507 	mov	a,_music_plat_note
-      0000DE 24r22            [12]  508 	add	a,#_blanck_table
-      0000E0 F5 82            [12]  509 	mov	dpl,a
-      0000E2 E5*01            [12]  510 	mov	a,(_music_plat_note + 1)
-      0000E4 34s00            [12]  511 	addc	a,#(_blanck_table >> 8)
-      0000E6 F5 83            [12]  512 	mov	dph,a
-      0000E8 E4               [12]  513 	clr	a
-      0000E9 93               [24]  514 	movc	a,@a+dptr
-      0000EA FD               [12]  515 	mov	r5,a
-      0000EB 7C 00            [12]  516 	mov	r4,#0x00
-      0000ED 2F               [12]  517 	add	a,r7
-      0000EE FF               [12]  518 	mov	r7,a
-      0000EF EC               [12]  519 	mov	a,r4
-      0000F0 3E               [12]  520 	addc	a,r6
-      0000F1 FE               [12]  521 	mov	r6,a
-      0000F2 C3               [12]  522 	clr	c
-      0000F3 E5*02            [12]  523 	mov	a,_duration_time
-      0000F5 9F               [12]  524 	subb	a,r7
-      0000F6 E5*03            [12]  525 	mov	a,(_duration_time + 1)
-      0000F8 64 80            [12]  526 	xrl	a,#0x80
-      0000FA 8E F0            [24]  527 	mov	b,r6
-      0000FC 63 F0 80         [24]  528 	xrl	b,#0x80
-      0000FF 95 F0            [12]  529 	subb	a,b
-      000101 40 36            [24]  530 	jc	00115$
-                                    531 ;	./src/main.c:40: duration_time = 0;
-      000103 E4               [12]  532 	clr	a
-      000104 F5*02            [12]  533 	mov	_duration_time,a
-      000106 F5*03            [12]  534 	mov	(_duration_time + 1),a
-                                    535 ;	./src/main.c:41: music_plat_note++;
-      000108 05*00            [12]  536 	inc	_music_plat_note
-      00010A B5*00 02         [24]  537 	cjne	a,_music_plat_note,00165$
-      00010D 05*01            [12]  538 	inc	(_music_plat_note + 1)
-      00010F                        539 00165$:
-                                    540 ;	./src/main.c:43: if (music_plat_note == 9)
-      00010F 74 09            [12]  541 	mov	a,#0x09
-      000111 B5*00 06         [24]  542 	cjne	a,_music_plat_note,00166$
-      000114 E4               [12]  543 	clr	a
-      000115 B5*01 02         [24]  544 	cjne	a,(_music_plat_note + 1),00166$
-      000118 80 02            [24]  545 	sjmp	00167$
-      00011A                        546 00166$:
-      00011A 80 08            [24]  547 	sjmp	00105$
-      00011C                        548 00167$:
-                                    549 ;	./src/main.c:44: black_space = 200;
-      00011C 75*04 C8         [24]  550 	mov	_black_space,#0xc8
-      00011F 75*05 00         [24]  551 	mov	(_black_space + 1),#0x00
-      000122 80 06            [24]  552 	sjmp	00106$
-      000124                        553 00105$:
-                                    554 ;	./src/main.c:46: black_space = 50;
-      000124 75*04 32         [24]  555 	mov	_black_space,#0x32
-      000127 75*05 00         [24]  556 	mov	(_black_space + 1),#0x00
-      00012A                        557 00106$:
-                                    558 ;	./src/main.c:48: if (music_plat_note >= NOTE_NUM)
-      00012A C3               [12]  559 	clr	c
-      00012B E5*00            [12]  560 	mov	a,_music_plat_note
-      00012D 94 11            [12]  561 	subb	a,#0x11
-      00012F E5*01            [12]  562 	mov	a,(_music_plat_note + 1)
-      000131 64 80            [12]  563 	xrl	a,#0x80
-      000133 94 80            [12]  564 	subb	a,#0x80
-      000135 40 02            [24]  565 	jc	00115$
-                                    566 ;	./src/main.c:49: TR0 = 0;
-                                    567 ;	assignBit
-      000137 C2 8C            [12]  568 	clr	_TR0
-      000139                        569 00115$:
-                                    570 ;	./src/main.c:51: }
-      000139 D0 D0            [24]  571 	pop	psw
-      00013B D0 00            [24]  572 	pop	(0+0)
-      00013D D0 01            [24]  573 	pop	(0+1)
-      00013F D0 02            [24]  574 	pop	(0+2)
-      000141 D0 03            [24]  575 	pop	(0+3)
-      000143 D0 04            [24]  576 	pop	(0+4)
-      000145 D0 05            [24]  577 	pop	(0+5)
-      000147 D0 06            [24]  578 	pop	(0+6)
-      000149 D0 07            [24]  579 	pop	(0+7)
-      00014B D0 83            [24]  580 	pop	dph
-      00014D D0 82            [24]  581 	pop	dpl
-      00014F D0 F0            [24]  582 	pop	b
-      000151 D0 E0            [24]  583 	pop	acc
-      000153 D0*00            [24]  584 	pop	bits
-      000155 32               [24]  585 	reti
-                                    586 ;------------------------------------------------------------
-                                    587 ;Allocation info for local variables in function 'main'
-                                    588 ;------------------------------------------------------------
-                                    589 ;	./src/main.c:53: int main()
-                                    590 ;	-----------------------------------------
-                                    591 ;	 function main
-                                    592 ;	-----------------------------------------
-      000156                        593 _main:
-                                    594 ;	./src/main.c:56: TMOD = 0x01;                // Set Timer 1 to mode 0 & Timer 0 mode 1. (16-bit timer)
-      000156 75 89 01         [24]  595 	mov	_TMOD,#0x01
-                                    596 ;	./src/main.c:57: TH0 = (65536 - 1000) / 256; // Load initial higher 8 bits into Timer 0
-      000159 75 8C FC         [24]  597 	mov	_TH0,#0xfc
-                                    598 ;	./src/main.c:58: TL0 = (65536 - 1000) % 256; // Load initial lower 8 bits into Timer 0
-      00015C 75 8A 18         [24]  599 	mov	_TL0,#0x18
-                                    600 ;	./src/main.c:59: ET0 = 1;                    // Enable Timer 0 interrupt
-                                    601 ;	assignBit
-      00015F D2 A9            [12]  602 	setb	_ET0
-                                    603 ;	./src/main.c:60: EA = 1;                     // Enable all interrupt
-                                    604 ;	assignBit
-      000161 D2 AF            [12]  605 	setb	_EA
-                                    606 ;	./src/main.c:61: TR0 = 1;                    // Start Timer 0
-                                    607 ;	assignBit
-      000163 D2 8C            [12]  608 	setb	_TR0
-                                    609 ;	./src/main.c:63: while (1)
-      000165                        610 00102$:
-                                    611 ;	./src/main.c:67: }
-      000165 80 FE            [24]  612 	sjmp	00102$
-                                    613 ;------------------------------------------------------------
-                                    614 ;Allocation info for local variables in function 'LookForSound'
-                                    615 ;------------------------------------------------------------
-                                    616 ;now                       Allocated to registers r6 r7 
-                                    617 ;------------------------------------------------------------
-                                    618 ;	./src/main.c:69: void LookForSound(int now)
-                                    619 ;	-----------------------------------------
-                                    620 ;	 function LookForSound
-                                    621 ;	-----------------------------------------
-      000167                        622 _LookForSound:
-      000167 AE 82            [24]  623 	mov	r6,dpl
-      000169 AF 83            [24]  624 	mov	r7,dph
-                                    625 ;	./src/main.c:71: P1 = 0xff;
-      00016B 75 90 FF         [24]  626 	mov	_P1,#0xff
-                                    627 ;	./src/main.c:72: switch (now)
-      00016E BE 01 05         [24]  628 	cjne	r6,#0x01,00147$
-      000171 BF 00 02         [24]  629 	cjne	r7,#0x00,00147$
-      000174 80 28            [24]  630 	sjmp	00101$
-      000176                        631 00147$:
-      000176 BE 02 05         [24]  632 	cjne	r6,#0x02,00148$
-      000179 BF 00 02         [24]  633 	cjne	r7,#0x00,00148$
-      00017C 80 26            [24]  634 	sjmp	00102$
-      00017E                        635 00148$:
-      00017E BE 03 05         [24]  636 	cjne	r6,#0x03,00149$
-      000181 BF 00 02         [24]  637 	cjne	r7,#0x00,00149$
-      000184 80 24            [24]  638 	sjmp	00103$
-      000186                        639 00149$:
-      000186 BE 04 05         [24]  640 	cjne	r6,#0x04,00150$
-      000189 BF 00 02         [24]  641 	cjne	r7,#0x00,00150$
-      00018C 80 22            [24]  642 	sjmp	00104$
-      00018E                        643 00150$:
-      00018E BE 05 05         [24]  644 	cjne	r6,#0x05,00151$
-      000191 BF 00 02         [24]  645 	cjne	r7,#0x00,00151$
-      000194 80 20            [24]  646 	sjmp	00105$
-      000196                        647 00151$:
-                                    648 ;	./src/main.c:74: case 1:
-      000196 BE 06 28         [24]  649 	cjne	r6,#0x06,00109$
-      000199 BF 00 25         [24]  650 	cjne	r7,#0x00,00109$
-      00019C 80 1E            [24]  651 	sjmp	00106$
-      00019E                        652 00101$:
-                                    653 ;	./src/main.c:75: Delay_Do();
-      00019E 12r00r00         [24]  654 	lcall	_Delay_Do
-                                    655 ;	./src/main.c:76: P1_7 = 0;
-                                    656 ;	assignBit
-      0001A1 C2 97            [12]  657 	clr	_P1_7
-                                    658 ;	./src/main.c:77: break;
-                                    659 ;	./src/main.c:79: case 2:
-      0001A3 22               [24]  660 	ret
-      0001A4                        661 00102$:
-                                    662 ;	./src/main.c:80: Delay_Re();
-      0001A4 12r00r00         [24]  663 	lcall	_Delay_Re
-                                    664 ;	./src/main.c:81: P1_6 = 0;
+      000000                        319 __interrupt_vect:
+      000000 02r00r00         [24]  320 	ljmp	__sdcc_gsinit_startup
+      000003 32               [24]  321 	reti
+      000004                        322 	.ds	7
+      00000B 02r00r00         [24]  323 	ljmp	_T0_isr
+                                    324 ;--------------------------------------------------------
+                                    325 ; global & static initialisations
+                                    326 ;--------------------------------------------------------
+                                    327 	.area HOME    (CODE)
+                                    328 	.area GSINIT  (CODE)
+                                    329 	.area GSFINAL (CODE)
+                                    330 	.area GSINIT  (CODE)
+                                    331 	.globl __sdcc_gsinit_startup
+                                    332 	.globl __sdcc_program_startup
+                                    333 	.globl __start__stack
+                                    334 	.globl __mcs51_genXINIT
+                                    335 	.globl __mcs51_genXRAMCLEAR
+                                    336 	.globl __mcs51_genRAMCLEAR
+                                    337 ;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
+      000000 E4               [12]  338 	clr	a
+      000001 F5*00            [12]  339 	mov	_music_on,a
+      000003 F5*01            [12]  340 	mov	(_music_on + 1),a
+                                    341 ;	./src/main.c:8: int music_play_note = 0, duration_time = 0;
+      000005 F5*02            [12]  342 	mov	_scan_cnting,a
+      000007 F5*03            [12]  343 	mov	(_scan_cnting + 1),a
+                                    344 ;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
+      000009 F5*04            [12]  345 	mov	_stable_scan,a
+      00000B F5*05            [12]  346 	mov	(_stable_scan + 1),a
+                                    347 ;	./src/main.c:9: int music_play_note = 0, duration_time = 0;
+      00000D F5*06            [12]  348 	mov	_music_play_note,a
+      00000F F5*07            [12]  349 	mov	(_music_play_note + 1),a
+                                    350 ;	./src/main.c:9: 
+      000011 F5*08            [12]  351 	mov	_duration_time,a
+      000013 F5*09            [12]  352 	mov	(_duration_time + 1),a
+                                    353 	.area GSFINAL (CODE)
+      000000 02r00r0E         [24]  354 	ljmp	__sdcc_program_startup
+                                    355 ;--------------------------------------------------------
+                                    356 ; Home
+                                    357 ;--------------------------------------------------------
+                                    358 	.area HOME    (CODE)
+                                    359 	.area HOME    (CODE)
+      00000E                        360 __sdcc_program_startup:
+      00000E 02r00rF4         [24]  361 	ljmp	_main
+                                    362 ;	return from main will return to caller
+                                    363 ;--------------------------------------------------------
+                                    364 ; code
+                                    365 ;--------------------------------------------------------
+                                    366 	.area CSEG    (CODE)
+                                    367 ;------------------------------------------------------------
+                                    368 ;Allocation info for local variables in function 'T0_isr'
+                                    369 ;------------------------------------------------------------
+                                    370 ;	./src/main.c:26: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
+                                    371 ;	-----------------------------------------
+                                    372 ;	 function T0_isr
+                                    373 ;	-----------------------------------------
+      000000                        374 _T0_isr:
+                           000007   375 	ar7 = 0x07
+                           000006   376 	ar6 = 0x06
+                           000005   377 	ar5 = 0x05
+                           000004   378 	ar4 = 0x04
+                           000003   379 	ar3 = 0x03
+                           000002   380 	ar2 = 0x02
+                           000001   381 	ar1 = 0x01
+                           000000   382 	ar0 = 0x00
+      000000 C0*00            [24]  383 	push	bits
+      000002 C0 E0            [24]  384 	push	acc
+      000004 C0 F0            [24]  385 	push	b
+      000006 C0 82            [24]  386 	push	dpl
+      000008 C0 83            [24]  387 	push	dph
+      00000A C0 07            [24]  388 	push	(0+7)
+      00000C C0 06            [24]  389 	push	(0+6)
+      00000E C0 05            [24]  390 	push	(0+5)
+      000010 C0 04            [24]  391 	push	(0+4)
+      000012 C0 03            [24]  392 	push	(0+3)
+      000014 C0 02            [24]  393 	push	(0+2)
+      000016 C0 01            [24]  394 	push	(0+1)
+      000018 C0 00            [24]  395 	push	(0+0)
+      00001A C0 D0            [24]  396 	push	psw
+      00001C 75 D0 00         [24]  397 	mov	psw,#0x00
+                                    398 ;	./src/main.c:29: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
+      00001F 75 8C FC         [24]  399 	mov	_TH0,#0xfc
+                                    400 ;	./src/main.c:30: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
+      000022 75 8A 18         [24]  401 	mov	_TL0,#0x18
+                                    402 ;	./src/main.c:32: duration_time++;
+      000025 05*08            [12]  403 	inc	_duration_time
+      000027 E4               [12]  404 	clr	a
+      000028 B5*08 02         [24]  405 	cjne	a,_duration_time,00134$
+      00002B 05*09            [12]  406 	inc	(_duration_time + 1)
+      00002D                        407 00134$:
+                                    408 ;	./src/main.c:34: while (duration_time < duration_table[music_play_note])
+      00002D                        409 00101$:
+      00002D E5*06            [12]  410 	mov	a,_music_play_note
+      00002F 24r19            [12]  411 	add	a,#_duration_table
+      000031 F5 82            [12]  412 	mov	dpl,a
+      000033 E5*07            [12]  413 	mov	a,(_music_play_note + 1)
+      000035 34s00            [12]  414 	addc	a,#(_duration_table >> 8)
+      000037 F5 83            [12]  415 	mov	dph,a
+      000039 E4               [12]  416 	clr	a
+      00003A 93               [24]  417 	movc	a,@a+dptr
+      00003B FE               [12]  418 	mov	r6,a
+      00003C 7F 00            [12]  419 	mov	r7,#0x00
+      00003E C3               [12]  420 	clr	c
+      00003F E5*08            [12]  421 	mov	a,_duration_time
+      000041 9E               [12]  422 	subb	a,r6
+      000042 E5*09            [12]  423 	mov	a,(_duration_time + 1)
+      000044 64 80            [12]  424 	xrl	a,#0x80
+      000046 8F F0            [24]  425 	mov	b,r7
+      000048 63 F0 80         [24]  426 	xrl	b,#0x80
+      00004B 95 F0            [12]  427 	subb	a,b
+      00004D 50 3E            [24]  428 	jnc	00103$
+                                    429 ;	./src/main.c:36: duration_time++;
+      00004F 05*08            [12]  430 	inc	_duration_time
+      000051 E4               [12]  431 	clr	a
+      000052 B5*08 02         [24]  432 	cjne	a,_duration_time,00136$
+      000055 05*09            [12]  433 	inc	(_duration_time + 1)
+      000057                        434 00136$:
+                                    435 ;	./src/main.c:37: P3_7 = 1;
+                                    436 ;	assignBit
+      000057 D2 B7            [12]  437 	setb	_P3_7
+                                    438 ;	./src/main.c:38: LookForSound(music_table[music_play_note]);
+      000059 E5*06            [12]  439 	mov	a,_music_play_note
+      00005B 24r00            [12]  440 	add	a,#_music_table
+      00005D F5 82            [12]  441 	mov	dpl,a
+      00005F E5*07            [12]  442 	mov	a,(_music_play_note + 1)
+      000061 34s00            [12]  443 	addc	a,#(_music_table >> 8)
+      000063 F5 83            [12]  444 	mov	dph,a
+      000065 E4               [12]  445 	clr	a
+      000066 93               [24]  446 	movc	a,@a+dptr
+      000067 FD               [12]  447 	mov	r5,a
+      000068 7C 00            [12]  448 	mov	r4,#0x00
+      00006A 8D 82            [24]  449 	mov	dpl,r5
+      00006C 8C 83            [24]  450 	mov	dph,r4
+      00006E 12r01rF8         [24]  451 	lcall	_LookForSound
+                                    452 ;	./src/main.c:39: P3_7 = 0;
+                                    453 ;	assignBit
+      000071 C2 B7            [12]  454 	clr	_P3_7
+                                    455 ;	./src/main.c:40: LookForSound(music_table[music_play_note]);
+      000073 E5*06            [12]  456 	mov	a,_music_play_note
+      000075 24r00            [12]  457 	add	a,#_music_table
+      000077 F5 82            [12]  458 	mov	dpl,a
+      000079 E5*07            [12]  459 	mov	a,(_music_play_note + 1)
+      00007B 34s00            [12]  460 	addc	a,#(_music_table >> 8)
+      00007D F5 83            [12]  461 	mov	dph,a
+      00007F E4               [12]  462 	clr	a
+      000080 93               [24]  463 	movc	a,@a+dptr
+      000081 FD               [12]  464 	mov	r5,a
+      000082 7C 00            [12]  465 	mov	r4,#0x00
+      000084 8D 82            [24]  466 	mov	dpl,r5
+      000086 8C 83            [24]  467 	mov	dph,r4
+      000088 12r01rF8         [24]  468 	lcall	_LookForSound
+      00008B 80 A0            [24]  469 	sjmp	00101$
+      00008D                        470 00103$:
+                                    471 ;	./src/main.c:42: if (duration_time >= (duration_table[music_play_note] + blanck_table[music_play_note]))
+      00008D E5*06            [12]  472 	mov	a,_music_play_note
+      00008F 24r32            [12]  473 	add	a,#_blanck_table
+      000091 F5 82            [12]  474 	mov	dpl,a
+      000093 E5*07            [12]  475 	mov	a,(_music_play_note + 1)
+      000095 34s00            [12]  476 	addc	a,#(_blanck_table >> 8)
+      000097 F5 83            [12]  477 	mov	dph,a
+      000099 E4               [12]  478 	clr	a
+      00009A 93               [24]  479 	movc	a,@a+dptr
+      00009B 7C 00            [12]  480 	mov	r4,#0x00
+      00009D 2E               [12]  481 	add	a,r6
+      00009E FE               [12]  482 	mov	r6,a
+      00009F EC               [12]  483 	mov	a,r4
+      0000A0 3F               [12]  484 	addc	a,r7
+      0000A1 FF               [12]  485 	mov	r7,a
+      0000A2 C3               [12]  486 	clr	c
+      0000A3 E5*08            [12]  487 	mov	a,_duration_time
+      0000A5 9E               [12]  488 	subb	a,r6
+      0000A6 E5*09            [12]  489 	mov	a,(_duration_time + 1)
+      0000A8 64 80            [12]  490 	xrl	a,#0x80
+      0000AA 8F F0            [24]  491 	mov	b,r7
+      0000AC 63 F0 80         [24]  492 	xrl	b,#0x80
+      0000AF 95 F0            [12]  493 	subb	a,b
+      0000B1 40 24            [24]  494 	jc	00108$
+                                    495 ;	./src/main.c:44: duration_time = 0;
+      0000B3 E4               [12]  496 	clr	a
+      0000B4 F5*08            [12]  497 	mov	_duration_time,a
+      0000B6 F5*09            [12]  498 	mov	(_duration_time + 1),a
+                                    499 ;	./src/main.c:45: music_play_note++;
+      0000B8 05*06            [12]  500 	inc	_music_play_note
+      0000BA B5*06 02         [24]  501 	cjne	a,_music_play_note,00138$
+      0000BD 05*07            [12]  502 	inc	(_music_play_note + 1)
+      0000BF                        503 00138$:
+                                    504 ;	./src/main.c:47: if (music_play_note >= NOTE_NUM)
+      0000BF C3               [12]  505 	clr	c
+      0000C0 E5*06            [12]  506 	mov	a,_music_play_note
+      0000C2 94 19            [12]  507 	subb	a,#0x19
+      0000C4 E5*07            [12]  508 	mov	a,(_music_play_note + 1)
+      0000C6 64 80            [12]  509 	xrl	a,#0x80
+      0000C8 94 80            [12]  510 	subb	a,#0x80
+      0000CA 40 0B            [24]  511 	jc	00108$
+                                    512 ;	./src/main.c:49: TR0 = 0;
+                                    513 ;	assignBit
+      0000CC C2 8C            [12]  514 	clr	_TR0
+                                    515 ;	./src/main.c:50: music_on = 0;
+      0000CE E4               [12]  516 	clr	a
+      0000CF F5*00            [12]  517 	mov	_music_on,a
+      0000D1 F5*01            [12]  518 	mov	(_music_on + 1),a
+                                    519 ;	./src/main.c:51: music_play_note = 0;
+      0000D3 F5*06            [12]  520 	mov	_music_play_note,a
+      0000D5 F5*07            [12]  521 	mov	(_music_play_note + 1),a
+      0000D7                        522 00108$:
+                                    523 ;	./src/main.c:54: }
+      0000D7 D0 D0            [24]  524 	pop	psw
+      0000D9 D0 00            [24]  525 	pop	(0+0)
+      0000DB D0 01            [24]  526 	pop	(0+1)
+      0000DD D0 02            [24]  527 	pop	(0+2)
+      0000DF D0 03            [24]  528 	pop	(0+3)
+      0000E1 D0 04            [24]  529 	pop	(0+4)
+      0000E3 D0 05            [24]  530 	pop	(0+5)
+      0000E5 D0 06            [24]  531 	pop	(0+6)
+      0000E7 D0 07            [24]  532 	pop	(0+7)
+      0000E9 D0 83            [24]  533 	pop	dph
+      0000EB D0 82            [24]  534 	pop	dpl
+      0000ED D0 F0            [24]  535 	pop	b
+      0000EF D0 E0            [24]  536 	pop	acc
+      0000F1 D0*00            [24]  537 	pop	bits
+      0000F3 32               [24]  538 	reti
+                                    539 ;------------------------------------------------------------
+                                    540 ;Allocation info for local variables in function 'main'
+                                    541 ;------------------------------------------------------------
+                                    542 ;	./src/main.c:59: int main()
+                                    543 ;	-----------------------------------------
+                                    544 ;	 function main
+                                    545 ;	-----------------------------------------
+      0000F4                        546 _main:
+                                    547 ;	./src/main.c:62: TMOD = 0x01;                // Set Timer 1 to mode 0 & Timer 0 mode 1. (16-bit timer)
+      0000F4 75 89 01         [24]  548 	mov	_TMOD,#0x01
+                                    549 ;	./src/main.c:63: TH0 = (65536 - 1000) / 256; // Load initial higher 8 bits into Timer 0
+      0000F7 75 8C FC         [24]  550 	mov	_TH0,#0xfc
+                                    551 ;	./src/main.c:64: TL0 = (65536 - 1000) % 256; // Load initial lower 8 bits into Timer 0
+      0000FA 75 8A 18         [24]  552 	mov	_TL0,#0x18
+                                    553 ;	./src/main.c:65: ET0 = 1;                    // Enable Timer 0 interrupt
+                                    554 ;	assignBit
+      0000FD D2 A9            [12]  555 	setb	_ET0
+                                    556 ;	./src/main.c:66: EA = 1;                     // Enable all interrupt
+                                    557 ;	assignBit
+      0000FF D2 AF            [12]  558 	setb	_EA
+                                    559 ;	./src/main.c:67: TR0 = 0;                    // Start Timer 0
+                                    560 ;	assignBit
+      000101 C2 8C            [12]  561 	clr	_TR0
+                                    562 ;	./src/main.c:70: SDA = 1;
+                                    563 ;	assignBit
+      000103 D2 81            [12]  564 	setb	_P0_1
+                                    565 ;	./src/main.c:71: SCL = 1;
+                                    566 ;	assignBit
+      000105 D2 80            [12]  567 	setb	_P0_0
+                                    568 ;	./src/main.c:73: OLED_Init();
+      000107 12r00r00         [24]  569 	lcall	_OLED_Init
+                                    570 ;	./src/main.c:74: OLED_SetCursor(text_row, text_col);
+      00010A 75*00 28         [24]  571 	mov	_OLED_SetCursor_PARM_2,#0x28
+      00010D 75 82 03         [24]  572 	mov	dpl,#0x03
+      000110 12r00r00         [24]  573 	lcall	_OLED_SetCursor
+                                    574 ;	./src/main.c:75: OLED_DisplayString("music off!");
+      000113 90r00r4B         [24]  575 	mov	dptr,#___str_0
+      000116 75 F0 80         [24]  576 	mov	b,#0x80
+      000119 12r00r00         [24]  577 	lcall	_OLED_DisplayString
+                                    578 ;	./src/main.c:77: while (1)
+      00011C                        579 00125$:
+                                    580 ;	./src/main.c:80: if (P2_0 == 0 && stable_scan == 1)
+      00011C 20 A0 39         [24]  581 	jb	_P2_0,00114$
+      00011F 74 01            [12]  582 	mov	a,#0x01
+      000121 B5*04 06         [24]  583 	cjne	a,_stable_scan,00208$
+      000124 14               [12]  584 	dec	a
+      000125 B5*05 02         [24]  585 	cjne	a,(_stable_scan + 1),00208$
+      000128 80 02            [24]  586 	sjmp	00209$
+      00012A                        587 00208$:
+      00012A 80 2C            [24]  588 	sjmp	00114$
+      00012C                        589 00209$:
+                                    590 ;	./src/main.c:82: if (scan_cnting < scan_cnt)
+      00012C C3               [12]  591 	clr	c
+      00012D E5*02            [12]  592 	mov	a,_scan_cnting
+      00012F 94 0A            [12]  593 	subb	a,#0x0a
+      000131 E5*03            [12]  594 	mov	a,(_scan_cnting + 1)
+      000133 64 80            [12]  595 	xrl	a,#0x80
+      000135 94 80            [12]  596 	subb	a,#0x80
+      000137 50 57            [24]  597 	jnc	00115$
+                                    598 ;	./src/main.c:84: scan_cnting++;
+      000139 05*02            [12]  599 	inc	_scan_cnting
+      00013B E4               [12]  600 	clr	a
+      00013C B5*02 02         [24]  601 	cjne	a,_scan_cnting,00211$
+      00013F 05*03            [12]  602 	inc	(_scan_cnting + 1)
+      000141                        603 00211$:
+                                    604 ;	./src/main.c:85: if (scan_cnting == scan_cnt)
+      000141 74 0A            [12]  605 	mov	a,#0x0a
+      000143 B5*02 06         [24]  606 	cjne	a,_scan_cnting,00212$
+      000146 E4               [12]  607 	clr	a
+      000147 B5*03 02         [24]  608 	cjne	a,(_scan_cnting + 1),00212$
+      00014A 80 02            [24]  609 	sjmp	00213$
+      00014C                        610 00212$:
+      00014C 80 42            [24]  611 	sjmp	00115$
+      00014E                        612 00213$:
+                                    613 ;	./src/main.c:87: music_on ^= 1;
+      00014E 63*00 01         [24]  614 	xrl	_music_on,#0x01
+                                    615 ;	./src/main.c:88: stable_scan = 0;
+      000151 E4               [12]  616 	clr	a
+      000152 F5*04            [12]  617 	mov	_stable_scan,a
+      000154 F5*05            [12]  618 	mov	(_stable_scan + 1),a
+      000156 80 38            [24]  619 	sjmp	00115$
+      000158                        620 00114$:
+                                    621 ;	./src/main.c:92: else if (P2_0 == 1 && stable_scan == 0)
+      000158 30 A0 30         [24]  622 	jnb	_P2_0,00110$
+      00015B E5*04            [12]  623 	mov	a,_stable_scan
+      00015D 45*05            [12]  624 	orl	a,(_stable_scan + 1)
+      00015F 70 2A            [24]  625 	jnz	00110$
+                                    626 ;	./src/main.c:94: if (scan_cnting < scan_cnt)
+      000161 C3               [12]  627 	clr	c
+      000162 E5*02            [12]  628 	mov	a,_scan_cnting
+      000164 94 0A            [12]  629 	subb	a,#0x0a
+      000166 E5*03            [12]  630 	mov	a,(_scan_cnting + 1)
+      000168 64 80            [12]  631 	xrl	a,#0x80
+      00016A 94 80            [12]  632 	subb	a,#0x80
+      00016C 50 22            [24]  633 	jnc	00115$
+                                    634 ;	./src/main.c:96: scan_cnting++;
+      00016E 05*02            [12]  635 	inc	_scan_cnting
+      000170 E4               [12]  636 	clr	a
+      000171 B5*02 02         [24]  637 	cjne	a,_scan_cnting,00217$
+      000174 05*03            [12]  638 	inc	(_scan_cnting + 1)
+      000176                        639 00217$:
+                                    640 ;	./src/main.c:97: if (scan_cnting == scan_cnt)
+      000176 74 0A            [12]  641 	mov	a,#0x0a
+      000178 B5*02 06         [24]  642 	cjne	a,_scan_cnting,00218$
+      00017B E4               [12]  643 	clr	a
+      00017C B5*03 02         [24]  644 	cjne	a,(_scan_cnting + 1),00218$
+      00017F 80 02            [24]  645 	sjmp	00219$
+      000181                        646 00218$:
+      000181 80 0D            [24]  647 	sjmp	00115$
+      000183                        648 00219$:
+                                    649 ;	./src/main.c:98: stable_scan = 1;
+      000183 75*04 01         [24]  650 	mov	_stable_scan,#0x01
+      000186 75*05 00         [24]  651 	mov	(_stable_scan + 1),#0x00
+      000189 80 05            [24]  652 	sjmp	00115$
+      00018B                        653 00110$:
+                                    654 ;	./src/main.c:102: scan_cnting = 0;
+      00018B E4               [12]  655 	clr	a
+      00018C F5*02            [12]  656 	mov	_scan_cnting,a
+      00018E F5*03            [12]  657 	mov	(_scan_cnting + 1),a
+      000190                        658 00115$:
+                                    659 ;	./src/main.c:105: if (music_on && TR0 == 0)
+      000190 E5*00            [12]  660 	mov	a,_music_on
+      000192 45*01            [12]  661 	orl	a,(_music_on + 1)
+      000194 60 2C            [24]  662 	jz	00121$
+      000196 20 8C 29         [24]  663 	jb	_TR0,00121$
+                                    664 ;	./src/main.c:107: TR0 = 1;
                                     665 ;	assignBit
-      0001A7 C2 96            [12]  666 	clr	_P1_6
-                                    667 ;	./src/main.c:82: break;
-                                    668 ;	./src/main.c:84: case 3:
-      0001A9 22               [24]  669 	ret
-      0001AA                        670 00103$:
-                                    671 ;	./src/main.c:85: Delay_Mi();
-      0001AA 12r00r00         [24]  672 	lcall	_Delay_Mi
-                                    673 ;	./src/main.c:86: P1_5 = 0;
-                                    674 ;	assignBit
-      0001AD C2 95            [12]  675 	clr	_P1_5
-                                    676 ;	./src/main.c:87: break;
-                                    677 ;	./src/main.c:89: case 4:
-      0001AF 22               [24]  678 	ret
-      0001B0                        679 00104$:
-                                    680 ;	./src/main.c:90: Delay_Fa();
-      0001B0 12r00r00         [24]  681 	lcall	_Delay_Fa
-                                    682 ;	./src/main.c:91: P1_4 = 0;
-                                    683 ;	assignBit
-      0001B3 C2 94            [12]  684 	clr	_P1_4
-                                    685 ;	./src/main.c:92: break;
-                                    686 ;	./src/main.c:94: case 5:
-      0001B5 22               [24]  687 	ret
-      0001B6                        688 00105$:
-                                    689 ;	./src/main.c:95: Delay_So();
-      0001B6 12r00r00         [24]  690 	lcall	_Delay_So
-                                    691 ;	./src/main.c:96: P1_3 = 0;
+      000199 D2 8C            [12]  666 	setb	_TR0
+                                    667 ;	./src/main.c:108: OLED_SetCursor(text_row, text_col);
+      00019B 75*00 28         [24]  668 	mov	_OLED_SetCursor_PARM_2,#0x28
+      00019E 75 82 03         [24]  669 	mov	dpl,#0x03
+      0001A1 12r00r00         [24]  670 	lcall	_OLED_SetCursor
+                                    671 ;	./src/main.c:109: OLED_DisplayString("           ");
+      0001A4 90r00r56         [24]  672 	mov	dptr,#___str_1
+      0001A7 75 F0 80         [24]  673 	mov	b,#0x80
+      0001AA 12r00r00         [24]  674 	lcall	_OLED_DisplayString
+                                    675 ;	./src/main.c:110: OLED_SetCursor(text_row, text_col);
+      0001AD 75*00 28         [24]  676 	mov	_OLED_SetCursor_PARM_2,#0x28
+      0001B0 75 82 03         [24]  677 	mov	dpl,#0x03
+      0001B3 12r00r00         [24]  678 	lcall	_OLED_SetCursor
+                                    679 ;	./src/main.c:111: OLED_DisplayString("music on!");
+      0001B6 90r00r62         [24]  680 	mov	dptr,#___str_2
+      0001B9 75 F0 80         [24]  681 	mov	b,#0x80
+      0001BC 12r00r00         [24]  682 	lcall	_OLED_DisplayString
+      0001BF 02r01r1C         [24]  683 	ljmp	00125$
+      0001C2                        684 00121$:
+                                    685 ;	./src/main.c:113: else if (!music_on && TR0 == 1)
+      0001C2 E5*00            [12]  686 	mov	a,_music_on
+      0001C4 45*01            [12]  687 	orl	a,(_music_on + 1)
+      0001C6 60 03            [24]  688 	jz	00222$
+      0001C8 02r01r1C         [24]  689 	ljmp	00125$
+      0001CB                        690 00222$:
+                                    691 ;	./src/main.c:115: TR0 = 0;
                                     692 ;	assignBit
-      0001B9 C2 93            [12]  693 	clr	_P1_3
-                                    694 ;	./src/main.c:97: break;
-                                    695 ;	./src/main.c:99: case 6:
-      0001BB 22               [24]  696 	ret
-      0001BC                        697 00106$:
-                                    698 ;	./src/main.c:100: Delay_La();
-      0001BC 12r00r00         [24]  699 	lcall	_Delay_La
-                                    700 ;	./src/main.c:101: P1_2 = 0;
-                                    701 ;	assignBit
-      0001BF C2 92            [12]  702 	clr	_P1_2
-                                    703 ;	./src/main.c:106: }
-      0001C1                        704 00109$:
-                                    705 ;	./src/main.c:107: }
-      0001C1 22               [24]  706 	ret
-                                    707 	.area CSEG    (CODE)
-                                    708 	.area CONST   (CODE)
-      000000                        709 _music_table:
-      000000 02                     710 	.db #0x02	; 2
-      000001 04                     711 	.db #0x04	; 4
-      000002 03                     712 	.db #0x03	; 3
-      000003 01                     713 	.db #0x01	; 1
-      000004 02                     714 	.db #0x02	; 2
-      000005 02                     715 	.db #0x02	; 2
-      000006 04                     716 	.db #0x04	; 4
-      000007 03                     717 	.db #0x03	; 3
-      000008 01                     718 	.db #0x01	; 1
-      000009 06                     719 	.db #0x06	; 6
-      00000A 04                     720 	.db #0x04	; 4
-      00000B 05                     721 	.db #0x05	; 5
-      00000C 03                     722 	.db #0x03	; 3
-      00000D 04                     723 	.db #0x04	; 4
-      00000E 02                     724 	.db #0x02	; 2
-      00000F 03                     725 	.db #0x03	; 3
-      000010 01                     726 	.db #0x01	; 1
-      000011                        727 _duration_table:
-      000011 F4                     728 	.db #0xf4	; 244
-      000012 32                     729 	.db #0x32	; 50	'2'
-      000013 C8                     730 	.db #0xc8	; 200
-      000014 32                     731 	.db #0x32	; 50	'2'
-      000015 32                     732 	.db #0x32	; 50	'2'
-      000016 32                     733 	.db #0x32	; 50	'2'
-      000017 32                     734 	.db #0x32	; 50	'2'
-      000018 F4                     735 	.db #0xf4	; 244
-      000019 32                     736 	.db #0x32	; 50	'2'
-      00001A F4                     737 	.db #0xf4	; 244
-      00001B 32                     738 	.db #0x32	; 50	'2'
-      00001C 96                     739 	.db #0x96	; 150
-      00001D 32                     740 	.db #0x32	; 50	'2'
-      00001E 64                     741 	.db #0x64	; 100	'd'
-      00001F 64                     742 	.db #0x64	; 100	'd'
-      000020 32                     743 	.db #0x32	; 50	'2'
-      000021 64                     744 	.db #0x64	; 100	'd'
-      000022                        745 _blanck_table:
-      000022 32                     746 	.db #0x32	; 50	'2'
-      000023 32                     747 	.db #0x32	; 50	'2'
-      000024 32                     748 	.db #0x32	; 50	'2'
-      000025 32                     749 	.db #0x32	; 50	'2'
-      000026 32                     750 	.db #0x32	; 50	'2'
-      000027 32                     751 	.db #0x32	; 50	'2'
-      000028 32                     752 	.db #0x32	; 50	'2'
-      000029 32                     753 	.db #0x32	; 50	'2'
-      00002A 32                     754 	.db #0x32	; 50	'2'
-      00002B C8                     755 	.db #0xc8	; 200
-      00002C 32                     756 	.db #0x32	; 50	'2'
-      00002D 32                     757 	.db #0x32	; 50	'2'
-      00002E 32                     758 	.db #0x32	; 50	'2'
-      00002F 32                     759 	.db #0x32	; 50	'2'
-      000030 1E                     760 	.db #0x1e	; 30
-      000031 1E                     761 	.db #0x1e	; 30
-      000032 1E                     762 	.db #0x1e	; 30
-                                    763 	.area XINIT   (CODE)
-                                    764 	.area CABS    (ABS,CODE)
+      0001CB 10 8C 03         [24]  693 	jbc	_TR0,00223$
+      0001CE 02r01r1C         [24]  694 	ljmp	00125$
+      0001D1                        695 00223$:
+                                    696 ;	./src/main.c:116: OLED_SetCursor(text_row, text_col);
+      0001D1 75*00 28         [24]  697 	mov	_OLED_SetCursor_PARM_2,#0x28
+      0001D4 75 82 03         [24]  698 	mov	dpl,#0x03
+      0001D7 12r00r00         [24]  699 	lcall	_OLED_SetCursor
+                                    700 ;	./src/main.c:117: OLED_DisplayString("           ");
+      0001DA 90r00r56         [24]  701 	mov	dptr,#___str_1
+      0001DD 75 F0 80         [24]  702 	mov	b,#0x80
+      0001E0 12r00r00         [24]  703 	lcall	_OLED_DisplayString
+                                    704 ;	./src/main.c:118: OLED_SetCursor(text_row, text_col);
+      0001E3 75*00 28         [24]  705 	mov	_OLED_SetCursor_PARM_2,#0x28
+      0001E6 75 82 03         [24]  706 	mov	dpl,#0x03
+      0001E9 12r00r00         [24]  707 	lcall	_OLED_SetCursor
+                                    708 ;	./src/main.c:119: OLED_DisplayString("music off!");
+      0001EC 90r00r4B         [24]  709 	mov	dptr,#___str_0
+      0001EF 75 F0 80         [24]  710 	mov	b,#0x80
+      0001F2 12r00r00         [24]  711 	lcall	_OLED_DisplayString
+                                    712 ;	./src/main.c:122: }
+      0001F5 02r01r1C         [24]  713 	ljmp	00125$
+                                    714 ;------------------------------------------------------------
+                                    715 ;Allocation info for local variables in function 'LookForSound'
+                                    716 ;------------------------------------------------------------
+                                    717 ;now                       Allocated to registers r6 r7 
+                                    718 ;------------------------------------------------------------
+                                    719 ;	./src/main.c:124: void LookForSound(int now)
+                                    720 ;	-----------------------------------------
+                                    721 ;	 function LookForSound
+                                    722 ;	-----------------------------------------
+      0001F8                        723 _LookForSound:
+      0001F8 AE 82            [24]  724 	mov	r6,dpl
+      0001FA AF 83            [24]  725 	mov	r7,dph
+                                    726 ;	./src/main.c:126: switch (now)
+      0001FC BE 01 05         [24]  727 	cjne	r6,#0x01,00147$
+      0001FF BF 00 02         [24]  728 	cjne	r7,#0x00,00147$
+      000202 80 28            [24]  729 	sjmp	00101$
+      000204                        730 00147$:
+      000204 BE 02 05         [24]  731 	cjne	r6,#0x02,00148$
+      000207 BF 00 02         [24]  732 	cjne	r7,#0x00,00148$
+      00020A 80 23            [24]  733 	sjmp	00102$
+      00020C                        734 00148$:
+      00020C BE 03 05         [24]  735 	cjne	r6,#0x03,00149$
+      00020F BF 00 02         [24]  736 	cjne	r7,#0x00,00149$
+      000212 80 1E            [24]  737 	sjmp	00103$
+      000214                        738 00149$:
+      000214 BE 04 05         [24]  739 	cjne	r6,#0x04,00150$
+      000217 BF 00 02         [24]  740 	cjne	r7,#0x00,00150$
+      00021A 80 19            [24]  741 	sjmp	00104$
+      00021C                        742 00150$:
+      00021C BE 05 05         [24]  743 	cjne	r6,#0x05,00151$
+      00021F BF 00 02         [24]  744 	cjne	r7,#0x00,00151$
+      000222 80 14            [24]  745 	sjmp	00105$
+      000224                        746 00151$:
+                                    747 ;	./src/main.c:128: case 1:
+      000224 BE 06 17         [24]  748 	cjne	r6,#0x06,00109$
+      000227 BF 00 14         [24]  749 	cjne	r7,#0x00,00109$
+      00022A 80 0F            [24]  750 	sjmp	00106$
+      00022C                        751 00101$:
+                                    752 ;	./src/main.c:129: Delay_Do();
+                                    753 ;	./src/main.c:130: break;
+                                    754 ;	./src/main.c:132: case 2:
+      00022C 02r00r00         [24]  755 	ljmp	_Delay_Do
+      00022F                        756 00102$:
+                                    757 ;	./src/main.c:133: Delay_Re();
+                                    758 ;	./src/main.c:134: break;
+                                    759 ;	./src/main.c:136: case 3:
+      00022F 02r00r00         [24]  760 	ljmp	_Delay_Re
+      000232                        761 00103$:
+                                    762 ;	./src/main.c:137: Delay_Mi();
+                                    763 ;	./src/main.c:138: break;
+                                    764 ;	./src/main.c:140: case 4:
+      000232 02r00r00         [24]  765 	ljmp	_Delay_Mi
+      000235                        766 00104$:
+                                    767 ;	./src/main.c:141: Delay_Fa();
+                                    768 ;	./src/main.c:142: break;
+                                    769 ;	./src/main.c:144: case 5:
+      000235 02r00r00         [24]  770 	ljmp	_Delay_Fa
+      000238                        771 00105$:
+                                    772 ;	./src/main.c:145: Delay_So();
+                                    773 ;	./src/main.c:146: break;
+                                    774 ;	./src/main.c:148: case 6:
+      000238 02r00r00         [24]  775 	ljmp	_Delay_So
+      00023B                        776 00106$:
+                                    777 ;	./src/main.c:149: Delay_La();
+                                    778 ;	./src/main.c:154: }
+                                    779 ;	./src/main.c:155: }
+      00023B 02r00r00         [24]  780 	ljmp	_Delay_La
+      00023E                        781 00109$:
+      00023E 22               [24]  782 	ret
+                                    783 	.area CSEG    (CODE)
+                                    784 	.area CONST   (CODE)
+      000000                        785 _music_table:
+      000000 02                     786 	.db #0x02	; 2
+      000001 04                     787 	.db #0x04	; 4
+      000002 03                     788 	.db #0x03	; 3
+      000003 01                     789 	.db #0x01	; 1
+      000004 02                     790 	.db #0x02	; 2
+      000005 02                     791 	.db #0x02	; 2
+      000006 04                     792 	.db #0x04	; 4
+      000007 03                     793 	.db #0x03	; 3
+      000008 01                     794 	.db #0x01	; 1
+      000009 06                     795 	.db #0x06	; 6
+      00000A 04                     796 	.db #0x04	; 4
+      00000B 05                     797 	.db #0x05	; 5
+      00000C 03                     798 	.db #0x03	; 3
+      00000D 04                     799 	.db #0x04	; 4
+      00000E 02                     800 	.db #0x02	; 2
+      00000F 03                     801 	.db #0x03	; 3
+      000010 01                     802 	.db #0x01	; 1
+      000011 06                     803 	.db #0x06	; 6
+      000012 04                     804 	.db #0x04	; 4
+      000013 05                     805 	.db #0x05	; 5
+      000014 03                     806 	.db #0x03	; 3
+      000015 04                     807 	.db #0x04	; 4
+      000016 02                     808 	.db #0x02	; 2
+      000017 03                     809 	.db #0x03	; 3
+      000018 01                     810 	.db #0x01	; 1
+      000019                        811 _duration_table:
+      000019 F4                     812 	.db #0xf4	; 244
+      00001A 32                     813 	.db #0x32	; 50	'2'
+      00001B C8                     814 	.db #0xc8	; 200
+      00001C 32                     815 	.db #0x32	; 50	'2'
+      00001D 32                     816 	.db #0x32	; 50	'2'
+      00001E 32                     817 	.db #0x32	; 50	'2'
+      00001F 32                     818 	.db #0x32	; 50	'2'
+      000020 F4                     819 	.db #0xf4	; 244
+      000021 32                     820 	.db #0x32	; 50	'2'
+      000022 F4                     821 	.db #0xf4	; 244
+      000023 64                     822 	.db #0x64	; 100	'd'
+      000024 F4                     823 	.db #0xf4	; 244
+      000025 F4                     824 	.db #0xf4	; 244
+      000026 C8                     825 	.db #0xc8	; 200
+      000027 C8                     826 	.db #0xc8	; 200
+      000028 C8                     827 	.db #0xc8	; 200
+      000029 64                     828 	.db #0x64	; 100	'd'
+      00002A F4                     829 	.db #0xf4	; 244
+      00002B 64                     830 	.db #0x64	; 100	'd'
+      00002C F4                     831 	.db #0xf4	; 244
+      00002D F4                     832 	.db #0xf4	; 244
+      00002E C8                     833 	.db #0xc8	; 200
+      00002F C8                     834 	.db #0xc8	; 200
+      000030 C8                     835 	.db #0xc8	; 200
+      000031 64                     836 	.db #0x64	; 100	'd'
+      000032                        837 _blanck_table:
+      000032 32                     838 	.db #0x32	; 50	'2'
+      000033 32                     839 	.db #0x32	; 50	'2'
+      000034 32                     840 	.db #0x32	; 50	'2'
+      000035 F4                     841 	.db #0xf4	; 244
+      000036 32                     842 	.db #0x32	; 50	'2'
+      000037 32                     843 	.db #0x32	; 50	'2'
+      000038 32                     844 	.db #0x32	; 50	'2'
+      000039 32                     845 	.db #0x32	; 50	'2'
+      00003A F4                     846 	.db #0xf4	; 244
+      00003B 32                     847 	.db #0x32	; 50	'2'
+      00003C 32                     848 	.db #0x32	; 50	'2'
+      00003D 32                     849 	.db #0x32	; 50	'2'
+      00003E C8                     850 	.db #0xc8	; 200
+      00003F 1E                     851 	.db #0x1e	; 30
+      000040 1E                     852 	.db #0x1e	; 30
+      000041 1E                     853 	.db #0x1e	; 30
+      000042 F4                     854 	.db #0xf4	; 244
+      000043 32                     855 	.db #0x32	; 50	'2'
+      000044 32                     856 	.db #0x32	; 50	'2'
+      000045 32                     857 	.db #0x32	; 50	'2'
+      000046 C8                     858 	.db #0xc8	; 200
+      000047 1E                     859 	.db #0x1e	; 30
+      000048 1E                     860 	.db #0x1e	; 30
+      000049 1E                     861 	.db #0x1e	; 30
+      00004A F4                     862 	.db #0xf4	; 244
+                                    863 	.area CONST   (CODE)
+      00004B                        864 ___str_0:
+      00004B 6D 75 73 69 63 20 6F   865 	.ascii "music off!"
+             66 66 21
+      000055 00                     866 	.db 0x00
+                                    867 	.area CSEG    (CODE)
+                                    868 	.area CONST   (CODE)
+      000056                        869 ___str_1:
+      000056 20 20 20 20 20 20 20   870 	.ascii "           "
+             20 20 20 20
+      000061 00                     871 	.db 0x00
+                                    872 	.area CSEG    (CODE)
+                                    873 	.area CONST   (CODE)
+      000062                        874 ___str_2:
+      000062 6D 75 73 69 63 20 6F   875 	.ascii "music on!"
+             6E 21
+      00006B 00                     876 	.db 0x00
+                                    877 	.area CSEG    (CODE)
+                                    878 	.area XINIT   (CODE)
+                                    879 	.area CABS    (ABS,CODE)

@@ -38,10 +38,12 @@ Symbol Table
     CPRL2                                                       =  0000C8 L
     CT2                                                         =  0000C9 L
     CY                                                          =  0000D7 L
- 17 DELAY                                                          000000 R
- 17 DL1                                                            000002 R
- 17 DL2                                                            000004 R
- 17 DL3                                                            000006 R
+ 17 DELAY1                                                         000000 R
+ 17 DELAY3                                                         000002 R
+ 17 DELAY4                                                         000003 R
+ 17 DL1                                                            000005 R
+ 17 DL2                                                            000007 R
+ 17 DL3                                                            000009 R
     DPH                                                         =  000083 L
     DPL                                                         =  000082 L
     EA                                                          =  0000AF L
@@ -56,13 +58,13 @@ Symbol Table
     F0                                                          =  0000D5 L
     IE                                                          =  0000A8 L
     IE.0                                                        =  0000A8 L
-    IE.1                                                        =  0000A9 L
-    IE.2                                                        =  0000AA L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 2
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    IE.1                                                        =  0000A9 L
+    IE.2                                                        =  0000AA L
     IE.3                                                        =  0000AB L
     IE.4                                                        =  0000AC L
     IE.5                                                        =  0000AD L
@@ -116,13 +118,13 @@ Symbol Table
     P3.3                                                        =  0000B3 L
     P3.4                                                        =  0000B4 L
     P3.5                                                        =  0000B5 L
-    P3.6                                                        =  0000B6 L
-    P3.7                                                        =  0000B7 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 3
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    P3.6                                                        =  0000B6 L
+    P3.7                                                        =  0000B7 L
     PCON                                                        =  000087 L
     PS                                                          =  0000BC L
     PSW                                                         =  0000D0 L
@@ -176,13 +178,13 @@ Symbol Table
     TCON                                                        =  000088 L
     TCON.0                                                      =  000088 L
     TCON.1                                                      =  000089 L
-    TCON.2                                                      =  00008A L
-    TCON.3                                                      =  00008B L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 4
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    TCON.2                                                      =  00008A L
+    TCON.3                                                      =  00008B L
     TCON.4                                                      =  00008C L
     TCON.5                                                      =  00008D L
     TCON.6                                                      =  00008E L
@@ -202,6 +204,7 @@ Symbol Table
     TR1                                                         =  00008E L
     TR2                                                         =  0000CA L
     TXD                                                         =  0000B1 L
+ 17 _delay_5                                                       000012 GR
  17 _delay_ms                                                      000000 GR
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
@@ -235,14 +238,14 @@ Symbol Table
     b.1                                                         =  0000F1 L
     b.2                                                         =  0000F2 L
     b.3                                                         =  0000F3 L
-    b.4                                                         =  0000F4 L
-    b.5                                                         =  0000F5 L
-    b.6                                                         =  0000F6 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 5
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    b.4                                                         =  0000F4 L
+    b.5                                                         =  0000F5 L
+    b.6                                                         =  0000F6 L
     b.7                                                         =  0000F7 L
     cprl2                                                       =  0000C8 L
     ct2                                                         =  0000C9 L
@@ -295,14 +298,14 @@ Symbol Table
     p1.0                                                        =  000090 L
     p1.1                                                        =  000091 L
     p1.2                                                        =  000092 L
-    p1.3                                                        =  000093 L
-    p1.4                                                        =  000094 L
-    p1.5                                                        =  000095 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 6
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    p1.3                                                        =  000093 L
+    p1.4                                                        =  000094 L
+    p1.5                                                        =  000095 L
     p1.6                                                        =  000096 L
     p1.7                                                        =  000097 L
     p2                                                          =  0000A0 L
@@ -355,14 +358,14 @@ Symbol Table
     scon.2                                                      =  00009A L
     scon.3                                                      =  00009B L
     scon.4                                                      =  00009C L
-    scon.5                                                      =  00009D L
-    scon.6                                                      =  00009E L
-    scon.7                                                      =  00009F L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 7
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    scon.5                                                      =  00009D L
+    scon.6                                                      =  00009E L
+    scon.7                                                      =  00009F L
     sm0                                                         =  00009F L
     sm1                                                         =  00009E L
     sm2                                                         =  00009D L
@@ -431,7 +434,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size      D   flags   20
+  17 CSEG                                       size     17   flags   20
   18 CONST                                      size      0   flags   20
   19 XINIT                                      size      0   flags   20
   1A CABS                                       size      0   flags   28

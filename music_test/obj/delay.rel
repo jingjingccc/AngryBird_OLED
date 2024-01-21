@@ -1,5 +1,5 @@
 XH3
-H 1B areas 2 global symbols
+H 1B areas 3 global symbols
 M delay
 O -mmcs51 --model-small
 S .__.ABS. Def000000
@@ -26,7 +26,8 @@ A GSINIT4 size 0 flags 20 addr 0
 A GSINIT5 size 0 flags 20 addr 0
 A GSINIT size 0 flags 20 addr 0
 A GSFINAL size 0 flags 20 addr 0
-A CSEG size D flags 20 addr 0
+A CSEG size 17 flags 20 addr 0
+S _delay_5 Def000012
 S _delay_ms Def000000
 A CONST size 0 flags 20 addr 0
 A XINIT size 0 flags 20 addr 0
@@ -41,17 +42,33 @@ T 00 00 00
 R 00 00 00 17
 T 00 00 00
 R 00 00 00 17
-T 00 00 00 AD 82
+T 00 00 00 AC 83
 R 00 00 00 17
 T 00 00 02
 R 00 00 00 17
-T 00 00 02 7E 02
+T 00 00 02 0C
 R 00 00 00 17
-T 00 00 04
+T 00 00 03
 R 00 00 00 17
-T 00 00 04 7F E4
+T 00 00 03 AD 82
 R 00 00 00 17
-T 00 00 06
+T 00 00 05
 R 00 00 00 17
-T 00 00 06 DF FE DE FA DD F6 22
+T 00 00 05 7E 03
+R 00 00 00 17
+T 00 00 07
+R 00 00 00 17
+T 00 00 07 7F AA
+R 00 00 00 17
+T 00 00 09
+R 00 00 00 17
+T 00 00 09 DF FE DE FA DD F6 DC F2 22
+R 00 00 00 17
+T 00 00 12
+R 00 00 00 17
+T 00 00 12 7F 05
+R 00 00 00 17
+T 00 00 14
+R 00 00 00 17
+T 00 00 14 DF FE 22
 R 00 00 00 17

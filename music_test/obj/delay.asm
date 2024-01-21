@@ -9,6 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _delay_ms
+	.globl _delay_5
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -31,6 +32,7 @@
 ;--------------------------------------------------------
 ; overlayable items in internal ram
 ;--------------------------------------------------------
+	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
 ;--------------------------------------------------------
 ; indirectly addressable internal ram data
@@ -92,7 +94,7 @@
 ;------------------------------------------------------------
 ;input_ms                  Allocated to registers 
 ;------------------------------------------------------------
-;	./src/delay.c:3: void delay_ms(unsigned char input_ms) // ms will save in *dpl
+;	./src/delay.c:3: void delay_ms(unsigned int input_ms) // ms will save in *dph and *dpl
 ;	-----------------------------------------
 ;	 function delay_ms
 ;	-----------------------------------------
@@ -105,18 +107,39 @@ _delay_ms:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	./src/delay.c:24: __endasm;			// end of assembly code, don't forget to add ";"
-DELAY:
-	MOV	R5,dpl
+;	./src/delay.c:16: __endasm;			// end of assembly code, don't forget to add ";"
+DELAY1:
+	MOV R4,dph
+DELAY3:
+	INC R4
+DELAY4:
+	MOV R5,dpl
 DL1:
-	MOV	R6,#2
+	MOV R6,#3
 DL2:
-	MOV	R7,#228
+	MOV R7,#170
 DL3:
-	DJNZ	R7,DL3
+	DJNZ R7,DL3
 	DJNZ	R6,DL2
 	DJNZ	R5,DL1
-;	./src/delay.c:25: }
+	DJNZ	R4,DELAY4
+;	./src/delay.c:17: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'delay_5'
+;------------------------------------------------------------
+;i                         Allocated to registers r7 
+;------------------------------------------------------------
+;	./src/delay.c:19: void delay_5(void)
+;	-----------------------------------------
+;	 function delay_5
+;	-----------------------------------------
+_delay_5:
+;	./src/delay.c:22: for (i = 0; i < 5; i++);
+	mov	r7,#0x05
+00104$:
+	djnz	r7,00104$
+;	./src/delay.c:23: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

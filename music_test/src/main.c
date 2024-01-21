@@ -1,17 +1,25 @@
 #include "8051.h"
 #include "delay_func.h"
 #include "delay.h"
+#include "oled_i2c.h"
+#include "i2c.h"
 
-int music_plat_note = 0, duration_time = 0, black_space = 50; // Adjust blank_space as needed
+#define scan_cnt 10
+int music_on = 0, scan_cnting = 0, stable_scan = 0;
+int music_play_note = 0, duration_time = 0;
 
-#define NOTE_NUM 17
+#define NOTE_NUM 25 // 17
 __code unsigned char music_table[NOTE_NUM] = {2, 4, 3, 1, 2, 2, 4, 3, 1,
+                                              6, 4, 5, 3, 4, 2, 3, 1,
                                               6, 4, 5, 3, 4, 2, 3, 1};
-__code unsigned char duration_table[NOTE_NUM] = {500, 50, 200, 50, 50, 50, 50, 500, 50,
-                                                 500, 50, 150, 50, 100, 100, 50, 100};
 
-__code unsigned char blanck_table[NOTE_NUM] = {50, 50, 50, 50, 50, 50, 50, 50, 50, 200,
-                                               50, 50, 50, 50, 30, 30, 30, 30};
+__code unsigned char duration_table[NOTE_NUM] = {500, 50, 200, 50, 50, 50, 50, 500, 50,
+                                                 500, 100, 500, 500, 200, 200, 200, 100,
+                                                 500, 100, 500, 500, 200, 200, 200, 100};
+
+__code unsigned char blanck_table[NOTE_NUM] = {50, 50, 50, 500, 50, 50, 50, 50, 500,
+                                               50, 50, 50, 200, 30, 30, 30, 500,
+                                               50, 50, 50, 200, 30, 30, 30, 500};
 
 void LookForSound(int now);
 
@@ -23,82 +31,122 @@ void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
 
     duration_time++;
 
-    while (duration_time < duration_table[music_plat_note])
+    while (duration_time < duration_table[music_play_note])
     {
         duration_time++;
         P3_7 = 1;
-        LookForSound(music_table[music_plat_note]);
+        LookForSound(music_table[music_play_note]);
         P3_7 = 0;
-        LookForSound(music_table[music_plat_note]);
+        LookForSound(music_table[music_play_note]);
     }
-    if (duration_time >= duration_table[music_plat_note] && duration_time < (100 + blanck_table[music_plat_note]))
-    {
-        P3_7 = 0; // Buzzer OFF or set to desired state
-    }
-    else if (duration_time >= (duration_table[music_plat_note] + blanck_table[music_plat_note]))
+    if (duration_time >= (duration_table[music_play_note] + blanck_table[music_play_note]))
     {
         duration_time = 0;
-        music_plat_note++;
+        music_play_note++;
 
-        if (music_plat_note == 9)
-            black_space = 200;
-        else
-            black_space = 50;
-
-        if (music_plat_note >= NOTE_NUM)
+        if (music_play_note >= NOTE_NUM)
+        {
             TR0 = 0;
+            music_on = 0;
+            music_play_note = 0;
+        }
     }
 }
 
+#define text_row 3
+#define text_col 40
+
 int main()
 {
-    // initialize timer interrupt
+    // timer interrupt initialize
     TMOD = 0x01;                // Set Timer 1 to mode 0 & Timer 0 mode 1. (16-bit timer)
     TH0 = (65536 - 1000) / 256; // Load initial higher 8 bits into Timer 0
     TL0 = (65536 - 1000) % 256; // Load initial lower 8 bits into Timer 0
     ET0 = 1;                    // Enable Timer 0 interrupt
     EA = 1;                     // Enable all interrupt
-    TR0 = 1;                    // Start Timer 0
+    TR0 = 0;                    // Start Timer 0
+
+    // I2C initialization
+    SDA = 1;
+    SCL = 1;
+
+    OLED_Init();
+    OLED_SetCursor(text_row, text_col);
+    OLED_DisplayString("music off!");
 
     while (1)
     {
-        /* code */
+        // scanning button input
+        if (P2_0 == 0 && stable_scan == 1)
+        {
+            if (scan_cnting < scan_cnt)
+            {
+                scan_cnting++;
+                if (scan_cnting == scan_cnt)
+                {
+                    music_on ^= 1;
+                    stable_scan = 0;
+                }
+            }
+        }
+        else if (P2_0 == 1 && stable_scan == 0)
+        {
+            if (scan_cnting < scan_cnt)
+            {
+                scan_cnting++;
+                if (scan_cnting == scan_cnt)
+                    stable_scan = 1;
+            }
+        }
+        else
+            scan_cnting = 0;
+
+        // turn on/off timer0
+        if (music_on && TR0 == 0)
+        {
+            TR0 = 1;
+            OLED_SetCursor(text_row, text_col);
+            OLED_DisplayString("           ");
+            OLED_SetCursor(text_row, text_col);
+            OLED_DisplayString("music on!");
+        }
+        else if (!music_on && TR0 == 1)
+        {
+            TR0 = 0;
+            OLED_SetCursor(text_row, text_col);
+            OLED_DisplayString("           ");
+            OLED_SetCursor(text_row, text_col);
+            OLED_DisplayString("music off!");
+        }
     }
 }
 
 void LookForSound(int now)
 {
-    P1 = 0xff;
     switch (now)
     {
     case 1:
         Delay_Do();
-        P1_7 = 0;
         break;
 
     case 2:
         Delay_Re();
-        P1_6 = 0;
         break;
 
     case 3:
         Delay_Mi();
-        P1_5 = 0;
         break;
 
     case 4:
         Delay_Fa();
-        P1_4 = 0;
         break;
 
     case 5:
         Delay_So();
-        P1_3 = 0;
         break;
 
     case 6:
         Delay_La();
-        P1_2 = 0;
         break;
 
     default:
