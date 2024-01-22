@@ -333,48 +333,48 @@ _main:
 	mov	_TMOD,#0x20
 ;	./src/main.c:14: SCON = 0x50; // set serial mode1
 	mov	_SCON,#0x50
-;	./src/main.c:15: TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz
+;	./src/main.c:15: TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz(12)
 	mov	_TH1,#0xfa
 ;	./src/main.c:16: TR1 = 1;     // enable timer = 1
 ;	assignBit
 	setb	_TR1
 ;	./src/main.c:17: IE = 0x90;   // enable serial port interrupt
 	mov	_IE,#0x90
-;	./src/main.c:23: while (1)
+;	./src/main.c:19: while (1)
 00102$:
-;	./src/main.c:25: angrybird_state_machine();
+;	./src/main.c:21: angrybird_state_machine();
 	lcall	_angrybird_state_machine
-;	./src/main.c:27: }
+;	./src/main.c:23: }
 	sjmp	00102$
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'uart_isr'
 ;------------------------------------------------------------
-;	./src/main.c:29: void uart_isr(void) __interrupt(4)
+;	./src/main.c:25: void uart_isr(void) __interrupt(4)
 ;	-----------------------------------------
 ;	 function uart_isr
 ;	-----------------------------------------
 _uart_isr:
-;	./src/main.c:31: if (TI == 1)
-;	./src/main.c:32: TI = 0;
+;	./src/main.c:27: if (TI == 1)
+;	./src/main.c:28: TI = 0;
 ;	assignBit
 	jbc	_TI,00119$
 	sjmp	00102$
 00119$:
 00102$:
-;	./src/main.c:34: if (RI == 1)
+;	./src/main.c:30: if (RI == 1)
 	jnb	_RI,00105$
-;	./src/main.c:36: P1_1 = 0;
+;	./src/main.c:32: P1_1 = 0;
 ;	assignBit
 	clr	_P1_1
-;	./src/main.c:37: RI = 0;               // refresh RI
+;	./src/main.c:33: RI = 0;               // refresh RI
 ;	assignBit
 	clr	_RI
-;	./src/main.c:38: received_data = SBUF; // receive data from SBUF
+;	./src/main.c:34: received_data = SBUF; // receive data from SBUF
 	mov	_received_data,_SBUF
-;	./src/main.c:39: received_flag = 1;    // receiving finished
+;	./src/main.c:35: received_flag = 1;    // receiving finished
 	mov	_received_flag,#0x01
 00105$:
-;	./src/main.c:41: }
+;	./src/main.c:37: }
 	reti
 ;	eliminated unneeded mov psw,# (no regs used in bank)
 ;	eliminated unneeded push/pop not_psw

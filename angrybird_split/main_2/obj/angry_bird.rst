@@ -435,19 +435,19 @@
                            000001   435 	ar1 = 0x01
                            000000   436 	ar0 = 0x00
                                     437 ;	./src/angry_bird.c:46: bird_amt = bird_total_amount;
-      0001D5 75 29 09         [24]  438 	mov	_bird_amt,#0x09
+      0001D5 75 29 05         [24]  438 	mov	_bird_amt,#0x05
       0001D8 75 2A 00         [24]  439 	mov	(_bird_amt + 1),#0x00
                                     440 ;	./src/angry_bird.c:47: pig_amt = pig_total_amount;
-      0001DB 75 2B 03         [24]  441 	mov	_pig_amt,#0x03
+      0001DB 75 2B 01         [24]  441 	mov	_pig_amt,#0x01
       0001DE 75 2C 00         [24]  442 	mov	(_pig_amt + 1),#0x00
-                                    443 ;	./src/angry_bird.c:48: control_angle = 60;
-      0001E1 75 2D 3C         [24]  444 	mov	_control_angle,#0x3c
+                                    443 ;	./src/angry_bird.c:48: control_angle = 30;
+      0001E1 75 2D 1E         [24]  444 	mov	_control_angle,#0x1e
       0001E4 75 2E 00         [24]  445 	mov	(_control_angle + 1),#0x00
-                                    446 ;	./src/angry_bird.c:49: control_strength = 3;
-      0001E7 75 2F 03         [24]  447 	mov	_control_strength,#0x03
+                                    446 ;	./src/angry_bird.c:49: control_strength = 1;
+      0001E7 75 2F 01         [24]  447 	mov	_control_strength,#0x01
       0001EA 75 30 00         [24]  448 	mov	(_control_strength + 1),#0x00
                                     449 ;	./src/angry_bird.c:51: OLED_Clear();
-      0001ED 12 0F 4A         [24]  450 	lcall	_OLED_Clear
+      0001ED 12 0F 44         [24]  450 	lcall	_OLED_Clear
                                     451 ;	./src/angry_bird.c:55: control_strength_[0] = '0' + control_strength;
       0001F0 AF 2F            [24]  452 	mov	r7,_control_strength
       0001F2 74 30            [12]  453 	mov	a,#0x30
@@ -493,10 +493,10 @@
       00022B 85 39 83         [24]  493 	mov	dph,(_angrybird_display_game_angle__65539_32 + 1)
       00022E C0 07            [24]  494 	push	ar7
       000230 C0 06            [24]  495 	push	ar6
-      000232 12 13 41         [24]  496 	lcall	__modsint
+      000232 12 13 3B         [24]  496 	lcall	__modsint
       000235 75 0C 0A         [24]  497 	mov	__divsint_PARM_2,#0x0a
       000238 75 0D 00         [24]  498 	mov	(__divsint_PARM_2 + 1),#0x00
-      00023B 12 13 A4         [24]  499 	lcall	__divsint
+      00023B 12 13 9E         [24]  499 	lcall	__divsint
       00023E AA 82            [24]  500 	mov	r2,dpl
       000240 AB 83            [24]  501 	mov	r3,dph
       000242 D0 06            [24]  502 	pop	ar6
@@ -535,7 +535,7 @@
       000272 C0 05            [24]  535 	push	ar5
       000274 C0 04            [24]  536 	push	ar4
       000276 C0 01            [24]  537 	push	ar1
-      000278 12 13 41         [24]  538 	lcall	__modsint
+      000278 12 13 3B         [24]  538 	lcall	__modsint
       00027B AE 82            [24]  539 	mov	r6,dpl
       00027D D0 01            [24]  540 	pop	ar1
       00027F D0 04            [24]  541 	pop	ar4
@@ -551,35 +551,35 @@
                                     551 ;	./src/angry_bird.c:67: OLED_SetCursor(strength_text_row_cursor, 0);
       00028D 75 0B 00         [24]  552 	mov	_OLED_SetCursor_PARM_2,#0x00
       000290 75 82 00         [24]  553 	mov	dpl,#0x00
-      000293 12 0F 75         [24]  554 	lcall	_OLED_SetCursor
+      000293 12 0F 6F         [24]  554 	lcall	_OLED_SetCursor
                                     555 ;	./src/angry_bird.c:68: OLED_DisplayString("S ");
-      000296 90 15 C0         [24]  556 	mov	dptr,#___str_0
+      000296 90 15 BA         [24]  556 	mov	dptr,#___str_0
       000299 75 F0 80         [24]  557 	mov	b,#0x80
-      00029C 12 0F 1F         [24]  558 	lcall	_OLED_DisplayString
+      00029C 12 0F 19         [24]  558 	lcall	_OLED_DisplayString
                                     559 ;	./src/angry_bird.c:69: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
       00029F 75 0B 0A         [24]  560 	mov	_OLED_SetCursor_PARM_2,#0x0a
       0002A2 75 82 00         [24]  561 	mov	dpl,#0x00
-      0002A5 12 0F 75         [24]  562 	lcall	_OLED_SetCursor
+      0002A5 12 0F 6F         [24]  562 	lcall	_OLED_SetCursor
                                     563 ;	./src/angry_bird.c:70: OLED_DisplayString(control_strength_);
       0002A8 90 00 31         [24]  564 	mov	dptr,#_angrybird_display_game_control_strength__65537_30
       0002AB 75 F0 40         [24]  565 	mov	b,#0x40
-      0002AE 12 0F 1F         [24]  566 	lcall	_OLED_DisplayString
+      0002AE 12 0F 19         [24]  566 	lcall	_OLED_DisplayString
                                     567 ;	./src/angry_bird.c:72: OLED_SetCursor(strength_text_row_cursor, 20);
       0002B1 75 0B 14         [24]  568 	mov	_OLED_SetCursor_PARM_2,#0x14
       0002B4 75 82 00         [24]  569 	mov	dpl,#0x00
-      0002B7 12 0F 75         [24]  570 	lcall	_OLED_SetCursor
+      0002B7 12 0F 6F         [24]  570 	lcall	_OLED_SetCursor
                                     571 ;	./src/angry_bird.c:73: OLED_DisplayString("A ");
-      0002BA 90 15 C3         [24]  572 	mov	dptr,#___str_1
+      0002BA 90 15 BD         [24]  572 	mov	dptr,#___str_1
       0002BD 75 F0 80         [24]  573 	mov	b,#0x80
-      0002C0 12 0F 1F         [24]  574 	lcall	_OLED_DisplayString
+      0002C0 12 0F 19         [24]  574 	lcall	_OLED_DisplayString
                                     575 ;	./src/angry_bird.c:74: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
       0002C3 75 0B 1E         [24]  576 	mov	_OLED_SetCursor_PARM_2,#0x1e
       0002C6 75 82 00         [24]  577 	mov	dpl,#0x00
-      0002C9 12 0F 75         [24]  578 	lcall	_OLED_SetCursor
+      0002C9 12 0F 6F         [24]  578 	lcall	_OLED_SetCursor
                                     579 ;	./src/angry_bird.c:75: OLED_DisplayString(control_angle_);
       0002CC 90 00 33         [24]  580 	mov	dptr,#_angrybird_display_game_control_angle__65537_30
       0002CF 75 F0 40         [24]  581 	mov	b,#0x40
-      0002D2 12 0F 1F         [24]  582 	lcall	_OLED_DisplayString
+      0002D2 12 0F 19         [24]  582 	lcall	_OLED_DisplayString
                                     583 ;	./src/angry_bird.c:78: for (int k = 0; k < bird_total_amount; k++)
       0002D5 E4               [12]  584 	clr	a
       0002D6 F5 3A            [12]  585 	mov	_angrybird_display_game_k_131075_33,a
@@ -587,7 +587,7 @@
       0002DA                        587 00121$:
       0002DA C3               [12]  588 	clr	c
       0002DB E5 3A            [12]  589 	mov	a,_angrybird_display_game_k_131075_33
-      0002DD 94 09            [12]  590 	subb	a,#0x09
+      0002DD 94 05            [12]  590 	subb	a,#0x05
       0002DF E5 3B            [12]  591 	mov	a,(_angrybird_display_game_k_131075_33 + 1)
       0002E1 64 80            [12]  592 	xrl	a,#0x80
       0002E3 94 80            [12]  593 	subb	a,#0x80
@@ -614,7 +614,7 @@
       0002FF CC               [12]  614 	xch	a,r4
       000300 6C               [12]  615 	xrl	a,r4
       000301 FD               [12]  616 	mov	r5,a
-      000302 74 32            [12]  617 	mov	a,#0x32
+      000302 74 4F            [12]  617 	mov	a,#0x4f
       000304 2C               [12]  618 	add	a,r4
       000305 F5 27            [12]  619 	mov	_col_offset,a
       000307 E4               [12]  620 	clr	a
@@ -650,7 +650,7 @@
       00032F C0 07            [24]  650 	push	ar7
       000331 C0 05            [24]  651 	push	ar5
       000333 C0 04            [24]  652 	push	ar4
-      000335 12 0F 75         [24]  653 	lcall	_OLED_SetCursor
+      000335 12 0F 6F         [24]  653 	lcall	_OLED_SetCursor
       000338 D0 04            [24]  654 	pop	ar4
       00033A D0 05            [24]  655 	pop	ar5
       00033C D0 07            [24]  656 	pop	ar7
@@ -660,7 +660,7 @@
       000340 95 E0            [12]  660 	subb	a,acc
       000342 FE               [12]  661 	mov	r6,a
       000343 EF               [12]  662 	mov	a,r7
-      000344 24 B8            [12]  663 	add	a,#_bird_logo
+      000344 24 B2            [12]  663 	add	a,#_bird_logo
       000346 F5 82            [12]  664 	mov	dpl,a
       000348 EE               [12]  665 	mov	a,r6
       000349 34 14            [12]  666 	addc	a,#(_bird_logo >> 8)
@@ -670,7 +670,7 @@
       00034F F5 82            [12]  670 	mov	dpl,a
       000351 C0 05            [24]  671 	push	ar5
       000353 C0 04            [24]  672 	push	ar4
-      000355 12 0F B1         [24]  673 	lcall	_oledSendData
+      000355 12 0F AB         [24]  673 	lcall	_oledSendData
       000358 D0 04            [24]  674 	pop	ar4
       00035A D0 05            [24]  675 	pop	ar5
                                     676 ;	./src/angry_bird.c:84: for (int i = 0; i < bird_row_size; i++)
@@ -731,7 +731,7 @@
       0003A4 C0 05            [24]  731 	push	ar5
       0003A6 C0 03            [24]  732 	push	ar3
       0003A8 C0 02            [24]  733 	push	ar2
-      0003AA 12 0F 75         [24]  734 	lcall	_OLED_SetCursor
+      0003AA 12 0F 6F         [24]  734 	lcall	_OLED_SetCursor
       0003AD D0 02            [24]  735 	pop	ar2
       0003AF D0 03            [24]  736 	pop	ar3
                                     737 ;	./src/angry_bird.c:100: oledSendData(shooter_logo[shoot_cul_size * i + j]);
@@ -745,7 +745,7 @@
       0003B9 95 E0            [12]  745 	subb	a,acc
       0003BB FC               [12]  746 	mov	r4,a
       0003BC EA               [12]  747 	mov	a,r2
-      0003BD 24 90            [12]  748 	add	a,#_shooter_logo
+      0003BD 24 8A            [12]  748 	add	a,#_shooter_logo
       0003BF F5 82            [12]  749 	mov	dpl,a
       0003C1 EC               [12]  750 	mov	a,r4
       0003C2 34 14            [12]  751 	addc	a,#(_shooter_logo >> 8)
@@ -753,7 +753,7 @@
       0003C6 E4               [12]  753 	clr	a
       0003C7 93               [24]  754 	movc	a,@a+dptr
       0003C8 F5 82            [12]  755 	mov	dpl,a
-      0003CA 12 0F B1         [24]  756 	lcall	_oledSendData
+      0003CA 12 0F AB         [24]  756 	lcall	_oledSendData
       0003CD D0 05            [24]  757 	pop	ar5
       0003CF D0 06            [24]  758 	pop	ar6
       0003D1 D0 07            [24]  759 	pop	ar7
@@ -803,7 +803,7 @@
       00040D C0 07            [24]  803 	push	ar7
       00040F C0 06            [24]  804 	push	ar6
       000411 C0 03            [24]  805 	push	ar3
-      000413 12 0F 75         [24]  806 	lcall	_OLED_SetCursor
+      000413 12 0F 6F         [24]  806 	lcall	_OLED_SetCursor
       000416 D0 03            [24]  807 	pop	ar3
                                     808 ;	./src/angry_bird.c:112: oledSendData(bird_logo[bird_cul_size * i + j]);
       000418 EB               [12]  809 	mov	a,r3
@@ -811,7 +811,7 @@
       00041A 95 E0            [12]  811 	subb	a,acc
       00041C FC               [12]  812 	mov	r4,a
       00041D EB               [12]  813 	mov	a,r3
-      00041E 24 B8            [12]  814 	add	a,#_bird_logo
+      00041E 24 B2            [12]  814 	add	a,#_bird_logo
       000420 F5 82            [12]  815 	mov	dpl,a
       000422 EC               [12]  816 	mov	a,r4
       000423 34 14            [12]  817 	addc	a,#(_bird_logo >> 8)
@@ -819,7 +819,7 @@
       000427 E4               [12]  819 	clr	a
       000428 93               [24]  820 	movc	a,@a+dptr
       000429 F5 82            [12]  821 	mov	dpl,a
-      00042B 12 0F B1         [24]  822 	lcall	_oledSendData
+      00042B 12 0F AB         [24]  822 	lcall	_oledSendData
       00042E D0 06            [24]  823 	pop	ar6
       000430 D0 07            [24]  824 	pop	ar7
                                     825 ;	./src/angry_bird.c:109: for (int i = 0; i < bird_row_size; i++)
@@ -871,7 +871,7 @@
       000473 C0 05            [24]  871 	push	ar5
       000475 C0 03            [24]  872 	push	ar3
       000477 C0 02            [24]  873 	push	ar2
-      000479 12 0F 75         [24]  874 	lcall	_OLED_SetCursor
+      000479 12 0F 6F         [24]  874 	lcall	_OLED_SetCursor
       00047C D0 02            [24]  875 	pop	ar2
       00047E D0 03            [24]  876 	pop	ar3
                                     877 ;	./src/angry_bird.c:141: oledSendData(pig_logo[pig_cul_size * i + j]);
@@ -884,7 +884,7 @@
       000488 95 E0            [12]  884 	subb	a,acc
       00048A FC               [12]  885 	mov	r4,a
       00048B EA               [12]  886 	mov	a,r2
-      00048C 24 A0            [12]  887 	add	a,#_pig_logo
+      00048C 24 9A            [12]  887 	add	a,#_pig_logo
       00048E F5 82            [12]  888 	mov	dpl,a
       000490 EC               [12]  889 	mov	a,r4
       000491 34 14            [12]  890 	addc	a,#(_pig_logo >> 8)
@@ -892,7 +892,7 @@
       000495 E4               [12]  892 	clr	a
       000496 93               [24]  893 	movc	a,@a+dptr
       000497 F5 82            [12]  894 	mov	dpl,a
-      000499 12 0F B1         [24]  895 	lcall	_oledSendData
+      000499 12 0F AB         [24]  895 	lcall	_oledSendData
       00049C D0 05            [24]  896 	pop	ar5
       00049E D0 06            [24]  897 	pop	ar6
       0004A0 D0 07            [24]  898 	pop	ar7
@@ -990,7 +990,7 @@
                                     990 ;	./src/angry_bird.c:193: I2C_Start();
       000509 12 00 CA         [24]  991 	lcall	_I2C_Start
                                     992 ;	./src/angry_bird.c:194: OLED_Init();
-      00050C 12 0E 5F         [24]  993 	lcall	_OLED_Init
+      00050C 12 0E 59         [24]  993 	lcall	_OLED_Init
                                     994 ;	./src/angry_bird.c:197: if (cur_state == STATE_PLAY_EASY || cur_state == STATE_PLAY_HARD)
       00050F 74 03            [12]  995 	mov	a,#0x03
       000511 B5 3E 06         [24]  996 	cjne	a,_cur_state,00163$
@@ -1170,10 +1170,10 @@
       0005DA 85 50 83         [24] 1170 	mov	dph,(_angrybird_game_state_angle__196610_63 + 1)
       0005DD C0 07            [24] 1171 	push	ar7
       0005DF C0 06            [24] 1172 	push	ar6
-      0005E1 12 13 41         [24] 1173 	lcall	__modsint
+      0005E1 12 13 3B         [24] 1173 	lcall	__modsint
       0005E4 75 0C 0A         [24] 1174 	mov	__divsint_PARM_2,#0x0a
       0005E7 75 0D 00         [24] 1175 	mov	(__divsint_PARM_2 + 1),#0x00
-      0005EA 12 13 A4         [24] 1176 	lcall	__divsint
+      0005EA 12 13 9E         [24] 1176 	lcall	__divsint
       0005ED AA 82            [24] 1177 	mov	r2,dpl
       0005EF AB 83            [24] 1178 	mov	r3,dph
       0005F1 D0 06            [24] 1179 	pop	ar6
@@ -1212,7 +1212,7 @@
       000621 C0 05            [24] 1212 	push	ar5
       000623 C0 04            [24] 1213 	push	ar4
       000625 C0 01            [24] 1214 	push	ar1
-      000627 12 13 41         [24] 1215 	lcall	__modsint
+      000627 12 13 3B         [24] 1215 	lcall	__modsint
       00062A AE 82            [24] 1216 	mov	r6,dpl
       00062C D0 01            [24] 1217 	pop	ar1
       00062E D0 04            [24] 1218 	pop	ar4
@@ -1228,19 +1228,19 @@
                                    1228 ;	./src/angry_bird.c:255: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
       00063C 75 0B 1E         [24] 1229 	mov	_OLED_SetCursor_PARM_2,#0x1e
       00063F 75 82 00         [24] 1230 	mov	dpl,#0x00
-      000642 12 0F 75         [24] 1231 	lcall	_OLED_SetCursor
+      000642 12 0F 6F         [24] 1231 	lcall	_OLED_SetCursor
                                    1232 ;	./src/angry_bird.c:256: OLED_DisplayString("   ");
-      000645 90 15 C6         [24] 1233 	mov	dptr,#___str_2
+      000645 90 15 C0         [24] 1233 	mov	dptr,#___str_2
       000648 75 F0 80         [24] 1234 	mov	b,#0x80
-      00064B 12 0F 1F         [24] 1235 	lcall	_OLED_DisplayString
+      00064B 12 0F 19         [24] 1235 	lcall	_OLED_DisplayString
                                    1236 ;	./src/angry_bird.c:257: OLED_SetCursor(angle_text_row_cursor, angle_text_col_cursor);
       00064E 75 0B 1E         [24] 1237 	mov	_OLED_SetCursor_PARM_2,#0x1e
       000651 75 82 00         [24] 1238 	mov	dpl,#0x00
-      000654 12 0F 75         [24] 1239 	lcall	_OLED_SetCursor
+      000654 12 0F 6F         [24] 1239 	lcall	_OLED_SetCursor
                                    1240 ;	./src/angry_bird.c:258: OLED_DisplayString(control_angle_);
       000657 90 00 4A         [24] 1241 	mov	dptr,#_angrybird_game_state_control_angle__196609_62
       00065A 75 F0 40         [24] 1242 	mov	b,#0x40
-      00065D 12 0F 1F         [24] 1243 	lcall	_OLED_DisplayString
+      00065D 12 0F 19         [24] 1243 	lcall	_OLED_DisplayString
       000660                       1244 00116$:
                                    1245 ;	./src/angry_bird.c:263: if (((but_left == 0) && (prebut_left == 1)) || ((but_right == 0) && (prebut_right == 1)))
       000660 20 B2 0B         [24] 1246 	jb	_INT0,00134$
@@ -1324,19 +1324,19 @@
                                    1324 ;	./src/angry_bird.c:287: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
       0006DB 75 0B 0A         [24] 1325 	mov	_OLED_SetCursor_PARM_2,#0x0a
       0006DE 75 82 00         [24] 1326 	mov	dpl,#0x00
-      0006E1 12 0F 75         [24] 1327 	lcall	_OLED_SetCursor
+      0006E1 12 0F 6F         [24] 1327 	lcall	_OLED_SetCursor
                                    1328 ;	./src/angry_bird.c:288: OLED_DisplayString(" ");
-      0006E4 90 15 CA         [24] 1329 	mov	dptr,#___str_3
+      0006E4 90 15 C4         [24] 1329 	mov	dptr,#___str_3
       0006E7 75 F0 80         [24] 1330 	mov	b,#0x80
-      0006EA 12 0F 1F         [24] 1331 	lcall	_OLED_DisplayString
+      0006EA 12 0F 19         [24] 1331 	lcall	_OLED_DisplayString
                                    1332 ;	./src/angry_bird.c:289: OLED_SetCursor(strength_text_row_cursor, strength_text_col_cursor);
       0006ED 75 0B 0A         [24] 1333 	mov	_OLED_SetCursor_PARM_2,#0x0a
       0006F0 75 82 00         [24] 1334 	mov	dpl,#0x00
-      0006F3 12 0F 75         [24] 1335 	lcall	_OLED_SetCursor
+      0006F3 12 0F 6F         [24] 1335 	lcall	_OLED_SetCursor
                                    1336 ;	./src/angry_bird.c:290: OLED_DisplayString(control_strength_);
       0006F6 90 00 51         [24] 1337 	mov	dptr,#_angrybird_game_state_control_strength__196609_68
       0006F9 75 F0 40         [24] 1338 	mov	b,#0x40
-      0006FC 12 0F 1F         [24] 1339 	lcall	_OLED_DisplayString
+      0006FC 12 0F 19         [24] 1339 	lcall	_OLED_DisplayString
       0006FF                       1340 00131$:
                                    1341 ;	./src/angry_bird.c:295: if ((but_enter == 0) && (prebut_enter == 1))
       0006FF 30 A2 03         [24] 1342 	jnb	_P2_2,00720$
@@ -1368,7 +1368,7 @@
       000729 F5 25            [12] 1368 	mov	_row_offset,a
       00072B F5 26            [12] 1369 	mov	(_row_offset + 1),a
                                    1370 ;	./src/angry_bird.c:303: col_offset = bird_remain_col_cursor + (bird_total_amount - bird_amt - 1) * 8;
-      00072D 74 08            [12] 1371 	mov	a,#0x08
+      00072D 74 04            [12] 1371 	mov	a,#0x04
       00072F C3               [12] 1372 	clr	c
       000730 95 29            [12] 1373 	subb	a,_bird_amt
       000732 FE               [12] 1374 	mov	r6,a
@@ -1387,7 +1387,7 @@
       000742 CE               [12] 1387 	xch	a,r6
       000743 6E               [12] 1388 	xrl	a,r6
       000744 FF               [12] 1389 	mov	r7,a
-      000745 74 32            [12] 1390 	mov	a,#0x32
+      000745 74 4F            [12] 1390 	mov	a,#0x4f
       000747 2E               [12] 1391 	add	a,r6
       000748 F5 27            [12] 1392 	mov	_col_offset,a
       00074A E4               [12] 1393 	clr	a
@@ -1422,10 +1422,10 @@
       000770 F5 0B            [12] 1422 	mov	_OLED_SetCursor_PARM_2,a
       000772 C0 07            [24] 1423 	push	ar7
       000774 C0 06            [24] 1424 	push	ar6
-      000776 12 0F 75         [24] 1425 	lcall	_OLED_SetCursor
+      000776 12 0F 6F         [24] 1425 	lcall	_OLED_SetCursor
                                    1426 ;	./src/angry_bird.c:309: oledSendData(0x00);
       000779 75 82 00         [24] 1427 	mov	dpl,#0x00
-      00077C 12 0F B1         [24] 1428 	lcall	_oledSendData
+      00077C 12 0F AB         [24] 1428 	lcall	_oledSendData
       00077F D0 06            [24] 1429 	pop	ar6
       000781 D0 07            [24] 1430 	pop	ar7
                                    1431 ;	./src/angry_bird.c:306: for (int i = 0; i < bird_row_size; i++)
@@ -1441,7 +1441,7 @@
                                    1441 ;	./src/angry_bird.c:316: float delta_y = (control_angle_value) / (SQRT_2 / 2) * getsine(control_angle);
       00078E 85 2D 82         [24] 1442 	mov	dpl,_control_angle
       000791 85 2E 83         [24] 1443 	mov	dph,(_control_angle + 1)
-      000794 12 0D 2E         [24] 1444 	lcall	_getsine
+      000794 12 0D 28         [24] 1444 	lcall	_getsine
       000797 AC 82            [24] 1445 	mov	r4,dpl
       000799 AD 83            [24] 1446 	mov	r5,dph
       00079B AE F0            [24] 1447 	mov	r6,b
@@ -1454,7 +1454,7 @@
       0007A6 90 C3 B7         [24] 1454 	mov	dptr,#0xc3b7
       0007A9 75 F0 07         [24] 1455 	mov	b,#0x07
       0007AC 74 41            [12] 1456 	mov	a,#0x41
-      0007AE 12 0F C8         [24] 1457 	lcall	___fsmul
+      0007AE 12 0F C2         [24] 1457 	lcall	___fsmul
       0007B1 85 82 53         [24] 1458 	mov	_angrybird_game_state_delta_y_196609_75,dpl
       0007B4 85 83 54         [24] 1459 	mov	(_angrybird_game_state_delta_y_196609_75 + 1),dph
       0007B7 85 F0 55         [24] 1460 	mov	(_angrybird_game_state_delta_y_196609_75 + 2),b
@@ -1465,7 +1465,7 @@
       0007C2 85 2F 0C         [24] 1465 	mov	__mulint_PARM_2,_control_strength
       0007C5 85 30 0D         [24] 1466 	mov	(__mulint_PARM_2 + 1),(_control_strength + 1)
       0007C8 90 00 19         [24] 1467 	mov	dptr,#0x0019
-      0007CB 12 10 CC         [24] 1468 	lcall	__mulint
+      0007CB 12 10 C6         [24] 1468 	lcall	__mulint
       0007CE AA 82            [24] 1469 	mov	r2,dpl
       0007D0 AB 83            [24] 1470 	mov	r3,dph
       0007D2 C0 03            [24] 1471 	push	ar3
@@ -1477,7 +1477,7 @@
       0007DE 90 00 00         [24] 1477 	mov	dptr,#0x0000
       0007E1 75 F0 80         [24] 1478 	mov	b,#0x80
       0007E4 74 40            [12] 1479 	mov	a,#0x40
-      0007E6 12 0F C8         [24] 1480 	lcall	___fsmul
+      0007E6 12 0F C2         [24] 1480 	lcall	___fsmul
       0007E9 85 82 6B         [24] 1481 	mov	_angrybird_game_state_sloc1_1_0,dpl
       0007EC 85 83 6C         [24] 1482 	mov	(_angrybird_game_state_sloc1_1_0 + 1),dph
       0007EF 85 F0 6D         [24] 1483 	mov	(_angrybird_game_state_sloc1_1_0 + 2),b
@@ -1489,7 +1489,7 @@
       0007FC D0 03            [24] 1489 	pop	ar3
       0007FE 8A 82            [24] 1490 	mov	dpl,r2
       000800 8B 83            [24] 1491 	mov	dph,r3
-      000802 12 11 B8         [24] 1492 	lcall	___sint2fs
+      000802 12 11 B2         [24] 1492 	lcall	___sint2fs
       000805 AA 82            [24] 1493 	mov	r2,dpl
       000807 AB 83            [24] 1494 	mov	r3,dph
       000809 AE F0            [24] 1495 	mov	r6,b
@@ -1503,7 +1503,7 @@
       000816 8B 83            [24] 1503 	mov	dph,r3
       000818 8E F0            [24] 1504 	mov	b,r6
       00081A EF               [12] 1505 	mov	a,r7
-      00081B 12 0F BD         [24] 1506 	lcall	___fssub
+      00081B 12 0F B7         [24] 1506 	lcall	___fssub
       00081E 85 82 57         [24] 1507 	mov	_angrybird_game_state_delta_x_196609_75,dpl
       000821 85 83 58         [24] 1508 	mov	(_angrybird_game_state_delta_x_196609_75 + 1),dph
       000824 85 F0 59         [24] 1509 	mov	(_angrybird_game_state_delta_x_196609_75 + 2),b
@@ -1522,7 +1522,7 @@
       00083D 85 58 83         [24] 1522 	mov	dph,(_angrybird_game_state_delta_x_196609_75 + 1)
       000840 85 59 F0         [24] 1523 	mov	b,(_angrybird_game_state_delta_x_196609_75 + 2)
       000843 E5 5A            [12] 1524 	mov	a,(_angrybird_game_state_delta_x_196609_75 + 3)
-      000845 12 11 5F         [24] 1525 	lcall	___fsadd
+      000845 12 11 59         [24] 1525 	lcall	___fsadd
       000848 85 82 5B         [24] 1526 	mov	_angrybird_game_state_peak_x_196609_75,dpl
       00084B 85 83 5C         [24] 1527 	mov	(_angrybird_game_state_peak_x_196609_75 + 1),dph
       00084E 85 F0 5D         [24] 1528 	mov	(_angrybird_game_state_peak_x_196609_75 + 2),b
@@ -1538,7 +1538,7 @@
       000861 90 00 00         [24] 1538 	mov	dptr,#0x0000
       000864 75 F0 E0         [24] 1539 	mov	b,#0xe0
       000867 74 40            [12] 1540 	mov	a,#0x40
-      000869 12 0F BD         [24] 1541 	lcall	___fssub
+      000869 12 0F B7         [24] 1541 	lcall	___fssub
       00086C 85 82 5F         [24] 1542 	mov	_angrybird_game_state_peak_y_196609_75,dpl
       00086F 85 83 60         [24] 1543 	mov	(_angrybird_game_state_peak_y_196609_75 + 1),dph
       000872 85 F0 61         [24] 1544 	mov	(_angrybird_game_state_peak_y_196609_75 + 2),b
@@ -1550,7 +1550,7 @@
       000880 85 58 83         [24] 1550 	mov	dph,(_angrybird_game_state_delta_x_196609_75 + 1)
       000883 85 59 F0         [24] 1551 	mov	b,(_angrybird_game_state_delta_x_196609_75 + 2)
       000886 E5 5A            [12] 1552 	mov	a,(_angrybird_game_state_delta_x_196609_75 + 3)
-      000888 12 0E 09         [24] 1553 	lcall	_pow_2
+      000888 12 0E 03         [24] 1553 	lcall	_pow_2
       00088B AA 82            [24] 1554 	mov	r2,dpl
       00088D AB 83            [24] 1555 	mov	r3,dph
       00088F AE F0            [24] 1556 	mov	r6,b
@@ -1564,7 +1564,7 @@
       00089D 85 54 83         [24] 1564 	mov	dph,(_angrybird_game_state_delta_y_196609_75 + 1)
       0008A0 85 55 F0         [24] 1565 	mov	b,(_angrybird_game_state_delta_y_196609_75 + 2)
       0008A3 E5 56            [12] 1566 	mov	a,(_angrybird_game_state_delta_y_196609_75 + 3)
-      0008A5 12 12 62         [24] 1567 	lcall	___fsdiv
+      0008A5 12 12 5C         [24] 1567 	lcall	___fsdiv
       0008A8 85 82 63         [24] 1568 	mov	_angrybird_game_state_a_196609_75,dpl
       0008AB 85 83 64         [24] 1569 	mov	(_angrybird_game_state_a_196609_75 + 1),dph
       0008AE 85 F0 65         [24] 1570 	mov	(_angrybird_game_state_a_196609_75 + 2),b
@@ -1606,10 +1606,10 @@
       0008E7 F5 0B            [12] 1606 	mov	_OLED_SetCursor_PARM_2,a
       0008E9 C0 03            [24] 1607 	push	ar3
       0008EB C0 02            [24] 1608 	push	ar2
-      0008ED 12 0F 75         [24] 1609 	lcall	_OLED_SetCursor
+      0008ED 12 0F 6F         [24] 1609 	lcall	_OLED_SetCursor
                                    1610 ;	./src/angry_bird.c:329: oledSendData(0x00);
       0008F0 75 82 00         [24] 1611 	mov	dpl,#0x00
-      0008F3 12 0F B1         [24] 1612 	lcall	_oledSendData
+      0008F3 12 0F AB         [24] 1612 	lcall	_oledSendData
       0008F6 D0 02            [24] 1613 	pop	ar2
       0008F8 D0 03            [24] 1614 	pop	ar3
                                    1615 ;	./src/angry_bird.c:326: for (int i = 0; i < bird_row_size; i++)
@@ -1639,7 +1639,7 @@
                                    1639 ;	./src/angry_bird.c:335: int output_row = a * pow_2(i - peak_x) + peak_y;
       00091F 85 67 82         [24] 1640 	mov	dpl,_angrybird_game_state_i_262145_80
       000922 85 68 83         [24] 1641 	mov	dph,(_angrybird_game_state_i_262145_80 + 1)
-      000925 12 11 B8         [24] 1642 	lcall	___sint2fs
+      000925 12 11 B2         [24] 1642 	lcall	___sint2fs
       000928 AA 82            [24] 1643 	mov	r2,dpl
       00092A AB 83            [24] 1644 	mov	r3,dph
       00092C AC F0            [24] 1645 	mov	r4,b
@@ -1652,7 +1652,7 @@
       000939 8B 83            [24] 1652 	mov	dph,r3
       00093B 8C F0            [24] 1653 	mov	b,r4
       00093D ED               [12] 1654 	mov	a,r5
-      00093E 12 0F BD         [24] 1655 	lcall	___fssub
+      00093E 12 0F B7         [24] 1655 	lcall	___fssub
       000941 AA 82            [24] 1656 	mov	r2,dpl
       000943 AB 83            [24] 1657 	mov	r3,dph
       000945 AC F0            [24] 1658 	mov	r4,b
@@ -1664,7 +1664,7 @@
       000950 8B 83            [24] 1664 	mov	dph,r3
       000952 8C F0            [24] 1665 	mov	b,r4
       000954 ED               [12] 1666 	mov	a,r5
-      000955 12 0E 09         [24] 1667 	lcall	_pow_2
+      000955 12 0E 03         [24] 1667 	lcall	_pow_2
       000958 AA 82            [24] 1668 	mov	r2,dpl
       00095A AB 83            [24] 1669 	mov	r3,dph
       00095C AC F0            [24] 1670 	mov	r4,b
@@ -1677,7 +1677,7 @@
       00096A 85 64 83         [24] 1677 	mov	dph,(_angrybird_game_state_a_196609_75 + 1)
       00096D 85 65 F0         [24] 1678 	mov	b,(_angrybird_game_state_a_196609_75 + 2)
       000970 E5 66            [12] 1679 	mov	a,(_angrybird_game_state_a_196609_75 + 3)
-      000972 12 0F C8         [24] 1680 	lcall	___fsmul
+      000972 12 0F C2         [24] 1680 	lcall	___fsmul
       000975 AA 82            [24] 1681 	mov	r2,dpl
       000977 AB 83            [24] 1682 	mov	r3,dph
       000979 AC F0            [24] 1683 	mov	r4,b
@@ -1693,7 +1693,7 @@
       00098C 8B 83            [24] 1693 	mov	dph,r3
       00098E 8C F0            [24] 1694 	mov	b,r4
       000990 ED               [12] 1695 	mov	a,r5
-      000991 12 11 5F         [24] 1696 	lcall	___fsadd
+      000991 12 11 59         [24] 1696 	lcall	___fsadd
       000994 AA 82            [24] 1697 	mov	r2,dpl
       000996 AB 83            [24] 1698 	mov	r3,dph
       000998 AC F0            [24] 1699 	mov	r4,b
@@ -1705,7 +1705,7 @@
       0009A3 8B 83            [24] 1705 	mov	dph,r3
       0009A5 8C F0            [24] 1706 	mov	b,r4
       0009A7 ED               [12] 1707 	mov	a,r5
-      0009A8 12 11 C5         [24] 1708 	lcall	___fs2sint
+      0009A8 12 11 BF         [24] 1708 	lcall	___fs2sint
       0009AB 85 82 69         [24] 1709 	mov	_angrybird_game_state_output_row_327681_81,dpl
       0009AE 85 83 6A         [24] 1710 	mov	(_angrybird_game_state_output_row_327681_81 + 1),dph
                                    1711 ;	./src/angry_bird.c:337: if (1 <= output_row && output_row <= 7)
@@ -1768,7 +1768,7 @@
       000A0A C0 07            [24] 1768 	push	ar7
       000A0C C0 03            [24] 1769 	push	ar3
       000A0E C0 02            [24] 1770 	push	ar2
-      000A10 12 0F 75         [24] 1771 	lcall	_OLED_SetCursor
+      000A10 12 0F 6F         [24] 1771 	lcall	_OLED_SetCursor
       000A13 D0 02            [24] 1772 	pop	ar2
       000A15 D0 03            [24] 1773 	pop	ar3
       000A17 D0 07            [24] 1774 	pop	ar7
@@ -1778,7 +1778,7 @@
       000A1B 95 E0            [12] 1778 	subb	a,acc
       000A1D FE               [12] 1779 	mov	r6,a
       000A1E EF               [12] 1780 	mov	a,r7
-      000A1F 24 B8            [12] 1781 	add	a,#_bird_logo
+      000A1F 24 B2            [12] 1781 	add	a,#_bird_logo
       000A21 F5 82            [12] 1782 	mov	dpl,a
       000A23 EE               [12] 1783 	mov	a,r6
       000A24 34 14            [12] 1784 	addc	a,#(_bird_logo >> 8)
@@ -1788,7 +1788,7 @@
       000A2A F5 82            [12] 1788 	mov	dpl,a
       000A2C C0 03            [24] 1789 	push	ar3
       000A2E C0 02            [24] 1790 	push	ar2
-      000A30 12 0F B1         [24] 1791 	lcall	_oledSendData
+      000A30 12 0F AB         [24] 1791 	lcall	_oledSendData
       000A33 D0 02            [24] 1792 	pop	ar2
       000A35 D0 03            [24] 1793 	pop	ar3
                                    1794 ;	./src/angry_bird.c:344: for (int i = 0; i < bird_row_size; i++)
@@ -1879,10 +1879,10 @@
       000AC1 C0 07            [24] 1879 	push	ar7
       000AC3 C0 06            [24] 1880 	push	ar6
       000AC5 C0 05            [24] 1881 	push	ar5
-      000AC7 12 0F 75         [24] 1882 	lcall	_OLED_SetCursor
+      000AC7 12 0F 6F         [24] 1882 	lcall	_OLED_SetCursor
                                    1883 ;	./src/angry_bird.c:384: oledSendData(0x00);
       000ACA 75 82 00         [24] 1884 	mov	dpl,#0x00
-      000ACD 12 0F B1         [24] 1885 	lcall	_oledSendData
+      000ACD 12 0F AB         [24] 1885 	lcall	_oledSendData
       000AD0 D0 05            [24] 1886 	pop	ar5
       000AD2 D0 06            [24] 1887 	pop	ar6
       000AD4 D0 07            [24] 1888 	pop	ar7
@@ -1935,10 +1935,10 @@
       000B13 F5 0B            [12] 1935 	mov	_OLED_SetCursor_PARM_2,a
       000B15 C0 07            [24] 1936 	push	ar7
       000B17 C0 06            [24] 1937 	push	ar6
-      000B19 12 0F 75         [24] 1938 	lcall	_OLED_SetCursor
+      000B19 12 0F 6F         [24] 1938 	lcall	_OLED_SetCursor
                                    1939 ;	./src/angry_bird.c:396: oledSendData(0x00);
       000B1C 75 82 00         [24] 1940 	mov	dpl,#0x00
-      000B1F 12 0F B1         [24] 1941 	lcall	_oledSendData
+      000B1F 12 0F AB         [24] 1941 	lcall	_oledSendData
       000B22 D0 06            [24] 1942 	pop	ar6
       000B24 D0 07            [24] 1943 	pop	ar7
                                    1944 ;	./src/angry_bird.c:393: for (int i = 0; i < bird_row_size; i++)
@@ -1996,7 +1996,7 @@
       000B6F C0 07            [24] 1996 	push	ar7
       000B71 C0 06            [24] 1997 	push	ar6
       000B73 C0 03            [24] 1998 	push	ar3
-      000B75 12 0F 75         [24] 1999 	lcall	_OLED_SetCursor
+      000B75 12 0F 6F         [24] 1999 	lcall	_OLED_SetCursor
       000B78 D0 03            [24] 2000 	pop	ar3
                                    2001 ;	./src/angry_bird.c:410: oledSendData(bird_logo[bird_cul_size * i + j]);
       000B7A EB               [12] 2002 	mov	a,r3
@@ -2004,7 +2004,7 @@
       000B7C 95 E0            [12] 2004 	subb	a,acc
       000B7E FC               [12] 2005 	mov	r4,a
       000B7F EB               [12] 2006 	mov	a,r3
-      000B80 24 B8            [12] 2007 	add	a,#_bird_logo
+      000B80 24 B2            [12] 2007 	add	a,#_bird_logo
       000B82 F5 82            [12] 2008 	mov	dpl,a
       000B84 EC               [12] 2009 	mov	a,r4
       000B85 34 14            [12] 2010 	addc	a,#(_bird_logo >> 8)
@@ -2012,7 +2012,7 @@
       000B89 E4               [12] 2012 	clr	a
       000B8A 93               [24] 2013 	movc	a,@a+dptr
       000B8B F5 82            [12] 2014 	mov	dpl,a
-      000B8D 12 0F B1         [24] 2015 	lcall	_oledSendData
+      000B8D 12 0F AB         [24] 2015 	lcall	_oledSendData
       000B90 D0 06            [24] 2016 	pop	ar6
       000B92 D0 07            [24] 2017 	pop	ar7
                                    2018 ;	./src/angry_bird.c:407: for (int i = 0; i < bird_row_size; i++)
@@ -2032,828 +2032,826 @@
       000BA5 E5 29            [12] 2032 	mov	a,_bird_amt
       000BA7 45 2A            [12] 2033 	orl	a,(_bird_amt + 1)
       000BA9 60 03            [24] 2034 	jz	00758$
-      000BAB 02 0C FB         [24] 2035 	ljmp	00171$
+      000BAB 02 0C F5         [24] 2035 	ljmp	00171$
       000BAE                       2036 00758$:
       000BAE                       2037 00170$:
-                                   2038 ;	./src/angry_bird.c:423: if (pig_amt == 0)
-      000BAE E5 2B            [12] 2039 	mov	a,_pig_amt
-      000BB0 45 2C            [12] 2040 	orl	a,(_pig_amt + 1)
-      000BB2 60 03            [24] 2041 	jz	00759$
-      000BB4 02 0C 4D         [24] 2042 	ljmp	00168$
-      000BB7                       2043 00759$:
-                                   2044 ;	./src/angry_bird.c:425: OLED_SetCursor(win_row_cursor, win_col_cursor);
-      000BB7 75 0B 1F         [24] 2045 	mov	_OLED_SetCursor_PARM_2,#0x1f
-      000BBA 75 82 03         [24] 2046 	mov	dpl,#0x03
-      000BBD 12 0F 75         [24] 2047 	lcall	_OLED_SetCursor
-                                   2048 ;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
-      000BC0 7E 00            [12] 2049 	mov	r6,#0x00
-      000BC2 7F 00            [12] 2050 	mov	r7,#0x00
-      000BC4                       2051 00216$:
-      000BC4 C3               [12] 2052 	clr	c
-      000BC5 EE               [12] 2053 	mov	a,r6
-      000BC6 94 40            [12] 2054 	subb	a,#0x40
-      000BC8 EF               [12] 2055 	mov	a,r7
-      000BC9 64 80            [12] 2056 	xrl	a,#0x80
-      000BCB 94 80            [12] 2057 	subb	a,#0x80
-      000BCD 40 03            [24] 2058 	jc	00760$
-      000BCF 02 0C E9         [24] 2059 	ljmp	00169$
-      000BD2                       2060 00760$:
-                                   2061 ;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
-      000BD2 7C 00            [12] 2062 	mov	r4,#0x00
-      000BD4 7D 00            [12] 2063 	mov	r5,#0x00
-      000BD6                       2064 00213$:
-      000BD6 C3               [12] 2065 	clr	c
-      000BD7 EC               [12] 2066 	mov	a,r4
-      000BD8 94 02            [12] 2067 	subb	a,#0x02
-      000BDA ED               [12] 2068 	mov	a,r5
-      000BDB 64 80            [12] 2069 	xrl	a,#0x80
-      000BDD 94 80            [12] 2070 	subb	a,#0x80
-      000BDF 50 64            [24] 2071 	jnc	00217$
-                                   2072 ;	./src/angry_bird.c:430: OLED_SetCursor(row_offset + i, col_offset + j);
-      000BE1 AB 25            [24] 2073 	mov	r3,_row_offset
-      000BE3 8C 02            [24] 2074 	mov	ar2,r4
-      000BE5 EA               [12] 2075 	mov	a,r2
-      000BE6 2B               [12] 2076 	add	a,r3
-      000BE7 F5 82            [12] 2077 	mov	dpl,a
-      000BE9 AB 27            [24] 2078 	mov	r3,_col_offset
-      000BEB 8E 02            [24] 2079 	mov	ar2,r6
-      000BED EA               [12] 2080 	mov	a,r2
-      000BEE 2B               [12] 2081 	add	a,r3
-      000BEF F5 0B            [12] 2082 	mov	_OLED_SetCursor_PARM_2,a
-      000BF1 C0 07            [24] 2083 	push	ar7
-      000BF3 C0 06            [24] 2084 	push	ar6
-      000BF5 C0 05            [24] 2085 	push	ar5
-      000BF7 C0 04            [24] 2086 	push	ar4
-      000BF9 12 0F 75         [24] 2087 	lcall	_OLED_SetCursor
-      000BFC D0 04            [24] 2088 	pop	ar4
-      000BFE D0 05            [24] 2089 	pop	ar5
-      000C00 D0 06            [24] 2090 	pop	ar6
-      000C02 D0 07            [24] 2091 	pop	ar7
-                                   2092 ;	./src/angry_bird.c:431: oledSendData(win_page[win_cul_size * i + j]);
-      000C04 8C 02            [24] 2093 	mov	ar2,r4
-      000C06 ED               [12] 2094 	mov	a,r5
-      000C07 54 03            [12] 2095 	anl	a,#0x03
-      000C09 A2 E0            [12] 2096 	mov	c,acc.0
-      000C0B CA               [12] 2097 	xch	a,r2
-      000C0C 13               [12] 2098 	rrc	a
-      000C0D CA               [12] 2099 	xch	a,r2
-      000C0E 13               [12] 2100 	rrc	a
-      000C0F A2 E0            [12] 2101 	mov	c,acc.0
-      000C11 CA               [12] 2102 	xch	a,r2
-      000C12 13               [12] 2103 	rrc	a
-      000C13 CA               [12] 2104 	xch	a,r2
-      000C14 13               [12] 2105 	rrc	a
-      000C15 CA               [12] 2106 	xch	a,r2
-      000C16 FB               [12] 2107 	mov	r3,a
-      000C17 EE               [12] 2108 	mov	a,r6
-      000C18 2A               [12] 2109 	add	a,r2
-      000C19 FA               [12] 2110 	mov	r2,a
-      000C1A EF               [12] 2111 	mov	a,r7
-      000C1B 3B               [12] 2112 	addc	a,r3
-      000C1C FB               [12] 2113 	mov	r3,a
-      000C1D EA               [12] 2114 	mov	a,r2
-      000C1E 24 C0            [12] 2115 	add	a,#_win_page
-      000C20 F5 82            [12] 2116 	mov	dpl,a
-      000C22 EB               [12] 2117 	mov	a,r3
-      000C23 34 14            [12] 2118 	addc	a,#(_win_page >> 8)
-      000C25 F5 83            [12] 2119 	mov	dph,a
-      000C27 E4               [12] 2120 	clr	a
-      000C28 93               [24] 2121 	movc	a,@a+dptr
-      000C29 F5 82            [12] 2122 	mov	dpl,a
-      000C2B C0 07            [24] 2123 	push	ar7
-      000C2D C0 06            [24] 2124 	push	ar6
-      000C2F C0 05            [24] 2125 	push	ar5
-      000C31 C0 04            [24] 2126 	push	ar4
-      000C33 12 0F B1         [24] 2127 	lcall	_oledSendData
-      000C36 D0 04            [24] 2128 	pop	ar4
-      000C38 D0 05            [24] 2129 	pop	ar5
-      000C3A D0 06            [24] 2130 	pop	ar6
-      000C3C D0 07            [24] 2131 	pop	ar7
-                                   2132 ;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
-      000C3E 0C               [12] 2133 	inc	r4
-      000C3F BC 00 94         [24] 2134 	cjne	r4,#0x00,00213$
-      000C42 0D               [12] 2135 	inc	r5
-      000C43 80 91            [24] 2136 	sjmp	00213$
-      000C45                       2137 00217$:
-                                   2138 ;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
-      000C45 0E               [12] 2139 	inc	r6
-      000C46 BE 00 01         [24] 2140 	cjne	r6,#0x00,00763$
-      000C49 0F               [12] 2141 	inc	r7
-      000C4A                       2142 00763$:
-      000C4A 02 0B C4         [24] 2143 	ljmp	00216$
-      000C4D                       2144 00168$:
-                                   2145 ;	./src/angry_bird.c:435: else if (bird_amt == 0)
-      000C4D E5 29            [12] 2146 	mov	a,_bird_amt
-      000C4F 45 2A            [12] 2147 	orl	a,(_bird_amt + 1)
-      000C51 60 03            [24] 2148 	jz	00764$
-      000C53 02 0C E9         [24] 2149 	ljmp	00169$
-      000C56                       2150 00764$:
-                                   2151 ;	./src/angry_bird.c:437: OLED_SetCursor(over_row_cursor, over_col_cursor);
-      000C56 75 0B 1F         [24] 2152 	mov	_OLED_SetCursor_PARM_2,#0x1f
-      000C59 75 82 03         [24] 2153 	mov	dpl,#0x03
-      000C5C 12 0F 75         [24] 2154 	lcall	_OLED_SetCursor
-                                   2155 ;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
-      000C5F 7E 00            [12] 2156 	mov	r6,#0x00
-      000C61 7F 00            [12] 2157 	mov	r7,#0x00
-      000C63                       2158 00222$:
-      000C63 C3               [12] 2159 	clr	c
-      000C64 EE               [12] 2160 	mov	a,r6
-      000C65 94 40            [12] 2161 	subb	a,#0x40
-      000C67 EF               [12] 2162 	mov	a,r7
-      000C68 64 80            [12] 2163 	xrl	a,#0x80
-      000C6A 94 80            [12] 2164 	subb	a,#0x80
-      000C6C 50 7B            [24] 2165 	jnc	00169$
-                                   2166 ;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
-      000C6E 7C 00            [12] 2167 	mov	r4,#0x00
-      000C70 7D 00            [12] 2168 	mov	r5,#0x00
-      000C72                       2169 00219$:
-      000C72 C3               [12] 2170 	clr	c
-      000C73 EC               [12] 2171 	mov	a,r4
-      000C74 94 02            [12] 2172 	subb	a,#0x02
-      000C76 ED               [12] 2173 	mov	a,r5
-      000C77 64 80            [12] 2174 	xrl	a,#0x80
-      000C79 94 80            [12] 2175 	subb	a,#0x80
-      000C7B 50 64            [24] 2176 	jnc	00223$
-                                   2177 ;	./src/angry_bird.c:442: OLED_SetCursor(row_offset + i, col_offset + j);
-      000C7D AB 25            [24] 2178 	mov	r3,_row_offset
-      000C7F 8C 02            [24] 2179 	mov	ar2,r4
-      000C81 EA               [12] 2180 	mov	a,r2
-      000C82 2B               [12] 2181 	add	a,r3
-      000C83 F5 82            [12] 2182 	mov	dpl,a
-      000C85 AB 27            [24] 2183 	mov	r3,_col_offset
-      000C87 8E 02            [24] 2184 	mov	ar2,r6
-      000C89 EA               [12] 2185 	mov	a,r2
-      000C8A 2B               [12] 2186 	add	a,r3
-      000C8B F5 0B            [12] 2187 	mov	_OLED_SetCursor_PARM_2,a
-      000C8D C0 07            [24] 2188 	push	ar7
-      000C8F C0 06            [24] 2189 	push	ar6
-      000C91 C0 05            [24] 2190 	push	ar5
-      000C93 C0 04            [24] 2191 	push	ar4
-      000C95 12 0F 75         [24] 2192 	lcall	_OLED_SetCursor
-      000C98 D0 04            [24] 2193 	pop	ar4
-      000C9A D0 05            [24] 2194 	pop	ar5
-      000C9C D0 06            [24] 2195 	pop	ar6
-      000C9E D0 07            [24] 2196 	pop	ar7
-                                   2197 ;	./src/angry_bird.c:443: oledSendData(over_page[over_cul_size * i + j]);
-      000CA0 8C 02            [24] 2198 	mov	ar2,r4
-      000CA2 ED               [12] 2199 	mov	a,r5
-      000CA3 54 03            [12] 2200 	anl	a,#0x03
-      000CA5 A2 E0            [12] 2201 	mov	c,acc.0
-      000CA7 CA               [12] 2202 	xch	a,r2
-      000CA8 13               [12] 2203 	rrc	a
-      000CA9 CA               [12] 2204 	xch	a,r2
-      000CAA 13               [12] 2205 	rrc	a
-      000CAB A2 E0            [12] 2206 	mov	c,acc.0
-      000CAD CA               [12] 2207 	xch	a,r2
-      000CAE 13               [12] 2208 	rrc	a
-      000CAF CA               [12] 2209 	xch	a,r2
-      000CB0 13               [12] 2210 	rrc	a
-      000CB1 CA               [12] 2211 	xch	a,r2
-      000CB2 FB               [12] 2212 	mov	r3,a
-      000CB3 EE               [12] 2213 	mov	a,r6
-      000CB4 2A               [12] 2214 	add	a,r2
-      000CB5 FA               [12] 2215 	mov	r2,a
-      000CB6 EF               [12] 2216 	mov	a,r7
-      000CB7 3B               [12] 2217 	addc	a,r3
-      000CB8 FB               [12] 2218 	mov	r3,a
-      000CB9 EA               [12] 2219 	mov	a,r2
-      000CBA 24 40            [12] 2220 	add	a,#_over_page
-      000CBC F5 82            [12] 2221 	mov	dpl,a
-      000CBE EB               [12] 2222 	mov	a,r3
-      000CBF 34 15            [12] 2223 	addc	a,#(_over_page >> 8)
-      000CC1 F5 83            [12] 2224 	mov	dph,a
-      000CC3 E4               [12] 2225 	clr	a
-      000CC4 93               [24] 2226 	movc	a,@a+dptr
-      000CC5 F5 82            [12] 2227 	mov	dpl,a
-      000CC7 C0 07            [24] 2228 	push	ar7
-      000CC9 C0 06            [24] 2229 	push	ar6
-      000CCB C0 05            [24] 2230 	push	ar5
-      000CCD C0 04            [24] 2231 	push	ar4
-      000CCF 12 0F B1         [24] 2232 	lcall	_oledSendData
-      000CD2 D0 04            [24] 2233 	pop	ar4
-      000CD4 D0 05            [24] 2234 	pop	ar5
-      000CD6 D0 06            [24] 2235 	pop	ar6
-      000CD8 D0 07            [24] 2236 	pop	ar7
-                                   2237 ;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
-      000CDA 0C               [12] 2238 	inc	r4
-      000CDB BC 00 94         [24] 2239 	cjne	r4,#0x00,00219$
-      000CDE 0D               [12] 2240 	inc	r5
-      000CDF 80 91            [24] 2241 	sjmp	00219$
-      000CE1                       2242 00223$:
-                                   2243 ;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
-      000CE1 0E               [12] 2244 	inc	r6
-      000CE2 BE 00 01         [24] 2245 	cjne	r6,#0x00,00768$
-      000CE5 0F               [12] 2246 	inc	r7
-      000CE6                       2247 00768$:
-      000CE6 02 0C 63         [24] 2248 	ljmp	00222$
-      000CE9                       2249 00169$:
-                                   2250 ;	./src/angry_bird.c:447: delay_ms(1000);
-      000CE9 90 03 E8         [24] 2251 	mov	dptr,#0x03e8
-      000CEC 12 01 BE         [24] 2252 	lcall	_delay_ms
-                                   2253 ;	./src/angry_bird.c:448: cur_state = STATE_HOME;
-      000CEF 75 3E 01         [24] 2254 	mov	_cur_state,#0x01
-      000CF2 75 3F 00         [24] 2255 	mov	(_cur_state + 1),#0x00
-                                   2256 ;	./src/angry_bird.c:450: send_data = cur_state;
-      000CF5 75 21 01         [24] 2257 	mov	_send_data,#0x01
-                                   2258 ;	./src/angry_bird.c:451: send_flag = 1;
-      000CF8 75 22 01         [24] 2259 	mov	_send_flag,#0x01
-      000CFB                       2260 00171$:
-                                   2261 ;	./src/angry_bird.c:455: prebut_enter = but_enter;
-      000CFB A2 A2            [12] 2262 	mov	c,_P2_2
-      000CFD E4               [12] 2263 	clr	a
-      000CFE 33               [12] 2264 	rlc	a
-      000CFF F5 48            [12] 2265 	mov	_prebut_enter,a
-      000D01 75 49 00         [24] 2266 	mov	(_prebut_enter + 1),#0x00
-                                   2267 ;	./src/angry_bird.c:456: prebut_up = but_up;
-      000D04 A2 A0            [12] 2268 	mov	c,_P2_0
-      000D06 E4               [12] 2269 	clr	a
-      000D07 33               [12] 2270 	rlc	a
-      000D08 F5 40            [12] 2271 	mov	_prebut_up,a
-      000D0A 75 41 00         [24] 2272 	mov	(_prebut_up + 1),#0x00
-                                   2273 ;	./src/angry_bird.c:457: prebut_down = but_down;
-      000D0D A2 A1            [12] 2274 	mov	c,_P2_1
-      000D0F E4               [12] 2275 	clr	a
-      000D10 33               [12] 2276 	rlc	a
-      000D11 F5 42            [12] 2277 	mov	_prebut_down,a
-      000D13 75 43 00         [24] 2278 	mov	(_prebut_down + 1),#0x00
-                                   2279 ;	./src/angry_bird.c:458: prebut_left = but_left;
-      000D16 A2 B2            [12] 2280 	mov	c,_INT0
-      000D18 E4               [12] 2281 	clr	a
-      000D19 33               [12] 2282 	rlc	a
-      000D1A F5 44            [12] 2283 	mov	_prebut_left,a
-      000D1C 75 45 00         [24] 2284 	mov	(_prebut_left + 1),#0x00
-                                   2285 ;	./src/angry_bird.c:459: prebut_right = but_right;
-      000D1F A2 B3            [12] 2286 	mov	c,_INT1
-      000D21 E4               [12] 2287 	clr	a
-      000D22 33               [12] 2288 	rlc	a
-      000D23 F5 46            [12] 2289 	mov	_prebut_right,a
-      000D25 75 47 00         [24] 2290 	mov	(_prebut_right + 1),#0x00
-                                   2291 ;	./src/angry_bird.c:460: delay_ms(10);
-      000D28 90 00 0A         [24] 2292 	mov	dptr,#0x000a
-                                   2293 ;	./src/angry_bird.c:461: }
-      000D2B 02 01 BE         [24] 2294 	ljmp	_delay_ms
+                                   2038 ;	./src/angry_bird.c:423: row_offset = win_over_row_cursor;
+      000BAE 75 25 02         [24] 2039 	mov	_row_offset,#0x02
+      000BB1 75 26 00         [24] 2040 	mov	(_row_offset + 1),#0x00
+                                   2041 ;	./src/angry_bird.c:424: col_offset = win_over_col_cursor;
+      000BB4 75 27 32         [24] 2042 	mov	_col_offset,#0x32
+      000BB7 75 28 00         [24] 2043 	mov	(_col_offset + 1),#0x00
+                                   2044 ;	./src/angry_bird.c:425: if (pig_amt == 0)
+      000BBA E5 2B            [12] 2045 	mov	a,_pig_amt
+      000BBC 45 2C            [12] 2046 	orl	a,(_pig_amt + 1)
+      000BBE 60 03            [24] 2047 	jz	00759$
+      000BC0 02 0C 50         [24] 2048 	ljmp	00168$
+      000BC3                       2049 00759$:
+                                   2050 ;	./src/angry_bird.c:427: for (int j = 0; j < win_over_cul_size; j++)
+      000BC3 7E 00            [12] 2051 	mov	r6,#0x00
+      000BC5 7F 00            [12] 2052 	mov	r7,#0x00
+      000BC7                       2053 00216$:
+      000BC7 C3               [12] 2054 	clr	c
+      000BC8 EE               [12] 2055 	mov	a,r6
+      000BC9 94 40            [12] 2056 	subb	a,#0x40
+      000BCB EF               [12] 2057 	mov	a,r7
+      000BCC 64 80            [12] 2058 	xrl	a,#0x80
+      000BCE 94 80            [12] 2059 	subb	a,#0x80
+      000BD0 40 03            [24] 2060 	jc	00760$
+      000BD2 02 0C E3         [24] 2061 	ljmp	00169$
+      000BD5                       2062 00760$:
+                                   2063 ;	./src/angry_bird.c:429: for (int i = 0; i < win_over_row_size; i++)
+      000BD5 7C 00            [12] 2064 	mov	r4,#0x00
+      000BD7 7D 00            [12] 2065 	mov	r5,#0x00
+      000BD9                       2066 00213$:
+      000BD9 C3               [12] 2067 	clr	c
+      000BDA EC               [12] 2068 	mov	a,r4
+      000BDB 94 02            [12] 2069 	subb	a,#0x02
+      000BDD ED               [12] 2070 	mov	a,r5
+      000BDE 64 80            [12] 2071 	xrl	a,#0x80
+      000BE0 94 80            [12] 2072 	subb	a,#0x80
+      000BE2 50 64            [24] 2073 	jnc	00217$
+                                   2074 ;	./src/angry_bird.c:431: OLED_SetCursor(row_offset + i, col_offset + j);
+      000BE4 AB 25            [24] 2075 	mov	r3,_row_offset
+      000BE6 8C 02            [24] 2076 	mov	ar2,r4
+      000BE8 EA               [12] 2077 	mov	a,r2
+      000BE9 2B               [12] 2078 	add	a,r3
+      000BEA F5 82            [12] 2079 	mov	dpl,a
+      000BEC AB 27            [24] 2080 	mov	r3,_col_offset
+      000BEE 8E 02            [24] 2081 	mov	ar2,r6
+      000BF0 EA               [12] 2082 	mov	a,r2
+      000BF1 2B               [12] 2083 	add	a,r3
+      000BF2 F5 0B            [12] 2084 	mov	_OLED_SetCursor_PARM_2,a
+      000BF4 C0 07            [24] 2085 	push	ar7
+      000BF6 C0 06            [24] 2086 	push	ar6
+      000BF8 C0 05            [24] 2087 	push	ar5
+      000BFA C0 04            [24] 2088 	push	ar4
+      000BFC 12 0F 6F         [24] 2089 	lcall	_OLED_SetCursor
+      000BFF D0 04            [24] 2090 	pop	ar4
+      000C01 D0 05            [24] 2091 	pop	ar5
+      000C03 D0 06            [24] 2092 	pop	ar6
+      000C05 D0 07            [24] 2093 	pop	ar7
+                                   2094 ;	./src/angry_bird.c:432: oledSendData(win_page[win_over_cul_size * i + j]);
+      000C07 8C 02            [24] 2095 	mov	ar2,r4
+      000C09 ED               [12] 2096 	mov	a,r5
+      000C0A 54 03            [12] 2097 	anl	a,#0x03
+      000C0C A2 E0            [12] 2098 	mov	c,acc.0
+      000C0E CA               [12] 2099 	xch	a,r2
+      000C0F 13               [12] 2100 	rrc	a
+      000C10 CA               [12] 2101 	xch	a,r2
+      000C11 13               [12] 2102 	rrc	a
+      000C12 A2 E0            [12] 2103 	mov	c,acc.0
+      000C14 CA               [12] 2104 	xch	a,r2
+      000C15 13               [12] 2105 	rrc	a
+      000C16 CA               [12] 2106 	xch	a,r2
+      000C17 13               [12] 2107 	rrc	a
+      000C18 CA               [12] 2108 	xch	a,r2
+      000C19 FB               [12] 2109 	mov	r3,a
+      000C1A EE               [12] 2110 	mov	a,r6
+      000C1B 2A               [12] 2111 	add	a,r2
+      000C1C FA               [12] 2112 	mov	r2,a
+      000C1D EF               [12] 2113 	mov	a,r7
+      000C1E 3B               [12] 2114 	addc	a,r3
+      000C1F FB               [12] 2115 	mov	r3,a
+      000C20 EA               [12] 2116 	mov	a,r2
+      000C21 24 BA            [12] 2117 	add	a,#_win_page
+      000C23 F5 82            [12] 2118 	mov	dpl,a
+      000C25 EB               [12] 2119 	mov	a,r3
+      000C26 34 14            [12] 2120 	addc	a,#(_win_page >> 8)
+      000C28 F5 83            [12] 2121 	mov	dph,a
+      000C2A E4               [12] 2122 	clr	a
+      000C2B 93               [24] 2123 	movc	a,@a+dptr
+      000C2C F5 82            [12] 2124 	mov	dpl,a
+      000C2E C0 07            [24] 2125 	push	ar7
+      000C30 C0 06            [24] 2126 	push	ar6
+      000C32 C0 05            [24] 2127 	push	ar5
+      000C34 C0 04            [24] 2128 	push	ar4
+      000C36 12 0F AB         [24] 2129 	lcall	_oledSendData
+      000C39 D0 04            [24] 2130 	pop	ar4
+      000C3B D0 05            [24] 2131 	pop	ar5
+      000C3D D0 06            [24] 2132 	pop	ar6
+      000C3F D0 07            [24] 2133 	pop	ar7
+                                   2134 ;	./src/angry_bird.c:429: for (int i = 0; i < win_over_row_size; i++)
+      000C41 0C               [12] 2135 	inc	r4
+      000C42 BC 00 94         [24] 2136 	cjne	r4,#0x00,00213$
+      000C45 0D               [12] 2137 	inc	r5
+      000C46 80 91            [24] 2138 	sjmp	00213$
+      000C48                       2139 00217$:
+                                   2140 ;	./src/angry_bird.c:427: for (int j = 0; j < win_over_cul_size; j++)
+      000C48 0E               [12] 2141 	inc	r6
+      000C49 BE 00 01         [24] 2142 	cjne	r6,#0x00,00763$
+      000C4C 0F               [12] 2143 	inc	r7
+      000C4D                       2144 00763$:
+      000C4D 02 0B C7         [24] 2145 	ljmp	00216$
+      000C50                       2146 00168$:
+                                   2147 ;	./src/angry_bird.c:436: else if (bird_amt == 0)
+      000C50 E5 29            [12] 2148 	mov	a,_bird_amt
+      000C52 45 2A            [12] 2149 	orl	a,(_bird_amt + 1)
+      000C54 60 03            [24] 2150 	jz	00764$
+      000C56 02 0C E3         [24] 2151 	ljmp	00169$
+      000C59                       2152 00764$:
+                                   2153 ;	./src/angry_bird.c:438: for (int j = 0; j < win_over_cul_size; j++)
+      000C59 7E 00            [12] 2154 	mov	r6,#0x00
+      000C5B 7F 00            [12] 2155 	mov	r7,#0x00
+      000C5D                       2156 00222$:
+      000C5D C3               [12] 2157 	clr	c
+      000C5E EE               [12] 2158 	mov	a,r6
+      000C5F 94 40            [12] 2159 	subb	a,#0x40
+      000C61 EF               [12] 2160 	mov	a,r7
+      000C62 64 80            [12] 2161 	xrl	a,#0x80
+      000C64 94 80            [12] 2162 	subb	a,#0x80
+      000C66 50 7B            [24] 2163 	jnc	00169$
+                                   2164 ;	./src/angry_bird.c:440: for (int i = 0; i < win_over_row_size; i++)
+      000C68 7C 00            [12] 2165 	mov	r4,#0x00
+      000C6A 7D 00            [12] 2166 	mov	r5,#0x00
+      000C6C                       2167 00219$:
+      000C6C C3               [12] 2168 	clr	c
+      000C6D EC               [12] 2169 	mov	a,r4
+      000C6E 94 02            [12] 2170 	subb	a,#0x02
+      000C70 ED               [12] 2171 	mov	a,r5
+      000C71 64 80            [12] 2172 	xrl	a,#0x80
+      000C73 94 80            [12] 2173 	subb	a,#0x80
+      000C75 50 64            [24] 2174 	jnc	00223$
+                                   2175 ;	./src/angry_bird.c:442: OLED_SetCursor(row_offset + i, col_offset + j);
+      000C77 AB 25            [24] 2176 	mov	r3,_row_offset
+      000C79 8C 02            [24] 2177 	mov	ar2,r4
+      000C7B EA               [12] 2178 	mov	a,r2
+      000C7C 2B               [12] 2179 	add	a,r3
+      000C7D F5 82            [12] 2180 	mov	dpl,a
+      000C7F AB 27            [24] 2181 	mov	r3,_col_offset
+      000C81 8E 02            [24] 2182 	mov	ar2,r6
+      000C83 EA               [12] 2183 	mov	a,r2
+      000C84 2B               [12] 2184 	add	a,r3
+      000C85 F5 0B            [12] 2185 	mov	_OLED_SetCursor_PARM_2,a
+      000C87 C0 07            [24] 2186 	push	ar7
+      000C89 C0 06            [24] 2187 	push	ar6
+      000C8B C0 05            [24] 2188 	push	ar5
+      000C8D C0 04            [24] 2189 	push	ar4
+      000C8F 12 0F 6F         [24] 2190 	lcall	_OLED_SetCursor
+      000C92 D0 04            [24] 2191 	pop	ar4
+      000C94 D0 05            [24] 2192 	pop	ar5
+      000C96 D0 06            [24] 2193 	pop	ar6
+      000C98 D0 07            [24] 2194 	pop	ar7
+                                   2195 ;	./src/angry_bird.c:443: oledSendData(over_page[win_over_cul_size * i + j]);
+      000C9A 8C 02            [24] 2196 	mov	ar2,r4
+      000C9C ED               [12] 2197 	mov	a,r5
+      000C9D 54 03            [12] 2198 	anl	a,#0x03
+      000C9F A2 E0            [12] 2199 	mov	c,acc.0
+      000CA1 CA               [12] 2200 	xch	a,r2
+      000CA2 13               [12] 2201 	rrc	a
+      000CA3 CA               [12] 2202 	xch	a,r2
+      000CA4 13               [12] 2203 	rrc	a
+      000CA5 A2 E0            [12] 2204 	mov	c,acc.0
+      000CA7 CA               [12] 2205 	xch	a,r2
+      000CA8 13               [12] 2206 	rrc	a
+      000CA9 CA               [12] 2207 	xch	a,r2
+      000CAA 13               [12] 2208 	rrc	a
+      000CAB CA               [12] 2209 	xch	a,r2
+      000CAC FB               [12] 2210 	mov	r3,a
+      000CAD EE               [12] 2211 	mov	a,r6
+      000CAE 2A               [12] 2212 	add	a,r2
+      000CAF FA               [12] 2213 	mov	r2,a
+      000CB0 EF               [12] 2214 	mov	a,r7
+      000CB1 3B               [12] 2215 	addc	a,r3
+      000CB2 FB               [12] 2216 	mov	r3,a
+      000CB3 EA               [12] 2217 	mov	a,r2
+      000CB4 24 3A            [12] 2218 	add	a,#_over_page
+      000CB6 F5 82            [12] 2219 	mov	dpl,a
+      000CB8 EB               [12] 2220 	mov	a,r3
+      000CB9 34 15            [12] 2221 	addc	a,#(_over_page >> 8)
+      000CBB F5 83            [12] 2222 	mov	dph,a
+      000CBD E4               [12] 2223 	clr	a
+      000CBE 93               [24] 2224 	movc	a,@a+dptr
+      000CBF F5 82            [12] 2225 	mov	dpl,a
+      000CC1 C0 07            [24] 2226 	push	ar7
+      000CC3 C0 06            [24] 2227 	push	ar6
+      000CC5 C0 05            [24] 2228 	push	ar5
+      000CC7 C0 04            [24] 2229 	push	ar4
+      000CC9 12 0F AB         [24] 2230 	lcall	_oledSendData
+      000CCC D0 04            [24] 2231 	pop	ar4
+      000CCE D0 05            [24] 2232 	pop	ar5
+      000CD0 D0 06            [24] 2233 	pop	ar6
+      000CD2 D0 07            [24] 2234 	pop	ar7
+                                   2235 ;	./src/angry_bird.c:440: for (int i = 0; i < win_over_row_size; i++)
+      000CD4 0C               [12] 2236 	inc	r4
+      000CD5 BC 00 94         [24] 2237 	cjne	r4,#0x00,00219$
+      000CD8 0D               [12] 2238 	inc	r5
+      000CD9 80 91            [24] 2239 	sjmp	00219$
+      000CDB                       2240 00223$:
+                                   2241 ;	./src/angry_bird.c:438: for (int j = 0; j < win_over_cul_size; j++)
+      000CDB 0E               [12] 2242 	inc	r6
+      000CDC BE 00 01         [24] 2243 	cjne	r6,#0x00,00768$
+      000CDF 0F               [12] 2244 	inc	r7
+      000CE0                       2245 00768$:
+      000CE0 02 0C 5D         [24] 2246 	ljmp	00222$
+      000CE3                       2247 00169$:
+                                   2248 ;	./src/angry_bird.c:447: delay_ms(1000);
+      000CE3 90 03 E8         [24] 2249 	mov	dptr,#0x03e8
+      000CE6 12 01 BE         [24] 2250 	lcall	_delay_ms
+                                   2251 ;	./src/angry_bird.c:448: cur_state = STATE_HOME;
+      000CE9 75 3E 01         [24] 2252 	mov	_cur_state,#0x01
+      000CEC 75 3F 00         [24] 2253 	mov	(_cur_state + 1),#0x00
+                                   2254 ;	./src/angry_bird.c:450: send_data = cur_state;
+      000CEF 75 21 01         [24] 2255 	mov	_send_data,#0x01
+                                   2256 ;	./src/angry_bird.c:451: send_flag = 1;
+      000CF2 75 22 01         [24] 2257 	mov	_send_flag,#0x01
+      000CF5                       2258 00171$:
+                                   2259 ;	./src/angry_bird.c:455: prebut_enter = but_enter;
+      000CF5 A2 A2            [12] 2260 	mov	c,_P2_2
+      000CF7 E4               [12] 2261 	clr	a
+      000CF8 33               [12] 2262 	rlc	a
+      000CF9 F5 48            [12] 2263 	mov	_prebut_enter,a
+      000CFB 75 49 00         [24] 2264 	mov	(_prebut_enter + 1),#0x00
+                                   2265 ;	./src/angry_bird.c:456: prebut_up = but_up;
+      000CFE A2 A0            [12] 2266 	mov	c,_P2_0
+      000D00 E4               [12] 2267 	clr	a
+      000D01 33               [12] 2268 	rlc	a
+      000D02 F5 40            [12] 2269 	mov	_prebut_up,a
+      000D04 75 41 00         [24] 2270 	mov	(_prebut_up + 1),#0x00
+                                   2271 ;	./src/angry_bird.c:457: prebut_down = but_down;
+      000D07 A2 A1            [12] 2272 	mov	c,_P2_1
+      000D09 E4               [12] 2273 	clr	a
+      000D0A 33               [12] 2274 	rlc	a
+      000D0B F5 42            [12] 2275 	mov	_prebut_down,a
+      000D0D 75 43 00         [24] 2276 	mov	(_prebut_down + 1),#0x00
+                                   2277 ;	./src/angry_bird.c:458: prebut_left = but_left;
+      000D10 A2 B2            [12] 2278 	mov	c,_INT0
+      000D12 E4               [12] 2279 	clr	a
+      000D13 33               [12] 2280 	rlc	a
+      000D14 F5 44            [12] 2281 	mov	_prebut_left,a
+      000D16 75 45 00         [24] 2282 	mov	(_prebut_left + 1),#0x00
+                                   2283 ;	./src/angry_bird.c:459: prebut_right = but_right;
+      000D19 A2 B3            [12] 2284 	mov	c,_INT1
+      000D1B E4               [12] 2285 	clr	a
+      000D1C 33               [12] 2286 	rlc	a
+      000D1D F5 46            [12] 2287 	mov	_prebut_right,a
+      000D1F 75 47 00         [24] 2288 	mov	(_prebut_right + 1),#0x00
+                                   2289 ;	./src/angry_bird.c:460: delay_ms(10);
+      000D22 90 00 0A         [24] 2290 	mov	dptr,#0x000a
+                                   2291 ;	./src/angry_bird.c:461: }
+      000D25 02 01 BE         [24] 2292 	ljmp	_delay_ms
+                                   2293 ;------------------------------------------------------------
+                                   2294 ;Allocation info for local variables in function 'getsine'
                                    2295 ;------------------------------------------------------------
-                                   2296 ;Allocation info for local variables in function 'getsine'
-                                   2297 ;------------------------------------------------------------
-                                   2298 ;angle                     Allocated to registers r6 r7 
-                                   2299 ;index                     Allocated to registers r6 r7 
-                                   2300 ;------------------------------------------------------------
-                                   2301 ;	./src/angry_bird.c:467: float getsine(int angle)
+                                   2296 ;angle                     Allocated to registers r6 r7 
+                                   2297 ;index                     Allocated to registers r6 r7 
+                                   2298 ;------------------------------------------------------------
+                                   2299 ;	./src/angry_bird.c:467: float getsine(int angle)
+                                   2300 ;	-----------------------------------------
+                                   2301 ;	 function getsine
                                    2302 ;	-----------------------------------------
-                                   2303 ;	 function getsine
-                                   2304 ;	-----------------------------------------
-      000D2E                       2305 _getsine:
-      000D2E AE 82            [24] 2306 	mov	r6,dpl
-      000D30 AF 83            [24] 2307 	mov	r7,dph
-                                   2308 ;	./src/angry_bird.c:469: int index = (angle > 0) ? (angle / 10) : (-angle / 10);
-      000D32 C3               [12] 2309 	clr	c
-      000D33 E4               [12] 2310 	clr	a
-      000D34 9E               [12] 2311 	subb	a,r6
-      000D35 74 80            [12] 2312 	mov	a,#(0x00 ^ 0x80)
-      000D37 8F F0            [24] 2313 	mov	b,r7
-      000D39 63 F0 80         [24] 2314 	xrl	b,#0x80
-      000D3C 95 F0            [12] 2315 	subb	a,b
-      000D3E E4               [12] 2316 	clr	a
-      000D3F 33               [12] 2317 	rlc	a
-      000D40 FD               [12] 2318 	mov	r5,a
-      000D41 60 17            [24] 2319 	jz	00103$
-      000D43 75 0C 0A         [24] 2320 	mov	__divsint_PARM_2,#0x0a
-      000D46 75 0D 00         [24] 2321 	mov	(__divsint_PARM_2 + 1),#0x00
-      000D49 8E 82            [24] 2322 	mov	dpl,r6
-      000D4B 8F 83            [24] 2323 	mov	dph,r7
-      000D4D C0 05            [24] 2324 	push	ar5
-      000D4F 12 13 A4         [24] 2325 	lcall	__divsint
-      000D52 AB 82            [24] 2326 	mov	r3,dpl
-      000D54 AC 83            [24] 2327 	mov	r4,dph
-      000D56 D0 05            [24] 2328 	pop	ar5
-      000D58 80 1A            [24] 2329 	sjmp	00104$
-      000D5A                       2330 00103$:
-      000D5A C3               [12] 2331 	clr	c
-      000D5B E4               [12] 2332 	clr	a
-      000D5C 9E               [12] 2333 	subb	a,r6
-      000D5D F5 82            [12] 2334 	mov	dpl,a
-      000D5F E4               [12] 2335 	clr	a
-      000D60 9F               [12] 2336 	subb	a,r7
-      000D61 F5 83            [12] 2337 	mov	dph,a
-      000D63 75 0C 0A         [24] 2338 	mov	__divsint_PARM_2,#0x0a
-      000D66 75 0D 00         [24] 2339 	mov	(__divsint_PARM_2 + 1),#0x00
-      000D69 C0 05            [24] 2340 	push	ar5
-      000D6B 12 13 A4         [24] 2341 	lcall	__divsint
-      000D6E AB 82            [24] 2342 	mov	r3,dpl
-      000D70 AC 83            [24] 2343 	mov	r4,dph
-      000D72 D0 05            [24] 2344 	pop	ar5
-      000D74                       2345 00104$:
-      000D74 8B 06            [24] 2346 	mov	ar6,r3
-      000D76 8C 07            [24] 2347 	mov	ar7,r4
-                                   2348 ;	./src/angry_bird.c:470: return (angle > 0) ? sine_table[index] : -sine_table[index];
-      000D78 ED               [12] 2349 	mov	a,r5
-      000D79 60 27            [24] 2350 	jz	00105$
-      000D7B EE               [12] 2351 	mov	a,r6
-      000D7C 2E               [12] 2352 	add	a,r6
-      000D7D FC               [12] 2353 	mov	r4,a
-      000D7E EF               [12] 2354 	mov	a,r7
-      000D7F 33               [12] 2355 	rlc	a
-      000D80 FD               [12] 2356 	mov	r5,a
-      000D81 EC               [12] 2357 	mov	a,r4
-      000D82 2C               [12] 2358 	add	a,r4
-      000D83 FC               [12] 2359 	mov	r4,a
-      000D84 ED               [12] 2360 	mov	a,r5
-      000D85 33               [12] 2361 	rlc	a
-      000D86 FD               [12] 2362 	mov	r5,a
-      000D87 EC               [12] 2363 	mov	a,r4
-      000D88 24 37            [12] 2364 	add	a,#_sine_table
-      000D8A F5 82            [12] 2365 	mov	dpl,a
-      000D8C ED               [12] 2366 	mov	a,r5
-      000D8D 34 0E            [12] 2367 	addc	a,#(_sine_table >> 8)
-      000D8F F5 83            [12] 2368 	mov	dph,a
-      000D91 E4               [12] 2369 	clr	a
-      000D92 93               [24] 2370 	movc	a,@a+dptr
-      000D93 FA               [12] 2371 	mov	r2,a
-      000D94 A3               [24] 2372 	inc	dptr
-      000D95 E4               [12] 2373 	clr	a
-      000D96 93               [24] 2374 	movc	a,@a+dptr
-      000D97 FB               [12] 2375 	mov	r3,a
-      000D98 A3               [24] 2376 	inc	dptr
-      000D99 E4               [12] 2377 	clr	a
-      000D9A 93               [24] 2378 	movc	a,@a+dptr
-      000D9B FC               [12] 2379 	mov	r4,a
-      000D9C A3               [24] 2380 	inc	dptr
-      000D9D E4               [12] 2381 	clr	a
-      000D9E 93               [24] 2382 	movc	a,@a+dptr
-      000D9F FD               [12] 2383 	mov	r5,a
-      000DA0 80 2F            [24] 2384 	sjmp	00106$
-      000DA2                       2385 00105$:
-      000DA2 EE               [12] 2386 	mov	a,r6
-      000DA3 2E               [12] 2387 	add	a,r6
-      000DA4 FE               [12] 2388 	mov	r6,a
-      000DA5 EF               [12] 2389 	mov	a,r7
-      000DA6 33               [12] 2390 	rlc	a
-      000DA7 FF               [12] 2391 	mov	r7,a
-      000DA8 EE               [12] 2392 	mov	a,r6
-      000DA9 2E               [12] 2393 	add	a,r6
-      000DAA FE               [12] 2394 	mov	r6,a
-      000DAB EF               [12] 2395 	mov	a,r7
-      000DAC 33               [12] 2396 	rlc	a
-      000DAD FF               [12] 2397 	mov	r7,a
-      000DAE EE               [12] 2398 	mov	a,r6
-      000DAF 24 37            [12] 2399 	add	a,#_sine_table
-      000DB1 F5 82            [12] 2400 	mov	dpl,a
-      000DB3 EF               [12] 2401 	mov	a,r7
-      000DB4 34 0E            [12] 2402 	addc	a,#(_sine_table >> 8)
-      000DB6 F5 83            [12] 2403 	mov	dph,a
-      000DB8 E4               [12] 2404 	clr	a
-      000DB9 93               [24] 2405 	movc	a,@a+dptr
-      000DBA F8               [12] 2406 	mov	r0,a
-      000DBB A3               [24] 2407 	inc	dptr
-      000DBC E4               [12] 2408 	clr	a
-      000DBD 93               [24] 2409 	movc	a,@a+dptr
-      000DBE F9               [12] 2410 	mov	r1,a
-      000DBF A3               [24] 2411 	inc	dptr
-      000DC0 E4               [12] 2412 	clr	a
-      000DC1 93               [24] 2413 	movc	a,@a+dptr
-      000DC2 FE               [12] 2414 	mov	r6,a
-      000DC3 A3               [24] 2415 	inc	dptr
-      000DC4 E4               [12] 2416 	clr	a
-      000DC5 93               [24] 2417 	movc	a,@a+dptr
-      000DC6 FF               [12] 2418 	mov	r7,a
-      000DC7 88 02            [24] 2419 	mov	ar2,r0
-      000DC9 89 03            [24] 2420 	mov	ar3,r1
-      000DCB 8E 04            [24] 2421 	mov	ar4,r6
-      000DCD EF               [12] 2422 	mov	a,r7
-      000DCE B2 E7            [12] 2423 	cpl	acc.7
-      000DD0 FD               [12] 2424 	mov	r5,a
-      000DD1                       2425 00106$:
-      000DD1 8A 82            [24] 2426 	mov	dpl,r2
-      000DD3 8B 83            [24] 2427 	mov	dph,r3
-      000DD5 8C F0            [24] 2428 	mov	b,r4
-      000DD7 ED               [12] 2429 	mov	a,r5
-                                   2430 ;	./src/angry_bird.c:471: }
-      000DD8 22               [24] 2431 	ret
+      000D28                       2303 _getsine:
+      000D28 AE 82            [24] 2304 	mov	r6,dpl
+      000D2A AF 83            [24] 2305 	mov	r7,dph
+                                   2306 ;	./src/angry_bird.c:469: int index = (angle > 0) ? (angle / 10) : (-angle / 10);
+      000D2C C3               [12] 2307 	clr	c
+      000D2D E4               [12] 2308 	clr	a
+      000D2E 9E               [12] 2309 	subb	a,r6
+      000D2F 74 80            [12] 2310 	mov	a,#(0x00 ^ 0x80)
+      000D31 8F F0            [24] 2311 	mov	b,r7
+      000D33 63 F0 80         [24] 2312 	xrl	b,#0x80
+      000D36 95 F0            [12] 2313 	subb	a,b
+      000D38 E4               [12] 2314 	clr	a
+      000D39 33               [12] 2315 	rlc	a
+      000D3A FD               [12] 2316 	mov	r5,a
+      000D3B 60 17            [24] 2317 	jz	00103$
+      000D3D 75 0C 0A         [24] 2318 	mov	__divsint_PARM_2,#0x0a
+      000D40 75 0D 00         [24] 2319 	mov	(__divsint_PARM_2 + 1),#0x00
+      000D43 8E 82            [24] 2320 	mov	dpl,r6
+      000D45 8F 83            [24] 2321 	mov	dph,r7
+      000D47 C0 05            [24] 2322 	push	ar5
+      000D49 12 13 9E         [24] 2323 	lcall	__divsint
+      000D4C AB 82            [24] 2324 	mov	r3,dpl
+      000D4E AC 83            [24] 2325 	mov	r4,dph
+      000D50 D0 05            [24] 2326 	pop	ar5
+      000D52 80 1A            [24] 2327 	sjmp	00104$
+      000D54                       2328 00103$:
+      000D54 C3               [12] 2329 	clr	c
+      000D55 E4               [12] 2330 	clr	a
+      000D56 9E               [12] 2331 	subb	a,r6
+      000D57 F5 82            [12] 2332 	mov	dpl,a
+      000D59 E4               [12] 2333 	clr	a
+      000D5A 9F               [12] 2334 	subb	a,r7
+      000D5B F5 83            [12] 2335 	mov	dph,a
+      000D5D 75 0C 0A         [24] 2336 	mov	__divsint_PARM_2,#0x0a
+      000D60 75 0D 00         [24] 2337 	mov	(__divsint_PARM_2 + 1),#0x00
+      000D63 C0 05            [24] 2338 	push	ar5
+      000D65 12 13 9E         [24] 2339 	lcall	__divsint
+      000D68 AB 82            [24] 2340 	mov	r3,dpl
+      000D6A AC 83            [24] 2341 	mov	r4,dph
+      000D6C D0 05            [24] 2342 	pop	ar5
+      000D6E                       2343 00104$:
+      000D6E 8B 06            [24] 2344 	mov	ar6,r3
+      000D70 8C 07            [24] 2345 	mov	ar7,r4
+                                   2346 ;	./src/angry_bird.c:470: return (angle > 0) ? sine_table[index] : -sine_table[index];
+      000D72 ED               [12] 2347 	mov	a,r5
+      000D73 60 27            [24] 2348 	jz	00105$
+      000D75 EE               [12] 2349 	mov	a,r6
+      000D76 2E               [12] 2350 	add	a,r6
+      000D77 FC               [12] 2351 	mov	r4,a
+      000D78 EF               [12] 2352 	mov	a,r7
+      000D79 33               [12] 2353 	rlc	a
+      000D7A FD               [12] 2354 	mov	r5,a
+      000D7B EC               [12] 2355 	mov	a,r4
+      000D7C 2C               [12] 2356 	add	a,r4
+      000D7D FC               [12] 2357 	mov	r4,a
+      000D7E ED               [12] 2358 	mov	a,r5
+      000D7F 33               [12] 2359 	rlc	a
+      000D80 FD               [12] 2360 	mov	r5,a
+      000D81 EC               [12] 2361 	mov	a,r4
+      000D82 24 31            [12] 2362 	add	a,#_sine_table
+      000D84 F5 82            [12] 2363 	mov	dpl,a
+      000D86 ED               [12] 2364 	mov	a,r5
+      000D87 34 0E            [12] 2365 	addc	a,#(_sine_table >> 8)
+      000D89 F5 83            [12] 2366 	mov	dph,a
+      000D8B E4               [12] 2367 	clr	a
+      000D8C 93               [24] 2368 	movc	a,@a+dptr
+      000D8D FA               [12] 2369 	mov	r2,a
+      000D8E A3               [24] 2370 	inc	dptr
+      000D8F E4               [12] 2371 	clr	a
+      000D90 93               [24] 2372 	movc	a,@a+dptr
+      000D91 FB               [12] 2373 	mov	r3,a
+      000D92 A3               [24] 2374 	inc	dptr
+      000D93 E4               [12] 2375 	clr	a
+      000D94 93               [24] 2376 	movc	a,@a+dptr
+      000D95 FC               [12] 2377 	mov	r4,a
+      000D96 A3               [24] 2378 	inc	dptr
+      000D97 E4               [12] 2379 	clr	a
+      000D98 93               [24] 2380 	movc	a,@a+dptr
+      000D99 FD               [12] 2381 	mov	r5,a
+      000D9A 80 2F            [24] 2382 	sjmp	00106$
+      000D9C                       2383 00105$:
+      000D9C EE               [12] 2384 	mov	a,r6
+      000D9D 2E               [12] 2385 	add	a,r6
+      000D9E FE               [12] 2386 	mov	r6,a
+      000D9F EF               [12] 2387 	mov	a,r7
+      000DA0 33               [12] 2388 	rlc	a
+      000DA1 FF               [12] 2389 	mov	r7,a
+      000DA2 EE               [12] 2390 	mov	a,r6
+      000DA3 2E               [12] 2391 	add	a,r6
+      000DA4 FE               [12] 2392 	mov	r6,a
+      000DA5 EF               [12] 2393 	mov	a,r7
+      000DA6 33               [12] 2394 	rlc	a
+      000DA7 FF               [12] 2395 	mov	r7,a
+      000DA8 EE               [12] 2396 	mov	a,r6
+      000DA9 24 31            [12] 2397 	add	a,#_sine_table
+      000DAB F5 82            [12] 2398 	mov	dpl,a
+      000DAD EF               [12] 2399 	mov	a,r7
+      000DAE 34 0E            [12] 2400 	addc	a,#(_sine_table >> 8)
+      000DB0 F5 83            [12] 2401 	mov	dph,a
+      000DB2 E4               [12] 2402 	clr	a
+      000DB3 93               [24] 2403 	movc	a,@a+dptr
+      000DB4 F8               [12] 2404 	mov	r0,a
+      000DB5 A3               [24] 2405 	inc	dptr
+      000DB6 E4               [12] 2406 	clr	a
+      000DB7 93               [24] 2407 	movc	a,@a+dptr
+      000DB8 F9               [12] 2408 	mov	r1,a
+      000DB9 A3               [24] 2409 	inc	dptr
+      000DBA E4               [12] 2410 	clr	a
+      000DBB 93               [24] 2411 	movc	a,@a+dptr
+      000DBC FE               [12] 2412 	mov	r6,a
+      000DBD A3               [24] 2413 	inc	dptr
+      000DBE E4               [12] 2414 	clr	a
+      000DBF 93               [24] 2415 	movc	a,@a+dptr
+      000DC0 FF               [12] 2416 	mov	r7,a
+      000DC1 88 02            [24] 2417 	mov	ar2,r0
+      000DC3 89 03            [24] 2418 	mov	ar3,r1
+      000DC5 8E 04            [24] 2419 	mov	ar4,r6
+      000DC7 EF               [12] 2420 	mov	a,r7
+      000DC8 B2 E7            [12] 2421 	cpl	acc.7
+      000DCA FD               [12] 2422 	mov	r5,a
+      000DCB                       2423 00106$:
+      000DCB 8A 82            [24] 2424 	mov	dpl,r2
+      000DCD 8B 83            [24] 2425 	mov	dph,r3
+      000DCF 8C F0            [24] 2426 	mov	b,r4
+      000DD1 ED               [12] 2427 	mov	a,r5
+                                   2428 ;	./src/angry_bird.c:471: }
+      000DD2 22               [24] 2429 	ret
+                                   2430 ;------------------------------------------------------------
+                                   2431 ;Allocation info for local variables in function 'getcosine'
                                    2432 ;------------------------------------------------------------
-                                   2433 ;Allocation info for local variables in function 'getcosine'
+                                   2433 ;angle                     Allocated to registers r6 r7 
                                    2434 ;------------------------------------------------------------
-                                   2435 ;angle                     Allocated to registers r6 r7 
-                                   2436 ;------------------------------------------------------------
-                                   2437 ;	./src/angry_bird.c:472: float getcosine(int angle)
+                                   2435 ;	./src/angry_bird.c:472: float getcosine(int angle)
+                                   2436 ;	-----------------------------------------
+                                   2437 ;	 function getcosine
                                    2438 ;	-----------------------------------------
-                                   2439 ;	 function getcosine
-                                   2440 ;	-----------------------------------------
-      000DD9                       2441 _getcosine:
-      000DD9 AE 82            [24] 2442 	mov	r6,dpl
-      000DDB AF 83            [24] 2443 	mov	r7,dph
-                                   2444 ;	./src/angry_bird.c:474: return getsine((angle > 0) ? -angle + 90 : angle + 90);
-      000DDD C3               [12] 2445 	clr	c
-      000DDE E4               [12] 2446 	clr	a
-      000DDF 9E               [12] 2447 	subb	a,r6
-      000DE0 74 80            [12] 2448 	mov	a,#(0x00 ^ 0x80)
-      000DE2 8F F0            [24] 2449 	mov	b,r7
-      000DE4 63 F0 80         [24] 2450 	xrl	b,#0x80
-      000DE7 95 F0            [12] 2451 	subb	a,b
-      000DE9 50 10            [24] 2452 	jnc	00103$
-      000DEB C3               [12] 2453 	clr	c
-      000DEC E4               [12] 2454 	clr	a
-      000DED 9E               [12] 2455 	subb	a,r6
-      000DEE FC               [12] 2456 	mov	r4,a
-      000DEF E4               [12] 2457 	clr	a
-      000DF0 9F               [12] 2458 	subb	a,r7
-      000DF1 FD               [12] 2459 	mov	r5,a
-      000DF2 74 5A            [12] 2460 	mov	a,#0x5a
-      000DF4 2C               [12] 2461 	add	a,r4
-      000DF5 FC               [12] 2462 	mov	r4,a
-      000DF6 E4               [12] 2463 	clr	a
-      000DF7 3D               [12] 2464 	addc	a,r5
-      000DF8 FD               [12] 2465 	mov	r5,a
-      000DF9 80 07            [24] 2466 	sjmp	00104$
-      000DFB                       2467 00103$:
-      000DFB 74 5A            [12] 2468 	mov	a,#0x5a
-      000DFD 2E               [12] 2469 	add	a,r6
-      000DFE FC               [12] 2470 	mov	r4,a
-      000DFF E4               [12] 2471 	clr	a
-      000E00 3F               [12] 2472 	addc	a,r7
-      000E01 FD               [12] 2473 	mov	r5,a
-      000E02                       2474 00104$:
-      000E02 8C 82            [24] 2475 	mov	dpl,r4
-      000E04 8D 83            [24] 2476 	mov	dph,r5
-                                   2477 ;	./src/angry_bird.c:475: }
-      000E06 02 0D 2E         [24] 2478 	ljmp	_getsine
+      000DD3                       2439 _getcosine:
+      000DD3 AE 82            [24] 2440 	mov	r6,dpl
+      000DD5 AF 83            [24] 2441 	mov	r7,dph
+                                   2442 ;	./src/angry_bird.c:474: return getsine((angle > 0) ? -angle + 90 : angle + 90);
+      000DD7 C3               [12] 2443 	clr	c
+      000DD8 E4               [12] 2444 	clr	a
+      000DD9 9E               [12] 2445 	subb	a,r6
+      000DDA 74 80            [12] 2446 	mov	a,#(0x00 ^ 0x80)
+      000DDC 8F F0            [24] 2447 	mov	b,r7
+      000DDE 63 F0 80         [24] 2448 	xrl	b,#0x80
+      000DE1 95 F0            [12] 2449 	subb	a,b
+      000DE3 50 10            [24] 2450 	jnc	00103$
+      000DE5 C3               [12] 2451 	clr	c
+      000DE6 E4               [12] 2452 	clr	a
+      000DE7 9E               [12] 2453 	subb	a,r6
+      000DE8 FC               [12] 2454 	mov	r4,a
+      000DE9 E4               [12] 2455 	clr	a
+      000DEA 9F               [12] 2456 	subb	a,r7
+      000DEB FD               [12] 2457 	mov	r5,a
+      000DEC 74 5A            [12] 2458 	mov	a,#0x5a
+      000DEE 2C               [12] 2459 	add	a,r4
+      000DEF FC               [12] 2460 	mov	r4,a
+      000DF0 E4               [12] 2461 	clr	a
+      000DF1 3D               [12] 2462 	addc	a,r5
+      000DF2 FD               [12] 2463 	mov	r5,a
+      000DF3 80 07            [24] 2464 	sjmp	00104$
+      000DF5                       2465 00103$:
+      000DF5 74 5A            [12] 2466 	mov	a,#0x5a
+      000DF7 2E               [12] 2467 	add	a,r6
+      000DF8 FC               [12] 2468 	mov	r4,a
+      000DF9 E4               [12] 2469 	clr	a
+      000DFA 3F               [12] 2470 	addc	a,r7
+      000DFB FD               [12] 2471 	mov	r5,a
+      000DFC                       2472 00104$:
+      000DFC 8C 82            [24] 2473 	mov	dpl,r4
+      000DFE 8D 83            [24] 2474 	mov	dph,r5
+                                   2475 ;	./src/angry_bird.c:475: }
+      000E00 02 0D 28         [24] 2476 	ljmp	_getsine
+                                   2477 ;------------------------------------------------------------
+                                   2478 ;Allocation info for local variables in function 'pow_2'
                                    2479 ;------------------------------------------------------------
-                                   2480 ;Allocation info for local variables in function 'pow_2'
+                                   2480 ;n                         Allocated to registers r4 r5 r6 r7 
                                    2481 ;------------------------------------------------------------
-                                   2482 ;n                         Allocated to registers r4 r5 r6 r7 
-                                   2483 ;------------------------------------------------------------
-                                   2484 ;	./src/angry_bird.c:476: float pow_2(float n)
+                                   2482 ;	./src/angry_bird.c:476: float pow_2(float n)
+                                   2483 ;	-----------------------------------------
+                                   2484 ;	 function pow_2
                                    2485 ;	-----------------------------------------
-                                   2486 ;	 function pow_2
-                                   2487 ;	-----------------------------------------
-      000E09                       2488 _pow_2:
-      000E09 AC 82            [24] 2489 	mov	r4,dpl
-      000E0B AD 83            [24] 2490 	mov	r5,dph
-      000E0D AE F0            [24] 2491 	mov	r6,b
-      000E0F FF               [12] 2492 	mov	r7,a
-                                   2493 ;	./src/angry_bird.c:478: return n * n;
-      000E10 C0 04            [24] 2494 	push	ar4
-      000E12 C0 05            [24] 2495 	push	ar5
-      000E14 C0 06            [24] 2496 	push	ar6
-      000E16 C0 07            [24] 2497 	push	ar7
-      000E18 8C 82            [24] 2498 	mov	dpl,r4
-      000E1A 8D 83            [24] 2499 	mov	dph,r5
-      000E1C 8E F0            [24] 2500 	mov	b,r6
-      000E1E EF               [12] 2501 	mov	a,r7
-      000E1F 12 0F C8         [24] 2502 	lcall	___fsmul
-      000E22 AC 82            [24] 2503 	mov	r4,dpl
-      000E24 AD 83            [24] 2504 	mov	r5,dph
-      000E26 AE F0            [24] 2505 	mov	r6,b
-      000E28 FF               [12] 2506 	mov	r7,a
-      000E29 E5 81            [12] 2507 	mov	a,sp
-      000E2B 24 FC            [12] 2508 	add	a,#0xfc
-      000E2D F5 81            [12] 2509 	mov	sp,a
-      000E2F 8C 82            [24] 2510 	mov	dpl,r4
-      000E31 8D 83            [24] 2511 	mov	dph,r5
-      000E33 8E F0            [24] 2512 	mov	b,r6
-      000E35 EF               [12] 2513 	mov	a,r7
-                                   2514 ;	./src/angry_bird.c:479: }
-      000E36 22               [24] 2515 	ret
-                                   2516 	.area CSEG    (CODE)
-                                   2517 	.area CONST   (CODE)
-      001490                       2518 _shooter_logo:
-      001490 00                    2519 	.db #0x00	; 0
-      001491 FF                    2520 	.db #0xff	; 255
-      001492 FF                    2521 	.db #0xff	; 255
-      001493 F6                    2522 	.db #0xf6	; 246
-      001494 00                    2523 	.db #0x00	; 0
-      001495 FE                    2524 	.db #0xfe	; 254
-      001496 FF                    2525 	.db #0xff	; 255
-      001497 FE                    2526 	.db #0xfe	; 254
-      001498 00                    2527 	.db #0x00	; 0
-      001499 01                    2528 	.db #0x01	; 1
-      00149A 07                    2529 	.db #0x07	; 7
-      00149B FF                    2530 	.db #0xff	; 255
-      00149C FE                    2531 	.db #0xfe	; 254
-      00149D FF                    2532 	.db #0xff	; 255
-      00149E 07                    2533 	.db #0x07	; 7
-      00149F 00                    2534 	.db #0x00	; 0
-      0014A0                       2535 _pig_logo:
-      0014A0 C0                    2536 	.db #0xc0	; 192
-      0014A1 30                    2537 	.db #0x30	; 48	'0'
-      0014A2 38                    2538 	.db #0x38	; 56	'8'
-      0014A3 FC                    2539 	.db #0xfc	; 252
-      0014A4 FF                    2540 	.db #0xff	; 255
-      0014A5 FF                    2541 	.db #0xff	; 255
-      0014A6 FC                    2542 	.db #0xfc	; 252
-      0014A7 FC                    2543 	.db #0xfc	; 252
-      0014A8 3E                    2544 	.db #0x3e	; 62
-      0014A9 3E                    2545 	.db #0x3e	; 62
-      0014AA F0                    2546 	.db #0xf0	; 240
-      0014AB C0                    2547 	.db #0xc0	; 192
-      0014AC 01                    2548 	.db #0x01	; 1
-      0014AD 03                    2549 	.db #0x03	; 3
-      0014AE 07                    2550 	.db #0x07	; 7
-      0014AF 0F                    2551 	.db #0x0f	; 15
-      0014B0 0F                    2552 	.db #0x0f	; 15
-      0014B1 0F                    2553 	.db #0x0f	; 15
-      0014B2 0F                    2554 	.db #0x0f	; 15
-      0014B3 0F                    2555 	.db #0x0f	; 15
-      0014B4 0F                    2556 	.db #0x0f	; 15
-      0014B5 07                    2557 	.db #0x07	; 7
-      0014B6 03                    2558 	.db #0x03	; 3
-      0014B7 01                    2559 	.db #0x01	; 1
-      0014B8                       2560 _bird_logo:
-      0014B8 7E                    2561 	.db #0x7e	; 126
-      0014B9 C3                    2562 	.db #0xc3	; 195
-      0014BA 81                    2563 	.db #0x81	; 129
-      0014BB 81                    2564 	.db #0x81	; 129
-      0014BC 81                    2565 	.db #0x81	; 129
-      0014BD 81                    2566 	.db #0x81	; 129
-      0014BE C3                    2567 	.db #0xc3	; 195
-      0014BF 7E                    2568 	.db #0x7e	; 126
-      0014C0                       2569 _win_page:
-      0014C0 00                    2570 	.db #0x00	; 0
-      0014C1 00                    2571 	.db #0x00	; 0
-      0014C2 00                    2572 	.db #0x00	; 0
-      0014C3 00                    2573 	.db #0x00	; 0
-      0014C4 00                    2574 	.db #0x00	; 0
-      0014C5 00                    2575 	.db #0x00	; 0
-      0014C6 00                    2576 	.db #0x00	; 0
-      0014C7 00                    2577 	.db #0x00	; 0
-      0014C8 00                    2578 	.db #0x00	; 0
-      0014C9 00                    2579 	.db #0x00	; 0
-      0014CA 01                    2580 	.db #0x01	; 1
-      0014CB 1F                    2581 	.db #0x1f	; 31
-      0014CC FF                    2582 	.db #0xff	; 255
-      0014CD FF                    2583 	.db #0xff	; 255
-      0014CE F0                    2584 	.db #0xf0	; 240
-      0014CF E0                    2585 	.db #0xe0	; 224
-      0014D0 FC                    2586 	.db #0xfc	; 252
-      0014D1 FF                    2587 	.db #0xff	; 255
-      0014D2 1F                    2588 	.db #0x1f	; 31
-      0014D3 3F                    2589 	.db #0x3f	; 63
-      0014D4 FF                    2590 	.db #0xff	; 255
-      0014D5 F8                    2591 	.db #0xf8	; 248
-      0014D6 E0                    2592 	.db #0xe0	; 224
-      0014D7 FC                    2593 	.db #0xfc	; 252
-      0014D8 FF                    2594 	.db #0xff	; 255
-      0014D9 7F                    2595 	.db #0x7f	; 127
-      0014DA 07                    2596 	.db #0x07	; 7
-      0014DB 00                    2597 	.db #0x00	; 0
-      0014DC 00                    2598 	.db #0x00	; 0
-      0014DD FF                    2599 	.db #0xff	; 255
-      0014DE FF                    2600 	.db #0xff	; 255
-      0014DF FF                    2601 	.db #0xff	; 255
-      0014E0 00                    2602 	.db #0x00	; 0
-      0014E1 00                    2603 	.db #0x00	; 0
-      0014E2 00                    2604 	.db #0x00	; 0
-      0014E3 FF                    2605 	.db #0xff	; 255
-      0014E4 FF                    2606 	.db #0xff	; 255
-      0014E5 FF                    2607 	.db #0xff	; 255
-      0014E6 FF                    2608 	.db #0xff	; 255
-      0014E7 3E                    2609 	.db #0x3e	; 62
-      0014E8 7C                    2610 	.db #0x7c	; 124
-      0014E9 F0                    2611 	.db #0xf0	; 240
-      0014EA E0                    2612 	.db #0xe0	; 224
-      0014EB FF                    2613 	.db #0xff	; 255
-      0014EC FF                    2614 	.db #0xff	; 255
-      0014ED FF                    2615 	.db #0xff	; 255
-      0014EE FF                    2616 	.db #0xff	; 255
-      0014EF 00                    2617 	.db #0x00	; 0
-      0014F0 00                    2618 	.db #0x00	; 0
-      0014F1 0F                    2619 	.db #0x0f	; 15
-      0014F2 7F                    2620 	.db #0x7f	; 127
-      0014F3 7F                    2621 	.db #0x7f	; 127
-      0014F4 1F                    2622 	.db #0x1f	; 31
-      0014F5 00                    2623 	.db #0x00	; 0
-      0014F6 00                    2624 	.db #0x00	; 0
-      0014F7 00                    2625 	.db #0x00	; 0
-      0014F8 00                    2626 	.db #0x00	; 0
-      0014F9 00                    2627 	.db #0x00	; 0
-      0014FA 00                    2628 	.db #0x00	; 0
-      0014FB 00                    2629 	.db #0x00	; 0
-      0014FC 00                    2630 	.db #0x00	; 0
-      0014FD 00                    2631 	.db #0x00	; 0
-      0014FE 00                    2632 	.db #0x00	; 0
-      0014FF 00                    2633 	.db #0x00	; 0
-      001500 00                    2634 	.db #0x00	; 0
-      001501 00                    2635 	.db #0x00	; 0
-      001502 00                    2636 	.db #0x00	; 0
-      001503 00                    2637 	.db #0x00	; 0
-      001504 00                    2638 	.db #0x00	; 0
-      001505 00                    2639 	.db #0x00	; 0
-      001506 00                    2640 	.db #0x00	; 0
-      001507 00                    2641 	.db #0x00	; 0
-      001508 00                    2642 	.db #0x00	; 0
-      001509 00                    2643 	.db #0x00	; 0
-      00150A 00                    2644 	.db #0x00	; 0
-      00150B 00                    2645 	.db #0x00	; 0
-      00150C 01                    2646 	.db #0x01	; 1
-      00150D 07                    2647 	.db #0x07	; 7
-      00150E 07                    2648 	.db #0x07	; 7
-      00150F 07                    2649 	.db #0x07	; 7
-      001510 07                    2650 	.db #0x07	; 7
-      001511 00                    2651 	.db #0x00	; 0
-      001512 00                    2652 	.db #0x00	; 0
-      001513 00                    2653 	.db #0x00	; 0
-      001514 03                    2654 	.db #0x03	; 3
-      001515 07                    2655 	.db #0x07	; 7
-      001516 07                    2656 	.db #0x07	; 7
-      001517 07                    2657 	.db #0x07	; 7
-      001518 07                    2658 	.db #0x07	; 7
-      001519 00                    2659 	.db #0x00	; 0
-      00151A 00                    2660 	.db #0x00	; 0
-      00151B 00                    2661 	.db #0x00	; 0
-      00151C 00                    2662 	.db #0x00	; 0
-      00151D 07                    2663 	.db #0x07	; 7
-      00151E 07                    2664 	.db #0x07	; 7
-      00151F 07                    2665 	.db #0x07	; 7
-      001520 00                    2666 	.db #0x00	; 0
-      001521 00                    2667 	.db #0x00	; 0
-      001522 00                    2668 	.db #0x00	; 0
-      001523 07                    2669 	.db #0x07	; 7
-      001524 07                    2670 	.db #0x07	; 7
-      001525 07                    2671 	.db #0x07	; 7
-      001526 07                    2672 	.db #0x07	; 7
-      001527 00                    2673 	.db #0x00	; 0
-      001528 00                    2674 	.db #0x00	; 0
-      001529 00                    2675 	.db #0x00	; 0
-      00152A 03                    2676 	.db #0x03	; 3
-      00152B 07                    2677 	.db #0x07	; 7
-      00152C 07                    2678 	.db #0x07	; 7
-      00152D 07                    2679 	.db #0x07	; 7
-      00152E 07                    2680 	.db #0x07	; 7
-      00152F 00                    2681 	.db #0x00	; 0
-      001530 00                    2682 	.db #0x00	; 0
-      001531 07                    2683 	.db #0x07	; 7
-      001532 07                    2684 	.db #0x07	; 7
-      001533 07                    2685 	.db #0x07	; 7
-      001534 07                    2686 	.db #0x07	; 7
-      001535 00                    2687 	.db #0x00	; 0
-      001536 00                    2688 	.db #0x00	; 0
-      001537 00                    2689 	.db #0x00	; 0
-      001538 00                    2690 	.db #0x00	; 0
-      001539 00                    2691 	.db #0x00	; 0
-      00153A 00                    2692 	.db #0x00	; 0
-      00153B 00                    2693 	.db #0x00	; 0
-      00153C 00                    2694 	.db #0x00	; 0
-      00153D 00                    2695 	.db #0x00	; 0
-      00153E 00                    2696 	.db #0x00	; 0
-      00153F 00                    2697 	.db #0x00	; 0
-      001540                       2698 _over_page:
-      001540 00                    2699 	.db #0x00	; 0
-      001541 00                    2700 	.db #0x00	; 0
-      001542 00                    2701 	.db #0x00	; 0
-      001543 00                    2702 	.db #0x00	; 0
-      001544 00                    2703 	.db #0x00	; 0
-      001545 00                    2704 	.db #0x00	; 0
-      001546 00                    2705 	.db #0x00	; 0
-      001547 00                    2706 	.db #0x00	; 0
-      001548 00                    2707 	.db #0x00	; 0
-      001549 00                    2708 	.db #0x00	; 0
-      00154A FC                    2709 	.db #0xfc	; 252
-      00154B FE                    2710 	.db #0xfe	; 254
-      00154C FF                    2711 	.db #0xff	; 255
-      00154D 07                    2712 	.db #0x07	; 7
-      00154E 03                    2713 	.db #0x03	; 3
-      00154F 03                    2714 	.db #0x03	; 3
-      001550 07                    2715 	.db #0x07	; 7
-      001551 DF                    2716 	.db #0xdf	; 223
-      001552 FE                    2717 	.db #0xfe	; 254
-      001553 FE                    2718 	.db #0xfe	; 254
-      001554 F8                    2719 	.db #0xf8	; 248
-      001555 03                    2720 	.db #0x03	; 3
-      001556 0F                    2721 	.db #0x0f	; 15
-      001557 7F                    2722 	.db #0x7f	; 127
-      001558 FE                    2723 	.db #0xfe	; 254
-      001559 F0                    2724 	.db #0xf0	; 240
-      00155A 80                    2725 	.db #0x80	; 128
-      00155B E0                    2726 	.db #0xe0	; 224
-      00155C FC                    2727 	.db #0xfc	; 252
-      00155D FF                    2728 	.db #0xff	; 255
-      00155E 1F                    2729 	.db #0x1f	; 31
-      00155F 07                    2730 	.db #0x07	; 7
-      001560 00                    2731 	.db #0x00	; 0
-      001561 00                    2732 	.db #0x00	; 0
-      001562 FF                    2733 	.db #0xff	; 255
-      001563 FF                    2734 	.db #0xff	; 255
-      001564 FF                    2735 	.db #0xff	; 255
-      001565 33                    2736 	.db #0x33	; 51	'3'
-      001566 33                    2737 	.db #0x33	; 51	'3'
-      001567 33                    2738 	.db #0x33	; 51	'3'
-      001568 33                    2739 	.db #0x33	; 51	'3'
-      001569 33                    2740 	.db #0x33	; 51	'3'
-      00156A 03                    2741 	.db #0x03	; 3
-      00156B 00                    2742 	.db #0x00	; 0
-      00156C FE                    2743 	.db #0xfe	; 254
-      00156D FF                    2744 	.db #0xff	; 255
-      00156E FF                    2745 	.db #0xff	; 255
-      00156F FF                    2746 	.db #0xff	; 255
-      001570 73                    2747 	.db #0x73	; 115	's'
-      001571 F3                    2748 	.db #0xf3	; 243
-      001572 F7                    2749 	.db #0xf7	; 247
-      001573 FF                    2750 	.db #0xff	; 255
-      001574 BF                    2751 	.db #0xbf	; 191
-      001575 1E                    2752 	.db #0x1e	; 30
-      001576 00                    2753 	.db #0x00	; 0
-      001577 00                    2754 	.db #0x00	; 0
-      001578 00                    2755 	.db #0x00	; 0
-      001579 00                    2756 	.db #0x00	; 0
-      00157A 00                    2757 	.db #0x00	; 0
-      00157B 00                    2758 	.db #0x00	; 0
-      00157C 00                    2759 	.db #0x00	; 0
-      00157D 00                    2760 	.db #0x00	; 0
-      00157E 00                    2761 	.db #0x00	; 0
-      00157F 00                    2762 	.db #0x00	; 0
-      001580 00                    2763 	.db #0x00	; 0
-      001581 00                    2764 	.db #0x00	; 0
-      001582 00                    2765 	.db #0x00	; 0
-      001583 00                    2766 	.db #0x00	; 0
-      001584 00                    2767 	.db #0x00	; 0
-      001585 00                    2768 	.db #0x00	; 0
-      001586 00                    2769 	.db #0x00	; 0
-      001587 00                    2770 	.db #0x00	; 0
-      001588 00                    2771 	.db #0x00	; 0
-      001589 00                    2772 	.db #0x00	; 0
-      00158A 01                    2773 	.db #0x01	; 1
-      00158B 03                    2774 	.db #0x03	; 3
-      00158C 07                    2775 	.db #0x07	; 7
-      00158D 07                    2776 	.db #0x07	; 7
-      00158E 07                    2777 	.db #0x07	; 7
-      00158F 07                    2778 	.db #0x07	; 7
-      001590 07                    2779 	.db #0x07	; 7
-      001591 07                    2780 	.db #0x07	; 7
-      001592 03                    2781 	.db #0x03	; 3
-      001593 01                    2782 	.db #0x01	; 1
-      001594 00                    2783 	.db #0x00	; 0
-      001595 00                    2784 	.db #0x00	; 0
-      001596 00                    2785 	.db #0x00	; 0
-      001597 00                    2786 	.db #0x00	; 0
-      001598 03                    2787 	.db #0x03	; 3
-      001599 07                    2788 	.db #0x07	; 7
-      00159A 07                    2789 	.db #0x07	; 7
-      00159B 07                    2790 	.db #0x07	; 7
-      00159C 07                    2791 	.db #0x07	; 7
-      00159D 00                    2792 	.db #0x00	; 0
-      00159E 00                    2793 	.db #0x00	; 0
-      00159F 00                    2794 	.db #0x00	; 0
-      0015A0 00                    2795 	.db #0x00	; 0
-      0015A1 00                    2796 	.db #0x00	; 0
-      0015A2 07                    2797 	.db #0x07	; 7
-      0015A3 07                    2798 	.db #0x07	; 7
-      0015A4 07                    2799 	.db #0x07	; 7
-      0015A5 07                    2800 	.db #0x07	; 7
-      0015A6 07                    2801 	.db #0x07	; 7
-      0015A7 07                    2802 	.db #0x07	; 7
-      0015A8 07                    2803 	.db #0x07	; 7
-      0015A9 07                    2804 	.db #0x07	; 7
-      0015AA 07                    2805 	.db #0x07	; 7
-      0015AB 00                    2806 	.db #0x00	; 0
-      0015AC 03                    2807 	.db #0x03	; 3
-      0015AD 07                    2808 	.db #0x07	; 7
-      0015AE 07                    2809 	.db #0x07	; 7
-      0015AF 07                    2810 	.db #0x07	; 7
-      0015B0 00                    2811 	.db #0x00	; 0
-      0015B1 00                    2812 	.db #0x00	; 0
-      0015B2 01                    2813 	.db #0x01	; 1
-      0015B3 07                    2814 	.db #0x07	; 7
-      0015B4 07                    2815 	.db #0x07	; 7
-      0015B5 07                    2816 	.db #0x07	; 7
-      0015B6 04                    2817 	.db #0x04	; 4
-      0015B7 00                    2818 	.db #0x00	; 0
-      0015B8 00                    2819 	.db #0x00	; 0
-      0015B9 00                    2820 	.db #0x00	; 0
-      0015BA 00                    2821 	.db #0x00	; 0
-      0015BB 00                    2822 	.db #0x00	; 0
-      0015BC 00                    2823 	.db #0x00	; 0
-      0015BD 00                    2824 	.db #0x00	; 0
-      0015BE 00                    2825 	.db #0x00	; 0
-      0015BF 00                    2826 	.db #0x00	; 0
-                                   2827 	.area CONST   (CODE)
-      0015C0                       2828 ___str_0:
-      0015C0 53 20                 2829 	.ascii "S "
-      0015C2 00                    2830 	.db 0x00
-                                   2831 	.area CSEG    (CODE)
-                                   2832 	.area CONST   (CODE)
-      0015C3                       2833 ___str_1:
-      0015C3 41 20                 2834 	.ascii "A "
-      0015C5 00                    2835 	.db 0x00
-                                   2836 	.area CSEG    (CODE)
-      000E37                       2837 _sine_table:
-      000E37 00 00 00 00           2838 	.byte #0x00, #0x00, #0x00, #0x00	;  0.000000e+00
-      000E3B 33 C4 31 3E           2839 	.byte #0x33, #0xc4, #0x31, #0x3e	;  1.736000e-01
-      000E3F A0 1A AF 3E           2840 	.byte #0xa0, #0x1a, #0xaf, #0x3e	;  3.420000e-01
-      000E43 00 00 00 3F           2841 	.byte #0x00, #0x00, #0x00, #0x3f	;  5.000000e-01
-      000E47 8A 8E 24 3F           2842 	.byte #0x8a, #0x8e, #0x24, #0x3f	;  6.428000e-01
-      000E4B 93 18 44 3F           2843 	.byte #0x93, #0x18, #0x44, #0x3f	;  7.660000e-01
-      000E4F 2D B2 5D 3F           2844 	.byte #0x2d, #0xb2, #0x5d, #0x3f	;  8.660000e-01
-      000E53 2E 90 70 3F           2845 	.byte #0x2e, #0x90, #0x70, #0x3f	;  9.397000e-01
-      000E57 DA 1B 7C 3F           2846 	.byte #0xda, #0x1b, #0x7c, #0x3f	;  9.848000e-01
-      000E5B 00 00 80 3F           2847 	.byte #0x00, #0x00, #0x80, #0x3f	;  1.000000e+00
-                                   2848 	.area CONST   (CODE)
-      0015C6                       2849 ___str_2:
-      0015C6 20 20 20              2850 	.ascii "   "
-      0015C9 00                    2851 	.db 0x00
-                                   2852 	.area CSEG    (CODE)
-                                   2853 	.area CONST   (CODE)
-      0015CA                       2854 ___str_3:
-      0015CA 20                    2855 	.ascii " "
-      0015CB 00                    2856 	.db 0x00
-                                   2857 	.area CSEG    (CODE)
-                                   2858 	.area XINIT   (CODE)
-                                   2859 	.area CABS    (ABS,CODE)
+      000E03                       2486 _pow_2:
+      000E03 AC 82            [24] 2487 	mov	r4,dpl
+      000E05 AD 83            [24] 2488 	mov	r5,dph
+      000E07 AE F0            [24] 2489 	mov	r6,b
+      000E09 FF               [12] 2490 	mov	r7,a
+                                   2491 ;	./src/angry_bird.c:478: return n * n;
+      000E0A C0 04            [24] 2492 	push	ar4
+      000E0C C0 05            [24] 2493 	push	ar5
+      000E0E C0 06            [24] 2494 	push	ar6
+      000E10 C0 07            [24] 2495 	push	ar7
+      000E12 8C 82            [24] 2496 	mov	dpl,r4
+      000E14 8D 83            [24] 2497 	mov	dph,r5
+      000E16 8E F0            [24] 2498 	mov	b,r6
+      000E18 EF               [12] 2499 	mov	a,r7
+      000E19 12 0F C2         [24] 2500 	lcall	___fsmul
+      000E1C AC 82            [24] 2501 	mov	r4,dpl
+      000E1E AD 83            [24] 2502 	mov	r5,dph
+      000E20 AE F0            [24] 2503 	mov	r6,b
+      000E22 FF               [12] 2504 	mov	r7,a
+      000E23 E5 81            [12] 2505 	mov	a,sp
+      000E25 24 FC            [12] 2506 	add	a,#0xfc
+      000E27 F5 81            [12] 2507 	mov	sp,a
+      000E29 8C 82            [24] 2508 	mov	dpl,r4
+      000E2B 8D 83            [24] 2509 	mov	dph,r5
+      000E2D 8E F0            [24] 2510 	mov	b,r6
+      000E2F EF               [12] 2511 	mov	a,r7
+                                   2512 ;	./src/angry_bird.c:479: }
+      000E30 22               [24] 2513 	ret
+                                   2514 	.area CSEG    (CODE)
+                                   2515 	.area CONST   (CODE)
+      00148A                       2516 _shooter_logo:
+      00148A 00                    2517 	.db #0x00	; 0
+      00148B FF                    2518 	.db #0xff	; 255
+      00148C FF                    2519 	.db #0xff	; 255
+      00148D F6                    2520 	.db #0xf6	; 246
+      00148E 00                    2521 	.db #0x00	; 0
+      00148F FE                    2522 	.db #0xfe	; 254
+      001490 FF                    2523 	.db #0xff	; 255
+      001491 FE                    2524 	.db #0xfe	; 254
+      001492 00                    2525 	.db #0x00	; 0
+      001493 01                    2526 	.db #0x01	; 1
+      001494 07                    2527 	.db #0x07	; 7
+      001495 FF                    2528 	.db #0xff	; 255
+      001496 FE                    2529 	.db #0xfe	; 254
+      001497 FF                    2530 	.db #0xff	; 255
+      001498 07                    2531 	.db #0x07	; 7
+      001499 00                    2532 	.db #0x00	; 0
+      00149A                       2533 _pig_logo:
+      00149A C0                    2534 	.db #0xc0	; 192
+      00149B 30                    2535 	.db #0x30	; 48	'0'
+      00149C 38                    2536 	.db #0x38	; 56	'8'
+      00149D FC                    2537 	.db #0xfc	; 252
+      00149E FF                    2538 	.db #0xff	; 255
+      00149F FF                    2539 	.db #0xff	; 255
+      0014A0 FC                    2540 	.db #0xfc	; 252
+      0014A1 FC                    2541 	.db #0xfc	; 252
+      0014A2 3E                    2542 	.db #0x3e	; 62
+      0014A3 3E                    2543 	.db #0x3e	; 62
+      0014A4 F0                    2544 	.db #0xf0	; 240
+      0014A5 C0                    2545 	.db #0xc0	; 192
+      0014A6 01                    2546 	.db #0x01	; 1
+      0014A7 03                    2547 	.db #0x03	; 3
+      0014A8 07                    2548 	.db #0x07	; 7
+      0014A9 0F                    2549 	.db #0x0f	; 15
+      0014AA 0F                    2550 	.db #0x0f	; 15
+      0014AB 0F                    2551 	.db #0x0f	; 15
+      0014AC 0F                    2552 	.db #0x0f	; 15
+      0014AD 0F                    2553 	.db #0x0f	; 15
+      0014AE 0F                    2554 	.db #0x0f	; 15
+      0014AF 07                    2555 	.db #0x07	; 7
+      0014B0 03                    2556 	.db #0x03	; 3
+      0014B1 01                    2557 	.db #0x01	; 1
+      0014B2                       2558 _bird_logo:
+      0014B2 7E                    2559 	.db #0x7e	; 126
+      0014B3 C3                    2560 	.db #0xc3	; 195
+      0014B4 81                    2561 	.db #0x81	; 129
+      0014B5 81                    2562 	.db #0x81	; 129
+      0014B6 81                    2563 	.db #0x81	; 129
+      0014B7 81                    2564 	.db #0x81	; 129
+      0014B8 C3                    2565 	.db #0xc3	; 195
+      0014B9 7E                    2566 	.db #0x7e	; 126
+      0014BA                       2567 _win_page:
+      0014BA 00                    2568 	.db #0x00	; 0
+      0014BB 00                    2569 	.db #0x00	; 0
+      0014BC 00                    2570 	.db #0x00	; 0
+      0014BD 00                    2571 	.db #0x00	; 0
+      0014BE 00                    2572 	.db #0x00	; 0
+      0014BF 00                    2573 	.db #0x00	; 0
+      0014C0 00                    2574 	.db #0x00	; 0
+      0014C1 00                    2575 	.db #0x00	; 0
+      0014C2 00                    2576 	.db #0x00	; 0
+      0014C3 00                    2577 	.db #0x00	; 0
+      0014C4 01                    2578 	.db #0x01	; 1
+      0014C5 1F                    2579 	.db #0x1f	; 31
+      0014C6 FF                    2580 	.db #0xff	; 255
+      0014C7 FF                    2581 	.db #0xff	; 255
+      0014C8 F0                    2582 	.db #0xf0	; 240
+      0014C9 E0                    2583 	.db #0xe0	; 224
+      0014CA FC                    2584 	.db #0xfc	; 252
+      0014CB FF                    2585 	.db #0xff	; 255
+      0014CC 1F                    2586 	.db #0x1f	; 31
+      0014CD 3F                    2587 	.db #0x3f	; 63
+      0014CE FF                    2588 	.db #0xff	; 255
+      0014CF F8                    2589 	.db #0xf8	; 248
+      0014D0 E0                    2590 	.db #0xe0	; 224
+      0014D1 FC                    2591 	.db #0xfc	; 252
+      0014D2 FF                    2592 	.db #0xff	; 255
+      0014D3 7F                    2593 	.db #0x7f	; 127
+      0014D4 07                    2594 	.db #0x07	; 7
+      0014D5 00                    2595 	.db #0x00	; 0
+      0014D6 00                    2596 	.db #0x00	; 0
+      0014D7 FF                    2597 	.db #0xff	; 255
+      0014D8 FF                    2598 	.db #0xff	; 255
+      0014D9 FF                    2599 	.db #0xff	; 255
+      0014DA 00                    2600 	.db #0x00	; 0
+      0014DB 00                    2601 	.db #0x00	; 0
+      0014DC 00                    2602 	.db #0x00	; 0
+      0014DD FF                    2603 	.db #0xff	; 255
+      0014DE FF                    2604 	.db #0xff	; 255
+      0014DF FF                    2605 	.db #0xff	; 255
+      0014E0 FF                    2606 	.db #0xff	; 255
+      0014E1 3E                    2607 	.db #0x3e	; 62
+      0014E2 7C                    2608 	.db #0x7c	; 124
+      0014E3 F0                    2609 	.db #0xf0	; 240
+      0014E4 E0                    2610 	.db #0xe0	; 224
+      0014E5 FF                    2611 	.db #0xff	; 255
+      0014E6 FF                    2612 	.db #0xff	; 255
+      0014E7 FF                    2613 	.db #0xff	; 255
+      0014E8 FF                    2614 	.db #0xff	; 255
+      0014E9 00                    2615 	.db #0x00	; 0
+      0014EA 00                    2616 	.db #0x00	; 0
+      0014EB 0F                    2617 	.db #0x0f	; 15
+      0014EC 7F                    2618 	.db #0x7f	; 127
+      0014ED 7F                    2619 	.db #0x7f	; 127
+      0014EE 1F                    2620 	.db #0x1f	; 31
+      0014EF 00                    2621 	.db #0x00	; 0
+      0014F0 00                    2622 	.db #0x00	; 0
+      0014F1 00                    2623 	.db #0x00	; 0
+      0014F2 00                    2624 	.db #0x00	; 0
+      0014F3 00                    2625 	.db #0x00	; 0
+      0014F4 00                    2626 	.db #0x00	; 0
+      0014F5 00                    2627 	.db #0x00	; 0
+      0014F6 00                    2628 	.db #0x00	; 0
+      0014F7 00                    2629 	.db #0x00	; 0
+      0014F8 00                    2630 	.db #0x00	; 0
+      0014F9 00                    2631 	.db #0x00	; 0
+      0014FA 00                    2632 	.db #0x00	; 0
+      0014FB 00                    2633 	.db #0x00	; 0
+      0014FC 00                    2634 	.db #0x00	; 0
+      0014FD 00                    2635 	.db #0x00	; 0
+      0014FE 00                    2636 	.db #0x00	; 0
+      0014FF 00                    2637 	.db #0x00	; 0
+      001500 00                    2638 	.db #0x00	; 0
+      001501 00                    2639 	.db #0x00	; 0
+      001502 00                    2640 	.db #0x00	; 0
+      001503 00                    2641 	.db #0x00	; 0
+      001504 00                    2642 	.db #0x00	; 0
+      001505 00                    2643 	.db #0x00	; 0
+      001506 01                    2644 	.db #0x01	; 1
+      001507 07                    2645 	.db #0x07	; 7
+      001508 07                    2646 	.db #0x07	; 7
+      001509 07                    2647 	.db #0x07	; 7
+      00150A 07                    2648 	.db #0x07	; 7
+      00150B 00                    2649 	.db #0x00	; 0
+      00150C 00                    2650 	.db #0x00	; 0
+      00150D 00                    2651 	.db #0x00	; 0
+      00150E 03                    2652 	.db #0x03	; 3
+      00150F 07                    2653 	.db #0x07	; 7
+      001510 07                    2654 	.db #0x07	; 7
+      001511 07                    2655 	.db #0x07	; 7
+      001512 07                    2656 	.db #0x07	; 7
+      001513 00                    2657 	.db #0x00	; 0
+      001514 00                    2658 	.db #0x00	; 0
+      001515 00                    2659 	.db #0x00	; 0
+      001516 00                    2660 	.db #0x00	; 0
+      001517 07                    2661 	.db #0x07	; 7
+      001518 07                    2662 	.db #0x07	; 7
+      001519 07                    2663 	.db #0x07	; 7
+      00151A 00                    2664 	.db #0x00	; 0
+      00151B 00                    2665 	.db #0x00	; 0
+      00151C 00                    2666 	.db #0x00	; 0
+      00151D 07                    2667 	.db #0x07	; 7
+      00151E 07                    2668 	.db #0x07	; 7
+      00151F 07                    2669 	.db #0x07	; 7
+      001520 07                    2670 	.db #0x07	; 7
+      001521 00                    2671 	.db #0x00	; 0
+      001522 00                    2672 	.db #0x00	; 0
+      001523 00                    2673 	.db #0x00	; 0
+      001524 03                    2674 	.db #0x03	; 3
+      001525 07                    2675 	.db #0x07	; 7
+      001526 07                    2676 	.db #0x07	; 7
+      001527 07                    2677 	.db #0x07	; 7
+      001528 07                    2678 	.db #0x07	; 7
+      001529 00                    2679 	.db #0x00	; 0
+      00152A 00                    2680 	.db #0x00	; 0
+      00152B 07                    2681 	.db #0x07	; 7
+      00152C 07                    2682 	.db #0x07	; 7
+      00152D 07                    2683 	.db #0x07	; 7
+      00152E 07                    2684 	.db #0x07	; 7
+      00152F 00                    2685 	.db #0x00	; 0
+      001530 00                    2686 	.db #0x00	; 0
+      001531 00                    2687 	.db #0x00	; 0
+      001532 00                    2688 	.db #0x00	; 0
+      001533 00                    2689 	.db #0x00	; 0
+      001534 00                    2690 	.db #0x00	; 0
+      001535 00                    2691 	.db #0x00	; 0
+      001536 00                    2692 	.db #0x00	; 0
+      001537 00                    2693 	.db #0x00	; 0
+      001538 00                    2694 	.db #0x00	; 0
+      001539 00                    2695 	.db #0x00	; 0
+      00153A                       2696 _over_page:
+      00153A 00                    2697 	.db #0x00	; 0
+      00153B 00                    2698 	.db #0x00	; 0
+      00153C 00                    2699 	.db #0x00	; 0
+      00153D 00                    2700 	.db #0x00	; 0
+      00153E 00                    2701 	.db #0x00	; 0
+      00153F 00                    2702 	.db #0x00	; 0
+      001540 00                    2703 	.db #0x00	; 0
+      001541 00                    2704 	.db #0x00	; 0
+      001542 00                    2705 	.db #0x00	; 0
+      001543 00                    2706 	.db #0x00	; 0
+      001544 FC                    2707 	.db #0xfc	; 252
+      001545 FE                    2708 	.db #0xfe	; 254
+      001546 FF                    2709 	.db #0xff	; 255
+      001547 07                    2710 	.db #0x07	; 7
+      001548 03                    2711 	.db #0x03	; 3
+      001549 03                    2712 	.db #0x03	; 3
+      00154A 07                    2713 	.db #0x07	; 7
+      00154B DF                    2714 	.db #0xdf	; 223
+      00154C FE                    2715 	.db #0xfe	; 254
+      00154D FE                    2716 	.db #0xfe	; 254
+      00154E F8                    2717 	.db #0xf8	; 248
+      00154F 03                    2718 	.db #0x03	; 3
+      001550 0F                    2719 	.db #0x0f	; 15
+      001551 7F                    2720 	.db #0x7f	; 127
+      001552 FE                    2721 	.db #0xfe	; 254
+      001553 F0                    2722 	.db #0xf0	; 240
+      001554 80                    2723 	.db #0x80	; 128
+      001555 E0                    2724 	.db #0xe0	; 224
+      001556 FC                    2725 	.db #0xfc	; 252
+      001557 FF                    2726 	.db #0xff	; 255
+      001558 1F                    2727 	.db #0x1f	; 31
+      001559 07                    2728 	.db #0x07	; 7
+      00155A 00                    2729 	.db #0x00	; 0
+      00155B 00                    2730 	.db #0x00	; 0
+      00155C FF                    2731 	.db #0xff	; 255
+      00155D FF                    2732 	.db #0xff	; 255
+      00155E FF                    2733 	.db #0xff	; 255
+      00155F 33                    2734 	.db #0x33	; 51	'3'
+      001560 33                    2735 	.db #0x33	; 51	'3'
+      001561 33                    2736 	.db #0x33	; 51	'3'
+      001562 33                    2737 	.db #0x33	; 51	'3'
+      001563 33                    2738 	.db #0x33	; 51	'3'
+      001564 03                    2739 	.db #0x03	; 3
+      001565 00                    2740 	.db #0x00	; 0
+      001566 FE                    2741 	.db #0xfe	; 254
+      001567 FF                    2742 	.db #0xff	; 255
+      001568 FF                    2743 	.db #0xff	; 255
+      001569 FF                    2744 	.db #0xff	; 255
+      00156A 73                    2745 	.db #0x73	; 115	's'
+      00156B F3                    2746 	.db #0xf3	; 243
+      00156C F7                    2747 	.db #0xf7	; 247
+      00156D FF                    2748 	.db #0xff	; 255
+      00156E BF                    2749 	.db #0xbf	; 191
+      00156F 1E                    2750 	.db #0x1e	; 30
+      001570 00                    2751 	.db #0x00	; 0
+      001571 00                    2752 	.db #0x00	; 0
+      001572 00                    2753 	.db #0x00	; 0
+      001573 00                    2754 	.db #0x00	; 0
+      001574 00                    2755 	.db #0x00	; 0
+      001575 00                    2756 	.db #0x00	; 0
+      001576 00                    2757 	.db #0x00	; 0
+      001577 00                    2758 	.db #0x00	; 0
+      001578 00                    2759 	.db #0x00	; 0
+      001579 00                    2760 	.db #0x00	; 0
+      00157A 00                    2761 	.db #0x00	; 0
+      00157B 00                    2762 	.db #0x00	; 0
+      00157C 00                    2763 	.db #0x00	; 0
+      00157D 00                    2764 	.db #0x00	; 0
+      00157E 00                    2765 	.db #0x00	; 0
+      00157F 00                    2766 	.db #0x00	; 0
+      001580 00                    2767 	.db #0x00	; 0
+      001581 00                    2768 	.db #0x00	; 0
+      001582 00                    2769 	.db #0x00	; 0
+      001583 00                    2770 	.db #0x00	; 0
+      001584 01                    2771 	.db #0x01	; 1
+      001585 03                    2772 	.db #0x03	; 3
+      001586 07                    2773 	.db #0x07	; 7
+      001587 07                    2774 	.db #0x07	; 7
+      001588 07                    2775 	.db #0x07	; 7
+      001589 07                    2776 	.db #0x07	; 7
+      00158A 07                    2777 	.db #0x07	; 7
+      00158B 07                    2778 	.db #0x07	; 7
+      00158C 03                    2779 	.db #0x03	; 3
+      00158D 01                    2780 	.db #0x01	; 1
+      00158E 00                    2781 	.db #0x00	; 0
+      00158F 00                    2782 	.db #0x00	; 0
+      001590 00                    2783 	.db #0x00	; 0
+      001591 00                    2784 	.db #0x00	; 0
+      001592 03                    2785 	.db #0x03	; 3
+      001593 07                    2786 	.db #0x07	; 7
+      001594 07                    2787 	.db #0x07	; 7
+      001595 07                    2788 	.db #0x07	; 7
+      001596 07                    2789 	.db #0x07	; 7
+      001597 00                    2790 	.db #0x00	; 0
+      001598 00                    2791 	.db #0x00	; 0
+      001599 00                    2792 	.db #0x00	; 0
+      00159A 00                    2793 	.db #0x00	; 0
+      00159B 00                    2794 	.db #0x00	; 0
+      00159C 07                    2795 	.db #0x07	; 7
+      00159D 07                    2796 	.db #0x07	; 7
+      00159E 07                    2797 	.db #0x07	; 7
+      00159F 07                    2798 	.db #0x07	; 7
+      0015A0 07                    2799 	.db #0x07	; 7
+      0015A1 07                    2800 	.db #0x07	; 7
+      0015A2 07                    2801 	.db #0x07	; 7
+      0015A3 07                    2802 	.db #0x07	; 7
+      0015A4 07                    2803 	.db #0x07	; 7
+      0015A5 00                    2804 	.db #0x00	; 0
+      0015A6 03                    2805 	.db #0x03	; 3
+      0015A7 07                    2806 	.db #0x07	; 7
+      0015A8 07                    2807 	.db #0x07	; 7
+      0015A9 07                    2808 	.db #0x07	; 7
+      0015AA 00                    2809 	.db #0x00	; 0
+      0015AB 00                    2810 	.db #0x00	; 0
+      0015AC 01                    2811 	.db #0x01	; 1
+      0015AD 07                    2812 	.db #0x07	; 7
+      0015AE 07                    2813 	.db #0x07	; 7
+      0015AF 07                    2814 	.db #0x07	; 7
+      0015B0 04                    2815 	.db #0x04	; 4
+      0015B1 00                    2816 	.db #0x00	; 0
+      0015B2 00                    2817 	.db #0x00	; 0
+      0015B3 00                    2818 	.db #0x00	; 0
+      0015B4 00                    2819 	.db #0x00	; 0
+      0015B5 00                    2820 	.db #0x00	; 0
+      0015B6 00                    2821 	.db #0x00	; 0
+      0015B7 00                    2822 	.db #0x00	; 0
+      0015B8 00                    2823 	.db #0x00	; 0
+      0015B9 00                    2824 	.db #0x00	; 0
+                                   2825 	.area CONST   (CODE)
+      0015BA                       2826 ___str_0:
+      0015BA 53 20                 2827 	.ascii "S "
+      0015BC 00                    2828 	.db 0x00
+                                   2829 	.area CSEG    (CODE)
+                                   2830 	.area CONST   (CODE)
+      0015BD                       2831 ___str_1:
+      0015BD 41 20                 2832 	.ascii "A "
+      0015BF 00                    2833 	.db 0x00
+                                   2834 	.area CSEG    (CODE)
+      000E31                       2835 _sine_table:
+      000E31 00 00 00 00           2836 	.byte #0x00, #0x00, #0x00, #0x00	;  0.000000e+00
+      000E35 33 C4 31 3E           2837 	.byte #0x33, #0xc4, #0x31, #0x3e	;  1.736000e-01
+      000E39 A0 1A AF 3E           2838 	.byte #0xa0, #0x1a, #0xaf, #0x3e	;  3.420000e-01
+      000E3D 00 00 00 3F           2839 	.byte #0x00, #0x00, #0x00, #0x3f	;  5.000000e-01
+      000E41 8A 8E 24 3F           2840 	.byte #0x8a, #0x8e, #0x24, #0x3f	;  6.428000e-01
+      000E45 93 18 44 3F           2841 	.byte #0x93, #0x18, #0x44, #0x3f	;  7.660000e-01
+      000E49 2D B2 5D 3F           2842 	.byte #0x2d, #0xb2, #0x5d, #0x3f	;  8.660000e-01
+      000E4D 2E 90 70 3F           2843 	.byte #0x2e, #0x90, #0x70, #0x3f	;  9.397000e-01
+      000E51 DA 1B 7C 3F           2844 	.byte #0xda, #0x1b, #0x7c, #0x3f	;  9.848000e-01
+      000E55 00 00 80 3F           2845 	.byte #0x00, #0x00, #0x80, #0x3f	;  1.000000e+00
+                                   2846 	.area CONST   (CODE)
+      0015C0                       2847 ___str_2:
+      0015C0 20 20 20              2848 	.ascii "   "
+      0015C3 00                    2849 	.db 0x00
+                                   2850 	.area CSEG    (CODE)
+                                   2851 	.area CONST   (CODE)
+      0015C4                       2852 ___str_3:
+      0015C4 20                    2853 	.ascii " "
+      0015C5 00                    2854 	.db 0x00
+                                   2855 	.area CSEG    (CODE)
+                                   2856 	.area XINIT   (CODE)
+                                   2857 	.area CABS    (ABS,CODE)

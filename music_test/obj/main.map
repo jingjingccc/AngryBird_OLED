@@ -53,7 +53,7 @@ C:   00000011  s_GSINIT0
 C:   00000014  s_GSINIT1                       
 C:   00000014  s_GSINIT2                       
 C:   00000015  l_GSINIT                        
-C:   00000016  s_OSEG                          
+C:   00000018  s_OSEG                          
 C:   00000018  s_REG_BANK_3                    
 C:   0000001E  s_GSINIT3                       
 C:   00000020  s_BIT_BANK                      
@@ -74,15 +74,15 @@ C:   0000002A  l_GSINIT4
 C:   00000040  s_GSINIT4                       
 C:   0000006A  s_GSINIT                        
 C:   0000006A  s_GSINIT5                       
-C:   00000078  l_DSEG                          
+C:   0000007A  l_DSEG                          
 C:   0000007F  s_GSFINAL                       
 C:   00000082  s_CSEG                          
 C:   000000DF  l_SSEG                          
 C:   00000100  l_IRAM                          
 C:   00000247  l_CONST                         
-C:   00000547  l_CSEG                          
-C:   000005C9  s_CONST                         
-C:   00000810  s_XINIT                         
+C:   0000057A  l_CSEG                          
+C:   000005FC  s_CONST                         
+C:   00000843  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -227,29 +227,29 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-DSEG                                00000000    00000078 =         120. bytes (REL,CON)
+DSEG                                00000000    0000007A =         122. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00000008  _music_on                          main
      0000000A  _scan_cnting                       main
-     0000000C  _stable_scan                       main
+     0000000C  _stable_but                        main
      0000000E  _music_play_note                   main
      00000010  _duration_time                     main
-     00000012  _Single_WriteI2C_PARM_2            i2c
-     00000013  _Single_WriteI2C_PARM_3            i2c
-     00000014  _Single_ReadI2C_PARM_2             i2c
-     00000015  _OLED_SetCursor_PARM_2             oled_i2c
+     00000014  _Single_WriteI2C_PARM_2            i2c
+     00000015  _Single_WriteI2C_PARM_3            i2c
+     00000016  _Single_ReadI2C_PARM_2             i2c
+     00000017  _OLED_SetCursor_PARM_2             oled_i2c
 ASxxxx Linker V03.00/V05.40 + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-OSEG                                00000016    00000002 =           2. bytes (REL,OVR)
+OSEG                                00000018    00000002 =           2. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000016  __mulint_PARM_2                    _mulint
+     00000018  __mulint_PARM_2                    _mulint
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 9.
 Hexadecimal  [32-Bits]
@@ -339,55 +339,55 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000082    00000547 =        1351. bytes (REL,CON,CODE)
+CSEG                                00000082    0000057A =        1402. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   00000082  _T0_isr                            main
-C:   00000176  _main                              main
-C:   0000027A  _LookForSound                      main
-C:   000002C1  _I2C_Start                         i2c
-C:   000002D0  _I2C_Stop                          i2c
-C:   000002DC  _I2C_SendACK                       i2c
-C:   000002EC  _I2C_RecvACK                       i2c
-C:   00000301  _I2C_SendByte                      i2c
-C:   00000329  _I2C_RecvByte                      i2c
-C:   0000035D  _Single_WriteI2C                   i2c
-C:   0000037A  _Single_ReadI2C                    i2c
-C:   000003B5  _Delay_Do                          delay_func
-C:   000003C3  _Delay_Re                          delay_func
-C:   000003D1  _Delay_Mi                          delay_func
-C:   000003DF  _Delay_Fa                          delay_func
-C:   000003ED  _Delay_So                          delay_func
-C:   000003FB  _Delay_La                          delay_func
-C:   00000409  _Delay_Si                          delay_func
-C:   00000417  _delay_ms                          delay
-C:   00000429  _delay_5                           delay
-C:   0000042E  _OLED_Init                         oled_i2c
-C:   0000049D  _OLED_DisplayChar                  oled_i2c
-C:   000004EE  _OLED_DisplayString                oled_i2c
-C:   00000519  _OLED_Clear                        oled_i2c
-C:   00000544  _OLED_SetCursor                    oled_i2c
-C:   00000574  _oledSendCommand                   oled_i2c
-C:   00000580  _oledSendData                      oled_i2c
-C:   0000058C  __mulint                           _mulint
-C:   0000058C  __mulint_dummy                     _mulint
-C:   000005A9  __gptrget                          _gptrget
-C:   000005C5  ___sdcc_external_startup           _startup
+C:   00000174  _main                              main
+C:   000002AD  _LookForSound                      main
+C:   000002F4  _I2C_Start                         i2c
+C:   00000303  _I2C_Stop                          i2c
+C:   0000030F  _I2C_SendACK                       i2c
+C:   0000031F  _I2C_RecvACK                       i2c
+C:   00000334  _I2C_SendByte                      i2c
+C:   0000035C  _I2C_RecvByte                      i2c
+C:   00000390  _Single_WriteI2C                   i2c
+C:   000003AD  _Single_ReadI2C                    i2c
+C:   000003E8  _Delay_Do                          delay_func
+C:   000003F6  _Delay_Re                          delay_func
+C:   00000404  _Delay_Mi                          delay_func
+C:   00000412  _Delay_Fa                          delay_func
+C:   00000420  _Delay_So                          delay_func
+C:   0000042E  _Delay_La                          delay_func
+C:   0000043C  _Delay_Si                          delay_func
+C:   0000044A  _delay_ms                          delay
+C:   0000045C  _delay_5                           delay
+C:   00000461  _OLED_Init                         oled_i2c
+C:   000004D0  _OLED_DisplayChar                  oled_i2c
+C:   00000521  _OLED_DisplayString                oled_i2c
+C:   0000054C  _OLED_Clear                        oled_i2c
+C:   00000577  _OLED_SetCursor                    oled_i2c
+C:   000005A7  _oledSendCommand                   oled_i2c
+C:   000005B3  _oledSendData                      oled_i2c
+C:   000005BF  __mulint                           _mulint
+C:   000005BF  __mulint_dummy                     _mulint
+C:   000005DC  __gptrget                          _gptrget
+C:   000005F8  ___sdcc_external_startup           _startup
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 18.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               000005C9    00000247 =         583. bytes (REL,CON,CODE)
+CONST                               000005FC    00000247 =         583. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000005C9  _music_table                       main
-C:   000005E2  _duration_table                    main
-C:   000005FB  _blanck_table                      main
-C:   00000635  _OledFontTable                     oled_i2c
+C:   000005FC  _music_table                       main
+C:   00000615  _duration_table                    main
+C:   0000062E  _blanck_table                      main
+C:   00000668  _OledFontTable                     oled_i2c
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 19.
 

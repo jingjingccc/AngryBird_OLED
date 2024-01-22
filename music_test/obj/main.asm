@@ -120,7 +120,7 @@
 	.globl _P0
 	.globl _duration_time
 	.globl _music_play_note
-	.globl _stable_scan
+	.globl _stable_but
 	.globl _scan_cnting
 	.globl _music_on
 	.globl _LookForSound
@@ -257,11 +257,13 @@ _music_on::
 	.ds 2
 _scan_cnting::
 	.ds 2
-_stable_scan::
+_stable_but::
 	.ds 2
 _music_play_note::
 	.ds 2
 _duration_time::
+	.ds 2
+_main_a_131073_42:
 	.ds 2
 ;--------------------------------------------------------
 ; overlayable items in internal ram
@@ -334,20 +336,20 @@ __interrupt_vect:
 	.globl __mcs51_genXINIT
 	.globl __mcs51_genXRAMCLEAR
 	.globl __mcs51_genRAMCLEAR
-;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
+;	./src/main.c:9: int music_on = 0, scan_cnting = 0, stable_but = 0;
 	clr	a
 	mov	_music_on,a
 	mov	(_music_on + 1),a
-;	./src/main.c:8: int music_play_note = 0, duration_time = 0;
+;	./src/main.c:9: int music_play_note = 0, duration_time = 0;
 	mov	_scan_cnting,a
 	mov	(_scan_cnting + 1),a
-;	./src/main.c:8: int music_on = 0, scan_cnting = 0, stable_scan = 0;
-	mov	_stable_scan,a
-	mov	(_stable_scan + 1),a
-;	./src/main.c:9: int music_play_note = 0, duration_time = 0;
+;	./src/main.c:9: int music_on = 0, scan_cnting = 0, stable_but = 0;
+	mov	_stable_but,a
+	mov	(_stable_but + 1),a
+;	./src/main.c:10: int music_play_note = 0, duration_time = 0;
 	mov	_music_play_note,a
 	mov	(_music_play_note + 1),a
-;	./src/main.c:9: 
+;	./src/main.c:10: 
 	mov	_duration_time,a
 	mov	(_duration_time + 1),a
 	.area GSFINAL (CODE)
@@ -367,7 +369,7 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'T0_isr'
 ;------------------------------------------------------------
-;	./src/main.c:26: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
+;	./src/main.c:27: void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
 ;	-----------------------------------------
 ;	 function T0_isr
 ;	-----------------------------------------
@@ -395,17 +397,17 @@ _T0_isr:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-;	./src/main.c:29: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
+;	./src/main.c:30: TH0 = (65536 - 1000) / 256; // Reset higher 8 bits of Timer 0
 	mov	_TH0,#0xfc
-;	./src/main.c:30: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
+;	./src/main.c:31: TL0 = (65536 - 1000) % 256; // Reset lower 8 bits of Timer 0
 	mov	_TL0,#0x18
-;	./src/main.c:32: duration_time++;
+;	./src/main.c:33: duration_time++;
 	inc	_duration_time
 	clr	a
 	cjne	a,_duration_time,00134$
 	inc	(_duration_time + 1)
 00134$:
-;	./src/main.c:34: while (duration_time < duration_table[music_play_note])
+;	./src/main.c:35: while (duration_time < duration_table[music_play_note])
 00101$:
 	mov	a,_music_play_note
 	add	a,#_duration_table
@@ -426,16 +428,16 @@ _T0_isr:
 	xrl	b,#0x80
 	subb	a,b
 	jnc	00103$
-;	./src/main.c:36: duration_time++;
+;	./src/main.c:37: duration_time++;
 	inc	_duration_time
 	clr	a
 	cjne	a,_duration_time,00136$
 	inc	(_duration_time + 1)
 00136$:
-;	./src/main.c:37: P3_7 = 1;
+;	./src/main.c:38: P3_7 = 1;
 ;	assignBit
 	setb	_P3_7
-;	./src/main.c:38: LookForSound(music_table[music_play_note]);
+;	./src/main.c:39: LookForSound(music_table[music_play_note]);
 	mov	a,_music_play_note
 	add	a,#_music_table
 	mov	dpl,a
@@ -449,10 +451,10 @@ _T0_isr:
 	mov	dpl,r5
 	mov	dph,r4
 	lcall	_LookForSound
-;	./src/main.c:39: P3_7 = 0;
+;	./src/main.c:40: P3_7 = 0;
 ;	assignBit
 	clr	_P3_7
-;	./src/main.c:40: LookForSound(music_table[music_play_note]);
+;	./src/main.c:41: LookForSound(music_table[music_play_note]);
 	mov	a,_music_play_note
 	add	a,#_music_table
 	mov	dpl,a
@@ -468,7 +470,7 @@ _T0_isr:
 	lcall	_LookForSound
 	sjmp	00101$
 00103$:
-;	./src/main.c:42: if (duration_time >= (duration_table[music_play_note] + blanck_table[music_play_note]))
+;	./src/main.c:43: if (duration_time >= (duration_table[music_play_note] + blanck_table[music_play_note]))
 	mov	a,_music_play_note
 	add	a,#_blanck_table
 	mov	dpl,a
@@ -492,16 +494,16 @@ _T0_isr:
 	xrl	b,#0x80
 	subb	a,b
 	jc	00108$
-;	./src/main.c:44: duration_time = 0;
+;	./src/main.c:45: duration_time = 0;
 	clr	a
 	mov	_duration_time,a
 	mov	(_duration_time + 1),a
-;	./src/main.c:45: music_play_note++;
+;	./src/main.c:46: music_play_note++;
 	inc	_music_play_note
 	cjne	a,_music_play_note,00138$
 	inc	(_music_play_note + 1)
 00138$:
-;	./src/main.c:47: if (music_play_note >= NOTE_NUM)
+;	./src/main.c:48: if (music_play_note >= NOTE_NUM)
 	clr	c
 	mov	a,_music_play_note
 	subb	a,#0x19
@@ -509,9 +511,6 @@ _T0_isr:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jc	00108$
-;	./src/main.c:49: TR0 = 0;
-;	assignBit
-	clr	_TR0
 ;	./src/main.c:50: music_on = 0;
 	clr	a
 	mov	_music_on,a
@@ -538,6 +537,8 @@ _T0_isr:
 	reti
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
+;------------------------------------------------------------
+;a                         Allocated with name '_main_a_131073_42'
 ;------------------------------------------------------------
 ;	./src/main.c:59: int main()
 ;	-----------------------------------------
@@ -577,12 +578,12 @@ _main:
 	lcall	_OLED_DisplayString
 ;	./src/main.c:77: while (1)
 00125$:
-;	./src/main.c:80: if (P2_0 == 0 && stable_scan == 1)
-	jb	_P2_0,00114$
+;	./src/main.c:80: if (but == 0 && stable_but == 1)
+	jb	_P2_2,00114$
 	mov	a,#0x01
-	cjne	a,_stable_scan,00208$
+	cjne	a,_stable_but,00208$
 	dec	a
-	cjne	a,(_stable_scan + 1),00208$
+	cjne	a,(_stable_but + 1),00208$
 	sjmp	00209$
 00208$:
 	sjmp	00114$
@@ -590,7 +591,7 @@ _main:
 ;	./src/main.c:82: if (scan_cnting < scan_cnt)
 	clr	c
 	mov	a,_scan_cnting
-	subb	a,#0x0a
+	subb	a,#0x09
 	mov	a,(_scan_cnting + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
@@ -602,7 +603,7 @@ _main:
 	inc	(_scan_cnting + 1)
 00211$:
 ;	./src/main.c:85: if (scan_cnting == scan_cnt)
-	mov	a,#0x0a
+	mov	a,#0x09
 	cjne	a,_scan_cnting,00212$
 	clr	a
 	cjne	a,(_scan_cnting + 1),00212$
@@ -612,21 +613,21 @@ _main:
 00213$:
 ;	./src/main.c:87: music_on ^= 1;
 	xrl	_music_on,#0x01
-;	./src/main.c:88: stable_scan = 0;
+;	./src/main.c:88: stable_but = 0;
 	clr	a
-	mov	_stable_scan,a
-	mov	(_stable_scan + 1),a
+	mov	_stable_but,a
+	mov	(_stable_but + 1),a
 	sjmp	00115$
 00114$:
-;	./src/main.c:92: else if (P2_0 == 1 && stable_scan == 0)
-	jnb	_P2_0,00110$
-	mov	a,_stable_scan
-	orl	a,(_stable_scan + 1)
+;	./src/main.c:92: else if (but == 1 && stable_but == 0)
+	jnb	_P2_2,00110$
+	mov	a,_stable_but
+	orl	a,(_stable_but + 1)
 	jnz	00110$
 ;	./src/main.c:94: if (scan_cnting < scan_cnt)
 	clr	c
 	mov	a,_scan_cnting
-	subb	a,#0x0a
+	subb	a,#0x09
 	mov	a,(_scan_cnting + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
@@ -638,7 +639,7 @@ _main:
 	inc	(_scan_cnting + 1)
 00217$:
 ;	./src/main.c:97: if (scan_cnting == scan_cnt)
-	mov	a,#0x0a
+	mov	a,#0x09
 	cjne	a,_scan_cnting,00218$
 	clr	a
 	cjne	a,(_scan_cnting + 1),00218$
@@ -646,9 +647,9 @@ _main:
 00218$:
 	sjmp	00115$
 00219$:
-;	./src/main.c:98: stable_scan = 1;
-	mov	_stable_scan,#0x01
-	mov	(_stable_scan + 1),#0x00
+;	./src/main.c:98: stable_but = 1;
+	mov	_stable_but,#0x01
+	mov	(_stable_but + 1),#0x00
 	sjmp	00115$
 00110$:
 ;	./src/main.c:102: scan_cnting = 0;
@@ -656,74 +657,102 @@ _main:
 	mov	_scan_cnting,a
 	mov	(_scan_cnting + 1),a
 00115$:
-;	./src/main.c:105: if (music_on && TR0 == 0)
+;	./src/main.c:104: OLED_SetCursor(5, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x05
+	lcall	_OLED_SetCursor
+;	./src/main.c:106: a[0] = '0' + scan_cnting;
+	mov	r7,_scan_cnting
+	mov	a,#0x30
+	add	a,r7
+	mov	_main_a_131073_42,a
+;	./src/main.c:107: a[1] = '\0';
+	mov	(_main_a_131073_42 + 0x0001),#0x00
+;	./src/main.c:108: OLED_DisplayString(a);
+	mov	dptr,#_main_a_131073_42
+	mov	b,#0x40
+	lcall	_OLED_DisplayString
+;	./src/main.c:109: OLED_SetCursor(6, text_col);
+	mov	_OLED_SetCursor_PARM_2,#0x28
+	mov	dpl,#0x06
+	lcall	_OLED_SetCursor
+;	./src/main.c:110: a[0] = '0' + stable_but;
+	mov	r7,_stable_but
+	mov	a,#0x30
+	add	a,r7
+	mov	_main_a_131073_42,a
+;	./src/main.c:111: OLED_DisplayString(a);
+	mov	dptr,#_main_a_131073_42
+	mov	b,#0x40
+	lcall	_OLED_DisplayString
+;	./src/main.c:114: if (music_on && TR0 == 0)
 	mov	a,_music_on
 	orl	a,(_music_on + 1)
 	jz	00121$
 	jb	_TR0,00121$
-;	./src/main.c:107: TR0 = 1;
+;	./src/main.c:116: TR0 = 1;
 ;	assignBit
 	setb	_TR0
-;	./src/main.c:108: OLED_SetCursor(text_row, text_col);
+;	./src/main.c:117: OLED_SetCursor(text_row, text_col);
 	mov	_OLED_SetCursor_PARM_2,#0x28
 	mov	dpl,#0x03
 	lcall	_OLED_SetCursor
-;	./src/main.c:109: OLED_DisplayString("           ");
+;	./src/main.c:118: OLED_DisplayString("           ");
 	mov	dptr,#___str_1
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/main.c:110: OLED_SetCursor(text_row, text_col);
+;	./src/main.c:119: OLED_SetCursor(text_row, text_col);
 	mov	_OLED_SetCursor_PARM_2,#0x28
 	mov	dpl,#0x03
 	lcall	_OLED_SetCursor
-;	./src/main.c:111: OLED_DisplayString("music on!");
+;	./src/main.c:120: OLED_DisplayString("music on!");
 	mov	dptr,#___str_2
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
 	ljmp	00125$
 00121$:
-;	./src/main.c:113: else if (!music_on && TR0 == 1)
+;	./src/main.c:122: else if (!music_on && TR0 == 1)
 	mov	a,_music_on
 	orl	a,(_music_on + 1)
 	jz	00222$
 	ljmp	00125$
 00222$:
-;	./src/main.c:115: TR0 = 0;
+;	./src/main.c:124: TR0 = 0;
 ;	assignBit
 	jbc	_TR0,00223$
 	ljmp	00125$
 00223$:
-;	./src/main.c:116: OLED_SetCursor(text_row, text_col);
+;	./src/main.c:125: OLED_SetCursor(text_row, text_col);
 	mov	_OLED_SetCursor_PARM_2,#0x28
 	mov	dpl,#0x03
 	lcall	_OLED_SetCursor
-;	./src/main.c:117: OLED_DisplayString("           ");
+;	./src/main.c:126: OLED_DisplayString("           ");
 	mov	dptr,#___str_1
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/main.c:118: OLED_SetCursor(text_row, text_col);
+;	./src/main.c:127: OLED_SetCursor(text_row, text_col);
 	mov	_OLED_SetCursor_PARM_2,#0x28
 	mov	dpl,#0x03
 	lcall	_OLED_SetCursor
-;	./src/main.c:119: OLED_DisplayString("music off!");
+;	./src/main.c:128: OLED_DisplayString("music off!");
 	mov	dptr,#___str_0
 	mov	b,#0x80
 	lcall	_OLED_DisplayString
-;	./src/main.c:122: }
+;	./src/main.c:131: }
 	ljmp	00125$
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LookForSound'
 ;------------------------------------------------------------
 ;now                       Allocated to registers r6 r7 
 ;------------------------------------------------------------
-;	./src/main.c:124: void LookForSound(int now)
+;	./src/main.c:133: void LookForSound(int now)
 ;	-----------------------------------------
 ;	 function LookForSound
 ;	-----------------------------------------
 _LookForSound:
 	mov	r6,dpl
 	mov	r7,dph
-;	./src/main.c:126: switch (now)
+;	./src/main.c:135: switch (now)
 	cjne	r6,#0x01,00147$
 	cjne	r7,#0x00,00147$
 	sjmp	00101$
@@ -744,39 +773,39 @@ _LookForSound:
 	cjne	r7,#0x00,00151$
 	sjmp	00105$
 00151$:
-;	./src/main.c:128: case 1:
+;	./src/main.c:137: case 1:
 	cjne	r6,#0x06,00109$
 	cjne	r7,#0x00,00109$
 	sjmp	00106$
 00101$:
-;	./src/main.c:129: Delay_Do();
-;	./src/main.c:130: break;
-;	./src/main.c:132: case 2:
+;	./src/main.c:138: Delay_Do();
+;	./src/main.c:139: break;
+;	./src/main.c:141: case 2:
 	ljmp	_Delay_Do
 00102$:
-;	./src/main.c:133: Delay_Re();
-;	./src/main.c:134: break;
-;	./src/main.c:136: case 3:
+;	./src/main.c:142: Delay_Re();
+;	./src/main.c:143: break;
+;	./src/main.c:145: case 3:
 	ljmp	_Delay_Re
 00103$:
-;	./src/main.c:137: Delay_Mi();
-;	./src/main.c:138: break;
-;	./src/main.c:140: case 4:
+;	./src/main.c:146: Delay_Mi();
+;	./src/main.c:147: break;
+;	./src/main.c:149: case 4:
 	ljmp	_Delay_Mi
 00104$:
-;	./src/main.c:141: Delay_Fa();
-;	./src/main.c:142: break;
-;	./src/main.c:144: case 5:
+;	./src/main.c:150: Delay_Fa();
+;	./src/main.c:151: break;
+;	./src/main.c:153: case 5:
 	ljmp	_Delay_Fa
 00105$:
-;	./src/main.c:145: Delay_So();
-;	./src/main.c:146: break;
-;	./src/main.c:148: case 6:
+;	./src/main.c:154: Delay_So();
+;	./src/main.c:155: break;
+;	./src/main.c:157: case 6:
 	ljmp	_Delay_So
 00106$:
-;	./src/main.c:149: Delay_La();
-;	./src/main.c:154: }
-;	./src/main.c:155: }
+;	./src/main.c:158: Delay_La();
+;	./src/main.c:163: }
+;	./src/main.c:164: }
 	ljmp	_Delay_La
 00109$:
 	ret

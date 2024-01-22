@@ -333,48 +333,48 @@
       0000A4 75 89 20         [24]  333 	mov	_TMOD,#0x20
                                     334 ;	./src/main.c:14: SCON = 0x50; // set serial mode1
       0000A7 75 98 50         [24]  335 	mov	_SCON,#0x50
-                                    336 ;	./src/main.c:15: TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz
+                                    336 ;	./src/main.c:15: TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz(12)
       0000AA 75 8D FA         [24]  337 	mov	_TH1,#0xfa
                                     338 ;	./src/main.c:16: TR1 = 1;     // enable timer = 1
                                     339 ;	assignBit
       0000AD D2 8E            [12]  340 	setb	_TR1
                                     341 ;	./src/main.c:17: IE = 0x90;   // enable serial port interrupt
       0000AF 75 A8 90         [24]  342 	mov	_IE,#0x90
-                                    343 ;	./src/main.c:23: while (1)
+                                    343 ;	./src/main.c:19: while (1)
       0000B2                        344 00102$:
-                                    345 ;	./src/main.c:25: angrybird_state_machine();
+                                    345 ;	./src/main.c:21: angrybird_state_machine();
       0000B2 12 04 AD         [24]  346 	lcall	_angrybird_state_machine
-                                    347 ;	./src/main.c:27: }
+                                    347 ;	./src/main.c:23: }
       0000B5 80 FB            [24]  348 	sjmp	00102$
                                     349 ;------------------------------------------------------------
                                     350 ;Allocation info for local variables in function 'uart_isr'
                                     351 ;------------------------------------------------------------
-                                    352 ;	./src/main.c:29: void uart_isr(void) __interrupt(4)
+                                    352 ;	./src/main.c:25: void uart_isr(void) __interrupt(4)
                                     353 ;	-----------------------------------------
                                     354 ;	 function uart_isr
                                     355 ;	-----------------------------------------
       0000B7                        356 _uart_isr:
-                                    357 ;	./src/main.c:31: if (TI == 1)
-                                    358 ;	./src/main.c:32: TI = 0;
+                                    357 ;	./src/main.c:27: if (TI == 1)
+                                    358 ;	./src/main.c:28: TI = 0;
                                     359 ;	assignBit
       0000B7 10 99 02         [24]  360 	jbc	_TI,00119$
       0000BA 80 00            [24]  361 	sjmp	00102$
       0000BC                        362 00119$:
       0000BC                        363 00102$:
-                                    364 ;	./src/main.c:34: if (RI == 1)
+                                    364 ;	./src/main.c:30: if (RI == 1)
       0000BC 30 98 0A         [24]  365 	jnb	_RI,00105$
-                                    366 ;	./src/main.c:36: P1_1 = 0;
+                                    366 ;	./src/main.c:32: P1_1 = 0;
                                     367 ;	assignBit
       0000BF C2 91            [12]  368 	clr	_P1_1
-                                    369 ;	./src/main.c:37: RI = 0;               // refresh RI
+                                    369 ;	./src/main.c:33: RI = 0;               // refresh RI
                                     370 ;	assignBit
       0000C1 C2 98            [12]  371 	clr	_RI
-                                    372 ;	./src/main.c:38: received_data = SBUF; // receive data from SBUF
+                                    372 ;	./src/main.c:34: received_data = SBUF; // receive data from SBUF
       0000C3 85 99 23         [24]  373 	mov	_received_data,_SBUF
-                                    374 ;	./src/main.c:39: received_flag = 1;    // receiving finished
+                                    374 ;	./src/main.c:35: received_flag = 1;    // receiving finished
       0000C6 75 24 01         [24]  375 	mov	_received_flag,#0x01
       0000C9                        376 00105$:
-                                    377 ;	./src/main.c:41: }
+                                    377 ;	./src/main.c:37: }
       0000C9 32               [24]  378 	reti
                                     379 ;	eliminated unneeded mov psw,# (no regs used in bank)
                                     380 ;	eliminated unneeded push/pop not_psw

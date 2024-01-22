@@ -62,7 +62,7 @@ extern unsigned char received_flag;
 #define bird_init_row_cursor 7
 #define bird_init_col_cursor 8
 
-#define bird_remain_col_cursor 50
+#define bird_remain_col_cursor 119 - bird_total_amount * 8
 
 // extern int pig_amt;
 #define pig_total_amount 1
@@ -91,17 +91,11 @@ extern unsigned char received_flag;
 
 //*************** END PAGE ***************//
 // win logo definitions
-#define win_row_size 2
-#define win_cul_size 64
+#define win_over_row_size 2
+#define win_over_cul_size 64
 
-#define win_row_cursor 2
-#define win_col_cursor 50
-
-#define over_row_size 2
-#define over_cul_size 64
-
-#define over_row_cursor 2
-#define over_col_cursor 50
+#define win_over_row_cursor 2
+#define win_over_col_cursor 50
 
 /***************************************************************************************************
                                   Functino Prototype

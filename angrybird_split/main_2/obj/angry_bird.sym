@@ -354,8 +354,8 @@ Symbol Table
   5 _control_strength                                              00000E GR
   5 _cur_state                                                     00001D GR
     _delay_ms                                                      ****** GX
- 16 _getcosine                                                     000C04 GR
- 16 _getsine                                                       000B59 GR
+ 16 _getcosine                                                     000BFE GR
+ 16 _getsine                                                       000B53 GR
   5 _led_cur_state                                                 00001B GR
     _oledSendData                                                  ****** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 7
@@ -366,7 +366,7 @@ Symbol Table
  17 _over_page                                                     0000B0 GR
   5 _pig_amt                                                       00000A GR
  17 _pig_logo                                                      000010 GR
- 16 _pow_2                                                         000C34 GR
+ 16 _pow_2                                                         000C2E GR
   5 _prebut_down                                                   000021 GR
   5 _prebut_enter                                                  000027 GR
   5 _prebut_left                                                   000023 GR
@@ -378,7 +378,7 @@ Symbol Table
   5 _send_data                                                     000000 GR
   5 _send_flag                                                     000001 GR
  17 _shooter_logo                                                  000000 GR
- 16 _sine_table                                                    000C62 GR
+ 16 _sine_table                                                    000C5C GR
  17 _win_page                                                      000030 GR
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
@@ -607,7 +607,7 @@ Area Table
   13 GSINIT5                                    size      0   flags   20
   14 GSINIT                                     size     1F   flags   20
   15 GSFINAL                                    size      0   flags   20
-  16 CSEG                                       size    C8A   flags   20
+  16 CSEG                                       size    C84   flags   20
   17 CONST                                      size    13C   flags   20
   18 XINIT                                      size      0   flags   20
   19 CABS                                       size      0   flags   28

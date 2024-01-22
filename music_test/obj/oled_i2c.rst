@@ -229,8 +229,8 @@
                                     229 ; internal ram data
                                     230 ;--------------------------------------------------------
                                     231 	.area DSEG    (DATA)
-      000015                        232 _OLED_SetCursor_PARM_2:
-      000015                        233 	.ds 1
+      000017                        232 _OLED_SetCursor_PARM_2:
+      000017                        233 	.ds 1
                                     234 ;--------------------------------------------------------
                                     235 ; overlayable items in internal ram
                                     236 ;--------------------------------------------------------
@@ -296,7 +296,7 @@
                                     296 ;	-----------------------------------------
                                     297 ;	 function OLED_Init
                                     298 ;	-----------------------------------------
-      00042E                        299 _OLED_Init:
+      000461                        299 _OLED_Init:
                            000007   300 	ar7 = 0x07
                            000006   301 	ar6 = 0x06
                            000005   302 	ar5 = 0x05
@@ -306,62 +306,62 @@
                            000001   306 	ar1 = 0x01
                            000000   307 	ar0 = 0x00
                                     308 ;	./src/oled_i2c.c:19: oledSendCommand(0xa8); // Set MUX Ratio
-      00042E 75 82 A8         [24]  309 	mov	dpl,#0xa8
-      000431 12 05 74         [24]  310 	lcall	_oledSendCommand
+      000461 75 82 A8         [24]  309 	mov	dpl,#0xa8
+      000464 12 05 A7         [24]  310 	lcall	_oledSendCommand
                                     311 ;	./src/oled_i2c.c:20: oledSendCommand(0x3f);
-      000434 75 82 3F         [24]  312 	mov	dpl,#0x3f
-      000437 12 05 74         [24]  313 	lcall	_oledSendCommand
+      000467 75 82 3F         [24]  312 	mov	dpl,#0x3f
+      00046A 12 05 A7         [24]  313 	lcall	_oledSendCommand
                                     314 ;	./src/oled_i2c.c:21: oledSendCommand(0xd3); // Set Display Offset
-      00043A 75 82 D3         [24]  315 	mov	dpl,#0xd3
-      00043D 12 05 74         [24]  316 	lcall	_oledSendCommand
+      00046D 75 82 D3         [24]  315 	mov	dpl,#0xd3
+      000470 12 05 A7         [24]  316 	lcall	_oledSendCommand
                                     317 ;	./src/oled_i2c.c:22: oledSendCommand(0x00);
-      000440 75 82 00         [24]  318 	mov	dpl,#0x00
-      000443 12 05 74         [24]  319 	lcall	_oledSendCommand
+      000473 75 82 00         [24]  318 	mov	dpl,#0x00
+      000476 12 05 A7         [24]  319 	lcall	_oledSendCommand
                                     320 ;	./src/oled_i2c.c:23: oledSendCommand(0x40); // Set Display Start Line
-      000446 75 82 40         [24]  321 	mov	dpl,#0x40
-      000449 12 05 74         [24]  322 	lcall	_oledSendCommand
+      000479 75 82 40         [24]  321 	mov	dpl,#0x40
+      00047C 12 05 A7         [24]  322 	lcall	_oledSendCommand
                                     323 ;	./src/oled_i2c.c:24: oledSendCommand(0xa1); // Set Segment re-map A0h/A1h
-      00044C 75 82 A1         [24]  324 	mov	dpl,#0xa1
-      00044F 12 05 74         [24]  325 	lcall	_oledSendCommand
+      00047F 75 82 A1         [24]  324 	mov	dpl,#0xa1
+      000482 12 05 A7         [24]  325 	lcall	_oledSendCommand
                                     326 ;	./src/oled_i2c.c:25: oledSendCommand(0xc8); // Set COM OUTput
-      000452 75 82 C8         [24]  327 	mov	dpl,#0xc8
-      000455 12 05 74         [24]  328 	lcall	_oledSendCommand
+      000485 75 82 C8         [24]  327 	mov	dpl,#0xc8
+      000488 12 05 A7         [24]  328 	lcall	_oledSendCommand
                                     329 ;	./src/oled_i2c.c:26: oledSendCommand(0xda);
-      000458 75 82 DA         [24]  330 	mov	dpl,#0xda
-      00045B 12 05 74         [24]  331 	lcall	_oledSendCommand
+      00048B 75 82 DA         [24]  330 	mov	dpl,#0xda
+      00048E 12 05 A7         [24]  331 	lcall	_oledSendCommand
                                     332 ;	./src/oled_i2c.c:27: oledSendCommand(0x12);
-      00045E 75 82 12         [24]  333 	mov	dpl,#0x12
-      000461 12 05 74         [24]  334 	lcall	_oledSendCommand
+      000491 75 82 12         [24]  333 	mov	dpl,#0x12
+      000494 12 05 A7         [24]  334 	lcall	_oledSendCommand
                                     335 ;	./src/oled_i2c.c:28: oledSendCommand(0x81);
-      000464 75 82 81         [24]  336 	mov	dpl,#0x81
-      000467 12 05 74         [24]  337 	lcall	_oledSendCommand
+      000497 75 82 81         [24]  336 	mov	dpl,#0x81
+      00049A 12 05 A7         [24]  337 	lcall	_oledSendCommand
                                     338 ;	./src/oled_i2c.c:29: oledSendCommand(0x7f);
-      00046A 75 82 7F         [24]  339 	mov	dpl,#0x7f
-      00046D 12 05 74         [24]  340 	lcall	_oledSendCommand
+      00049D 75 82 7F         [24]  339 	mov	dpl,#0x7f
+      0004A0 12 05 A7         [24]  340 	lcall	_oledSendCommand
                                     341 ;	./src/oled_i2c.c:30: oledSendCommand(0xa4);
-      000470 75 82 A4         [24]  342 	mov	dpl,#0xa4
-      000473 12 05 74         [24]  343 	lcall	_oledSendCommand
+      0004A3 75 82 A4         [24]  342 	mov	dpl,#0xa4
+      0004A6 12 05 A7         [24]  343 	lcall	_oledSendCommand
                                     344 ;	./src/oled_i2c.c:31: oledSendCommand(0xa6);
-      000476 75 82 A6         [24]  345 	mov	dpl,#0xa6
-      000479 12 05 74         [24]  346 	lcall	_oledSendCommand
+      0004A9 75 82 A6         [24]  345 	mov	dpl,#0xa6
+      0004AC 12 05 A7         [24]  346 	lcall	_oledSendCommand
                                     347 ;	./src/oled_i2c.c:32: oledSendCommand(0xd5);
-      00047C 75 82 D5         [24]  348 	mov	dpl,#0xd5
-      00047F 12 05 74         [24]  349 	lcall	_oledSendCommand
+      0004AF 75 82 D5         [24]  348 	mov	dpl,#0xd5
+      0004B2 12 05 A7         [24]  349 	lcall	_oledSendCommand
                                     350 ;	./src/oled_i2c.c:33: oledSendCommand(0x80);
-      000482 75 82 80         [24]  351 	mov	dpl,#0x80
-      000485 12 05 74         [24]  352 	lcall	_oledSendCommand
+      0004B5 75 82 80         [24]  351 	mov	dpl,#0x80
+      0004B8 12 05 A7         [24]  352 	lcall	_oledSendCommand
                                     353 ;	./src/oled_i2c.c:34: oledSendCommand(0x8d);
-      000488 75 82 8D         [24]  354 	mov	dpl,#0x8d
-      00048B 12 05 74         [24]  355 	lcall	_oledSendCommand
+      0004BB 75 82 8D         [24]  354 	mov	dpl,#0x8d
+      0004BE 12 05 A7         [24]  355 	lcall	_oledSendCommand
                                     356 ;	./src/oled_i2c.c:35: oledSendCommand(0x14);
-      00048E 75 82 14         [24]  357 	mov	dpl,#0x14
-      000491 12 05 74         [24]  358 	lcall	_oledSendCommand
+      0004C1 75 82 14         [24]  357 	mov	dpl,#0x14
+      0004C4 12 05 A7         [24]  358 	lcall	_oledSendCommand
                                     359 ;	./src/oled_i2c.c:36: oledSendCommand(0xaf);
-      000494 75 82 AF         [24]  360 	mov	dpl,#0xaf
-      000497 12 05 74         [24]  361 	lcall	_oledSendCommand
+      0004C7 75 82 AF         [24]  360 	mov	dpl,#0xaf
+      0004CA 12 05 A7         [24]  361 	lcall	_oledSendCommand
                                     362 ;	./src/oled_i2c.c:38: OLED_Clear(); // Clear the complete LCD during init
                                     363 ;	./src/oled_i2c.c:39: }
-      00049A 02 05 19         [24]  364 	ljmp	_OLED_Clear
+      0004CD 02 05 4C         [24]  364 	ljmp	_OLED_Clear
                                     365 ;------------------------------------------------------------
                                     366 ;Allocation info for local variables in function 'OLED_DisplayChar'
                                     367 ;------------------------------------------------------------
@@ -373,62 +373,62 @@
                                     373 ;	-----------------------------------------
                                     374 ;	 function OLED_DisplayChar
                                     375 ;	-----------------------------------------
-      00049D                        376 _OLED_DisplayChar:
-      00049D AF 82            [24]  377 	mov	r7,dpl
+      0004D0                        376 _OLED_DisplayChar:
+      0004D0 AF 82            [24]  377 	mov	r7,dpl
                                     378 ;	./src/oled_i2c.c:56: if (ch != '\n')
-      00049F BF 0A 01         [24]  379 	cjne	r7,#0x0a,00130$
-      0004A2 22               [24]  380 	ret
-      0004A3                        381 00130$:
+      0004D2 BF 0A 01         [24]  379 	cjne	r7,#0x0a,00130$
+      0004D5 22               [24]  380 	ret
+      0004D6                        381 00130$:
                                     382 ;	./src/oled_i2c.c:58: index = (ch - 0x20);
-      0004A3 7E 00            [12]  383 	mov	r6,#0x00
-      0004A5 EF               [12]  384 	mov	a,r7
-      0004A6 24 E0            [12]  385 	add	a,#0xe0
-      0004A8 F5 16            [12]  386 	mov	__mulint_PARM_2,a
-      0004AA EE               [12]  387 	mov	a,r6
-      0004AB 34 FF            [12]  388 	addc	a,#0xff
-      0004AD F5 17            [12]  389 	mov	(__mulint_PARM_2 + 1),a
+      0004D6 7E 00            [12]  383 	mov	r6,#0x00
+      0004D8 EF               [12]  384 	mov	a,r7
+      0004D9 24 E0            [12]  385 	add	a,#0xe0
+      0004DB F5 18            [12]  386 	mov	__mulint_PARM_2,a
+      0004DD EE               [12]  387 	mov	a,r6
+      0004DE 34 FF            [12]  388 	addc	a,#0xff
+      0004E0 F5 19            [12]  389 	mov	(__mulint_PARM_2 + 1),a
                                     390 ;	./src/oled_i2c.c:59: index = index * 5; // As the lookup table starts from Space(0x20)
                                     391 ;	./src/oled_i2c.c:61: for (i = 0; i < 5; i++)
-      0004AF 90 00 05         [24]  392 	mov	dptr,#0x0005
-      0004B2 12 05 8C         [24]  393 	lcall	__mulint
-      0004B5 AE 82            [24]  394 	mov	r6,dpl
-      0004B7 AF 83            [24]  395 	mov	r7,dph
-      0004B9 7D 00            [12]  396 	mov	r5,#0x00
-      0004BB                        397 00104$:
+      0004E2 90 00 05         [24]  392 	mov	dptr,#0x0005
+      0004E5 12 05 BF         [24]  393 	lcall	__mulint
+      0004E8 AE 82            [24]  394 	mov	r6,dpl
+      0004EA AF 83            [24]  395 	mov	r7,dph
+      0004EC 7D 00            [12]  396 	mov	r5,#0x00
+      0004EE                        397 00104$:
                                     398 ;	./src/oled_i2c.c:62: oledSendData(OledFontTable[index + i]); /* Get the data to be displayed for LookUptable*/
-      0004BB 8D 03            [24]  399 	mov	ar3,r5
-      0004BD 7C 00            [12]  400 	mov	r4,#0x00
-      0004BF EB               [12]  401 	mov	a,r3
-      0004C0 2E               [12]  402 	add	a,r6
-      0004C1 FB               [12]  403 	mov	r3,a
-      0004C2 EC               [12]  404 	mov	a,r4
-      0004C3 3F               [12]  405 	addc	a,r7
-      0004C4 FC               [12]  406 	mov	r4,a
-      0004C5 EB               [12]  407 	mov	a,r3
-      0004C6 24 35            [12]  408 	add	a,#_OledFontTable
-      0004C8 F5 82            [12]  409 	mov	dpl,a
-      0004CA EC               [12]  410 	mov	a,r4
-      0004CB 34 06            [12]  411 	addc	a,#(_OledFontTable >> 8)
-      0004CD F5 83            [12]  412 	mov	dph,a
-      0004CF E4               [12]  413 	clr	a
-      0004D0 93               [24]  414 	movc	a,@a+dptr
-      0004D1 F5 82            [12]  415 	mov	dpl,a
-      0004D3 C0 07            [24]  416 	push	ar7
-      0004D5 C0 06            [24]  417 	push	ar6
-      0004D7 C0 05            [24]  418 	push	ar5
-      0004D9 12 05 80         [24]  419 	lcall	_oledSendData
-      0004DC D0 05            [24]  420 	pop	ar5
-      0004DE D0 06            [24]  421 	pop	ar6
-      0004E0 D0 07            [24]  422 	pop	ar7
+      0004EE 8D 03            [24]  399 	mov	ar3,r5
+      0004F0 7C 00            [12]  400 	mov	r4,#0x00
+      0004F2 EB               [12]  401 	mov	a,r3
+      0004F3 2E               [12]  402 	add	a,r6
+      0004F4 FB               [12]  403 	mov	r3,a
+      0004F5 EC               [12]  404 	mov	a,r4
+      0004F6 3F               [12]  405 	addc	a,r7
+      0004F7 FC               [12]  406 	mov	r4,a
+      0004F8 EB               [12]  407 	mov	a,r3
+      0004F9 24 68            [12]  408 	add	a,#_OledFontTable
+      0004FB F5 82            [12]  409 	mov	dpl,a
+      0004FD EC               [12]  410 	mov	a,r4
+      0004FE 34 06            [12]  411 	addc	a,#(_OledFontTable >> 8)
+      000500 F5 83            [12]  412 	mov	dph,a
+      000502 E4               [12]  413 	clr	a
+      000503 93               [24]  414 	movc	a,@a+dptr
+      000504 F5 82            [12]  415 	mov	dpl,a
+      000506 C0 07            [24]  416 	push	ar7
+      000508 C0 06            [24]  417 	push	ar6
+      00050A C0 05            [24]  418 	push	ar5
+      00050C 12 05 B3         [24]  419 	lcall	_oledSendData
+      00050F D0 05            [24]  420 	pop	ar5
+      000511 D0 06            [24]  421 	pop	ar6
+      000513 D0 07            [24]  422 	pop	ar7
                                     423 ;	./src/oled_i2c.c:61: for (i = 0; i < 5; i++)
-      0004E2 0D               [12]  424 	inc	r5
-      0004E3 BD 05 00         [24]  425 	cjne	r5,#0x05,00131$
-      0004E6                        426 00131$:
-      0004E6 40 D3            [24]  427 	jc	00104$
+      000515 0D               [12]  424 	inc	r5
+      000516 BD 05 00         [24]  425 	cjne	r5,#0x05,00131$
+      000519                        426 00131$:
+      000519 40 D3            [24]  427 	jc	00104$
                                     428 ;	./src/oled_i2c.c:64: oledSendData(0x00); /* Display the data and keep track of cursor */
-      0004E8 75 82 00         [24]  429 	mov	dpl,#0x00
+      00051B 75 82 00         [24]  429 	mov	dpl,#0x00
                                     430 ;	./src/oled_i2c.c:66: }
-      0004EB 02 05 80         [24]  431 	ljmp	_oledSendData
+      00051E 02 05 B3         [24]  431 	ljmp	_oledSendData
                                     432 ;------------------------------------------------------------
                                     433 ;Allocation info for local variables in function 'OLED_DisplayString'
                                     434 ;------------------------------------------------------------
@@ -438,35 +438,35 @@
                                     438 ;	-----------------------------------------
                                     439 ;	 function OLED_DisplayString
                                     440 ;	-----------------------------------------
-      0004EE                        441 _OLED_DisplayString:
-      0004EE AD 82            [24]  442 	mov	r5,dpl
-      0004F0 AE 83            [24]  443 	mov	r6,dph
-      0004F2 AF F0            [24]  444 	mov	r7,b
+      000521                        441 _OLED_DisplayString:
+      000521 AD 82            [24]  442 	mov	r5,dpl
+      000523 AE 83            [24]  443 	mov	r6,dph
+      000525 AF F0            [24]  444 	mov	r7,b
                                     445 ;	./src/oled_i2c.c:83: while (*ptr)
-      0004F4                        446 00101$:
-      0004F4 8D 82            [24]  447 	mov	dpl,r5
-      0004F6 8E 83            [24]  448 	mov	dph,r6
-      0004F8 8F F0            [24]  449 	mov	b,r7
-      0004FA 12 05 A9         [24]  450 	lcall	__gptrget
-      0004FD FC               [12]  451 	mov	r4,a
-      0004FE 60 18            [24]  452 	jz	00104$
+      000527                        446 00101$:
+      000527 8D 82            [24]  447 	mov	dpl,r5
+      000529 8E 83            [24]  448 	mov	dph,r6
+      00052B 8F F0            [24]  449 	mov	b,r7
+      00052D 12 05 DC         [24]  450 	lcall	__gptrget
+      000530 FC               [12]  451 	mov	r4,a
+      000531 60 18            [24]  452 	jz	00104$
                                     453 ;	./src/oled_i2c.c:84: OLED_DisplayChar(*ptr++);
-      000500 8C 82            [24]  454 	mov	dpl,r4
-      000502 0D               [12]  455 	inc	r5
-      000503 BD 00 01         [24]  456 	cjne	r5,#0x00,00120$
-      000506 0E               [12]  457 	inc	r6
-      000507                        458 00120$:
-      000507 C0 07            [24]  459 	push	ar7
-      000509 C0 06            [24]  460 	push	ar6
-      00050B C0 05            [24]  461 	push	ar5
-      00050D 12 04 9D         [24]  462 	lcall	_OLED_DisplayChar
-      000510 D0 05            [24]  463 	pop	ar5
-      000512 D0 06            [24]  464 	pop	ar6
-      000514 D0 07            [24]  465 	pop	ar7
-      000516 80 DC            [24]  466 	sjmp	00101$
-      000518                        467 00104$:
+      000533 8C 82            [24]  454 	mov	dpl,r4
+      000535 0D               [12]  455 	inc	r5
+      000536 BD 00 01         [24]  456 	cjne	r5,#0x00,00120$
+      000539 0E               [12]  457 	inc	r6
+      00053A                        458 00120$:
+      00053A C0 07            [24]  459 	push	ar7
+      00053C C0 06            [24]  460 	push	ar6
+      00053E C0 05            [24]  461 	push	ar5
+      000540 12 04 D0         [24]  462 	lcall	_OLED_DisplayChar
+      000543 D0 05            [24]  463 	pop	ar5
+      000545 D0 06            [24]  464 	pop	ar6
+      000547 D0 07            [24]  465 	pop	ar7
+      000549 80 DC            [24]  466 	sjmp	00101$
+      00054B                        467 00104$:
                                     468 ;	./src/oled_i2c.c:85: }
-      000518 22               [24]  469 	ret
+      00054B 22               [24]  469 	ret
                                     470 ;------------------------------------------------------------
                                     471 ;Allocation info for local variables in function 'OLED_Clear'
                                     472 ;------------------------------------------------------------
@@ -477,38 +477,38 @@
                                     477 ;	-----------------------------------------
                                     478 ;	 function OLED_Clear
                                     479 ;	-----------------------------------------
-      000519                        480 _OLED_Clear:
+      00054C                        480 _OLED_Clear:
                                     481 ;	./src/oled_i2c.c:99: for (oled_clean_page = 0; oled_clean_page < 8; oled_clean_page++)
-      000519 7F 00            [12]  482 	mov	r7,#0x00
-      00051B                        483 00105$:
+      00054C 7F 00            [12]  482 	mov	r7,#0x00
+      00054E                        483 00105$:
                                     484 ;	./src/oled_i2c.c:101: OLED_SetCursor(oled_clean_page, 0);
-      00051B 75 15 00         [24]  485 	mov	_OLED_SetCursor_PARM_2,#0x00
-      00051E 8F 82            [24]  486 	mov	dpl,r7
-      000520 C0 07            [24]  487 	push	ar7
-      000522 12 05 44         [24]  488 	lcall	_OLED_SetCursor
-      000525 D0 07            [24]  489 	pop	ar7
+      00054E 75 17 00         [24]  485 	mov	_OLED_SetCursor_PARM_2,#0x00
+      000551 8F 82            [24]  486 	mov	dpl,r7
+      000553 C0 07            [24]  487 	push	ar7
+      000555 12 05 77         [24]  488 	lcall	_OLED_SetCursor
+      000558 D0 07            [24]  489 	pop	ar7
                                     490 ;	./src/oled_i2c.c:102: for (oled_clean_col = 0; oled_clean_col < 128; oled_clean_col++)
-      000527 7E 00            [12]  491 	mov	r6,#0x00
-      000529                        492 00103$:
+      00055A 7E 00            [12]  491 	mov	r6,#0x00
+      00055C                        492 00103$:
                                     493 ;	./src/oled_i2c.c:104: oledSendData(0);
-      000529 75 82 00         [24]  494 	mov	dpl,#0x00
-      00052C C0 07            [24]  495 	push	ar7
-      00052E C0 06            [24]  496 	push	ar6
-      000530 12 05 80         [24]  497 	lcall	_oledSendData
-      000533 D0 06            [24]  498 	pop	ar6
-      000535 D0 07            [24]  499 	pop	ar7
+      00055C 75 82 00         [24]  494 	mov	dpl,#0x00
+      00055F C0 07            [24]  495 	push	ar7
+      000561 C0 06            [24]  496 	push	ar6
+      000563 12 05 B3         [24]  497 	lcall	_oledSendData
+      000566 D0 06            [24]  498 	pop	ar6
+      000568 D0 07            [24]  499 	pop	ar7
                                     500 ;	./src/oled_i2c.c:102: for (oled_clean_col = 0; oled_clean_col < 128; oled_clean_col++)
-      000537 0E               [12]  501 	inc	r6
-      000538 BE 80 00         [24]  502 	cjne	r6,#0x80,00129$
-      00053B                        503 00129$:
-      00053B 40 EC            [24]  504 	jc	00103$
+      00056A 0E               [12]  501 	inc	r6
+      00056B BE 80 00         [24]  502 	cjne	r6,#0x80,00129$
+      00056E                        503 00129$:
+      00056E 40 EC            [24]  504 	jc	00103$
                                     505 ;	./src/oled_i2c.c:99: for (oled_clean_page = 0; oled_clean_page < 8; oled_clean_page++)
-      00053D 0F               [12]  506 	inc	r7
-      00053E BF 08 00         [24]  507 	cjne	r7,#0x08,00131$
-      000541                        508 00131$:
-      000541 40 D8            [24]  509 	jc	00105$
+      000570 0F               [12]  506 	inc	r7
+      000571 BF 08 00         [24]  507 	cjne	r7,#0x08,00131$
+      000574                        508 00131$:
+      000574 40 D8            [24]  509 	jc	00105$
                                     510 ;	./src/oled_i2c.c:107: }
-      000543 22               [24]  511 	ret
+      000576 22               [24]  511 	ret
                                     512 ;------------------------------------------------------------
                                     513 ;Allocation info for local variables in function 'OLED_SetCursor'
                                     514 ;------------------------------------------------------------
@@ -519,38 +519,38 @@
                                     519 ;	-----------------------------------------
                                     520 ;	 function OLED_SetCursor
                                     521 ;	-----------------------------------------
-      000544                        522 _OLED_SetCursor:
-      000544 AF 82            [24]  523 	mov	r7,dpl
+      000577                        522 _OLED_SetCursor:
+      000577 AF 82            [24]  523 	mov	r7,dpl
                                     524 ;	./src/oled_i2c.c:126: cursorPosition = cursorPosition + 2;
-      000546 AE 15            [24]  525 	mov	r6,_OLED_SetCursor_PARM_2
-      000548 74 02            [12]  526 	mov	a,#0x02
-      00054A 2E               [12]  527 	add	a,r6
-      00054B F5 15            [12]  528 	mov	_OLED_SetCursor_PARM_2,a
+      000579 AE 17            [24]  525 	mov	r6,_OLED_SetCursor_PARM_2
+      00057B 74 02            [12]  526 	mov	a,#0x02
+      00057D 2E               [12]  527 	add	a,r6
+      00057E F5 17            [12]  528 	mov	_OLED_SetCursor_PARM_2,a
                                     529 ;	./src/oled_i2c.c:127: oledSendCommand(0x0f & cursorPosition);        // Select SEG lower 4 bits
-      00054D AE 15            [24]  530 	mov	r6,_OLED_SetCursor_PARM_2
-      00054F 74 0F            [12]  531 	mov	a,#0x0f
-      000551 5E               [12]  532 	anl	a,r6
-      000552 F5 82            [12]  533 	mov	dpl,a
-      000554 C0 07            [24]  534 	push	ar7
-      000556 C0 06            [24]  535 	push	ar6
-      000558 12 05 74         [24]  536 	lcall	_oledSendCommand
-      00055B D0 06            [24]  537 	pop	ar6
+      000580 AE 17            [24]  530 	mov	r6,_OLED_SetCursor_PARM_2
+      000582 74 0F            [12]  531 	mov	a,#0x0f
+      000584 5E               [12]  532 	anl	a,r6
+      000585 F5 82            [12]  533 	mov	dpl,a
+      000587 C0 07            [24]  534 	push	ar7
+      000589 C0 06            [24]  535 	push	ar6
+      00058B 12 05 A7         [24]  536 	lcall	_oledSendCommand
+      00058E D0 06            [24]  537 	pop	ar6
                                     538 ;	./src/oled_i2c.c:128: oledSendCommand(0x10 | (cursorPosition >> 4)); // Select SEG higher 4 bits
-      00055D EE               [12]  539 	mov	a,r6
-      00055E C4               [12]  540 	swap	a
-      00055F 54 0F            [12]  541 	anl	a,#0x0f
-      000561 FE               [12]  542 	mov	r6,a
-      000562 74 10            [12]  543 	mov	a,#0x10
-      000564 4E               [12]  544 	orl	a,r6
-      000565 F5 82            [12]  545 	mov	dpl,a
-      000567 12 05 74         [24]  546 	lcall	_oledSendCommand
-      00056A D0 07            [24]  547 	pop	ar7
+      000590 EE               [12]  539 	mov	a,r6
+      000591 C4               [12]  540 	swap	a
+      000592 54 0F            [12]  541 	anl	a,#0x0f
+      000594 FE               [12]  542 	mov	r6,a
+      000595 74 10            [12]  543 	mov	a,#0x10
+      000597 4E               [12]  544 	orl	a,r6
+      000598 F5 82            [12]  545 	mov	dpl,a
+      00059A 12 05 A7         [24]  546 	lcall	_oledSendCommand
+      00059D D0 07            [24]  547 	pop	ar7
                                     548 ;	./src/oled_i2c.c:129: oledSendCommand(0xb0 | lineNumber);            // Select PAGE
-      00056C 74 B0            [12]  549 	mov	a,#0xb0
-      00056E 4F               [12]  550 	orl	a,r7
-      00056F F5 82            [12]  551 	mov	dpl,a
+      00059F 74 B0            [12]  549 	mov	a,#0xb0
+      0005A1 4F               [12]  550 	orl	a,r7
+      0005A2 F5 82            [12]  551 	mov	dpl,a
                                     552 ;	./src/oled_i2c.c:130: }
-      000571 02 05 74         [24]  553 	ljmp	_oledSendCommand
+      0005A4 02 05 A7         [24]  553 	ljmp	_oledSendCommand
                                     554 ;------------------------------------------------------------
                                     555 ;Allocation info for local variables in function 'oledSendCommand'
                                     556 ;------------------------------------------------------------
@@ -560,13 +560,13 @@
                                     560 ;	-----------------------------------------
                                     561 ;	 function oledSendCommand
                                     562 ;	-----------------------------------------
-      000574                        563 _oledSendCommand:
-      000574 85 82 13         [24]  564 	mov	_Single_WriteI2C_PARM_3,dpl
+      0005A7                        563 _oledSendCommand:
+      0005A7 85 82 15         [24]  564 	mov	_Single_WriteI2C_PARM_3,dpl
                                     565 ;	./src/oled_i2c.c:137: Single_WriteI2C(OLED_SlaveAddress, SSD1306_COMMAND, cmd);
-      000577 75 12 00         [24]  566 	mov	_Single_WriteI2C_PARM_2,#0x00
-      00057A 75 82 78         [24]  567 	mov	dpl,#0x78
+      0005AA 75 14 00         [24]  566 	mov	_Single_WriteI2C_PARM_2,#0x00
+      0005AD 75 82 78         [24]  567 	mov	dpl,#0x78
                                     568 ;	./src/oled_i2c.c:138: }
-      00057D 02 03 5D         [24]  569 	ljmp	_Single_WriteI2C
+      0005B0 02 03 90         [24]  569 	ljmp	_Single_WriteI2C
                                     570 ;------------------------------------------------------------
                                     571 ;Allocation info for local variables in function 'oledSendData'
                                     572 ;------------------------------------------------------------
@@ -576,490 +576,490 @@
                                     576 ;	-----------------------------------------
                                     577 ;	 function oledSendData
                                     578 ;	-----------------------------------------
-      000580                        579 _oledSendData:
-      000580 85 82 13         [24]  580 	mov	_Single_WriteI2C_PARM_3,dpl
+      0005B3                        579 _oledSendData:
+      0005B3 85 82 15         [24]  580 	mov	_Single_WriteI2C_PARM_3,dpl
                                     581 ;	./src/oled_i2c.c:142: Single_WriteI2C(OLED_SlaveAddress, SSD1306_DATA_CONTINUE, cmd);
-      000583 75 12 40         [24]  582 	mov	_Single_WriteI2C_PARM_2,#0x40
-      000586 75 82 78         [24]  583 	mov	dpl,#0x78
+      0005B6 75 14 40         [24]  582 	mov	_Single_WriteI2C_PARM_2,#0x40
+      0005B9 75 82 78         [24]  583 	mov	dpl,#0x78
                                     584 ;	./src/oled_i2c.c:143: }
-      000589 02 03 5D         [24]  585 	ljmp	_Single_WriteI2C
+      0005BC 02 03 90         [24]  585 	ljmp	_Single_WriteI2C
                                     586 	.area CSEG    (CODE)
                                     587 	.area CONST   (CODE)
-      000635                        588 _OledFontTable:
-      000635 00                     589 	.db #0x00	; 0
-      000636 00                     590 	.db #0x00	; 0
-      000637 00                     591 	.db #0x00	; 0
-      000638 00                     592 	.db #0x00	; 0
-      000639 00                     593 	.db #0x00	; 0
-      00063A 00                     594 	.db #0x00	; 0
-      00063B 00                     595 	.db #0x00	; 0
-      00063C 2F                     596 	.db #0x2f	; 47
-      00063D 00                     597 	.db #0x00	; 0
-      00063E 00                     598 	.db #0x00	; 0
-      00063F 00                     599 	.db #0x00	; 0
-      000640 07                     600 	.db #0x07	; 7
-      000641 00                     601 	.db #0x00	; 0
-      000642 07                     602 	.db #0x07	; 7
-      000643 00                     603 	.db #0x00	; 0
-      000644 14                     604 	.db #0x14	; 20
-      000645 7F                     605 	.db #0x7f	; 127
-      000646 14                     606 	.db #0x14	; 20
-      000647 7F                     607 	.db #0x7f	; 127
-      000648 14                     608 	.db #0x14	; 20
-      000649 24                     609 	.db #0x24	; 36
-      00064A 2A                     610 	.db #0x2a	; 42
-      00064B 7F                     611 	.db #0x7f	; 127
-      00064C 2A                     612 	.db #0x2a	; 42
-      00064D 12                     613 	.db #0x12	; 18
-      00064E 23                     614 	.db #0x23	; 35
-      00064F 13                     615 	.db #0x13	; 19
-      000650 08                     616 	.db #0x08	; 8
-      000651 64                     617 	.db #0x64	; 100	'd'
-      000652 62                     618 	.db #0x62	; 98	'b'
-      000653 36                     619 	.db #0x36	; 54	'6'
-      000654 49                     620 	.db #0x49	; 73	'I'
-      000655 55                     621 	.db #0x55	; 85	'U'
-      000656 22                     622 	.db #0x22	; 34
-      000657 50                     623 	.db #0x50	; 80	'P'
-      000658 00                     624 	.db #0x00	; 0
-      000659 05                     625 	.db #0x05	; 5
-      00065A 03                     626 	.db #0x03	; 3
-      00065B 00                     627 	.db #0x00	; 0
-      00065C 00                     628 	.db #0x00	; 0
-      00065D 00                     629 	.db #0x00	; 0
-      00065E 1C                     630 	.db #0x1c	; 28
-      00065F 22                     631 	.db #0x22	; 34
-      000660 41                     632 	.db #0x41	; 65	'A'
-      000661 00                     633 	.db #0x00	; 0
-      000662 00                     634 	.db #0x00	; 0
-      000663 41                     635 	.db #0x41	; 65	'A'
-      000664 22                     636 	.db #0x22	; 34
-      000665 1C                     637 	.db #0x1c	; 28
-      000666 00                     638 	.db #0x00	; 0
-      000667 14                     639 	.db #0x14	; 20
-      000668 08                     640 	.db #0x08	; 8
-      000669 3E                     641 	.db #0x3e	; 62
-      00066A 08                     642 	.db #0x08	; 8
-      00066B 14                     643 	.db #0x14	; 20
-      00066C 08                     644 	.db #0x08	; 8
-      00066D 08                     645 	.db #0x08	; 8
-      00066E 3E                     646 	.db #0x3e	; 62
-      00066F 08                     647 	.db #0x08	; 8
-      000670 08                     648 	.db #0x08	; 8
-      000671 00                     649 	.db #0x00	; 0
-      000672 00                     650 	.db #0x00	; 0
-      000673 A0                     651 	.db #0xa0	; 160
-      000674 60                     652 	.db #0x60	; 96
-      000675 00                     653 	.db #0x00	; 0
-      000676 08                     654 	.db #0x08	; 8
-      000677 08                     655 	.db #0x08	; 8
-      000678 08                     656 	.db #0x08	; 8
-      000679 08                     657 	.db #0x08	; 8
-      00067A 08                     658 	.db #0x08	; 8
-      00067B 00                     659 	.db #0x00	; 0
-      00067C 60                     660 	.db #0x60	; 96
-      00067D 60                     661 	.db #0x60	; 96
-      00067E 00                     662 	.db #0x00	; 0
-      00067F 00                     663 	.db #0x00	; 0
-      000680 20                     664 	.db #0x20	; 32
-      000681 10                     665 	.db #0x10	; 16
-      000682 08                     666 	.db #0x08	; 8
-      000683 04                     667 	.db #0x04	; 4
-      000684 02                     668 	.db #0x02	; 2
-      000685 3E                     669 	.db #0x3e	; 62
-      000686 51                     670 	.db #0x51	; 81	'Q'
-      000687 49                     671 	.db #0x49	; 73	'I'
-      000688 45                     672 	.db #0x45	; 69	'E'
-      000689 3E                     673 	.db #0x3e	; 62
-      00068A 00                     674 	.db #0x00	; 0
-      00068B 42                     675 	.db #0x42	; 66	'B'
-      00068C 7F                     676 	.db #0x7f	; 127
-      00068D 40                     677 	.db #0x40	; 64
-      00068E 00                     678 	.db #0x00	; 0
-      00068F 42                     679 	.db #0x42	; 66	'B'
-      000690 61                     680 	.db #0x61	; 97	'a'
-      000691 51                     681 	.db #0x51	; 81	'Q'
-      000692 49                     682 	.db #0x49	; 73	'I'
-      000693 46                     683 	.db #0x46	; 70	'F'
-      000694 21                     684 	.db #0x21	; 33
-      000695 41                     685 	.db #0x41	; 65	'A'
-      000696 45                     686 	.db #0x45	; 69	'E'
-      000697 4B                     687 	.db #0x4b	; 75	'K'
-      000698 31                     688 	.db #0x31	; 49	'1'
-      000699 18                     689 	.db #0x18	; 24
-      00069A 14                     690 	.db #0x14	; 20
-      00069B 12                     691 	.db #0x12	; 18
-      00069C 7F                     692 	.db #0x7f	; 127
-      00069D 10                     693 	.db #0x10	; 16
-      00069E 27                     694 	.db #0x27	; 39
-      00069F 45                     695 	.db #0x45	; 69	'E'
-      0006A0 45                     696 	.db #0x45	; 69	'E'
-      0006A1 45                     697 	.db #0x45	; 69	'E'
-      0006A2 39                     698 	.db #0x39	; 57	'9'
-      0006A3 3C                     699 	.db #0x3c	; 60
-      0006A4 4A                     700 	.db #0x4a	; 74	'J'
-      0006A5 49                     701 	.db #0x49	; 73	'I'
-      0006A6 49                     702 	.db #0x49	; 73	'I'
-      0006A7 30                     703 	.db #0x30	; 48	'0'
-      0006A8 01                     704 	.db #0x01	; 1
-      0006A9 71                     705 	.db #0x71	; 113	'q'
-      0006AA 09                     706 	.db #0x09	; 9
-      0006AB 05                     707 	.db #0x05	; 5
-      0006AC 03                     708 	.db #0x03	; 3
-      0006AD 36                     709 	.db #0x36	; 54	'6'
-      0006AE 49                     710 	.db #0x49	; 73	'I'
-      0006AF 49                     711 	.db #0x49	; 73	'I'
-      0006B0 49                     712 	.db #0x49	; 73	'I'
-      0006B1 36                     713 	.db #0x36	; 54	'6'
-      0006B2 06                     714 	.db #0x06	; 6
-      0006B3 49                     715 	.db #0x49	; 73	'I'
-      0006B4 49                     716 	.db #0x49	; 73	'I'
-      0006B5 29                     717 	.db #0x29	; 41
-      0006B6 1E                     718 	.db #0x1e	; 30
-      0006B7 00                     719 	.db #0x00	; 0
-      0006B8 36                     720 	.db #0x36	; 54	'6'
-      0006B9 36                     721 	.db #0x36	; 54	'6'
-      0006BA 00                     722 	.db #0x00	; 0
-      0006BB 00                     723 	.db #0x00	; 0
-      0006BC 00                     724 	.db #0x00	; 0
-      0006BD 56                     725 	.db #0x56	; 86	'V'
-      0006BE 36                     726 	.db #0x36	; 54	'6'
-      0006BF 00                     727 	.db #0x00	; 0
-      0006C0 00                     728 	.db #0x00	; 0
-      0006C1 08                     729 	.db #0x08	; 8
-      0006C2 14                     730 	.db #0x14	; 20
-      0006C3 22                     731 	.db #0x22	; 34
-      0006C4 41                     732 	.db #0x41	; 65	'A'
-      0006C5 00                     733 	.db #0x00	; 0
-      0006C6 14                     734 	.db #0x14	; 20
-      0006C7 14                     735 	.db #0x14	; 20
-      0006C8 14                     736 	.db #0x14	; 20
-      0006C9 14                     737 	.db #0x14	; 20
-      0006CA 14                     738 	.db #0x14	; 20
-      0006CB 00                     739 	.db #0x00	; 0
-      0006CC 41                     740 	.db #0x41	; 65	'A'
-      0006CD 22                     741 	.db #0x22	; 34
-      0006CE 14                     742 	.db #0x14	; 20
-      0006CF 08                     743 	.db #0x08	; 8
-      0006D0 02                     744 	.db #0x02	; 2
-      0006D1 01                     745 	.db #0x01	; 1
-      0006D2 51                     746 	.db #0x51	; 81	'Q'
-      0006D3 09                     747 	.db #0x09	; 9
-      0006D4 06                     748 	.db #0x06	; 6
-      0006D5 32                     749 	.db #0x32	; 50	'2'
-      0006D6 49                     750 	.db #0x49	; 73	'I'
-      0006D7 59                     751 	.db #0x59	; 89	'Y'
-      0006D8 51                     752 	.db #0x51	; 81	'Q'
-      0006D9 3E                     753 	.db #0x3e	; 62
-      0006DA 7C                     754 	.db #0x7c	; 124
-      0006DB 12                     755 	.db #0x12	; 18
-      0006DC 11                     756 	.db #0x11	; 17
-      0006DD 12                     757 	.db #0x12	; 18
-      0006DE 7C                     758 	.db #0x7c	; 124
-      0006DF 7F                     759 	.db #0x7f	; 127
-      0006E0 49                     760 	.db #0x49	; 73	'I'
-      0006E1 49                     761 	.db #0x49	; 73	'I'
-      0006E2 49                     762 	.db #0x49	; 73	'I'
-      0006E3 36                     763 	.db #0x36	; 54	'6'
-      0006E4 3E                     764 	.db #0x3e	; 62
-      0006E5 41                     765 	.db #0x41	; 65	'A'
-      0006E6 41                     766 	.db #0x41	; 65	'A'
-      0006E7 41                     767 	.db #0x41	; 65	'A'
-      0006E8 22                     768 	.db #0x22	; 34
-      0006E9 7F                     769 	.db #0x7f	; 127
-      0006EA 41                     770 	.db #0x41	; 65	'A'
-      0006EB 41                     771 	.db #0x41	; 65	'A'
-      0006EC 22                     772 	.db #0x22	; 34
-      0006ED 1C                     773 	.db #0x1c	; 28
-      0006EE 7F                     774 	.db #0x7f	; 127
-      0006EF 49                     775 	.db #0x49	; 73	'I'
-      0006F0 49                     776 	.db #0x49	; 73	'I'
-      0006F1 49                     777 	.db #0x49	; 73	'I'
-      0006F2 41                     778 	.db #0x41	; 65	'A'
-      0006F3 7F                     779 	.db #0x7f	; 127
-      0006F4 09                     780 	.db #0x09	; 9
-      0006F5 09                     781 	.db #0x09	; 9
-      0006F6 09                     782 	.db #0x09	; 9
-      0006F7 01                     783 	.db #0x01	; 1
-      0006F8 3E                     784 	.db #0x3e	; 62
-      0006F9 41                     785 	.db #0x41	; 65	'A'
-      0006FA 49                     786 	.db #0x49	; 73	'I'
-      0006FB 49                     787 	.db #0x49	; 73	'I'
-      0006FC 7A                     788 	.db #0x7a	; 122	'z'
-      0006FD 7F                     789 	.db #0x7f	; 127
-      0006FE 08                     790 	.db #0x08	; 8
-      0006FF 08                     791 	.db #0x08	; 8
-      000700 08                     792 	.db #0x08	; 8
-      000701 7F                     793 	.db #0x7f	; 127
-      000702 00                     794 	.db #0x00	; 0
-      000703 41                     795 	.db #0x41	; 65	'A'
-      000704 7F                     796 	.db #0x7f	; 127
-      000705 41                     797 	.db #0x41	; 65	'A'
-      000706 00                     798 	.db #0x00	; 0
-      000707 20                     799 	.db #0x20	; 32
-      000708 40                     800 	.db #0x40	; 64
-      000709 41                     801 	.db #0x41	; 65	'A'
-      00070A 3F                     802 	.db #0x3f	; 63
-      00070B 01                     803 	.db #0x01	; 1
-      00070C 7F                     804 	.db #0x7f	; 127
-      00070D 08                     805 	.db #0x08	; 8
-      00070E 14                     806 	.db #0x14	; 20
-      00070F 22                     807 	.db #0x22	; 34
-      000710 41                     808 	.db #0x41	; 65	'A'
-      000711 7F                     809 	.db #0x7f	; 127
-      000712 40                     810 	.db #0x40	; 64
-      000713 40                     811 	.db #0x40	; 64
-      000714 40                     812 	.db #0x40	; 64
-      000715 40                     813 	.db #0x40	; 64
-      000716 7F                     814 	.db #0x7f	; 127
-      000717 02                     815 	.db #0x02	; 2
-      000718 0C                     816 	.db #0x0c	; 12
-      000719 02                     817 	.db #0x02	; 2
-      00071A 7F                     818 	.db #0x7f	; 127
-      00071B 7F                     819 	.db #0x7f	; 127
-      00071C 04                     820 	.db #0x04	; 4
-      00071D 08                     821 	.db #0x08	; 8
-      00071E 10                     822 	.db #0x10	; 16
-      00071F 7F                     823 	.db #0x7f	; 127
-      000720 3E                     824 	.db #0x3e	; 62
-      000721 41                     825 	.db #0x41	; 65	'A'
-      000722 41                     826 	.db #0x41	; 65	'A'
-      000723 41                     827 	.db #0x41	; 65	'A'
-      000724 3E                     828 	.db #0x3e	; 62
-      000725 7F                     829 	.db #0x7f	; 127
-      000726 09                     830 	.db #0x09	; 9
-      000727 09                     831 	.db #0x09	; 9
-      000728 09                     832 	.db #0x09	; 9
-      000729 06                     833 	.db #0x06	; 6
-      00072A 3E                     834 	.db #0x3e	; 62
-      00072B 41                     835 	.db #0x41	; 65	'A'
-      00072C 51                     836 	.db #0x51	; 81	'Q'
-      00072D 21                     837 	.db #0x21	; 33
-      00072E 5E                     838 	.db #0x5e	; 94
-      00072F 7F                     839 	.db #0x7f	; 127
-      000730 09                     840 	.db #0x09	; 9
-      000731 19                     841 	.db #0x19	; 25
-      000732 29                     842 	.db #0x29	; 41
-      000733 46                     843 	.db #0x46	; 70	'F'
-      000734 46                     844 	.db #0x46	; 70	'F'
-      000735 49                     845 	.db #0x49	; 73	'I'
-      000736 49                     846 	.db #0x49	; 73	'I'
-      000737 49                     847 	.db #0x49	; 73	'I'
-      000738 31                     848 	.db #0x31	; 49	'1'
-      000739 01                     849 	.db #0x01	; 1
-      00073A 01                     850 	.db #0x01	; 1
-      00073B 7F                     851 	.db #0x7f	; 127
-      00073C 01                     852 	.db #0x01	; 1
-      00073D 01                     853 	.db #0x01	; 1
-      00073E 3F                     854 	.db #0x3f	; 63
-      00073F 40                     855 	.db #0x40	; 64
-      000740 40                     856 	.db #0x40	; 64
-      000741 40                     857 	.db #0x40	; 64
-      000742 3F                     858 	.db #0x3f	; 63
-      000743 1F                     859 	.db #0x1f	; 31
-      000744 20                     860 	.db #0x20	; 32
-      000745 40                     861 	.db #0x40	; 64
-      000746 20                     862 	.db #0x20	; 32
-      000747 1F                     863 	.db #0x1f	; 31
-      000748 3F                     864 	.db #0x3f	; 63
-      000749 40                     865 	.db #0x40	; 64
-      00074A 38                     866 	.db #0x38	; 56	'8'
-      00074B 40                     867 	.db #0x40	; 64
-      00074C 3F                     868 	.db #0x3f	; 63
-      00074D 63                     869 	.db #0x63	; 99	'c'
-      00074E 14                     870 	.db #0x14	; 20
-      00074F 08                     871 	.db #0x08	; 8
-      000750 14                     872 	.db #0x14	; 20
-      000751 63                     873 	.db #0x63	; 99	'c'
-      000752 07                     874 	.db #0x07	; 7
-      000753 08                     875 	.db #0x08	; 8
-      000754 70                     876 	.db #0x70	; 112	'p'
-      000755 08                     877 	.db #0x08	; 8
-      000756 07                     878 	.db #0x07	; 7
-      000757 61                     879 	.db #0x61	; 97	'a'
-      000758 51                     880 	.db #0x51	; 81	'Q'
-      000759 49                     881 	.db #0x49	; 73	'I'
-      00075A 45                     882 	.db #0x45	; 69	'E'
-      00075B 43                     883 	.db #0x43	; 67	'C'
-      00075C 00                     884 	.db #0x00	; 0
-      00075D 7F                     885 	.db #0x7f	; 127
-      00075E 41                     886 	.db #0x41	; 65	'A'
-      00075F 41                     887 	.db #0x41	; 65	'A'
-      000760 00                     888 	.db #0x00	; 0
-      000761 55                     889 	.db #0x55	; 85	'U'
-      000762 AA                     890 	.db #0xaa	; 170
-      000763 55                     891 	.db #0x55	; 85	'U'
-      000764 AA                     892 	.db #0xaa	; 170
-      000765 55                     893 	.db #0x55	; 85	'U'
-      000766 00                     894 	.db #0x00	; 0
-      000767 41                     895 	.db #0x41	; 65	'A'
-      000768 41                     896 	.db #0x41	; 65	'A'
-      000769 7F                     897 	.db #0x7f	; 127
-      00076A 00                     898 	.db #0x00	; 0
-      00076B 04                     899 	.db #0x04	; 4
-      00076C 02                     900 	.db #0x02	; 2
-      00076D 01                     901 	.db #0x01	; 1
-      00076E 02                     902 	.db #0x02	; 2
-      00076F 04                     903 	.db #0x04	; 4
-      000770 40                     904 	.db #0x40	; 64
-      000771 40                     905 	.db #0x40	; 64
-      000772 40                     906 	.db #0x40	; 64
-      000773 40                     907 	.db #0x40	; 64
-      000774 40                     908 	.db #0x40	; 64
-      000775 00                     909 	.db #0x00	; 0
-      000776 03                     910 	.db #0x03	; 3
-      000777 05                     911 	.db #0x05	; 5
-      000778 00                     912 	.db #0x00	; 0
-      000779 00                     913 	.db #0x00	; 0
-      00077A 20                     914 	.db #0x20	; 32
-      00077B 54                     915 	.db #0x54	; 84	'T'
-      00077C 54                     916 	.db #0x54	; 84	'T'
-      00077D 54                     917 	.db #0x54	; 84	'T'
-      00077E 78                     918 	.db #0x78	; 120	'x'
-      00077F 7F                     919 	.db #0x7f	; 127
-      000780 48                     920 	.db #0x48	; 72	'H'
-      000781 44                     921 	.db #0x44	; 68	'D'
-      000782 44                     922 	.db #0x44	; 68	'D'
-      000783 38                     923 	.db #0x38	; 56	'8'
-      000784 38                     924 	.db #0x38	; 56	'8'
-      000785 44                     925 	.db #0x44	; 68	'D'
-      000786 44                     926 	.db #0x44	; 68	'D'
-      000787 44                     927 	.db #0x44	; 68	'D'
-      000788 20                     928 	.db #0x20	; 32
-      000789 38                     929 	.db #0x38	; 56	'8'
-      00078A 44                     930 	.db #0x44	; 68	'D'
-      00078B 44                     931 	.db #0x44	; 68	'D'
-      00078C 48                     932 	.db #0x48	; 72	'H'
-      00078D 7F                     933 	.db #0x7f	; 127
-      00078E 38                     934 	.db #0x38	; 56	'8'
-      00078F 54                     935 	.db #0x54	; 84	'T'
-      000790 54                     936 	.db #0x54	; 84	'T'
-      000791 54                     937 	.db #0x54	; 84	'T'
-      000792 18                     938 	.db #0x18	; 24
-      000793 08                     939 	.db #0x08	; 8
-      000794 7E                     940 	.db #0x7e	; 126
-      000795 09                     941 	.db #0x09	; 9
-      000796 01                     942 	.db #0x01	; 1
-      000797 02                     943 	.db #0x02	; 2
-      000798 18                     944 	.db #0x18	; 24
-      000799 A4                     945 	.db #0xa4	; 164
-      00079A A4                     946 	.db #0xa4	; 164
-      00079B A4                     947 	.db #0xa4	; 164
-      00079C 7C                     948 	.db #0x7c	; 124
-      00079D 7F                     949 	.db #0x7f	; 127
-      00079E 08                     950 	.db #0x08	; 8
-      00079F 04                     951 	.db #0x04	; 4
-      0007A0 04                     952 	.db #0x04	; 4
-      0007A1 78                     953 	.db #0x78	; 120	'x'
-      0007A2 00                     954 	.db #0x00	; 0
-      0007A3 44                     955 	.db #0x44	; 68	'D'
-      0007A4 7D                     956 	.db #0x7d	; 125
-      0007A5 40                     957 	.db #0x40	; 64
-      0007A6 00                     958 	.db #0x00	; 0
-      0007A7 40                     959 	.db #0x40	; 64
-      0007A8 80                     960 	.db #0x80	; 128
-      0007A9 84                     961 	.db #0x84	; 132
-      0007AA 7D                     962 	.db #0x7d	; 125
-      0007AB 00                     963 	.db #0x00	; 0
-      0007AC 7F                     964 	.db #0x7f	; 127
-      0007AD 10                     965 	.db #0x10	; 16
-      0007AE 28                     966 	.db #0x28	; 40
-      0007AF 44                     967 	.db #0x44	; 68	'D'
-      0007B0 00                     968 	.db #0x00	; 0
-      0007B1 00                     969 	.db #0x00	; 0
-      0007B2 41                     970 	.db #0x41	; 65	'A'
-      0007B3 7F                     971 	.db #0x7f	; 127
-      0007B4 40                     972 	.db #0x40	; 64
-      0007B5 00                     973 	.db #0x00	; 0
-      0007B6 7C                     974 	.db #0x7c	; 124
-      0007B7 04                     975 	.db #0x04	; 4
-      0007B8 18                     976 	.db #0x18	; 24
-      0007B9 04                     977 	.db #0x04	; 4
-      0007BA 78                     978 	.db #0x78	; 120	'x'
-      0007BB 7C                     979 	.db #0x7c	; 124
-      0007BC 08                     980 	.db #0x08	; 8
-      0007BD 04                     981 	.db #0x04	; 4
-      0007BE 04                     982 	.db #0x04	; 4
-      0007BF 78                     983 	.db #0x78	; 120	'x'
-      0007C0 38                     984 	.db #0x38	; 56	'8'
-      0007C1 44                     985 	.db #0x44	; 68	'D'
-      0007C2 44                     986 	.db #0x44	; 68	'D'
-      0007C3 44                     987 	.db #0x44	; 68	'D'
-      0007C4 38                     988 	.db #0x38	; 56	'8'
-      0007C5 FC                     989 	.db #0xfc	; 252
-      0007C6 24                     990 	.db #0x24	; 36
-      0007C7 24                     991 	.db #0x24	; 36
-      0007C8 24                     992 	.db #0x24	; 36
-      0007C9 18                     993 	.db #0x18	; 24
-      0007CA 18                     994 	.db #0x18	; 24
-      0007CB 24                     995 	.db #0x24	; 36
-      0007CC 24                     996 	.db #0x24	; 36
-      0007CD 18                     997 	.db #0x18	; 24
-      0007CE FC                     998 	.db #0xfc	; 252
-      0007CF 7C                     999 	.db #0x7c	; 124
-      0007D0 08                    1000 	.db #0x08	; 8
-      0007D1 04                    1001 	.db #0x04	; 4
-      0007D2 04                    1002 	.db #0x04	; 4
-      0007D3 08                    1003 	.db #0x08	; 8
-      0007D4 48                    1004 	.db #0x48	; 72	'H'
-      0007D5 54                    1005 	.db #0x54	; 84	'T'
-      0007D6 54                    1006 	.db #0x54	; 84	'T'
-      0007D7 54                    1007 	.db #0x54	; 84	'T'
-      0007D8 20                    1008 	.db #0x20	; 32
-      0007D9 04                    1009 	.db #0x04	; 4
-      0007DA 3F                    1010 	.db #0x3f	; 63
-      0007DB 44                    1011 	.db #0x44	; 68	'D'
-      0007DC 40                    1012 	.db #0x40	; 64
-      0007DD 20                    1013 	.db #0x20	; 32
-      0007DE 3C                    1014 	.db #0x3c	; 60
-      0007DF 40                    1015 	.db #0x40	; 64
-      0007E0 40                    1016 	.db #0x40	; 64
-      0007E1 20                    1017 	.db #0x20	; 32
-      0007E2 7C                    1018 	.db #0x7c	; 124
-      0007E3 1C                    1019 	.db #0x1c	; 28
-      0007E4 20                    1020 	.db #0x20	; 32
-      0007E5 40                    1021 	.db #0x40	; 64
-      0007E6 20                    1022 	.db #0x20	; 32
-      0007E7 1C                    1023 	.db #0x1c	; 28
-      0007E8 3C                    1024 	.db #0x3c	; 60
-      0007E9 40                    1025 	.db #0x40	; 64
-      0007EA 30                    1026 	.db #0x30	; 48	'0'
-      0007EB 40                    1027 	.db #0x40	; 64
-      0007EC 3C                    1028 	.db #0x3c	; 60
-      0007ED 44                    1029 	.db #0x44	; 68	'D'
-      0007EE 28                    1030 	.db #0x28	; 40
-      0007EF 10                    1031 	.db #0x10	; 16
-      0007F0 28                    1032 	.db #0x28	; 40
-      0007F1 44                    1033 	.db #0x44	; 68	'D'
-      0007F2 1C                    1034 	.db #0x1c	; 28
-      0007F3 A0                    1035 	.db #0xa0	; 160
-      0007F4 A0                    1036 	.db #0xa0	; 160
-      0007F5 A0                    1037 	.db #0xa0	; 160
-      0007F6 7C                    1038 	.db #0x7c	; 124
-      0007F7 44                    1039 	.db #0x44	; 68	'D'
-      0007F8 64                    1040 	.db #0x64	; 100	'd'
-      0007F9 54                    1041 	.db #0x54	; 84	'T'
-      0007FA 4C                    1042 	.db #0x4c	; 76	'L'
-      0007FB 44                    1043 	.db #0x44	; 68	'D'
-      0007FC 00                    1044 	.db #0x00	; 0
-      0007FD 10                    1045 	.db #0x10	; 16
-      0007FE 7C                    1046 	.db #0x7c	; 124
-      0007FF 82                    1047 	.db #0x82	; 130
-      000800 00                    1048 	.db #0x00	; 0
-      000801 00                    1049 	.db #0x00	; 0
-      000802 00                    1050 	.db #0x00	; 0
-      000803 FF                    1051 	.db #0xff	; 255
-      000804 00                    1052 	.db #0x00	; 0
-      000805 00                    1053 	.db #0x00	; 0
-      000806 00                    1054 	.db #0x00	; 0
-      000807 82                    1055 	.db #0x82	; 130
-      000808 7C                    1056 	.db #0x7c	; 124
-      000809 10                    1057 	.db #0x10	; 16
-      00080A 00                    1058 	.db #0x00	; 0
-      00080B 00                    1059 	.db #0x00	; 0
-      00080C 06                    1060 	.db #0x06	; 6
-      00080D 09                    1061 	.db #0x09	; 9
-      00080E 09                    1062 	.db #0x09	; 9
-      00080F 06                    1063 	.db #0x06	; 6
+      000668                        588 _OledFontTable:
+      000668 00                     589 	.db #0x00	; 0
+      000669 00                     590 	.db #0x00	; 0
+      00066A 00                     591 	.db #0x00	; 0
+      00066B 00                     592 	.db #0x00	; 0
+      00066C 00                     593 	.db #0x00	; 0
+      00066D 00                     594 	.db #0x00	; 0
+      00066E 00                     595 	.db #0x00	; 0
+      00066F 2F                     596 	.db #0x2f	; 47
+      000670 00                     597 	.db #0x00	; 0
+      000671 00                     598 	.db #0x00	; 0
+      000672 00                     599 	.db #0x00	; 0
+      000673 07                     600 	.db #0x07	; 7
+      000674 00                     601 	.db #0x00	; 0
+      000675 07                     602 	.db #0x07	; 7
+      000676 00                     603 	.db #0x00	; 0
+      000677 14                     604 	.db #0x14	; 20
+      000678 7F                     605 	.db #0x7f	; 127
+      000679 14                     606 	.db #0x14	; 20
+      00067A 7F                     607 	.db #0x7f	; 127
+      00067B 14                     608 	.db #0x14	; 20
+      00067C 24                     609 	.db #0x24	; 36
+      00067D 2A                     610 	.db #0x2a	; 42
+      00067E 7F                     611 	.db #0x7f	; 127
+      00067F 2A                     612 	.db #0x2a	; 42
+      000680 12                     613 	.db #0x12	; 18
+      000681 23                     614 	.db #0x23	; 35
+      000682 13                     615 	.db #0x13	; 19
+      000683 08                     616 	.db #0x08	; 8
+      000684 64                     617 	.db #0x64	; 100	'd'
+      000685 62                     618 	.db #0x62	; 98	'b'
+      000686 36                     619 	.db #0x36	; 54	'6'
+      000687 49                     620 	.db #0x49	; 73	'I'
+      000688 55                     621 	.db #0x55	; 85	'U'
+      000689 22                     622 	.db #0x22	; 34
+      00068A 50                     623 	.db #0x50	; 80	'P'
+      00068B 00                     624 	.db #0x00	; 0
+      00068C 05                     625 	.db #0x05	; 5
+      00068D 03                     626 	.db #0x03	; 3
+      00068E 00                     627 	.db #0x00	; 0
+      00068F 00                     628 	.db #0x00	; 0
+      000690 00                     629 	.db #0x00	; 0
+      000691 1C                     630 	.db #0x1c	; 28
+      000692 22                     631 	.db #0x22	; 34
+      000693 41                     632 	.db #0x41	; 65	'A'
+      000694 00                     633 	.db #0x00	; 0
+      000695 00                     634 	.db #0x00	; 0
+      000696 41                     635 	.db #0x41	; 65	'A'
+      000697 22                     636 	.db #0x22	; 34
+      000698 1C                     637 	.db #0x1c	; 28
+      000699 00                     638 	.db #0x00	; 0
+      00069A 14                     639 	.db #0x14	; 20
+      00069B 08                     640 	.db #0x08	; 8
+      00069C 3E                     641 	.db #0x3e	; 62
+      00069D 08                     642 	.db #0x08	; 8
+      00069E 14                     643 	.db #0x14	; 20
+      00069F 08                     644 	.db #0x08	; 8
+      0006A0 08                     645 	.db #0x08	; 8
+      0006A1 3E                     646 	.db #0x3e	; 62
+      0006A2 08                     647 	.db #0x08	; 8
+      0006A3 08                     648 	.db #0x08	; 8
+      0006A4 00                     649 	.db #0x00	; 0
+      0006A5 00                     650 	.db #0x00	; 0
+      0006A6 A0                     651 	.db #0xa0	; 160
+      0006A7 60                     652 	.db #0x60	; 96
+      0006A8 00                     653 	.db #0x00	; 0
+      0006A9 08                     654 	.db #0x08	; 8
+      0006AA 08                     655 	.db #0x08	; 8
+      0006AB 08                     656 	.db #0x08	; 8
+      0006AC 08                     657 	.db #0x08	; 8
+      0006AD 08                     658 	.db #0x08	; 8
+      0006AE 00                     659 	.db #0x00	; 0
+      0006AF 60                     660 	.db #0x60	; 96
+      0006B0 60                     661 	.db #0x60	; 96
+      0006B1 00                     662 	.db #0x00	; 0
+      0006B2 00                     663 	.db #0x00	; 0
+      0006B3 20                     664 	.db #0x20	; 32
+      0006B4 10                     665 	.db #0x10	; 16
+      0006B5 08                     666 	.db #0x08	; 8
+      0006B6 04                     667 	.db #0x04	; 4
+      0006B7 02                     668 	.db #0x02	; 2
+      0006B8 3E                     669 	.db #0x3e	; 62
+      0006B9 51                     670 	.db #0x51	; 81	'Q'
+      0006BA 49                     671 	.db #0x49	; 73	'I'
+      0006BB 45                     672 	.db #0x45	; 69	'E'
+      0006BC 3E                     673 	.db #0x3e	; 62
+      0006BD 00                     674 	.db #0x00	; 0
+      0006BE 42                     675 	.db #0x42	; 66	'B'
+      0006BF 7F                     676 	.db #0x7f	; 127
+      0006C0 40                     677 	.db #0x40	; 64
+      0006C1 00                     678 	.db #0x00	; 0
+      0006C2 42                     679 	.db #0x42	; 66	'B'
+      0006C3 61                     680 	.db #0x61	; 97	'a'
+      0006C4 51                     681 	.db #0x51	; 81	'Q'
+      0006C5 49                     682 	.db #0x49	; 73	'I'
+      0006C6 46                     683 	.db #0x46	; 70	'F'
+      0006C7 21                     684 	.db #0x21	; 33
+      0006C8 41                     685 	.db #0x41	; 65	'A'
+      0006C9 45                     686 	.db #0x45	; 69	'E'
+      0006CA 4B                     687 	.db #0x4b	; 75	'K'
+      0006CB 31                     688 	.db #0x31	; 49	'1'
+      0006CC 18                     689 	.db #0x18	; 24
+      0006CD 14                     690 	.db #0x14	; 20
+      0006CE 12                     691 	.db #0x12	; 18
+      0006CF 7F                     692 	.db #0x7f	; 127
+      0006D0 10                     693 	.db #0x10	; 16
+      0006D1 27                     694 	.db #0x27	; 39
+      0006D2 45                     695 	.db #0x45	; 69	'E'
+      0006D3 45                     696 	.db #0x45	; 69	'E'
+      0006D4 45                     697 	.db #0x45	; 69	'E'
+      0006D5 39                     698 	.db #0x39	; 57	'9'
+      0006D6 3C                     699 	.db #0x3c	; 60
+      0006D7 4A                     700 	.db #0x4a	; 74	'J'
+      0006D8 49                     701 	.db #0x49	; 73	'I'
+      0006D9 49                     702 	.db #0x49	; 73	'I'
+      0006DA 30                     703 	.db #0x30	; 48	'0'
+      0006DB 01                     704 	.db #0x01	; 1
+      0006DC 71                     705 	.db #0x71	; 113	'q'
+      0006DD 09                     706 	.db #0x09	; 9
+      0006DE 05                     707 	.db #0x05	; 5
+      0006DF 03                     708 	.db #0x03	; 3
+      0006E0 36                     709 	.db #0x36	; 54	'6'
+      0006E1 49                     710 	.db #0x49	; 73	'I'
+      0006E2 49                     711 	.db #0x49	; 73	'I'
+      0006E3 49                     712 	.db #0x49	; 73	'I'
+      0006E4 36                     713 	.db #0x36	; 54	'6'
+      0006E5 06                     714 	.db #0x06	; 6
+      0006E6 49                     715 	.db #0x49	; 73	'I'
+      0006E7 49                     716 	.db #0x49	; 73	'I'
+      0006E8 29                     717 	.db #0x29	; 41
+      0006E9 1E                     718 	.db #0x1e	; 30
+      0006EA 00                     719 	.db #0x00	; 0
+      0006EB 36                     720 	.db #0x36	; 54	'6'
+      0006EC 36                     721 	.db #0x36	; 54	'6'
+      0006ED 00                     722 	.db #0x00	; 0
+      0006EE 00                     723 	.db #0x00	; 0
+      0006EF 00                     724 	.db #0x00	; 0
+      0006F0 56                     725 	.db #0x56	; 86	'V'
+      0006F1 36                     726 	.db #0x36	; 54	'6'
+      0006F2 00                     727 	.db #0x00	; 0
+      0006F3 00                     728 	.db #0x00	; 0
+      0006F4 08                     729 	.db #0x08	; 8
+      0006F5 14                     730 	.db #0x14	; 20
+      0006F6 22                     731 	.db #0x22	; 34
+      0006F7 41                     732 	.db #0x41	; 65	'A'
+      0006F8 00                     733 	.db #0x00	; 0
+      0006F9 14                     734 	.db #0x14	; 20
+      0006FA 14                     735 	.db #0x14	; 20
+      0006FB 14                     736 	.db #0x14	; 20
+      0006FC 14                     737 	.db #0x14	; 20
+      0006FD 14                     738 	.db #0x14	; 20
+      0006FE 00                     739 	.db #0x00	; 0
+      0006FF 41                     740 	.db #0x41	; 65	'A'
+      000700 22                     741 	.db #0x22	; 34
+      000701 14                     742 	.db #0x14	; 20
+      000702 08                     743 	.db #0x08	; 8
+      000703 02                     744 	.db #0x02	; 2
+      000704 01                     745 	.db #0x01	; 1
+      000705 51                     746 	.db #0x51	; 81	'Q'
+      000706 09                     747 	.db #0x09	; 9
+      000707 06                     748 	.db #0x06	; 6
+      000708 32                     749 	.db #0x32	; 50	'2'
+      000709 49                     750 	.db #0x49	; 73	'I'
+      00070A 59                     751 	.db #0x59	; 89	'Y'
+      00070B 51                     752 	.db #0x51	; 81	'Q'
+      00070C 3E                     753 	.db #0x3e	; 62
+      00070D 7C                     754 	.db #0x7c	; 124
+      00070E 12                     755 	.db #0x12	; 18
+      00070F 11                     756 	.db #0x11	; 17
+      000710 12                     757 	.db #0x12	; 18
+      000711 7C                     758 	.db #0x7c	; 124
+      000712 7F                     759 	.db #0x7f	; 127
+      000713 49                     760 	.db #0x49	; 73	'I'
+      000714 49                     761 	.db #0x49	; 73	'I'
+      000715 49                     762 	.db #0x49	; 73	'I'
+      000716 36                     763 	.db #0x36	; 54	'6'
+      000717 3E                     764 	.db #0x3e	; 62
+      000718 41                     765 	.db #0x41	; 65	'A'
+      000719 41                     766 	.db #0x41	; 65	'A'
+      00071A 41                     767 	.db #0x41	; 65	'A'
+      00071B 22                     768 	.db #0x22	; 34
+      00071C 7F                     769 	.db #0x7f	; 127
+      00071D 41                     770 	.db #0x41	; 65	'A'
+      00071E 41                     771 	.db #0x41	; 65	'A'
+      00071F 22                     772 	.db #0x22	; 34
+      000720 1C                     773 	.db #0x1c	; 28
+      000721 7F                     774 	.db #0x7f	; 127
+      000722 49                     775 	.db #0x49	; 73	'I'
+      000723 49                     776 	.db #0x49	; 73	'I'
+      000724 49                     777 	.db #0x49	; 73	'I'
+      000725 41                     778 	.db #0x41	; 65	'A'
+      000726 7F                     779 	.db #0x7f	; 127
+      000727 09                     780 	.db #0x09	; 9
+      000728 09                     781 	.db #0x09	; 9
+      000729 09                     782 	.db #0x09	; 9
+      00072A 01                     783 	.db #0x01	; 1
+      00072B 3E                     784 	.db #0x3e	; 62
+      00072C 41                     785 	.db #0x41	; 65	'A'
+      00072D 49                     786 	.db #0x49	; 73	'I'
+      00072E 49                     787 	.db #0x49	; 73	'I'
+      00072F 7A                     788 	.db #0x7a	; 122	'z'
+      000730 7F                     789 	.db #0x7f	; 127
+      000731 08                     790 	.db #0x08	; 8
+      000732 08                     791 	.db #0x08	; 8
+      000733 08                     792 	.db #0x08	; 8
+      000734 7F                     793 	.db #0x7f	; 127
+      000735 00                     794 	.db #0x00	; 0
+      000736 41                     795 	.db #0x41	; 65	'A'
+      000737 7F                     796 	.db #0x7f	; 127
+      000738 41                     797 	.db #0x41	; 65	'A'
+      000739 00                     798 	.db #0x00	; 0
+      00073A 20                     799 	.db #0x20	; 32
+      00073B 40                     800 	.db #0x40	; 64
+      00073C 41                     801 	.db #0x41	; 65	'A'
+      00073D 3F                     802 	.db #0x3f	; 63
+      00073E 01                     803 	.db #0x01	; 1
+      00073F 7F                     804 	.db #0x7f	; 127
+      000740 08                     805 	.db #0x08	; 8
+      000741 14                     806 	.db #0x14	; 20
+      000742 22                     807 	.db #0x22	; 34
+      000743 41                     808 	.db #0x41	; 65	'A'
+      000744 7F                     809 	.db #0x7f	; 127
+      000745 40                     810 	.db #0x40	; 64
+      000746 40                     811 	.db #0x40	; 64
+      000747 40                     812 	.db #0x40	; 64
+      000748 40                     813 	.db #0x40	; 64
+      000749 7F                     814 	.db #0x7f	; 127
+      00074A 02                     815 	.db #0x02	; 2
+      00074B 0C                     816 	.db #0x0c	; 12
+      00074C 02                     817 	.db #0x02	; 2
+      00074D 7F                     818 	.db #0x7f	; 127
+      00074E 7F                     819 	.db #0x7f	; 127
+      00074F 04                     820 	.db #0x04	; 4
+      000750 08                     821 	.db #0x08	; 8
+      000751 10                     822 	.db #0x10	; 16
+      000752 7F                     823 	.db #0x7f	; 127
+      000753 3E                     824 	.db #0x3e	; 62
+      000754 41                     825 	.db #0x41	; 65	'A'
+      000755 41                     826 	.db #0x41	; 65	'A'
+      000756 41                     827 	.db #0x41	; 65	'A'
+      000757 3E                     828 	.db #0x3e	; 62
+      000758 7F                     829 	.db #0x7f	; 127
+      000759 09                     830 	.db #0x09	; 9
+      00075A 09                     831 	.db #0x09	; 9
+      00075B 09                     832 	.db #0x09	; 9
+      00075C 06                     833 	.db #0x06	; 6
+      00075D 3E                     834 	.db #0x3e	; 62
+      00075E 41                     835 	.db #0x41	; 65	'A'
+      00075F 51                     836 	.db #0x51	; 81	'Q'
+      000760 21                     837 	.db #0x21	; 33
+      000761 5E                     838 	.db #0x5e	; 94
+      000762 7F                     839 	.db #0x7f	; 127
+      000763 09                     840 	.db #0x09	; 9
+      000764 19                     841 	.db #0x19	; 25
+      000765 29                     842 	.db #0x29	; 41
+      000766 46                     843 	.db #0x46	; 70	'F'
+      000767 46                     844 	.db #0x46	; 70	'F'
+      000768 49                     845 	.db #0x49	; 73	'I'
+      000769 49                     846 	.db #0x49	; 73	'I'
+      00076A 49                     847 	.db #0x49	; 73	'I'
+      00076B 31                     848 	.db #0x31	; 49	'1'
+      00076C 01                     849 	.db #0x01	; 1
+      00076D 01                     850 	.db #0x01	; 1
+      00076E 7F                     851 	.db #0x7f	; 127
+      00076F 01                     852 	.db #0x01	; 1
+      000770 01                     853 	.db #0x01	; 1
+      000771 3F                     854 	.db #0x3f	; 63
+      000772 40                     855 	.db #0x40	; 64
+      000773 40                     856 	.db #0x40	; 64
+      000774 40                     857 	.db #0x40	; 64
+      000775 3F                     858 	.db #0x3f	; 63
+      000776 1F                     859 	.db #0x1f	; 31
+      000777 20                     860 	.db #0x20	; 32
+      000778 40                     861 	.db #0x40	; 64
+      000779 20                     862 	.db #0x20	; 32
+      00077A 1F                     863 	.db #0x1f	; 31
+      00077B 3F                     864 	.db #0x3f	; 63
+      00077C 40                     865 	.db #0x40	; 64
+      00077D 38                     866 	.db #0x38	; 56	'8'
+      00077E 40                     867 	.db #0x40	; 64
+      00077F 3F                     868 	.db #0x3f	; 63
+      000780 63                     869 	.db #0x63	; 99	'c'
+      000781 14                     870 	.db #0x14	; 20
+      000782 08                     871 	.db #0x08	; 8
+      000783 14                     872 	.db #0x14	; 20
+      000784 63                     873 	.db #0x63	; 99	'c'
+      000785 07                     874 	.db #0x07	; 7
+      000786 08                     875 	.db #0x08	; 8
+      000787 70                     876 	.db #0x70	; 112	'p'
+      000788 08                     877 	.db #0x08	; 8
+      000789 07                     878 	.db #0x07	; 7
+      00078A 61                     879 	.db #0x61	; 97	'a'
+      00078B 51                     880 	.db #0x51	; 81	'Q'
+      00078C 49                     881 	.db #0x49	; 73	'I'
+      00078D 45                     882 	.db #0x45	; 69	'E'
+      00078E 43                     883 	.db #0x43	; 67	'C'
+      00078F 00                     884 	.db #0x00	; 0
+      000790 7F                     885 	.db #0x7f	; 127
+      000791 41                     886 	.db #0x41	; 65	'A'
+      000792 41                     887 	.db #0x41	; 65	'A'
+      000793 00                     888 	.db #0x00	; 0
+      000794 55                     889 	.db #0x55	; 85	'U'
+      000795 AA                     890 	.db #0xaa	; 170
+      000796 55                     891 	.db #0x55	; 85	'U'
+      000797 AA                     892 	.db #0xaa	; 170
+      000798 55                     893 	.db #0x55	; 85	'U'
+      000799 00                     894 	.db #0x00	; 0
+      00079A 41                     895 	.db #0x41	; 65	'A'
+      00079B 41                     896 	.db #0x41	; 65	'A'
+      00079C 7F                     897 	.db #0x7f	; 127
+      00079D 00                     898 	.db #0x00	; 0
+      00079E 04                     899 	.db #0x04	; 4
+      00079F 02                     900 	.db #0x02	; 2
+      0007A0 01                     901 	.db #0x01	; 1
+      0007A1 02                     902 	.db #0x02	; 2
+      0007A2 04                     903 	.db #0x04	; 4
+      0007A3 40                     904 	.db #0x40	; 64
+      0007A4 40                     905 	.db #0x40	; 64
+      0007A5 40                     906 	.db #0x40	; 64
+      0007A6 40                     907 	.db #0x40	; 64
+      0007A7 40                     908 	.db #0x40	; 64
+      0007A8 00                     909 	.db #0x00	; 0
+      0007A9 03                     910 	.db #0x03	; 3
+      0007AA 05                     911 	.db #0x05	; 5
+      0007AB 00                     912 	.db #0x00	; 0
+      0007AC 00                     913 	.db #0x00	; 0
+      0007AD 20                     914 	.db #0x20	; 32
+      0007AE 54                     915 	.db #0x54	; 84	'T'
+      0007AF 54                     916 	.db #0x54	; 84	'T'
+      0007B0 54                     917 	.db #0x54	; 84	'T'
+      0007B1 78                     918 	.db #0x78	; 120	'x'
+      0007B2 7F                     919 	.db #0x7f	; 127
+      0007B3 48                     920 	.db #0x48	; 72	'H'
+      0007B4 44                     921 	.db #0x44	; 68	'D'
+      0007B5 44                     922 	.db #0x44	; 68	'D'
+      0007B6 38                     923 	.db #0x38	; 56	'8'
+      0007B7 38                     924 	.db #0x38	; 56	'8'
+      0007B8 44                     925 	.db #0x44	; 68	'D'
+      0007B9 44                     926 	.db #0x44	; 68	'D'
+      0007BA 44                     927 	.db #0x44	; 68	'D'
+      0007BB 20                     928 	.db #0x20	; 32
+      0007BC 38                     929 	.db #0x38	; 56	'8'
+      0007BD 44                     930 	.db #0x44	; 68	'D'
+      0007BE 44                     931 	.db #0x44	; 68	'D'
+      0007BF 48                     932 	.db #0x48	; 72	'H'
+      0007C0 7F                     933 	.db #0x7f	; 127
+      0007C1 38                     934 	.db #0x38	; 56	'8'
+      0007C2 54                     935 	.db #0x54	; 84	'T'
+      0007C3 54                     936 	.db #0x54	; 84	'T'
+      0007C4 54                     937 	.db #0x54	; 84	'T'
+      0007C5 18                     938 	.db #0x18	; 24
+      0007C6 08                     939 	.db #0x08	; 8
+      0007C7 7E                     940 	.db #0x7e	; 126
+      0007C8 09                     941 	.db #0x09	; 9
+      0007C9 01                     942 	.db #0x01	; 1
+      0007CA 02                     943 	.db #0x02	; 2
+      0007CB 18                     944 	.db #0x18	; 24
+      0007CC A4                     945 	.db #0xa4	; 164
+      0007CD A4                     946 	.db #0xa4	; 164
+      0007CE A4                     947 	.db #0xa4	; 164
+      0007CF 7C                     948 	.db #0x7c	; 124
+      0007D0 7F                     949 	.db #0x7f	; 127
+      0007D1 08                     950 	.db #0x08	; 8
+      0007D2 04                     951 	.db #0x04	; 4
+      0007D3 04                     952 	.db #0x04	; 4
+      0007D4 78                     953 	.db #0x78	; 120	'x'
+      0007D5 00                     954 	.db #0x00	; 0
+      0007D6 44                     955 	.db #0x44	; 68	'D'
+      0007D7 7D                     956 	.db #0x7d	; 125
+      0007D8 40                     957 	.db #0x40	; 64
+      0007D9 00                     958 	.db #0x00	; 0
+      0007DA 40                     959 	.db #0x40	; 64
+      0007DB 80                     960 	.db #0x80	; 128
+      0007DC 84                     961 	.db #0x84	; 132
+      0007DD 7D                     962 	.db #0x7d	; 125
+      0007DE 00                     963 	.db #0x00	; 0
+      0007DF 7F                     964 	.db #0x7f	; 127
+      0007E0 10                     965 	.db #0x10	; 16
+      0007E1 28                     966 	.db #0x28	; 40
+      0007E2 44                     967 	.db #0x44	; 68	'D'
+      0007E3 00                     968 	.db #0x00	; 0
+      0007E4 00                     969 	.db #0x00	; 0
+      0007E5 41                     970 	.db #0x41	; 65	'A'
+      0007E6 7F                     971 	.db #0x7f	; 127
+      0007E7 40                     972 	.db #0x40	; 64
+      0007E8 00                     973 	.db #0x00	; 0
+      0007E9 7C                     974 	.db #0x7c	; 124
+      0007EA 04                     975 	.db #0x04	; 4
+      0007EB 18                     976 	.db #0x18	; 24
+      0007EC 04                     977 	.db #0x04	; 4
+      0007ED 78                     978 	.db #0x78	; 120	'x'
+      0007EE 7C                     979 	.db #0x7c	; 124
+      0007EF 08                     980 	.db #0x08	; 8
+      0007F0 04                     981 	.db #0x04	; 4
+      0007F1 04                     982 	.db #0x04	; 4
+      0007F2 78                     983 	.db #0x78	; 120	'x'
+      0007F3 38                     984 	.db #0x38	; 56	'8'
+      0007F4 44                     985 	.db #0x44	; 68	'D'
+      0007F5 44                     986 	.db #0x44	; 68	'D'
+      0007F6 44                     987 	.db #0x44	; 68	'D'
+      0007F7 38                     988 	.db #0x38	; 56	'8'
+      0007F8 FC                     989 	.db #0xfc	; 252
+      0007F9 24                     990 	.db #0x24	; 36
+      0007FA 24                     991 	.db #0x24	; 36
+      0007FB 24                     992 	.db #0x24	; 36
+      0007FC 18                     993 	.db #0x18	; 24
+      0007FD 18                     994 	.db #0x18	; 24
+      0007FE 24                     995 	.db #0x24	; 36
+      0007FF 24                     996 	.db #0x24	; 36
+      000800 18                     997 	.db #0x18	; 24
+      000801 FC                     998 	.db #0xfc	; 252
+      000802 7C                     999 	.db #0x7c	; 124
+      000803 08                    1000 	.db #0x08	; 8
+      000804 04                    1001 	.db #0x04	; 4
+      000805 04                    1002 	.db #0x04	; 4
+      000806 08                    1003 	.db #0x08	; 8
+      000807 48                    1004 	.db #0x48	; 72	'H'
+      000808 54                    1005 	.db #0x54	; 84	'T'
+      000809 54                    1006 	.db #0x54	; 84	'T'
+      00080A 54                    1007 	.db #0x54	; 84	'T'
+      00080B 20                    1008 	.db #0x20	; 32
+      00080C 04                    1009 	.db #0x04	; 4
+      00080D 3F                    1010 	.db #0x3f	; 63
+      00080E 44                    1011 	.db #0x44	; 68	'D'
+      00080F 40                    1012 	.db #0x40	; 64
+      000810 20                    1013 	.db #0x20	; 32
+      000811 3C                    1014 	.db #0x3c	; 60
+      000812 40                    1015 	.db #0x40	; 64
+      000813 40                    1016 	.db #0x40	; 64
+      000814 20                    1017 	.db #0x20	; 32
+      000815 7C                    1018 	.db #0x7c	; 124
+      000816 1C                    1019 	.db #0x1c	; 28
+      000817 20                    1020 	.db #0x20	; 32
+      000818 40                    1021 	.db #0x40	; 64
+      000819 20                    1022 	.db #0x20	; 32
+      00081A 1C                    1023 	.db #0x1c	; 28
+      00081B 3C                    1024 	.db #0x3c	; 60
+      00081C 40                    1025 	.db #0x40	; 64
+      00081D 30                    1026 	.db #0x30	; 48	'0'
+      00081E 40                    1027 	.db #0x40	; 64
+      00081F 3C                    1028 	.db #0x3c	; 60
+      000820 44                    1029 	.db #0x44	; 68	'D'
+      000821 28                    1030 	.db #0x28	; 40
+      000822 10                    1031 	.db #0x10	; 16
+      000823 28                    1032 	.db #0x28	; 40
+      000824 44                    1033 	.db #0x44	; 68	'D'
+      000825 1C                    1034 	.db #0x1c	; 28
+      000826 A0                    1035 	.db #0xa0	; 160
+      000827 A0                    1036 	.db #0xa0	; 160
+      000828 A0                    1037 	.db #0xa0	; 160
+      000829 7C                    1038 	.db #0x7c	; 124
+      00082A 44                    1039 	.db #0x44	; 68	'D'
+      00082B 64                    1040 	.db #0x64	; 100	'd'
+      00082C 54                    1041 	.db #0x54	; 84	'T'
+      00082D 4C                    1042 	.db #0x4c	; 76	'L'
+      00082E 44                    1043 	.db #0x44	; 68	'D'
+      00082F 00                    1044 	.db #0x00	; 0
+      000830 10                    1045 	.db #0x10	; 16
+      000831 7C                    1046 	.db #0x7c	; 124
+      000832 82                    1047 	.db #0x82	; 130
+      000833 00                    1048 	.db #0x00	; 0
+      000834 00                    1049 	.db #0x00	; 0
+      000835 00                    1050 	.db #0x00	; 0
+      000836 FF                    1051 	.db #0xff	; 255
+      000837 00                    1052 	.db #0x00	; 0
+      000838 00                    1053 	.db #0x00	; 0
+      000839 00                    1054 	.db #0x00	; 0
+      00083A 82                    1055 	.db #0x82	; 130
+      00083B 7C                    1056 	.db #0x7c	; 124
+      00083C 10                    1057 	.db #0x10	; 16
+      00083D 00                    1058 	.db #0x00	; 0
+      00083E 00                    1059 	.db #0x00	; 0
+      00083F 06                    1060 	.db #0x06	; 6
+      000840 09                    1061 	.db #0x09	; 9
+      000841 09                    1062 	.db #0x09	; 9
+      000842 06                    1063 	.db #0x06	; 6
                                    1064 	.area XINIT   (CODE)
                                    1065 	.area CABS    (ABS,CODE)

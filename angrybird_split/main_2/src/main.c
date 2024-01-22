@@ -12,13 +12,9 @@ int main()
     // set timer and initialize communication port
     TMOD = 0x20; // set timer1 to mode2
     SCON = 0x50; // set serial mode1
-    TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz
+    TH1 = 250;   // baudrate = 9600, fosc = 11.0592MHz(12)
     TR1 = 1;     // enable timer = 1
     IE = 0x90;   // enable serial port interrupt
-
-    // OLED_Init();
-    // angrybird_display_home();
-    // angrybird_display_game();
 
     while (1)
     {

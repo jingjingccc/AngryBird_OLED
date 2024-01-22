@@ -435,16 +435,16 @@ _angrybird_display_game:
 	ar1 = 0x01
 	ar0 = 0x00
 ;	./src/angry_bird.c:46: bird_amt = bird_total_amount;
-	mov	_bird_amt,#0x09
+	mov	_bird_amt,#0x05
 	mov	(_bird_amt + 1),#0x00
 ;	./src/angry_bird.c:47: pig_amt = pig_total_amount;
-	mov	_pig_amt,#0x03
+	mov	_pig_amt,#0x01
 	mov	(_pig_amt + 1),#0x00
-;	./src/angry_bird.c:48: control_angle = 60;
-	mov	_control_angle,#0x3c
+;	./src/angry_bird.c:48: control_angle = 30;
+	mov	_control_angle,#0x1e
 	mov	(_control_angle + 1),#0x00
-;	./src/angry_bird.c:49: control_strength = 3;
-	mov	_control_strength,#0x03
+;	./src/angry_bird.c:49: control_strength = 1;
+	mov	_control_strength,#0x01
 	mov	(_control_strength + 1),#0x00
 ;	./src/angry_bird.c:51: OLED_Clear();
 	lcall	_OLED_Clear
@@ -587,7 +587,7 @@ _angrybird_display_game:
 00121$:
 	clr	c
 	mov	a,_angrybird_display_game_k_131075_33
-	subb	a,#0x09
+	subb	a,#0x05
 	mov	a,(_angrybird_display_game_k_131075_33 + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
@@ -614,7 +614,7 @@ _angrybird_display_game:
 	xch	a,r4
 	xrl	a,r4
 	mov	r5,a
-	mov	a,#0x32
+	mov	a,#0x4f
 	add	a,r4
 	mov	_col_offset,a
 	clr	a
@@ -1368,7 +1368,7 @@ _angrybird_game_state:
 	mov	_row_offset,a
 	mov	(_row_offset + 1),a
 ;	./src/angry_bird.c:303: col_offset = bird_remain_col_cursor + (bird_total_amount - bird_amt - 1) * 8;
-	mov	a,#0x08
+	mov	a,#0x04
 	clr	c
 	subb	a,_bird_amt
 	mov	r6,a
@@ -1387,7 +1387,7 @@ _angrybird_game_state:
 	xch	a,r6
 	xrl	a,r6
 	mov	r7,a
-	mov	a,#0x32
+	mov	a,#0x4f
 	add	a,r6
 	mov	_col_offset,a
 	clr	a
@@ -2035,17 +2035,19 @@ _angrybird_game_state:
 	ljmp	00171$
 00758$:
 00170$:
-;	./src/angry_bird.c:423: if (pig_amt == 0)
+;	./src/angry_bird.c:423: row_offset = win_over_row_cursor;
+	mov	_row_offset,#0x02
+	mov	(_row_offset + 1),#0x00
+;	./src/angry_bird.c:424: col_offset = win_over_col_cursor;
+	mov	_col_offset,#0x32
+	mov	(_col_offset + 1),#0x00
+;	./src/angry_bird.c:425: if (pig_amt == 0)
 	mov	a,_pig_amt
 	orl	a,(_pig_amt + 1)
 	jz	00759$
 	ljmp	00168$
 00759$:
-;	./src/angry_bird.c:425: OLED_SetCursor(win_row_cursor, win_col_cursor);
-	mov	_OLED_SetCursor_PARM_2,#0x1f
-	mov	dpl,#0x03
-	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
+;	./src/angry_bird.c:427: for (int j = 0; j < win_over_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
 00216$:
@@ -2058,7 +2060,7 @@ _angrybird_game_state:
 	jc	00760$
 	ljmp	00169$
 00760$:
-;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
+;	./src/angry_bird.c:429: for (int i = 0; i < win_over_row_size; i++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 00213$:
@@ -2069,7 +2071,7 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00217$
-;	./src/angry_bird.c:430: OLED_SetCursor(row_offset + i, col_offset + j);
+;	./src/angry_bird.c:431: OLED_SetCursor(row_offset + i, col_offset + j);
 	mov	r3,_row_offset
 	mov	ar2,r4
 	mov	a,r2
@@ -2089,7 +2091,7 @@ _angrybird_game_state:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:431: oledSendData(win_page[win_cul_size * i + j]);
+;	./src/angry_bird.c:432: oledSendData(win_page[win_over_cul_size * i + j]);
 	mov	ar2,r4
 	mov	a,r5
 	anl	a,#0x03
@@ -2129,30 +2131,26 @@ _angrybird_game_state:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:428: for (int i = 0; i < win_row_size; i++)
+;	./src/angry_bird.c:429: for (int i = 0; i < win_over_row_size; i++)
 	inc	r4
 	cjne	r4,#0x00,00213$
 	inc	r5
 	sjmp	00213$
 00217$:
-;	./src/angry_bird.c:426: for (int j = 0; j < win_cul_size; j++)
+;	./src/angry_bird.c:427: for (int j = 0; j < win_over_cul_size; j++)
 	inc	r6
 	cjne	r6,#0x00,00763$
 	inc	r7
 00763$:
 	ljmp	00216$
 00168$:
-;	./src/angry_bird.c:435: else if (bird_amt == 0)
+;	./src/angry_bird.c:436: else if (bird_amt == 0)
 	mov	a,_bird_amt
 	orl	a,(_bird_amt + 1)
 	jz	00764$
 	ljmp	00169$
 00764$:
-;	./src/angry_bird.c:437: OLED_SetCursor(over_row_cursor, over_col_cursor);
-	mov	_OLED_SetCursor_PARM_2,#0x1f
-	mov	dpl,#0x03
-	lcall	_OLED_SetCursor
-;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
+;	./src/angry_bird.c:438: for (int j = 0; j < win_over_cul_size; j++)
 	mov	r6,#0x00
 	mov	r7,#0x00
 00222$:
@@ -2163,7 +2161,7 @@ _angrybird_game_state:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00169$
-;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
+;	./src/angry_bird.c:440: for (int i = 0; i < win_over_row_size; i++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 00219$:
@@ -2194,7 +2192,7 @@ _angrybird_game_state:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:443: oledSendData(over_page[over_cul_size * i + j]);
+;	./src/angry_bird.c:443: oledSendData(over_page[win_over_cul_size * i + j]);
 	mov	ar2,r4
 	mov	a,r5
 	anl	a,#0x03
@@ -2234,13 +2232,13 @@ _angrybird_game_state:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	./src/angry_bird.c:440: for (int i = 0; i < over_row_size; i++)
+;	./src/angry_bird.c:440: for (int i = 0; i < win_over_row_size; i++)
 	inc	r4
 	cjne	r4,#0x00,00219$
 	inc	r5
 	sjmp	00219$
 00223$:
-;	./src/angry_bird.c:438: for (int j = 0; j < over_cul_size; j++)
+;	./src/angry_bird.c:438: for (int j = 0; j < win_over_cul_size; j++)
 	inc	r6
 	cjne	r6,#0x00,00768$
 	inc	r7

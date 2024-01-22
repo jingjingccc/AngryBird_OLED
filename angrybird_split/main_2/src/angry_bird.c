@@ -45,8 +45,8 @@ void angrybird_display_game(void)
 {
     bird_amt = bird_total_amount;
     pig_amt = pig_total_amount;
-    control_angle = 60;
-    control_strength = 3;
+    control_angle = 30;
+    control_strength = 1;
 
     OLED_Clear();
 
@@ -420,27 +420,27 @@ void angrybird_game_state(void)
     //  determine bird and pigs reamining for game state
     if (pig_amt == 0 || bird_amt == 0)
     {
+        row_offset = win_over_row_cursor;
+        col_offset = win_over_col_cursor;
         if (pig_amt == 0)
         {
-            OLED_SetCursor(win_row_cursor, win_col_cursor);
-            for (int j = 0; j < win_cul_size; j++)
+            for (int j = 0; j < win_over_cul_size; j++)
             {
-                for (int i = 0; i < win_row_size; i++)
+                for (int i = 0; i < win_over_row_size; i++)
                 {
                     OLED_SetCursor(row_offset + i, col_offset + j);
-                    oledSendData(win_page[win_cul_size * i + j]);
+                    oledSendData(win_page[win_over_cul_size * i + j]);
                 }
             }
         }
         else if (bird_amt == 0)
         {
-            OLED_SetCursor(over_row_cursor, over_col_cursor);
-            for (int j = 0; j < over_cul_size; j++)
+            for (int j = 0; j < win_over_cul_size; j++)
             {
-                for (int i = 0; i < over_row_size; i++)
+                for (int i = 0; i < win_over_row_size; i++)
                 {
                     OLED_SetCursor(row_offset + i, col_offset + j);
-                    oledSendData(over_page[over_cul_size * i + j]);
+                    oledSendData(over_page[win_over_cul_size * i + j]);
                 }
             }
         }

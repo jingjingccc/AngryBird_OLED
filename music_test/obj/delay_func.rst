@@ -99,7 +99,7 @@
                                      99 ;	-----------------------------------------
                                     100 ;	 function Delay_Do
                                     101 ;	-----------------------------------------
-      0003B5                        102 _Delay_Do:
+      0003E8                        102 _Delay_Do:
                            000007   103 	ar7 = 0x07
                            000006   104 	ar6 = 0x06
                            000005   105 	ar5 = 0x05
@@ -109,19 +109,19 @@
                            000001   109 	ar1 = 0x01
                            000000   110 	ar0 = 0x00
                                     111 ;	./src/delay_func.c:28: __endasm;
-      0003B5                        112 DELAY_Do:
-      0003B5 7E 0A            [12]  113 	MOV	R6,#10
-      0003B7                        114 DELAY_Do_DL1:
-      0003B7 7F 13            [12]  115 	MOV	R7,#19
-      0003B9                        116 STEP1:
-      0003B9 DF FE            [24]  117 	DJNZ	R7,STEP1
-      0003BB DE FA            [24]  118 	DJNZ	R6,DELAY_Do_DL1
-      0003BD 7F 0D            [12]  119 	MOV	R7,#13
-      0003BF                        120 STEP2:
-      0003BF DF FE            [24]  121 	DJNZ	R7,STEP2
-      0003C1 22               [24]  122 	RET
+      0003E8                        112 DELAY_Do:
+      0003E8 7E 0A            [12]  113 	MOV	R6,#10
+      0003EA                        114 DELAY_Do_DL1:
+      0003EA 7F 13            [12]  115 	MOV	R7,#19
+      0003EC                        116 STEP1:
+      0003EC DF FE            [24]  117 	DJNZ	R7,STEP1
+      0003EE DE FA            [24]  118 	DJNZ	R6,DELAY_Do_DL1
+      0003F0 7F 0D            [12]  119 	MOV	R7,#13
+      0003F2                        120 STEP2:
+      0003F2 DF FE            [24]  121 	DJNZ	R7,STEP2
+      0003F4 22               [24]  122 	RET
                                     123 ;	./src/delay_func.c:30: }
-      0003C2 22               [24]  124 	ret
+      0003F5 22               [24]  124 	ret
                                     125 ;------------------------------------------------------------
                                     126 ;Allocation info for local variables in function 'Delay_Re'
                                     127 ;------------------------------------------------------------
@@ -129,21 +129,21 @@
                                     129 ;	-----------------------------------------
                                     130 ;	 function Delay_Re
                                     131 ;	-----------------------------------------
-      0003C3                        132 _Delay_Re:
+      0003F6                        132 _Delay_Re:
                                     133 ;	./src/delay_func.c:57: __endasm;
-      0003C3                        134 DELAY_RE:
-      0003C3 7E 0A            [12]  135 	MOV	R6,#10
-      0003C5                        136 DELAY_RE_DL1:
-      0003C5 7F 11            [12]  137 	MOV	R7,#17
-      0003C7                        138 STEP3:
-      0003C7 DF FE            [24]  139 	DJNZ	R7,STEP3
-      0003C9 DE FA            [24]  140 	DJNZ	R6,DELAY_RE_DL1
-      0003CB 7F 09            [12]  141 	MOV	R7,#9
-      0003CD                        142 STEP4:
-      0003CD DF FE            [24]  143 	DJNZ	R7,STEP4
-      0003CF 22               [24]  144 	RET
+      0003F6                        134 DELAY_RE:
+      0003F6 7E 0A            [12]  135 	MOV	R6,#10
+      0003F8                        136 DELAY_RE_DL1:
+      0003F8 7F 11            [12]  137 	MOV	R7,#17
+      0003FA                        138 STEP3:
+      0003FA DF FE            [24]  139 	DJNZ	R7,STEP3
+      0003FC DE FA            [24]  140 	DJNZ	R6,DELAY_RE_DL1
+      0003FE 7F 09            [12]  141 	MOV	R7,#9
+      000400                        142 STEP4:
+      000400 DF FE            [24]  143 	DJNZ	R7,STEP4
+      000402 22               [24]  144 	RET
                                     145 ;	./src/delay_func.c:58: }
-      0003D0 22               [24]  146 	ret
+      000403 22               [24]  146 	ret
                                     147 ;------------------------------------------------------------
                                     148 ;Allocation info for local variables in function 'Delay_Mi'
                                     149 ;------------------------------------------------------------
@@ -151,21 +151,21 @@
                                     151 ;	-----------------------------------------
                                     152 ;	 function Delay_Mi
                                     153 ;	-----------------------------------------
-      0003D1                        154 _Delay_Mi:
+      000404                        154 _Delay_Mi:
                                     155 ;	./src/delay_func.c:85: __endasm;
-      0003D1                        156 DELAY_MI:
-      0003D1 7E 0A            [12]  157 	MOV	R6,#10
-      0003D3                        158 DELAY_MI_DL1:
-      0003D3 7F 0F            [12]  159 	MOV	R7,#15
-      0003D5                        160 STEP5:
-      0003D5 DF FE            [24]  161 	DJNZ	R7,STEP5
-      0003D7 DE FA            [24]  162 	DJNZ	R6,DELAY_MI_DL1
-      0003D9 7F 07            [12]  163 	MOV	R7,#7
-      0003DB                        164 STEP6:
-      0003DB DF FE            [24]  165 	DJNZ	R7,STEP6
-      0003DD 22               [24]  166 	RET
+      000404                        156 DELAY_MI:
+      000404 7E 0A            [12]  157 	MOV	R6,#10
+      000406                        158 DELAY_MI_DL1:
+      000406 7F 0F            [12]  159 	MOV	R7,#15
+      000408                        160 STEP5:
+      000408 DF FE            [24]  161 	DJNZ	R7,STEP5
+      00040A DE FA            [24]  162 	DJNZ	R6,DELAY_MI_DL1
+      00040C 7F 07            [12]  163 	MOV	R7,#7
+      00040E                        164 STEP6:
+      00040E DF FE            [24]  165 	DJNZ	R7,STEP6
+      000410 22               [24]  166 	RET
                                     167 ;	./src/delay_func.c:86: }
-      0003DE 22               [24]  168 	ret
+      000411 22               [24]  168 	ret
                                     169 ;------------------------------------------------------------
                                     170 ;Allocation info for local variables in function 'Delay_Fa'
                                     171 ;------------------------------------------------------------
@@ -173,21 +173,21 @@
                                     173 ;	-----------------------------------------
                                     174 ;	 function Delay_Fa
                                     175 ;	-----------------------------------------
-      0003DF                        176 _Delay_Fa:
+      000412                        176 _Delay_Fa:
                                     177 ;	./src/delay_func.c:117: __endasm;
-      0003DF                        178 DELAY_FA:
-      0003DF 7E 0A            [12]  179 	MOV	R6,#10
-      0003E1                        180 DELAY_FA_DL1:
-      0003E1 7F 0D            [12]  181 	MOV	R7,#13
-      0003E3                        182 STEP7:
-      0003E3 DF FE            [24]  183 	DJNZ	R7,STEP7
-      0003E5 DE FA            [24]  184 	DJNZ	R6,DELAY_FA_DL1
-      0003E7 7F 12            [12]  185 	MOV	R7,#18
-      0003E9                        186 STEP8:
-      0003E9 DF FE            [24]  187 	DJNZ	R7,STEP8
-      0003EB 22               [24]  188 	RET
+      000412                        178 DELAY_FA:
+      000412 7E 0A            [12]  179 	MOV	R6,#10
+      000414                        180 DELAY_FA_DL1:
+      000414 7F 0D            [12]  181 	MOV	R7,#13
+      000416                        182 STEP7:
+      000416 DF FE            [24]  183 	DJNZ	R7,STEP7
+      000418 DE FA            [24]  184 	DJNZ	R6,DELAY_FA_DL1
+      00041A 7F 12            [12]  185 	MOV	R7,#18
+      00041C                        186 STEP8:
+      00041C DF FE            [24]  187 	DJNZ	R7,STEP8
+      00041E 22               [24]  188 	RET
                                     189 ;	./src/delay_func.c:118: }
-      0003EC 22               [24]  190 	ret
+      00041F 22               [24]  190 	ret
                                     191 ;------------------------------------------------------------
                                     192 ;Allocation info for local variables in function 'Delay_So'
                                     193 ;------------------------------------------------------------
@@ -195,21 +195,21 @@
                                     195 ;	-----------------------------------------
                                     196 ;	 function Delay_So
                                     197 ;	-----------------------------------------
-      0003ED                        198 _Delay_So:
+      000420                        198 _Delay_So:
                                     199 ;	./src/delay_func.c:148: __endasm;
-      0003ED                        200 DELAY_SO:
-      0003ED 7E 0A            [12]  201 	MOV	R6,#10
-      0003EF                        202 DELAY_SO_DL1:
-      0003EF 7F 0C            [12]  203 	MOV	R7,#12
-      0003F1                        204 STEP9:
-      0003F1 DF FE            [24]  205 	DJNZ	R7,STEP9
-      0003F3 DE FA            [24]  206 	DJNZ	R6,DELAY_SO_DL1
-      0003F5 7F 0A            [12]  207 	MOV	R7,#10
-      0003F7                        208 STEP10:
-      0003F7 DF FE            [24]  209 	DJNZ	R7,STEP10
-      0003F9 22               [24]  210 	RET
+      000420                        200 DELAY_SO:
+      000420 7E 0A            [12]  201 	MOV	R6,#10
+      000422                        202 DELAY_SO_DL1:
+      000422 7F 0C            [12]  203 	MOV	R7,#12
+      000424                        204 STEP9:
+      000424 DF FE            [24]  205 	DJNZ	R7,STEP9
+      000426 DE FA            [24]  206 	DJNZ	R6,DELAY_SO_DL1
+      000428 7F 0A            [12]  207 	MOV	R7,#10
+      00042A                        208 STEP10:
+      00042A DF FE            [24]  209 	DJNZ	R7,STEP10
+      00042C 22               [24]  210 	RET
                                     211 ;	./src/delay_func.c:149: }
-      0003FA 22               [24]  212 	ret
+      00042D 22               [24]  212 	ret
                                     213 ;------------------------------------------------------------
                                     214 ;Allocation info for local variables in function 'Delay_La'
                                     215 ;------------------------------------------------------------
@@ -217,21 +217,21 @@
                                     217 ;	-----------------------------------------
                                     218 ;	 function Delay_La
                                     219 ;	-----------------------------------------
-      0003FB                        220 _Delay_La:
+      00042E                        220 _Delay_La:
                                     221 ;	./src/delay_func.c:179: __endasm;
-      0003FB                        222 DELAY_LA:
-      0003FB 7E 0A            [12]  223 	MOV	R6,#10
-      0003FD                        224 DELAY_LA_DL1:
-      0003FD 7F 0B            [12]  225 	MOV	R7,#11
-      0003FF                        226 STEP11:
-      0003FF DF FE            [24]  227 	DJNZ	R7,STEP11
-      000401 DE FA            [24]  228 	DJNZ	R6,DELAY_LA_DL1
-      000403 7F 04            [12]  229 	MOV	R7,#4
-      000405                        230 STEP12:
-      000405 DF FE            [24]  231 	DJNZ	R7,STEP12
-      000407 22               [24]  232 	RET
+      00042E                        222 DELAY_LA:
+      00042E 7E 0A            [12]  223 	MOV	R6,#10
+      000430                        224 DELAY_LA_DL1:
+      000430 7F 0B            [12]  225 	MOV	R7,#11
+      000432                        226 STEP11:
+      000432 DF FE            [24]  227 	DJNZ	R7,STEP11
+      000434 DE FA            [24]  228 	DJNZ	R6,DELAY_LA_DL1
+      000436 7F 04            [12]  229 	MOV	R7,#4
+      000438                        230 STEP12:
+      000438 DF FE            [24]  231 	DJNZ	R7,STEP12
+      00043A 22               [24]  232 	RET
                                     233 ;	./src/delay_func.c:180: }
-      000408 22               [24]  234 	ret
+      00043B 22               [24]  234 	ret
                                     235 ;------------------------------------------------------------
                                     236 ;Allocation info for local variables in function 'Delay_Si'
                                     237 ;------------------------------------------------------------
@@ -239,21 +239,21 @@
                                     239 ;	-----------------------------------------
                                     240 ;	 function Delay_Si
                                     241 ;	-----------------------------------------
-      000409                        242 _Delay_Si:
+      00043C                        242 _Delay_Si:
                                     243 ;	./src/delay_func.c:210: __endasm;
-      000409                        244 DELAY_SI:
-      000409 7E 09            [12]  245 	MOV	R6,#9
-      00040B                        246 DELAY_SI_DL1:
-      00040B 7F 0B            [12]  247 	MOV	R7,#11
-      00040D                        248 STEP13:
-      00040D DF FE            [24]  249 	DJNZ	R7,STEP13
-      00040F DE FA            [24]  250 	DJNZ	R6,DELAY_SI_DL1
-      000411 7F 02            [12]  251 	MOV	R7,#2
-      000413                        252 STEP14:
-      000413 DF FE            [24]  253 	DJNZ	R7,STEP14
-      000415 22               [24]  254 	RET
+      00043C                        244 DELAY_SI:
+      00043C 7E 09            [12]  245 	MOV	R6,#9
+      00043E                        246 DELAY_SI_DL1:
+      00043E 7F 0B            [12]  247 	MOV	R7,#11
+      000440                        248 STEP13:
+      000440 DF FE            [24]  249 	DJNZ	R7,STEP13
+      000442 DE FA            [24]  250 	DJNZ	R6,DELAY_SI_DL1
+      000444 7F 02            [12]  251 	MOV	R7,#2
+      000446                        252 STEP14:
+      000446 DF FE            [24]  253 	DJNZ	R7,STEP14
+      000448 22               [24]  254 	RET
                                     255 ;	./src/delay_func.c:211: }
-      000416 22               [24]  256 	ret
+      000449 22               [24]  256 	ret
                                     257 	.area CSEG    (CODE)
                                     258 	.area CONST   (CODE)
                                     259 	.area XINIT   (CODE)

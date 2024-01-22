@@ -4,11 +4,12 @@
 #include "oled_i2c.h"
 #include "i2c.h"
 
-#define scan_cnt 10
-int music_on = 0, scan_cnting = 0, stable_scan = 0;
+#define but P2_2
+#define scan_cnt 9
+int music_on = 0, scan_cnting = 0, stable_but = 0;
 int music_play_note = 0, duration_time = 0;
 
-#define NOTE_NUM 25 // 17
+#define NOTE_NUM 25
 __code unsigned char music_table[NOTE_NUM] = {2, 4, 3, 1, 2, 2, 4, 3, 1,
                                               6, 4, 5, 3, 4, 2, 3, 1,
                                               6, 4, 5, 3, 4, 2, 3, 1};
@@ -46,7 +47,6 @@ void T0_isr(void) __interrupt(1) // Interrupt routine w/ priority 1
 
         if (music_play_note >= NOTE_NUM)
         {
-            TR0 = 0;
             music_on = 0;
             music_play_note = 0;
         }
@@ -77,7 +77,7 @@ int main()
     while (1)
     {
         // scanning button input
-        if (P2_0 == 0 && stable_scan == 1)
+        if (but == 0 && stable_but == 1)
         {
             if (scan_cnting < scan_cnt)
             {
@@ -85,21 +85,30 @@ int main()
                 if (scan_cnting == scan_cnt)
                 {
                     music_on ^= 1;
-                    stable_scan = 0;
+                    stable_but = 0;
                 }
             }
         }
-        else if (P2_0 == 1 && stable_scan == 0)
+        else if (but == 1 && stable_but == 0)
         {
             if (scan_cnting < scan_cnt)
             {
                 scan_cnting++;
                 if (scan_cnting == scan_cnt)
-                    stable_scan = 1;
+                    stable_but = 1;
             }
         }
         else
             scan_cnting = 0;
+
+        OLED_SetCursor(5, text_col);
+        char a[2];
+        a[0] = '0' + scan_cnting;
+        a[1] = '\0';
+        OLED_DisplayString(a);
+        OLED_SetCursor(6, text_col);
+        a[0] = '0' + stable_but;
+        OLED_DisplayString(a);
 
         // turn on/off timer0
         if (music_on && TR0 == 0)
